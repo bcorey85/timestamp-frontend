@@ -2,17 +2,23 @@ import { useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { ApiRequest } from '../api';
 
-const useApiRequest = ({ url, method, payload, token }: ApiRequest) => {
+const useApiRequest = () => {
 	const [ data, setData ] = useState(null);
 	const [ errors, setErrors ] = useState([]);
 
-	const apiRequest = async (): Promise<AxiosResponse> => {
+	const apiRequest = async ({
+		url,
+		method,
+		payload,
+		token
+	}: ApiRequest): Promise<AxiosResponse> => {
 		try {
 			const response = await axios[method](url, payload, {
 				headers: {
 					Authorization: 'Bearer ' + token
 				}
 			});
+
 			setData(response.data);
 			return response.data;
 		} catch (error) {

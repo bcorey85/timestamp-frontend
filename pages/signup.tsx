@@ -1,14 +1,7 @@
-import Link from 'next/link';
+import { SignUp } from '../components/SignUp/SignUp';
 
-const Signup = () => {
-	return (
-		<div>
-			signup page
-			<Link href='/'>
-				<a>Home</a>
-			</Link>
-		</div>
-	);
+const SignUpPage = () => {
+	return <SignUp />;
 };
 
-export default Signup;
+export default SignUpPage;

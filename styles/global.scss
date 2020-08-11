@@ -1,0 +1,40 @@
+:root {
+	--font-sans: 'Inter', sans-serif;
+	--font-serif: 'Crimson Text', serif;
+	--font-mono: 'Inconsolata', monospace;
+
+	--gray100: hsl(170, 8%, 95%);
+	--gray200: hsl(170, 8%, 85%);
+	--gray300: hsl(170, 8%, 75%);
+	--gray400: hsl(170, 8%, 65%);
+	--gray500: hsl(170, 8%, 45%);
+
+	--black: hsl(170, 8%, 15%);
+	--white: hsl(170, 8%, 99%);
+
+	--primary100: hsl(170, 75%, 85%);
+	--primary200: hsl(170, 75%, 75%);
+	--primary300: hsl(170, 75%, 60%);
+	--primary400: hsl(170, 85%, 45%);
+	--primary500: hsl(170, 85%, 35%);
+
+	--secondary100: hsl(30, 100%, 85%);
+	--secondary200: hsl(30, 100%, 75%);
+	--secondary300: hsl(30, 100%, 65%);
+	--secondary400: hsl(30, 100%, 55%);
+	--secondary500: hsl(30, 100%, 45%);
+}
+
+body {
+	background-color: var(--white);
+	color: var(--black);
+}
+
+a {
+	color: var(--primary500);
+	font-weight: 500;
+}
+
+a:hover {
+	color: var(--secondary400);
+}

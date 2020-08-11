@@ -5,7 +5,7 @@ interface UserCredentials {
 	password: String;
 }
 
-export const signupRequest = (payload: UserCredentials) => {
+export const signupRequestConfig = (payload: UserCredentials) => {
 	return {
 		url: `${apiBaseUrl}/auth/signup`,
 		method: 'post',
@@ -14,7 +14,7 @@ export const signupRequest = (payload: UserCredentials) => {
 	};
 };
 
-export const loginRequest = (payload: UserCredentials) => {
+export const loginRequestConfig = (payload: UserCredentials) => {
 	return {
 		url: `${apiBaseUrl}/auth/login`,
 		method: 'post',

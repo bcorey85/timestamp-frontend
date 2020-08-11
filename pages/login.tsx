@@ -1,19 +1,14 @@
-import { useInput } from '../hooks/useInput';
+import { useInputState } from '../hooks/useInputState';
 import { useApiRequest } from '../hooks/useApiRequest';
-import { signupRequest } from '../api/auth';
 import Link from 'next/link';
-import { truncateSync } from 'fs';
 
 const Login = () => {
-	const [ email, setEmail ] = useInput('');
-	const [ password, setPassword ] = useInput('');
-	const [ signupApiRequest, signupData, signupErrors ] = useApiRequest(
-		signupRequest({ email, password })
-	);
+	const [ email, setEmail ] = useInputState('');
+	const [ password, setPassword ] = useInputState('');
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		await signupApiRequest();
+		const payload = { email, password };
 	};
 
 	return (
