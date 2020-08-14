@@ -1,0 +1,126 @@
+@import '../../styles/mediaQueries.scss';
+
+.container {
+	display: flex;
+	width: 100%;
+	max-width: 102.4rem;
+	border: 1px solid var(--gray300);
+	border-radius: 2px;
+	box-shadow: var(--box-shadow);
+
+	@include respondH(1024) {
+		flex-direction: column-reverse;
+		max-width: 56rem;
+	}
+
+	@include respondH(550) {
+		flex-direction: column-reverse;
+		max-width: 100%;
+		border: none;
+		box-shadow: none;
+	}
+}
+
+.form {
+	position: relative;
+	flex: 1 1 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 6.4rem;
+
+	@include respondH(1024) {
+		padding: 2.4rem;
+	}
+
+	@include respondH(550) {
+		padding: 1.6rem;
+	}
+}
+
+.header {
+	& h5 {
+		margin-bottom: 5.6rem;
+		color: var(--gray500);
+
+		@include respondH(1024) {
+			color: var(--white);
+		}
+	}
+
+	@include respondH(1024) {
+		position: absolute;
+		top: -16rem;
+		left: 4.8rem;
+		color: var(--white);
+	}
+
+	@include respondH(550) {
+		position: absolute;
+		top: -12rem;
+		left: 3.6rem;
+		color: var(--white);
+	}
+
+	@include respondH(350) {
+		left: 3.2rem;
+	}
+}
+
+.btn_container {
+	display: flex;
+
+	& button:first-of-type {
+		margin-right: 1.6rem;
+		width: 45%;
+	}
+}
+
+.reset_password {
+	align-self: flex-end;
+	margin-bottom: 5.6rem;
+
+	@include respondH(550) {
+		margin-bottom: 3.2rem;
+	}
+}
+
+.image {
+	flex: 1 1 50%;
+	margin: 2.4rem;
+	background: url('/images/login.jpg');
+	background-size: cover;
+
+	@include respondH(1024) {
+		flex: 0 0 auto;
+		height: 33.6rem;
+		background: url('/images/login-tablet.jpg');
+		background-size: cover;
+		background-position: top center;
+	}
+
+	@include respondH(550) {
+		margin: 1.6rem;
+		height: 24rem;
+		background: url('/images/login-mobile.jpg');
+		background-size: cover;
+		background-position: top center;
+
+		border-radius: 2px;
+	}
+
+	@include respondH(350) {
+		height: 20rem;
+	}
+
+	& img {
+		display: block;
+		width: 100%;
+		object-fit: cover;
+
+		@include respondH(1024) {
+			height: 36rem;
+			object-position: 60% center;
+		}
+	}
+}

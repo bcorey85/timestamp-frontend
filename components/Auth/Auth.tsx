@@ -7,9 +7,9 @@ import { Button } from '../Button/Button';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { signupRequestConfig, loginRequestConfig } from '../../api/auth';
-import styles from './SignUp.module.scss';
+import styles from './Auth.module.scss';
 
-const SignUp = () => {
+const Auth = () => {
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
 	const [ errors, setErrors ] = useState([]);
@@ -46,8 +46,13 @@ const SignUp = () => {
 	return (
 		<div className={styles.container}>
 			<form className={styles.form}>
-				<h1>Capture your learning progress in time. </h1>
-				<h5>Please login to your account</h5>
+				<div className={styles.header}>
+					<h1>
+						Capture your learning<br /> progress in time.
+					</h1>
+					<h5>Please login to your account</h5>
+				</div>
+
 				<Input
 					type='email'
 					id='email'
@@ -62,7 +67,7 @@ const SignUp = () => {
 				/>
 				<div className={styles.reset_password}>
 					<Link href='#'>
-						<a>Reset Password</a>
+						<a className='link-gray'>Reset Password</a>
 					</Link>
 				</div>
 
@@ -79,10 +84,10 @@ const SignUp = () => {
 			</form>
 
 			<div className={styles.image}>
-				<img src={'/images/login.jpg'} alt={'Timestamp Signup Image'} />
+				{/* <img src={'/images/login.jpg'} alt={'Timestamp Signup Image'} /> */}
 			</div>
 		</div>
 	);
 };
 
-export { SignUp };
+export { Auth };

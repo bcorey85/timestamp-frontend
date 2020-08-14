@@ -14,13 +14,8 @@ const Nav = () => {
 					</li>
 				</li>
 				<li>
-					<Link href='/login'>
+					<Link href='/auth'>
 						<a>Login</a>
-					</Link>
-				</li>
-				<li>
-					<Link href='/signup'>
-						<a>Signup</a>
 					</Link>
 				</li>
 			</ul>
