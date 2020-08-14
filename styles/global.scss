@@ -18,11 +18,11 @@
 	--primary400: hsl(170, 85%, 45%);
 	--primary500: hsl(170, 85%, 35%);
 
-	--secondary100: hsl(30, 100%, 85%);
-	--secondary200: hsl(30, 100%, 75%);
-	--secondary300: hsl(30, 100%, 65%);
-	--secondary400: hsl(30, 100%, 55%);
-	--secondary500: hsl(30, 100%, 45%);
+	--secondary100: hsl(50, 100%, 85%);
+	--secondary200: hsl(50, 100%, 75%);
+	--secondary300: hsl(50, 100%, 65%);
+	--secondary400: hsl(50, 100%, 55%);
+	--secondary500: hsl(50, 100%, 45%);
 }
 
 body {
@@ -36,5 +36,5 @@ a {
 }
 
 a:hover {
-	color: var(--secondary400);
+	color: var(--secondary500);
 }

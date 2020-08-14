@@ -1,17 +1,29 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+
+import { Input } from '../Input/Input';
+import { Button } from '../Button/Button';
 
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
-import { signupRequestConfig } from '../../api/auth';
-
+import { signupRequestConfig, loginRequestConfig } from '../../api/auth';
 import styles from './SignUp.module.scss';
 
 const SignUp = () => {
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
-	const [ apiSignupRequest, data, errors ] = useApiRequest();
+	const [ errors, setErrors ] = useState([]);
+	const [ apiSignupRequest, signupData, signupErrors ] = useApiRequest();
+	const [ apiLoginRequest, loginData, loginErrors ] = useApiRequest();
 
-	const handleSubmit = async e => {
+	useEffect(
+		() => {
+			setErrors([ ...signupErrors, ...loginErrors ]);
+		},
+		[ signupErrors, loginErrors ]
+	);
+
+	const handleSignup = async e => {
 		e.preventDefault();
 
 		const config = signupRequestConfig({ email, password });
@@ -19,27 +31,56 @@ const SignUp = () => {
 		await apiSignupRequest(config);
 	};
 
+	const handleLogin = async e => {
+		e.preventDefault();
+
+		const config = loginRequestConfig({ email, password });
+
+		await apiLoginRequest(config);
+	};
+
 	const errorDisplay = errors.map(error => {
 		return <div key={error.message}>{error.message}</div>;
 	});
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<form className={styles.form}>
-				<label>
-					Email
-					<input type='email' onChange={setEmail} />
-				</label>
-				<label>
-					Password
-					<input type='password' onChange={setPassword} />
-				</label>
-				<button onClick={handleSubmit}>Submit</button>
+				<h1>Capture your learning progress in time. </h1>
+				<h5>Please login to your account</h5>
+				<Input
+					type='email'
+					id='email'
+					label='Email'
+					onChange={setEmail}
+				/>
+				<Input
+					type='password'
+					id='password'
+					label='Password'
+					onChange={setPassword}
+				/>
+				<div className={styles.reset_password}>
+					<Link href='#'>
+						<a>Reset Password</a>
+					</Link>
+				</div>
+
+				<div className={styles.btn_container}>
+					<Button type='outline' onClick={handleSignup}>
+						Sign Up
+					</Button>
+					<Button type='primary' onClick={handleLogin}>
+						Login
+					</Button>
+				</div>
+
+				{errors ? errorDisplay : null}
 			</form>
-			{errors ? errorDisplay : null}
-			<Link href='/'>
-				<a>Home</a>
-			</Link>
+
+			<div className={styles.image}>
+				<img src={'/images/login.jpg'} alt={'Timestamp Signup Image'} />
+			</div>
 		</div>
 	);
 };

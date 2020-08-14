@@ -1,0 +1,43 @@
+.btn {
+	height: 5.6rem;
+	width: 100%;
+	border-radius: 2px;
+	margin-bottom: 2.4rem;
+	font-size: 1.6rem;
+	font-family: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn_primary {
+	@extend .btn;
+	background-color: var(--primary500);
+	border: 1px solid var(--primary500);
+	color: var(--white);
+
+	&:hover {
+		border: 1px solid var(--secondary500);
+		background-color: var(--secondary500);
+	}
+}
+
+.btn_outline {
+	@extend .btn;
+	background-color: var(--white);
+	border: 1px solid var(--gray500);
+	color: var(--gray500);
+
+	&:hover {
+		background-color: var(--secondary500);
+		border: 1px solid var(--secondary500);
+		color: var(--white);
+	}
+}
+
+.btn_link {
+	color: var(--gray500);
+
+	&:hover {
+		color: var(--secondary500);
+	}
+}
