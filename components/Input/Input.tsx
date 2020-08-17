@@ -10,8 +10,6 @@ interface Input {
 }
 
 const Input = ({ id, type, label, ...rest }: Input) => {
-	console.log({ ...rest });
-
 	const labelElement = (
 		<label htmlFor={id} className={styles.input_label}>
 			{label}

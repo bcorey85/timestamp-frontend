@@ -46,11 +46,12 @@ const Auth = () => {
 	return (
 		<div className={styles.container}>
 			<form className={styles.form}>
+				<img src='/images/logo-temp.svg' className={styles.logo} />
 				<div className={styles.header}>
 					<h1>
 						Capture your learning<br /> progress in time.
 					</h1>
-					<h5>Please login to your account</h5>
+					<h5>Please login or create an account</h5>
 				</div>
 
 				<Input

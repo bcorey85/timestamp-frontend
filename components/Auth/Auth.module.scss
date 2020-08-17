@@ -1,10 +1,11 @@
 @import '../../styles/mediaQueries.scss';
 
 .container {
+	position: relative;
 	display: flex;
 	width: 100%;
 	max-width: 102.4rem;
-	border: 1px solid var(--gray300);
+	border: 1px solid var(--gray200);
 	border-radius: 2px;
 	box-shadow: var(--box-shadow);
 
@@ -18,11 +19,11 @@
 		max-width: 100%;
 		border: none;
 		box-shadow: none;
+		padding: 2.4rem 0 4rem 0;
 	}
 }
 
 .form {
-	position: relative;
 	flex: 1 1 50%;
 	display: flex;
 	flex-direction: column;
@@ -34,36 +35,28 @@
 	}
 
 	@include respondH(550) {
-		padding: 1.6rem;
+		padding: 2.4rem;
+	}
+}
+
+.logo {
+	margin-bottom: 6.8rem;
+	align-self: flex-start;
+
+	@include respondH(1024) {
+		display: none;
 	}
 }
 
 .header {
 	& h5 {
 		margin-bottom: 5.6rem;
-		color: var(--gray500);
+		color: var(--gray400);
+		font-weight: 400;
 
 		@include respondH(1024) {
-			color: var(--white);
+			margin-bottom: 3.6rem;
 		}
-	}
-
-	@include respondH(1024) {
-		position: absolute;
-		top: -16rem;
-		left: 4.8rem;
-		color: var(--white);
-	}
-
-	@include respondH(550) {
-		position: absolute;
-		top: -12rem;
-		left: 3.6rem;
-		color: var(--white);
-	}
-
-	@include respondH(350) {
-		left: 3.2rem;
 	}
 }
 
@@ -80,6 +73,10 @@
 	align-self: flex-end;
 	margin-bottom: 5.6rem;
 
+	@include respondH(1024) {
+		margin-bottom: 4.8rem;
+	}
+
 	@include respondH(550) {
 		margin-bottom: 3.2rem;
 	}
@@ -88,25 +85,22 @@
 .image {
 	flex: 1 1 50%;
 	margin: 2.4rem;
+	margin-left: 0;
 	background: url('/images/login.jpg');
 	background-size: cover;
 
 	@include respondH(1024) {
+		margin-left: 2.4rem;
+		margin-bottom: 0;
 		flex: 0 0 auto;
-		height: 33.6rem;
+		height: 29.6rem;
 		background: url('/images/login-tablet.jpg');
 		background-size: cover;
 		background-position: top center;
 	}
 
 	@include respondH(550) {
-		margin: 1.6rem;
-		height: 24rem;
-		background: url('/images/login-mobile.jpg');
-		background-size: cover;
-		background-position: top center;
-
-		border-radius: 2px;
+		display: none;
 	}
 
 	@include respondH(350) {
