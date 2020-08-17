@@ -10,6 +10,10 @@
 	cursor: pointer;
 }
 
+.btn:focus {
+	outline-color: var(--black100);
+}
+
 .btn_primary {
 	@extend .btn;
 	background-color: var(--primary500);

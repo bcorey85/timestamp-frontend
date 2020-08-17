@@ -12,6 +12,7 @@ const useApiRequest = () => {
 		payload,
 		token
 	}: ApiRequest): Promise<AxiosResponse> => {
+		setErrors([]);
 		try {
 			const response = await axios[method](url, payload, {
 				headers: {
@@ -23,6 +24,7 @@ const useApiRequest = () => {
 			return response.data;
 		} catch (error) {
 			setErrors(error.response.data.errors);
+			return error.response.data;
 		}
 	};
 	return [ apiRequest, data, errors ];

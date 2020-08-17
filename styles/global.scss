@@ -7,7 +7,7 @@
 	--gray300: hsl(167, 5%, 75%);
 	--gray400: hsl(167, 5%, 65%);
 	--gray200: hsl(167, 5%, 85%);
-	--gray500: hsl(167, 5%, 45%);
+	--gray500: hsl(167, 5%, 44%);
 
 	--black200: hsl(167, 10%, 20%);
 	--black100: hsl(167, 10%, 30%);
@@ -24,6 +24,9 @@
 	--secondary300: hsl(50, 100%, 65%);
 	--secondary400: hsl(50, 100%, 55%);
 	--secondary500: hsl(50, 100%, 42%);
+
+	--red-error: hsl(360, 80%, 65%);
+	--green-success: hsl(119, 65%, 65%);
 
 	--box-shadow: 0px 2px 4px hsla(0, 100%, 0%, 20%);
 }
@@ -46,4 +49,20 @@ a.link-gray:hover {
 a.link-gray {
 	color: var(--gray500);
 	font-size: 1.4rem;
+}
+
+button {
+	font-size: inherit;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+button.btn-link {
+	color: var(--primary500);
+	background: none;
+	border: none;
+}
+
+button.btn-link:hover {
+	color: var(--secondary500);
 }

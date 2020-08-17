@@ -6,10 +6,17 @@ interface Input {
 	id: string;
 	type: string;
 	label: string;
+	error?: Error;
 	onChange: () => {};
+	autoComplete: string;
 }
 
-const Input = ({ id, type, label, ...rest }: Input) => {
+interface Error {
+	field: string;
+	message: string;
+}
+
+const Input = ({ id, type, label, error, ...rest }: Input) => {
 	const labelElement = (
 		<label htmlFor={id} className={styles.input_label}>
 			{label}
@@ -29,6 +36,9 @@ const Input = ({ id, type, label, ...rest }: Input) => {
 		<div className={styles.container}>
 			{label ? labelElement : null}
 			<input type={type} id={id} {...rest} className={styles.input} />
+			<div className={styles.error_container}>
+				{(error && error.message) || null}
+			</div>
 		</div>
 	);
 };

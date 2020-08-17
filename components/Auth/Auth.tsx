@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 
 import { Input } from '../Input/Input';
@@ -7,41 +9,61 @@ import { Button } from '../Button/Button';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { signupRequestConfig, loginRequestConfig } from '../../api/auth';
+import { login, selectUser } from '../../redux/user';
 import styles from './Auth.module.scss';
 
 const Auth = () => {
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
-	const [ errors, setErrors ] = useState([]);
+	const [ errors, setErrors ] = useState({ email: null, password: null });
 	const [ apiSignupRequest, signupData, signupErrors ] = useApiRequest();
 	const [ apiLoginRequest, loginData, loginErrors ] = useApiRequest();
 
+	const router = useRouter();
+	const dispatch = useDispatch();
+	const user = useSelector(selectUser);
+
 	useEffect(
 		() => {
-			setErrors([ ...signupErrors, ...loginErrors ]);
+			const errorArray = [ ...signupErrors, ...loginErrors ];
+			const errorField = field => {
+				return (
+					errorArray[
+						errorArray.findIndex(err => err.field === field)
+					] || null
+				);
+			};
+
+			const errors = {
+				email: errorField('email'),
+				password: errorField('password')
+			};
+
+			setErrors(errors);
 		},
 		[ signupErrors, loginErrors ]
 	);
 
-	const handleSignup = async e => {
+	const signupConfig = signupRequestConfig({ email, password });
+	const loginConfig = loginRequestConfig({ email, password });
+
+	const handleAuth = async (e, config, request) => {
 		e.preventDefault();
 
-		const config = signupRequestConfig({ email, password });
+		const res = await request(config);
 
-		await apiSignupRequest(config);
+		if (res.success === false) {
+			return;
+		}
+		dispatch(
+			login({
+				userId: res.data.id,
+				token: res.data.token,
+				data: {}
+			})
+		);
+		router.push('/');
 	};
-
-	const handleLogin = async e => {
-		e.preventDefault();
-
-		const config = loginRequestConfig({ email, password });
-
-		await apiLoginRequest(config);
-	};
-
-	const errorDisplay = errors.map(error => {
-		return <div key={error.message}>{error.message}</div>;
-	});
 
 	return (
 		<div className={styles.container}>
@@ -51,20 +73,23 @@ const Auth = () => {
 					<h1>
 						Capture your learning<br /> progress in time.
 					</h1>
-					<h5>Please login or create an account</h5>
+					<h5>Please sign up or login to your account</h5>
 				</div>
-
 				<Input
 					type='email'
 					id='email'
 					label='Email'
+					error={errors.email}
 					onChange={setEmail}
+					autoComplete='username'
 				/>
 				<Input
 					type='password'
 					id='password'
 					label='Password'
+					error={errors.password}
 					onChange={setPassword}
+					autoComplete='current-password'
 				/>
 				<div className={styles.reset_password}>
 					<Link href='#'>
@@ -73,20 +98,23 @@ const Auth = () => {
 				</div>
 
 				<div className={styles.btn_container}>
-					<Button type='outline' onClick={handleSignup}>
+					<Button
+						type='outline'
+						onClick={e =>
+							handleAuth(e, signupConfig, apiSignupRequest)}>
 						Sign Up
 					</Button>
-					<Button type='primary' onClick={handleLogin}>
+					<Button
+						type='primary'
+						onClick={e =>
+							handleAuth(e, loginConfig, apiLoginRequest)}>
 						Login
 					</Button>
 				</div>
-
-				{errors ? errorDisplay : null}
+				<div className={styles.error_container} />
 			</form>
 
-			<div className={styles.image}>
-				{/* <img src={'/images/login.jpg'} alt={'Timestamp Signup Image'} /> */}
-			</div>
+			<div className={styles.image} />
 		</div>
 	);
 };
