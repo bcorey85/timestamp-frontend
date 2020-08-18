@@ -1,9 +1,13 @@
 import Head from 'next/head';
 
-const Meta = props => {
+interface Props {
+	pageTitle: string;
+}
+
+const Meta = ({ pageTitle }: Props): JSX.Element => {
 	return (
 		<Head>
-			<title>Timestamp App | {props.pageTitle}</title>
+			<title>Timestamp App | {pageTitle}</title>
 			<link rel='icon' href='/favicon.ico' />
 			<link
 				href='https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&family=Inter:wght@400;500;600&display=swap'

@@ -26,7 +26,8 @@ const rootReducer = combineReducers({
 const persistConfig = {
 	key: 'timestamp',
 	version: 1,
-	storage
+	storage,
+	whitelist: [ 'navigation' ]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -3,7 +3,7 @@ import { Footer } from './Footer/Footer';
 
 import styles from './Layout.module.scss';
 
-const Layout = props => {
+const Layout = (props): JSX.Element => {
 	return (
 		<div className={styles.layout}>
 			<Header />

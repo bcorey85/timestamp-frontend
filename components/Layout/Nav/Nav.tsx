@@ -6,13 +6,16 @@ import { Button } from '../../shared/Button';
 
 import styles from './Nav.module.scss';
 
-const Nav = () => {
+import Router from 'next/router';
+
+const Nav = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
 
 	const handleLogout = () => {
 		dispatch(logout());
-		console.log(user);
+		Router.push('/');
+		return;
 	};
 
 	return (

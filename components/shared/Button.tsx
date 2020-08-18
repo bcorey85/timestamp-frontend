@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import styles from './Button.module.scss';
 
-interface Button {
+interface ButtonType {
+	outline: 'outline';
+	link_primary: 'link_primary';
+	link_gray: 'link_gray';
+	primary: 'primary';
+}
+
+interface Props {
 	children?: any;
-	type: ButtonTypes;
-	onClick: () => {};
+	type: keyof ButtonType;
+	onClick: (props: any) => any;
 }
 
-enum ButtonTypes {
-	outline = 'outline',
-	link_primary = 'link_primary',
-	link_gray = 'link_gray',
-	primary = 'primary'
-}
-
-const Button = ({ children, type, onClick }) => {
+const Button = ({ children, type, onClick }: Props): JSX.Element => {
 	if (type === 'outline') {
 		return (
 			<button className={styles.btn_outline} onClick={onClick}>

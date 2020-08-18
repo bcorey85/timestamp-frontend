@@ -2,22 +2,29 @@ import React, { useState } from 'react';
 
 import styles from './Input.module.scss';
 
-interface Input {
-	id: string;
-	type: string;
-	label: string;
-	value: string | number;
-	error?: Error;
-	onChange: () => {};
-	autoComplete: string;
-}
-
 interface Error {
 	field: string;
 	message: string;
 }
 
-const Input = ({ id, type, label, value, error, ...rest }: Input) => {
+interface Props {
+	id: string;
+	type: string;
+	label: string;
+	value: string | number;
+	error?: Error;
+	onChange: (props: any) => any;
+	autoComplete: string;
+}
+
+const Input = ({
+	id,
+	type,
+	label,
+	value,
+	error,
+	...rest
+}: Props): JSX.Element => {
 	const labelElement = (
 		<label htmlFor={id} className={styles.input_label}>
 			{label}

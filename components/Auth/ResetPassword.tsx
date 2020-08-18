@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { AuthContainer } from './shared/AuthContainer';
@@ -13,7 +13,9 @@ import { resetPasswordRequestConfig } from '../../api/auth';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 
-const ResetPassword = () => {
+import styles from './ResetPassword.module.scss';
+
+const ResetPassword = (): JSX.Element => {
 	const [ password, setPassword ] = useInputState('');
 	const [ passwordConfirm, setPasswordConfirm ] = useInputState('');
 	const [ errors, setErrors ] = useState({
@@ -21,10 +23,9 @@ const ResetPassword = () => {
 		passwordConfirm: null
 	});
 	const [ resetRequest, resetData, resetErrors ] = useApiRequest();
-	const router = useRouter();
+
 	const dispatch = useDispatch();
-	const { tokenid } = router.query;
-	console.log(router);
+	const { tokenid } = Router.query;
 
 	useEffect(
 		() => {
@@ -71,12 +72,11 @@ const ResetPassword = () => {
 		dispatch(
 			login({
 				userId: res.data.id,
-				token: res.data.token,
-				data: {}
+				token: res.data.token
 			})
 		);
 
-		router.push('/');
+		Router.push('/');
 	};
 
 	return (
@@ -86,24 +86,27 @@ const ResetPassword = () => {
 				<h5>Please submit a new password below</h5>
 			</AuthHeader>
 			<form>
-				<Input
-					id='password'
-					label='New Password'
-					type='password'
-					autoComplete='new-password'
-					onChange={setPassword}
-					value={password}
-					error={errors.password}
-				/>
-				<Input
-					id='password'
-					label='Confirm Password'
-					type='password'
-					autoComplete='confirm-password'
-					onChange={setPasswordConfirm}
-					value={passwordConfirm}
-					error={errors.passwordConfirm}
-				/>
+				<div className={styles.input_container}>
+					<Input
+						id='password'
+						label='New Password'
+						type='password'
+						autoComplete='new-password'
+						onChange={setPassword}
+						value={password}
+						error={errors.password}
+					/>
+					<Input
+						id='password'
+						label='Confirm Password'
+						type='password'
+						autoComplete='confirm-password'
+						onChange={setPasswordConfirm}
+						value={passwordConfirm}
+						error={errors.passwordConfirm}
+					/>
+				</div>
+
 				<Button onClick={handlePasswordReset} type='primary'>
 					Reset Password
 				</Button>

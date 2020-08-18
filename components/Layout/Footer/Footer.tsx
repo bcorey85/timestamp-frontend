@@ -1,6 +1,6 @@
 import styles from './Footer.module.scss';
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
 	return (
 		<footer className={styles.footer}>
 			<div>Copyright &copy; {new Date().getFullYear()}</div>

@@ -4,7 +4,7 @@ import { SignIn } from './SignIn';
 import { ForgotPassword } from './ForgotPassword';
 import { AuthContainer } from './shared/AuthContainer';
 
-const Auth = () => {
+const Auth = (): JSX.Element => {
 	const [ resetPasswordMode, setResetPasswordMode ] = useState(false);
 
 	const toggleForm = () => {

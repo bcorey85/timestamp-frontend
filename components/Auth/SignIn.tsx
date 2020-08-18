@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { Input } from '../shared/Input';
@@ -14,13 +14,16 @@ import { login } from '../../redux/user';
 
 import styles from './SignIn.module.scss';
 
-const SignIn = ({ toggleForm }) => {
+interface Props {
+	toggleForm: () => void;
+}
+
+const SignIn = ({ toggleForm }): JSX.Element => {
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
 	const [ errors, setErrors ] = useState({ email: null, password: null });
 	const [ signupRequest, signupData, signupErrors ] = useApiRequest();
 	const [ loginRequest, loginData, loginErrors ] = useApiRequest();
-	const router = useRouter();
 	const dispatch = useDispatch();
 
 	useEffect(
@@ -58,11 +61,10 @@ const SignIn = ({ toggleForm }) => {
 		dispatch(
 			login({
 				userId: res.data.id,
-				token: res.data.token,
-				data: {}
+				token: res.data.token
 			})
 		);
-		router.push('/');
+		Router.push(`/app/${res.data.id}/dashboard`);
 	};
 
 	return (

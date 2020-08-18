@@ -11,7 +11,11 @@ import { forgotPasswordRequestConfig } from '../../api/auth';
 
 import styles from './ForgotPassword.module.scss';
 
-const ForgotPassword = ({ toggleForm }) => {
+interface Props {
+	toggleForm: () => void;
+}
+
+const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 	const [ email, setEmail ] = useInputState('');
 	const [ formSent, setFormSent ] = useState(false);
 	const [ errors, setErrors ] = useState({ email: null });

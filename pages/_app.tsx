@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import '../styles/index.scss';
 
-function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
 	return (
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
@@ -17,4 +17,8 @@ function App({ Component, pageProps }) {
 	);
 }
 
-export default App;
+MyApp.getInitialProps = async appContext => {
+	return {};
+};
+
+export default MyApp;

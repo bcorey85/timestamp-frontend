@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import styles from './AuthContainer.module.scss';
 
-const AuthContainer = props => {
+const AuthContainer = (props): JSX.Element => {
 	const [ resetPasswordMode, setResetPasswordMode ] = useState(false);
 
 	const toggleForm = () => {
