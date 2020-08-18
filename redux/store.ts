@@ -4,6 +4,7 @@ import {
 	getDefaultMiddleware
 } from '@reduxjs/toolkit';
 import {
+	persistStore,
 	persistReducer,
 	FLUSH,
 	REHYDRATE,
@@ -47,4 +48,6 @@ const store = configureStore({
 	devTools: true
 });
 
-export { store };
+const persistor = persistStore(store);
+
+export { store, persistor };

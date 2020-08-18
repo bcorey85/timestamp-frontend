@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, selectUser } from '../../../redux/user';
 
+import { Button } from '../../shared/Button';
+
 import styles from './Nav.module.scss';
 
 const Nav = () => {
@@ -27,9 +29,9 @@ const Nav = () => {
 							<a>Login</a>
 						</Link>
 					) : (
-						<button onClick={handleLogout} className='btn-link'>
+						<Button onClick={handleLogout} type='link_primary'>
 							Logout
-						</button>
+						</Button>
 					)}
 				</li>
 			</ul>

@@ -1,0 +1,13 @@
+@import '../../../styles/mediaQueries.scss';
+
+.header {
+	& h5 {
+		margin-bottom: 5.6rem;
+		color: var(--gray500);
+		font-weight: 400;
+
+		@include respondH(1024) {
+			margin-bottom: 4.8rem;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+.btn_container {
+	width: 100%;
+	display: flex;
+
+	& button:first-of-type {
+		margin-right: 1.6rem;
+		width: 45%;
+	}
+}

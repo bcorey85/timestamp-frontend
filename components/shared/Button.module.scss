@@ -40,7 +40,25 @@
 }
 
 .btn_link {
+	background: none;
+	border: none;
+	font-weight: 500;
+}
+
+.btn_link_gray {
+	@extend .btn_link;
 	color: var(--gray500);
+	font-size: 1.4rem;
+
+	&:hover {
+		color: var(--secondary500);
+	}
+}
+
+.btn_link_primary {
+	@extend .btn_link;
+	color: var(--primary500);
+	font-size: 1.6rem;
 
 	&:hover {
 		color: var(--secondary500);
