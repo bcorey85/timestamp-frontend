@@ -1,3 +1,5 @@
+import React from 'react';
+
 import styles from './ErrorDisplay.module.scss';
 
 interface Error {

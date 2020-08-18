@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 
@@ -107,7 +107,7 @@ const ResetPassword = (): JSX.Element => {
 					/>
 				</div>
 
-				<Button onClick={handlePasswordReset} type='primary'>
+				<Button onClick={handlePasswordReset} btnStyle='primary'>
 					Reset Password
 				</Button>
 				<ErrorDisplay errors={resetErrors} />

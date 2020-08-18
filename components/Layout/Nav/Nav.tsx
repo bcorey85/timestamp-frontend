@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, selectUser } from '../../../redux/user';
@@ -32,7 +34,7 @@ const Nav = (): JSX.Element => {
 							<a>Login</a>
 						</Link>
 					) : (
-						<Button onClick={handleLogout} type='link_primary'>
+						<Button onClick={handleLogout} btnStyle='link_primary'>
 							Logout
 						</Button>
 					)}

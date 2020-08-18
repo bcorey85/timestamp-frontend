@@ -1,4 +1,5 @@
 import { apiBaseUrl } from './index';
+import { ApiRequest } from './index';
 
 interface UserCredentials {
 	email: string;
@@ -12,7 +13,7 @@ interface ResetRequest {
 
 type email = string;
 
-export const signupRequestConfig = (payload: UserCredentials) => {
+export const signupRequestConfig = (payload: UserCredentials): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/signup`,
 		method: 'post',
@@ -21,7 +22,7 @@ export const signupRequestConfig = (payload: UserCredentials) => {
 	};
 };
 
-export const loginRequestConfig = (payload: UserCredentials) => {
+export const loginRequestConfig = (payload: UserCredentials): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/login`,
 		method: 'post',
@@ -30,7 +31,7 @@ export const loginRequestConfig = (payload: UserCredentials) => {
 	};
 };
 
-export const forgotPasswordRequestConfig = (email: email) => {
+export const forgotPasswordRequestConfig = (email: email): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/forgot-password`,
 		method: 'post',
@@ -42,7 +43,7 @@ export const forgotPasswordRequestConfig = (email: email) => {
 export const resetPasswordRequestConfig = ({
 	password,
 	token
-}: ResetRequest) => {
+}: ResetRequest): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/reset-password/${token}`,
 		method: 'put',

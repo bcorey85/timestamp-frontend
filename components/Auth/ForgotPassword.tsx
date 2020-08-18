@@ -64,7 +64,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 						request
 					</h5>
 				</AuthHeader>
-				<Button onClick={toggleForm} type='primary'>
+				<Button onClick={toggleForm} btnStyle='primary'>
 					Back
 				</Button>
 			</React.Fragment>
@@ -90,10 +90,10 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 			</div>
 
 			<ButtonContainer>
-				<Button type='outline' onClick={toggleForm}>
+				<Button btnStyle='outline' onClick={toggleForm}>
 					Cancel
 				</Button>
-				<Button onClick={handlePasswordRequest} type='primary'>
+				<Button onClick={handlePasswordRequest} btnStyle='primary'>
 					Reset Password
 				</Button>
 			</ButtonContainer>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 
@@ -94,19 +94,19 @@ const SignIn = ({ toggleForm }): JSX.Element => {
 				autoComplete='current-password'
 			/>
 			<div className={styles.reset_password}>
-				<Button type='link_gray' onClick={toggleForm}>
+				<Button btnStyle='link_gray' onClick={toggleForm}>
 					Forgot Password?
 				</Button>
 			</div>
 
 			<ButtonContainer>
 				<Button
-					type='outline'
+					btnStyle='outline'
 					onClick={e => handleAuth(e, signupConfig, signupRequest)}>
 					Sign Up
 				</Button>
 				<Button
-					type='primary'
+					btnStyle='primary'
 					onClick={e => handleAuth(e, loginConfig, loginRequest)}>
 					Login
 				</Button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from './Input.module.scss';
 
@@ -14,7 +14,7 @@ interface Props {
 	value: string | number;
 	error?: Error;
 	onChange: (props: any) => any;
-	autoComplete: string;
+	autoComplete?: string;
 }
 
 const Input = ({

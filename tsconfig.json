@@ -22,7 +22,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx", "test/__mocks__/styleMock.js", "jest.config.js", "test/__mocks__/styleMock.js"
   ],
   "exclude": [
     "node_modules"
