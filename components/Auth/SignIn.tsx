@@ -12,7 +12,6 @@ import { useApiRequest } from '../../hooks/useApiRequest';
 import { signupRequestConfig, loginRequestConfig } from '../../api/auth';
 import { login } from '../../redux/user';
 import { ApiRequest, ApiResponse, ApiError } from '../../api/index';
-import { AuthenticatedResponse } from '../../api/auth';
 
 import styles from './SignIn.module.scss';
 
