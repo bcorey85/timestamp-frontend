@@ -23,6 +23,8 @@ const rootReducer = combineReducers({
 	user: userReducer
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 const persistConfig = {
 	key: 'timestamp',
 	version: 1,

@@ -1,4 +1,5 @@
-import React, { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/user';
 
 const Dashboard = (): JSX.Element => {

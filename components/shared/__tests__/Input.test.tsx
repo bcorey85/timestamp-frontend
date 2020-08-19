@@ -1,11 +1,7 @@
 import React from 'react';
-
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import { Input } from '../Input';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('Input', () => {
 	it('renders an input and label', () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, SyntheticEvent } from 'react';
 
 import { Input } from '../shared/Input';
 import { Button } from '../shared/Button';
@@ -8,6 +8,7 @@ import { AuthHeader } from './shared/AuthHeader';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { forgotPasswordRequestConfig } from '../../api/auth';
+import { ApiError } from '../../api/index';
 
 import styles from './ForgotPassword.module.scss';
 
@@ -31,7 +32,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 				email:
 					forgotPasswordErrors[
 						forgotPasswordErrors.findIndex(
-							err => err.field === 'email'
+							(err: ApiError) => err.field === 'email'
 						)
 					] || null
 			};
@@ -41,7 +42,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 		[ forgotPasswordErrors ]
 	);
 
-	const handlePasswordRequest = async e => {
+	const handlePasswordRequest = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		const config = forgotPasswordRequestConfig(email);
 

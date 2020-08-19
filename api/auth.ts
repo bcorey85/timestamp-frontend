@@ -11,6 +11,11 @@ interface ResetRequest {
 	token: string;
 }
 
+export interface AuthenticatedResponse {
+	id: string;
+	token: string;
+}
+
 type email = string;
 
 export const signupRequestConfig = (payload: UserCredentials): ApiRequest => {

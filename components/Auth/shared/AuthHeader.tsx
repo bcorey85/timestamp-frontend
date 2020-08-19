@@ -1,6 +1,12 @@
+import React from 'react';
+
 import styles from './AuthHeader.module.scss';
 
-const AuthHeader = (props): JSX.Element => {
-	return <hgroup className={styles.header}>{props.children}</hgroup>;
+interface Props {
+	children?: any;
+}
+
+const AuthHeader = ({ children }: Props): JSX.Element => {
+	return <hgroup className={styles.header}>{children}</hgroup>;
 };
 export { AuthHeader };

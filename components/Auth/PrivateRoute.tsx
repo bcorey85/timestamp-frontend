@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { NextPageContext } from 'next';
 import jwtDecode from 'jwt-decode';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser, logout } from '../../redux/user';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 interface Token {
 	iat: number;
@@ -11,19 +12,24 @@ interface Token {
 	expires: number;
 }
 
-const PrivateRoute = props => {
+interface Props {
+	children?: any;
+}
+
+const PrivateRoute = ({ children }: Props) => {
 	const [ isLoading, setIsLoading ] = useState(true);
 	const user = useSelector(selectUser);
+	const router = useRouter();
 
 	const dispatch = useDispatch();
-	const { userid } = Router.query;
+	const { userid } = router.query;
 
 	useEffect(() => {
 		const isAuthenticated = !!(user && user.token);
 
 		if (!isAuthenticated) {
 			dispatch(logout());
-			Router.push('/auth');
+			router.push('/auth');
 			return;
 		}
 
@@ -32,14 +38,14 @@ const PrivateRoute = props => {
 
 		if (expiredToken) {
 			dispatch(logout());
-			Router.push('/auth');
+			router.push('/auth');
 			return;
 		}
 
 		const isAuthorized = user.userId === userid;
 
 		if (!isAuthorized) {
-			Router.push(`/app/${user.userId}/dashboard`);
+			router.push(`/app/${user.userId}/dashboard`);
 			return;
 		}
 
@@ -50,10 +56,10 @@ const PrivateRoute = props => {
 		return <div> Loading...</div>;
 	}
 
-	return <React.Fragment>{props.children}</React.Fragment>;
+	return <React.Fragment>{children}</React.Fragment>;
 };
 
-PrivateRoute.getInitialProps = async context => {
+PrivateRoute.getInitialProps = async (context: NextPageContext) => {
 	let query = context.query;
 	return { query };
 };

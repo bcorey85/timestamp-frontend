@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Router from 'next/router';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { AuthContainer } from './shared/AuthContainer';
@@ -23,9 +23,10 @@ const ResetPassword = (): JSX.Element => {
 		passwordConfirm: null
 	});
 	const [ resetRequest, resetData, resetErrors ] = useApiRequest();
+	const router = useRouter();
 
 	const dispatch = useDispatch();
-	const { tokenid } = Router.query;
+	const { tokenid } = router.query;
 
 	useEffect(
 		() => {
@@ -37,7 +38,7 @@ const ResetPassword = (): JSX.Element => {
 		[ password, passwordConfirm, setErrors ]
 	);
 
-	const handlePasswordReset = async e => {
+	const handlePasswordReset = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
 		if (password.length < 6) {
@@ -76,7 +77,7 @@ const ResetPassword = (): JSX.Element => {
 			})
 		);
 
-		Router.push('/');
+		router.push('/');
 	};
 
 	return (
