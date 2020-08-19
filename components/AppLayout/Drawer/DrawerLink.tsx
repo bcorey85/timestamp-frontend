@@ -2,14 +2,32 @@ import React from 'react';
 import Link from 'next/link';
 
 interface Props {
-	href: string;
+	href?: string;
 	children: string;
 	isActive: boolean;
+	onClick?: () => any;
 }
 
 import styles from './DrawerLink.module.scss';
 
-const DrawerLink = ({ href, children, isActive }: Props): JSX.Element => {
+const DrawerLink = ({
+	href,
+	children,
+	isActive,
+	onClick
+}: Props): JSX.Element => {
+	if (onClick) {
+		return (
+			<li>
+				<button
+					className={isActive ? styles.active : styles.inactive}
+					onClick={onClick}>
+					{children}
+				</button>
+			</li>
+		);
+	}
+
 	return (
 		<li>
 			<Link href={href}>

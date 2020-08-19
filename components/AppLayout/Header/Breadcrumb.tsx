@@ -5,7 +5,7 @@ import { TypeIcon } from '../TypeIcon';
 
 import styles from './Breadcrumb.module.scss';
 
-const Breadcrumb = () => {
+const Breadcrumb = (): JSX.Element => {
 	return (
 		<div className={styles.breadcrumb}>
 			<nav>

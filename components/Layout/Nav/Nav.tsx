@@ -1,25 +1,10 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout, selectUser } from '../../../redux/user';
-
-import { Button } from '../../shared/Button';
 
 import styles from './Nav.module.scss';
 
-import Router from 'next/router';
-
 const Nav = (): JSX.Element => {
-	const dispatch = useDispatch();
-	const user = useSelector(selectUser);
-
-	const handleLogout = () => {
-		dispatch(logout());
-		Router.push('/');
-		return;
-	};
-
 	return (
 		<nav className={styles.nav}>
 			<ul>
@@ -29,15 +14,9 @@ const Nav = (): JSX.Element => {
 					</Link>
 				</li>
 				<li>
-					{!user.token ? (
-						<Link href='/auth'>
-							<a>Login</a>
-						</Link>
-					) : (
-						<Button onClick={handleLogout} btnStyle='link_primary'>
-							Logout
-						</Button>
-					)}
+					<Link href='/auth'>
+						<a>Login</a>
+					</Link>
 				</li>
 			</ul>
 		</nav>

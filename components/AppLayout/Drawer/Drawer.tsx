@@ -1,11 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import styles from './Drawer.module.scss';
 import { DrawerLink } from './DrawerLink';
 import { Button } from '../../shared/Button';
+import { logout } from '../../../redux/user';
 
 const Drawer = (): JSX.Element => {
+	const dispatch = useDispatch();
+	const router = useRouter();
 	const handleCreate = () => {};
+
+	const handleLogout = () => {
+		dispatch(logout());
+		router.push('/');
+		return;
+	};
 
 	return (
 		<aside className={styles.drawer}>
@@ -36,7 +47,7 @@ const Drawer = (): JSX.Element => {
 					<DrawerLink href='#' isActive={false}>
 						Settings
 					</DrawerLink>
-					<DrawerLink href='#' isActive={false}>
+					<DrawerLink onClick={handleLogout} isActive={false}>
 						Logout
 					</DrawerLink>
 				</ul>
