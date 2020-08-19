@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import { DrawerLink } from '../DrawerLink';
 
-describe('DrawerLink', () => {
+describe('Drawer Link', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<DrawerLink href='#' isActive={false}>
