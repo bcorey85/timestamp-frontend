@@ -1,20 +1,11 @@
-import { useSelector } from 'react-redux';
-
-import { Counter } from '../components/counter';
-import { User } from '../components/user';
 import { Meta } from '../components/Meta/Meta';
-
-import { selectCounter } from '../redux/counter';
+import { Layout } from '../components/Layout/Layout';
 
 export default function Home(props) {
-	const { counter } = useSelector(selectCounter);
-
 	return (
-		<div>
+		<Layout>
 			<Meta pageTitle='Home' />
-			<User />
-			<Counter />
-			Capture your learning in time.
-		</div>
+			Capture your learning progress in time.
+		</Layout>
 	);
 }

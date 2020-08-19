@@ -1,0 +1,21 @@
+.header {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	height: 6.4rem;
+	padding: 1.6rem;
+	color: var(--white);
+	border-bottom: 2px solid var(--gray300);
+	box-shadow: var(--box-shadow);
+	z-index: 2;
+
+	& img {
+		width: 12rem;
+		margin-right: 4rem;
+	}
+}
+
+.nav_container {
+	display: flex;
+	align-items: center;
+}

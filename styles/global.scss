@@ -11,7 +11,7 @@
 
 	--black200: hsl(167, 10%, 20%);
 	--black100: hsl(167, 10%, 30%);
-	--white: hsl(167, 10%, 99%);
+	--white: hsl(167, 10%, 100%);
 
 	--primary100: hsl(167, 75%, 85%);
 	--primary200: hsl(167, 75%, 75%);
@@ -29,6 +29,12 @@
 	--green-success: hsl(119, 65%, 65%);
 
 	--box-shadow: 0px 2px 4px hsla(0, 100%, 0%, 20%);
+	--border-radius: 2px;
+
+	--project: hsl(340, 70%, 55%);
+	--task: hsl(250, 65%, 55%);
+	--note: var(--secondary400);
+	--time: var(--primary500);
 }
 
 body {

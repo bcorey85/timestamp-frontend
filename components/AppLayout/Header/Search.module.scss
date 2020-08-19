@@ -1,0 +1,31 @@
+.search {
+	display: flex;
+	border: 1px solid var(--gray300);
+	border-radius: var(--border-radius);
+	height: 3.2rem;
+	box-sizing: content-box;
+
+	& input,
+	select {
+		height: 3.2rem;
+	}
+
+	& select {
+		border: none;
+		border-right: 1px solid var(--gray300);
+	}
+
+	& input {
+		border: none;
+		width: 24rem;
+	}
+}
+
+.search_btn {
+	height: 3.2rem;
+	min-width: 3.2rem;
+	background-color: var(--primary500);
+	border: none;
+	border-left: 1px solid var(--gray300);
+	color: var(--white);
+}

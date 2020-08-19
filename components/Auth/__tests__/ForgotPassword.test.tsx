@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { ForgotPassword } from '../ForgotPassword';
 
-const toggleForm = () => {};
+const toggleForm = jest.fn();
 
 describe('ForgotPassword', () => {
 	it('renders', () => {

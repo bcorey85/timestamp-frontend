@@ -1,0 +1,19 @@
+.breadcrumb {
+	color: var(--black200);
+
+	& ul {
+		display: flex;
+	}
+
+	& a {
+		color: var(--black200);
+
+		&:hover {
+			color: var(--secondary500);
+		}
+	}
+}
+
+.spacer {
+	margin: 0 1.6rem;
+}

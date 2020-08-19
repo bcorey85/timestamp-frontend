@@ -10,7 +10,7 @@ interface Error {
 interface Props {
 	id: string;
 	type: string;
-	label: string;
+	label?: string;
 	value: string | number;
 	error?: Error;
 	onChange: (props: any) => any;

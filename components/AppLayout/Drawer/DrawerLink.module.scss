@@ -1,0 +1,22 @@
+.link {
+	height: 4rem;
+	width: 100%;
+	margin-bottom: 1.6rem;
+	display: flex;
+	align-items: center;
+	padding-left: 4rem;
+	font-size: 1.4rem;
+	color: var(--black200);
+}
+
+.active {
+	@extend .link;
+	background-color: var(--white);
+	border-left: 8px solid var(--primary500);
+	padding-left: 3.2rem;
+	box-shadow: var(--box-shadow);
+}
+
+.inactive {
+	@extend .link;
+}

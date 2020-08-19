@@ -1,14 +1,15 @@
 import React from 'react';
 
+import { Layout } from '../../components/Layout/Layout';
 import { Auth } from '../../components/Auth/Auth';
 import { Meta } from '../../components/Meta/Meta';
 
 const AuthPage = () => {
 	return (
-		<React.Fragment>
+		<Layout>
 			<Meta pageTitle='Sign In' />
 			<Auth />
-		</React.Fragment>
+		</Layout>
 	);
 };
 

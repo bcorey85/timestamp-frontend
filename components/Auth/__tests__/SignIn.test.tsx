@@ -7,7 +7,7 @@ import {
 	MockReduxProvider
 } from '../../../test/__mocks__/mockRedux';
 
-const toggleForm = () => {};
+const toggleForm = jest.fn();
 
 describe('SignIn', () => {
 	it('renders', () => {
