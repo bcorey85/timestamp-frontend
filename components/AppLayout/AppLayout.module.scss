@@ -1,10 +1,15 @@
 .app_layout {
 	position: relative;
 	font-size: 1.4rem;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .main_container {
 	display: flex;
+	flex: 1 1 auto;
 }
 
 .main {

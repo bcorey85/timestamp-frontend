@@ -1,6 +1,4 @@
 .breadcrumb {
-	color: var(--black200);
-
 	& ul {
 		display: flex;
 	}
@@ -16,4 +14,6 @@
 
 .spacer {
 	margin: 0 1.6rem;
+	color: var(--gray400);
+	font-weight: 500;
 }

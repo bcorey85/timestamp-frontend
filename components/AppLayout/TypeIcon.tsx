@@ -2,16 +2,16 @@ import React from 'react';
 
 import styles from './TypeIcon.module.scss';
 
-interface Type {
-	project: 'project';
-	task: 'task';
-	note: 'note';
-	time: 'time';
-	generic: 'generic';
+export enum IconType {
+	project = 'project',
+	task = 'task',
+	note = 'note',
+	time = 'time',
+	generic = 'generic'
 }
 
 interface Props {
-	type: keyof Type;
+	type: IconType;
 }
 
 const TypeIcon = ({ type }: Props): JSX.Element => {

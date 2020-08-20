@@ -3,10 +3,10 @@
 	--font-serif: 'Crimson Pro', serif;
 	--font-mono: 'Inconsolata', monospace;
 
-	--gray100: hsl(167, 5%, 95%);
-	--gray200: hsl(167, 5%, 85%);
-	--gray300: hsl(167, 5%, 75%);
-	--gray400: hsl(167, 5%, 47%);
+	--gray100: hsl(167, 5%, 97%);
+	--gray200: hsl(167, 5%, 90%);
+	--gray300: hsl(167, 5%, 85%);
+	--gray400: hsl(167, 5%, 50%);
 	--gray500: hsl(167, 10%, 40%);
 
 	--black200: hsl(167, 10%, 20%);
@@ -28,7 +28,7 @@
 	--red-error: hsl(360, 80%, 65%);
 	--green-success: hsl(119, 65%, 65%);
 
-	--box-shadow: 0px 2px 4px hsla(0, 100%, 0%, 20%);
+	--box-shadow: 0px 2px 6px hsla(0, 100%, 0%, 5%);
 	--border-radius: 2px;
 
 	--project: hsl(340, 70%, 55%);
@@ -71,4 +71,8 @@ button.btn-link {
 
 button.btn-link:hover {
 	color: var(--secondary500);
+}
+
+select {
+	padding: 0 .8rem;
 }

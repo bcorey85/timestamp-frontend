@@ -3,7 +3,7 @@
 .header {
 	& h5 {
 		margin-bottom: 5.6rem;
-		color: var(--gray500);
+		color: var(--gray400);
 		font-weight: 400;
 
 		@include respondH(1024) {

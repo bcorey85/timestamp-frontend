@@ -10,14 +10,21 @@
 	border: none;
 	background: none;
 	font-weight: 500;
+
+	&:hover {
+		background-color: var(--gray200);
+		color: var(--black200);
+	}
 }
 
 .active {
 	@extend .link;
-	background-color: var(--white);
-	border-left: 8px solid var(--primary500);
+	background-color: var(--gray300);
+	border-left: 6px solid var(--primary500);
 	padding-left: 3.2rem;
 	box-shadow: var(--box-shadow);
+	border-top: 1px solid var(--gray200);
+	border-bottom: 1px solid var(--gray200);
 }
 
 .inactive {

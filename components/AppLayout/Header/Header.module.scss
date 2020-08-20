@@ -3,15 +3,16 @@
 	display: flex;
 	justify-content: space-between;
 	height: 6.4rem;
-	padding: 1.6rem;
+	padding: 1.6rem 2.4rem;
 	color: var(--white);
-	border-bottom: 2px solid var(--gray300);
+	border-bottom: 1px solid var(--gray200);
 	box-shadow: var(--box-shadow);
 	z-index: 2;
 
 	& img {
+		display: block;
 		width: 12rem;
-		margin-right: 4rem;
+		margin-right: 5.6rem;
 	}
 }
 
