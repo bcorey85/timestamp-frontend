@@ -1,18 +1,17 @@
+@import '../../../styles/mediaQueries.scss';
+
 .header {
 	position: relative;
 	display: flex;
 	justify-content: space-between;
-	height: 6.4rem;
+	height: var(--app-header-height);
 	padding: 1.6rem 2.4rem;
-	color: var(--white);
 	border-bottom: 1px solid var(--gray200);
 	box-shadow: var(--box-shadow);
 	z-index: 2;
 
-	& img {
-		display: block;
-		width: 12rem;
-		margin-right: 5.6rem;
+	@include respondH(550) {
+		z-index: 1;
 	}
 }
 

@@ -1,3 +1,5 @@
+@import '../../styles/mediaQueries.scss';
+
 .app_layout {
 	position: relative;
 	font-size: 1.4rem;
@@ -8,10 +10,20 @@
 }
 
 .main_container {
+	position: relative;
 	display: flex;
 	flex: 1 1 auto;
+
+	@include respondH(550) {
+		min-height: 64rem;
+	}
 }
 
 .main {
 	padding: 4rem;
+	flex: 1 1 auto;
+
+	@include respondH(550) {
+		padding-top: 6.4rem;
+	}
 }

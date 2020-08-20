@@ -3,7 +3,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 16rem;
+	height: var(--footer-height);
 	padding: 2.4rem;
 	background-color: var(--gray200);
 }

@@ -13,10 +13,6 @@
 		display: block;
 		width: 3.2rem;
 		height: 2px;
-		background-color: var(--primary500);
-	}
-
-	&:hover span {
-		background-color: var(secondary500);
+		background-color: var(--gray400);
 	}
 }

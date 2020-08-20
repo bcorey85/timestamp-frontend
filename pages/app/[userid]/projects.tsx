@@ -2,18 +2,17 @@ import React from 'react';
 
 import { PrivateRoute } from '../../../components/Auth/PrivateRoute';
 import { AppLayout } from '../../../components/AppLayout/AppLayout';
-import { Dashboard } from '../../../components/App/Dashboard/Dashboard';
 import { Meta } from '../../../components/Meta/Meta';
 
-const DashboardPage = () => {
+const ProjectsPage = () => {
 	return (
 		<PrivateRoute>
 			<AppLayout>
-				<Meta pageTitle='Dashboard' />
-				<Dashboard />
+				<Meta pageTitle='Projects' />
+				ProjectsPage
 			</AppLayout>
 		</PrivateRoute>
 	);
 };
 
-export default DashboardPage;
+export default ProjectsPage;

@@ -10,6 +10,9 @@
 		"start": "next start"
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.30",
+		"@fortawesome/free-solid-svg-icons": "^5.14.0",
+		"@fortawesome/react-fontawesome": "^0.1.11",
 		"@reduxjs/toolkit": "^1.4.0",
 		"axios": "^0.19.2",
 		"jwt-decode": "^2.2.0",

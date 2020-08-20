@@ -15,12 +15,12 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { counterReducer } from './counter';
 import { userReducer } from './user';
+import { interfaceReducer } from './interface';
 
 const rootReducer = combineReducers({
-	counter: counterReducer,
-	user: userReducer
+	user: userReducer,
+	interface: interfaceReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -29,7 +29,7 @@ const persistConfig = {
 	key: 'timestamp',
 	version: 1,
 	storage,
-	whitelist: [ 'user' ]
+	whitelist: [ 'user', 'interface' ]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

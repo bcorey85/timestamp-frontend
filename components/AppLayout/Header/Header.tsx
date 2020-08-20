@@ -36,11 +36,7 @@ const Header = (): JSX.Element => {
 		<header className={styles.header}>
 			<div className={styles.nav_container}>
 				<NavToggle />
-				<Link href='#'>
-					<a>
-						<img src={'/images/logo-temp.svg'} />
-					</a>
-				</Link>
+
 				<Breadcrumb links={breadCrumbLinks} />
 			</div>
 

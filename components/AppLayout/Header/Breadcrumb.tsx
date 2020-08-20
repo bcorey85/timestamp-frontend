@@ -15,20 +15,41 @@ interface Props {
 	links: BreadcrumbLink[];
 }
 
+interface SpacerProps {
+	initial?: boolean;
+}
+
+const BreadCrumbSpacer = ({ initial }: SpacerProps) => {
+	if (initial) {
+		return <span className={styles.spacer}>... /</span>;
+	}
+
+	return <span className={styles.spacer}>/</span>;
+};
+
 const Breadcrumb = ({ links }: Props): JSX.Element => {
-	const linkElements = links.map((link, index) => {
+	const maxLength = 10;
+	const maxLinks = 3;
+
+	const overMaxLength = links.length > maxLinks;
+
+	const linksArr = links.slice(Math.max(links.length - maxLinks, 0));
+
+	const linkElements = linksArr.map((link, index) => {
 		return (
-			<li>
+			<li key={link.text}>
 				<Link href={link.href}>
 					<a>
 						<TypeIcon type={link.iconType} />
-						{link.text}
+						{link.text.length > maxLength ? (
+							`${link.text.substring(0, maxLength)}...`
+						) : (
+							link.text
+						)}
 					</a>
 				</Link>
 
-				{index < links.length - 1 ? (
-					<span className={styles.spacer}>/</span>
-				) : null}
+				{index < linksArr.length - 1 ? <BreadCrumbSpacer /> : null}
 			</li>
 		);
 	});
@@ -36,7 +57,10 @@ const Breadcrumb = ({ links }: Props): JSX.Element => {
 	return (
 		<div className={styles.breadcrumb}>
 			<nav>
-				<ul>{linkElements}</ul>
+				<ul>
+					{overMaxLength && <BreadCrumbSpacer initial />}
+					{linkElements}
+				</ul>
 			</nav>
 		</div>
 	);

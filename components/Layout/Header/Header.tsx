@@ -7,7 +7,7 @@ import styles from './Header.module.scss';
 const Header = (): JSX.Element => {
 	return (
 		<header className={styles.header}>
-			<h2>Timestamp</h2>
+			<img src='/images/logo-temp.svg' />
 			<Nav />
 		</header>
 	);

@@ -12,6 +12,7 @@ import { login } from '../../redux/user';
 import { resetPasswordRequestConfig } from '../../api/auth';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
+import { setBaseUrl } from '../../redux/interface';
 
 import styles from './ResetPassword.module.scss';
 
@@ -69,6 +70,12 @@ const ResetPassword = (): JSX.Element => {
 		if (res.success === false) {
 			return;
 		}
+
+		dispatch(
+			setBaseUrl({
+				userId: res.data.id
+			})
+		);
 
 		dispatch(
 			login({

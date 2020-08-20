@@ -19,12 +19,20 @@
 
 .active {
 	@extend .link;
-	background-color: var(--gray300);
-	border-left: 6px solid var(--primary500);
-	padding-left: 3.2rem;
-	box-shadow: var(--box-shadow);
+	position: relative;
+	background-color: var(--gray200);
 	border-top: 1px solid var(--gray200);
 	border-bottom: 1px solid var(--gray200);
+
+	&::before {
+		position: absolute;
+		content: '';
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 6px;
+		background-color: var(--primary500);
+	}
 }
 
 .inactive {

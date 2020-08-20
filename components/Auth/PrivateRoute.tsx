@@ -22,7 +22,7 @@ const PrivateRoute = ({ children }: Props) => {
 	const router = useRouter();
 
 	const dispatch = useDispatch();
-	const { userid } = router.query;
+	const { userId } = router.query;
 
 	useEffect(() => {
 		const isAuthenticated = !!(user && user.token);
@@ -42,7 +42,7 @@ const PrivateRoute = ({ children }: Props) => {
 			return;
 		}
 
-		const isAuthorized = user.userId === userid;
+		const isAuthorized = user.userId === userId;
 
 		if (!isAuthorized) {
 			router.push(`/app/${user.userId}/dashboard`);
