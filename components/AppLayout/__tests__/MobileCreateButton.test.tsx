@@ -1,17 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { DrawerLink } from '../DrawerLink';
+import { MobileCreateButton } from '../MobileCreateButton';
 import {
 	mockStore,
 	MockReduxProvider
-} from '../../../../test/__mocks__/mockRedux';
+} from '../../../test/__mocks__/mockRedux';
 
-describe('DrawerLink', () => {
+describe('MobileCreateButton', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<DrawerLink route='test'>Test</DrawerLink>
+				<MobileCreateButton />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

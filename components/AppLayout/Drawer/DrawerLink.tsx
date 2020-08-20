@@ -1,38 +1,24 @@
 import React from 'react';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	setCurrentPage,
-	Pages,
-	selectInterface
-} from '../../../redux/interface';
+import { useSelector } from 'react-redux';
+
 import { selectUser } from '../../../redux/user';
 
 interface Props {
 	route?: string;
 	children: string;
-	isActive: boolean;
 	onClick?: () => any;
-	page?: Pages;
 }
 
 import styles from './DrawerLink.module.scss';
+import { useRouter } from 'next/router';
 
-const DrawerLink = ({
-	route,
-	children,
-	isActive,
-	onClick,
-	page
-}: Props): JSX.Element => {
-	const dispatch = useDispatch();
+const DrawerLink = ({ route, children, onClick }: Props): JSX.Element => {
+	const router = useRouter();
+
+	const isActive = router.route.includes(route);
 
 	const { userId } = useSelector(selectUser);
-	const { baseUrl } = useSelector(selectInterface);
-
-	const handleRouteChange = () => {
-		dispatch(setCurrentPage({ page }));
-	};
 
 	if (onClick) {
 		return (
@@ -51,9 +37,7 @@ const DrawerLink = ({
 			<Link
 				href={`/app/[userId]/${route}`}
 				as={`/app/${userId}/${route}`}>
-				<a
-					className={isActive ? styles.active : styles.inactive}
-					onClick={handleRouteChange}>
+				<a className={isActive ? styles.active : styles.inactive}>
 					{children}
 				</a>
 			</Link>

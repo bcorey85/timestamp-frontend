@@ -12,7 +12,6 @@ import { useApiRequest } from '../../hooks/useApiRequest';
 import { signupRequestConfig, loginRequestConfig } from '../../api/auth';
 import { login } from '../../redux/user';
 import { ApiRequest, ApiResponse, ApiError } from '../../api/index';
-import { setBaseUrl } from '../../redux/interface';
 
 import styles from './SignIn.module.scss';
 
@@ -64,12 +63,6 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 		if (res.success === false) {
 			return;
 		}
-
-		dispatch(
-			setBaseUrl({
-				userId: res.data.id
-			})
-		);
 
 		dispatch(
 			login({

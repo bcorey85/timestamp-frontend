@@ -5,7 +5,7 @@ import { Drawer } from './Drawer/Drawer';
 import { Footer } from '../Layout/Footer/Footer';
 
 import styles from './AppLayout.module.scss';
-import MobileCreateButton from './MobileCreateButton';
+import { MobileCreateButton } from './MobileCreateButton';
 
 interface Props {
 	children?: any;

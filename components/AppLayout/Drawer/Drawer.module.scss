@@ -2,7 +2,7 @@
 
 .drawer {
 	position: relative;
-	background-color: var(--gray100);
+	background-color: var(--white);
 	flex: 0 0 var(--app-drawer-width);
 	width: 24rem;
 	padding: 4rem 0;
@@ -54,4 +54,26 @@
 	flex-direction: column;
 	justify-content: space-between;
 	flex: 1 1 auto;
+}
+
+.create_btn {
+	display: block;
+	background-color: var(--primary500);
+	color: var(--white);
+	width: 100%;
+	border-radius: var(--border-radius);
+	padding: 1.6rem;
+	text-align: center;
+	font-size: 1.6rem;
+
+	&:hover {
+		background-color: var(--secondary500);
+		color: var(--white);
+	}
+}
+
+.create_icon {
+	margin-left: -2rem;
+	margin-right: .4rem;
+	font-size: 1.6rem;
 }

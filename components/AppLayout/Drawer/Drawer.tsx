@@ -7,79 +7,48 @@ import { DrawerLink } from './DrawerLink';
 import { Button } from '../../shared/Button';
 
 import { logout } from '../../../redux/user';
-import { selectInterface, Pages } from '../../../redux/interface';
+import { selectInterface } from '../../../redux/interface';
 import { selectUser } from '../../../redux/user';
 import styles from './Drawer.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Drawer = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const { drawerOpen, currentPage } = useSelector(selectInterface);
-
-	const handleCreate = () => {};
+	const { userId } = useSelector(selectUser);
+	const { drawerOpen } = useSelector(selectInterface);
 
 	const handleLogout = () => {
 		dispatch(logout());
 		router.push('/');
 		return;
 	};
-	console.log(currentPage);
 
 	return (
 		<aside className={drawerOpen ? styles.drawer : styles.drawer_closed}>
 			<div className={styles.btn_container}>
-				<Link href='#'>
-					<a>
-						<img src={'/images/logo-temp.svg'} />
+				<Link href='/app/[userId]/create' as={`/app/${userId}/create`}>
+					<a className={styles.create_btn}>
+						<FontAwesomeIcon
+							icon={faPlus}
+							className={styles.create_icon}
+						/>
+						Create
 					</a>
 				</Link>
-				<Button btnStyle='primary' onClick={handleCreate}>
-					Create
-				</Button>
 			</div>
 			<nav className={styles.nav}>
 				<ul className={styles.nav_links}>
-					<DrawerLink
-						route={`dashboard`}
-						isActive={currentPage === Pages.dashboard}
-						page={Pages.dashboard}>
-						Dashboard
-					</DrawerLink>
-					<DrawerLink
-						route={`projects`}
-						isActive={currentPage === Pages.projects}
-						page={Pages.projects}>
-						Projects
-					</DrawerLink>
-					<DrawerLink
-						route={`tasks`}
-						isActive={currentPage === Pages.tasks}
-						page={Pages.tasks}>
-						Tasks
-					</DrawerLink>
-					<DrawerLink
-						route={`notes`}
-						isActive={currentPage === Pages.notes}
-						page={Pages.notes}>
-						Notes
-					</DrawerLink>
-					<DrawerLink
-						route={`activity`}
-						isActive={currentPage === Pages.activity}
-						page={Pages.activity}>
-						Activity
-					</DrawerLink>
+					<DrawerLink route={`dashboard`}>Dashboard</DrawerLink>
+					<DrawerLink route={`projects`}>Projects</DrawerLink>
+					<DrawerLink route={`tasks`}>Tasks</DrawerLink>
+					<DrawerLink route={`notes`}>Notes</DrawerLink>
+					<DrawerLink route={`activity`}>Activity</DrawerLink>
 				</ul>
 				<ul className={styles.nav_links}>
-					<DrawerLink
-						route={`settings`}
-						isActive={currentPage === Pages.settings}
-						page={Pages.settings}>
-						Settings
-					</DrawerLink>
-					<DrawerLink onClick={handleLogout} isActive={false}>
-						Logout
-					</DrawerLink>
+					<DrawerLink route={`settings`}>Settings</DrawerLink>
+					<DrawerLink onClick={handleLogout}>Logout</DrawerLink>
 				</ul>
 			</nav>
 		</aside>

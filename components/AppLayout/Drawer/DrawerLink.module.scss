@@ -1,7 +1,7 @@
 .link {
 	height: 4rem;
 	width: 100%;
-	margin-bottom: 1.6rem;
+	margin-bottom: .8rem;
 	display: flex;
 	align-items: center;
 	padding-left: 4rem;
@@ -20,9 +20,8 @@
 .active {
 	@extend .link;
 	position: relative;
-	background-color: var(--gray200);
-	border-top: 1px solid var(--gray200);
-	border-bottom: 1px solid var(--gray200);
+	background-color: var(--gray300);
+	font-weight: 700;
 
 	&::before {
 		position: absolute;
@@ -30,7 +29,7 @@
 		left: 0;
 		top: 0;
 		height: 100%;
-		width: 6px;
+		width: 4px;
 		background-color: var(--primary500);
 	}
 }

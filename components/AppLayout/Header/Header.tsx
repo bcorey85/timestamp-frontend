@@ -24,11 +24,6 @@ const Header = (): JSX.Element => {
 			href: '#',
 			iconType: IconType.note,
 			text: 'Note Title'
-		},
-		{
-			href: '#',
-			iconType: IconType.generic,
-			text: 'Generic Title'
 		}
 	];
 

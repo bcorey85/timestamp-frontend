@@ -22,6 +22,7 @@
 .main {
 	padding: 4rem;
 	flex: 1 1 auto;
+	background-color: var(--gray100);
 
 	@include respondH(550) {
 		padding-top: 6.4rem;

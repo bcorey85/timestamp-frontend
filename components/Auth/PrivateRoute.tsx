@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { NextPageContext } from 'next';
 import jwtDecode from 'jwt-decode';
 
+import { AppLayout } from '../../components/AppLayout/AppLayout';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser, logout } from '../../redux/user';
 import { useRouter } from 'next/router';
@@ -53,10 +55,10 @@ const PrivateRoute = ({ children }: Props) => {
 	}, []);
 
 	if (isLoading) {
-		return <div> Loading...</div>;
+		return <AppLayout>{null}</AppLayout>;
 	}
 
-	return <React.Fragment>{children}</React.Fragment>;
+	return <AppLayout>{children}</AppLayout>;
 };
 
 PrivateRoute.getInitialProps = async (context: NextPageContext) => {

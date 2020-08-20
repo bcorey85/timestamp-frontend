@@ -17,7 +17,7 @@ const interfaceSlice = createSlice({
 	initialState: {
 		drawerOpen: true,
 		searchOpen: false,
-		currentPage: Pages.dashboard,
+
 		baseUrl: null
 	},
 	reducers: {
@@ -26,12 +26,6 @@ const interfaceSlice = createSlice({
 		},
 		toggleSearch: state => {
 			state.searchOpen = !state.searchOpen;
-		},
-		setCurrentPage: (state, action) => {
-			state.currentPage = action.payload.page;
-		},
-		setBaseUrl: (state, action) => {
-			state.baseUrl = `/app/${action.payload.userId}`;
 		}
 	}
 });
@@ -40,9 +34,4 @@ export const interfaceReducer = interfaceSlice.reducer;
 
 export const selectInterface = (state: RootState) => state.interface;
 
-export const {
-	toggleDrawer,
-	toggleSearch,
-	setCurrentPage,
-	setBaseUrl
-} = interfaceSlice.actions;
+export const { toggleDrawer, toggleSearch } = interfaceSlice.actions;
