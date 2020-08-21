@@ -13,10 +13,10 @@
 	}
 
 	& img {
-		width: 12rem;
+		width: 14rem;
 
 		@include respondH(1024) {
-			width: 10rem;
+			width: 12.8rem;
 		}
 	}
 
