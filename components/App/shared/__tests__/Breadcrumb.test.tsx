@@ -1,9 +1,8 @@
 import React from 'react';
-
 import { shallow } from 'enzyme';
 
 import { Breadcrumb } from '../Breadcrumb';
-import { IconType } from '../../TypeIcon';
+import { IconType } from '../TypeIcon';
 
 const mockLinks = [
 	{

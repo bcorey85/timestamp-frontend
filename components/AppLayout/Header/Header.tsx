@@ -1,38 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 import { NavToggle } from './NavToggle';
-import { Breadcrumb } from './Breadcrumb';
-import { IconType } from '../TypeIcon';
 import { Search } from './Search';
 
+import { selectUser } from '../../../redux/user';
 import styles from './Header.module.scss';
 
 const Header = (): JSX.Element => {
-	const breadCrumbLinks = [
-		{
-			href: '#',
-			iconType: IconType.project,
-			text: 'Project Title'
-		},
-		{
-			href: '#',
-			iconType: IconType.task,
-			text: 'Task Title'
-		},
-		{
-			href: '#',
-			iconType: IconType.note,
-			text: 'Note Title'
-		}
-	];
+	const { userId } = useSelector(selectUser);
 
 	return (
 		<header className={styles.header}>
 			<div className={styles.nav_container}>
 				<NavToggle />
-
-				<Breadcrumb links={breadCrumbLinks} />
+				<Link
+					href='/app/[userId]/dashboard'
+					as={`/app/${userId}/dashboard`}>
+					<img src='/images/logo-temp.svg' />
+				</Link>
 			</div>
 
 			<Search />

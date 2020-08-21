@@ -1,0 +1,36 @@
+.card {
+	width: 24rem;
+	padding: 1.6rem;
+	background-color: var(--white);
+	border: 1px solid var(--gray200);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+	cursor: pointer;
+
+	&:not(:last-of-type) {
+		margin-right: 3.2rem;
+	}
+}
+
+.header {
+	color: var(--gray500);
+	font-weight: 600;
+	margin-bottom: .4rem;
+}
+
+.stat {
+	font-size: 4rem;
+	line-height: 1;
+	font-weight: 600;
+	text-align: right;
+	margin-bottom: .4rem;
+}
+
+.link {
+	text-align: right;
+
+	& a {
+		color: var(--gray400);
+		font-weight: 500;
+	}
+}

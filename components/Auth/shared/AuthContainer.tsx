@@ -16,7 +16,7 @@ const AuthContainer = ({ children }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.form_container}>
-				<img src='/images/logo-temp.svg' className={styles.logo} />
+				<img src='/images/icon-temp.svg' className={styles.logo} />
 				{children}
 			</div>
 

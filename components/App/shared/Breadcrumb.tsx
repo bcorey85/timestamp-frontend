@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { TypeIcon, IconType } from '../TypeIcon';
+import { TypeIcon, IconType } from './TypeIcon';
 
 import styles from './Breadcrumb.module.scss';
 
@@ -40,7 +40,9 @@ const Breadcrumb = ({ links }: Props): JSX.Element => {
 			<li key={link.text}>
 				<Link href={link.href}>
 					<a>
-						<TypeIcon type={link.iconType} />
+						{link.iconType !== 'none' && (
+							<TypeIcon type={link.iconType} />
+						)}
 						{link.text.length > maxLength ? (
 							`${link.text.substring(0, maxLength)}...`
 						) : (

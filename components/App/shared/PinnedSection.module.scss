@@ -1,0 +1,16 @@
+.container {
+	position: relative;
+	background-color: var(--gray200);
+	display: flex;
+	padding: .8rem .8rem;
+}
+
+.left_arrow {
+	position: absolute;
+	left: -1.6rem;
+}
+
+.right_arrow {
+	position: absolute;
+	right: -1.6rem;
+}

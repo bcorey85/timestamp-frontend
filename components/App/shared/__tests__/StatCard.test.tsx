@@ -1,12 +1,11 @@
 import React from 'react';
-
 import { shallow } from 'enzyme';
 
-import { TypeIcon } from '../TypeIcon';
+import { StatCard } from '../StatCard';
 
-describe('TypeIcon', () => {
+describe('StatCard', () => {
 	it('renders', () => {
-		const wrapper = shallow(<TypeIcon type='project' />);
+		const wrapper = shallow(<StatCard />);
 		expect(wrapper).not.toBeNull();
 	});
 });

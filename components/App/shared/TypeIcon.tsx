@@ -7,7 +7,8 @@ export enum IconType {
 	task = 'task',
 	note = 'note',
 	time = 'time',
-	generic = 'generic'
+	generic = 'generic',
+	none = 'none'
 }
 
 interface Props {

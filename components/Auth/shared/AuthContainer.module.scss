@@ -41,11 +41,18 @@
 }
 
 .logo {
-	height: 2.6rem;
+	height: 2.8rem;
 	margin-bottom: 6.4rem;
 	align-self: flex-start;
 
 	@include respondH(1024) {
+		position: absolute;
+		height: 3.2rem;
+		left: 2.4rem;
+		top: 2.4rem;
+	}
+
+	@include respondH(550) {
 		display: none;
 	}
 }

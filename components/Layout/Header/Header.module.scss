@@ -9,14 +9,14 @@
 	padding: 2.4rem;
 
 	@include respondH(550) {
-		padding: 1.6rem;
+		padding: 1.6rem 2.4rem;
 	}
 
 	& img {
-		width: 14rem;
+		width: 12rem;
 
 		@include respondH(1024) {
-			width: 12rem;
+			width: 10rem;
 		}
 	}
 

@@ -13,6 +13,16 @@
 	@include respondH(550) {
 		z-index: 1;
 	}
+
+	& img {
+		display: block;
+		height: 2rem;
+		margin-top: .4rem;
+
+		@include respondH(550) {
+			height: 2rem;
+		}
+	}
 }
 
 .nav_container {

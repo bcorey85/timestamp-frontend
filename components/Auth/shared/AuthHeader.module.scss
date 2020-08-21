@@ -1,6 +1,10 @@
 @import '../../../styles/mediaQueries.scss';
 
 .header {
+	& h1 {
+		font-family: var(--font-serif);
+	}
+
 	& h5 {
 		margin-bottom: 5.6rem;
 		color: var(--gray400);

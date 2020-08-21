@@ -1,0 +1,23 @@
+.container {
+	background-color: var(--white);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+	border: 1px solid var(--gray200);
+	margin-bottom: .4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 4.8rem;
+	padding: 1.6rem;
+}
+
+.title {
+	font-weight: 600;
+	color: var(--black100);
+}
+
+.meta {
+	width: 25%;
+	display: flex;
+	justify-content: space-between;
+}

@@ -3,14 +3,14 @@
 body {
 	font-family: var(--font-sans);
 	font-size: 1.6rem;
+	line-height: 1.6;
 
 	@include respondH(550) {
 		font-size: 1.4rem;
 	}
 }
 
-h1 {
-	font-family: var(--font-serif);
+h1.serif {
 	font-weight: 700;
 	font-size: 3.6rem;
 	line-height: 110%;

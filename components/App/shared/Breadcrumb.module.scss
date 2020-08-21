@@ -1,10 +1,10 @@
 @import '../../../styles/mediaQueries.scss';
 
 .breadcrumb {
+	color: var(--gray400);
+	margin-bottom: .8rem;
+
 	@include respondH(550) {
-		position: absolute;
-		top: var(--app-header-height);
-		left: 0;
 		margin-top: 2.4rem;
 		margin-left: 3.2rem;
 		font-size: 1.2rem;
@@ -15,7 +15,7 @@
 	}
 
 	& a {
-		color: var(--black200);
+		color: var(--gray400);
 
 		&:hover {
 			color: var(--secondary500);
