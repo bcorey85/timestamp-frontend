@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 
-const ProjectForm = () => {
+interface Props {
+	handleCancel: (e: SyntheticEvent) => void;
+}
+
+const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	return (
 		<div>
 			<BaseForm>
@@ -30,7 +34,7 @@ const ProjectForm = () => {
 			</BaseForm>
 
 			<CreateBtnContainer>
-				<Button btnStyle='link_gray' onClick={() => {}}>
+				<Button btnStyle='link_gray' onClick={handleCancel}>
 					Cancel
 				</Button>
 				<Button btnStyle='primary' onClick={() => {}}>

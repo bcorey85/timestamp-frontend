@@ -16,10 +16,8 @@
 	font-family: inherit;
 }
 
-.input:focus {
-	background-color: var(--white);
-	border: 2px solid var(--black100);
-	outline: none;
+.select {
+	@extend .input;
 }
 
 .textarea {
@@ -27,7 +25,9 @@
 	height: 24rem;
 }
 
-.textarea:focus {
+.input:focus,
+.textarea:focus,
+.select:focus {
 	background-color: var(--white);
 	border: 2px solid var(--black100);
 	outline: none;
@@ -36,7 +36,7 @@
 .input_label {
 	display: block;
 	margin-bottom: .4rem;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	font-weight: 500;
 	color: var(--gray500);
 

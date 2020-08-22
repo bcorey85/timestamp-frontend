@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 
-const NoteForm = () => {
+interface Props {
+	handleCancel: (e: SyntheticEvent) => void;
+}
+
+const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	return (
 		<div>
 			<BaseForm>
@@ -24,15 +28,21 @@ const NoteForm = () => {
 						id='project'
 						label='Project'
 						value={null}
-						onChange={() => {}}
-					/>
+						onChange={() => {}}>
+						<option value='One'>One</option>
+						<option value='Two'>Two</option>
+						<option value='Three'>Three</option>
+					</Input>
 					<Input
 						type='select'
 						id='task'
 						label='Task'
 						value={null}
-						onChange={() => {}}
-					/>
+						onChange={() => {}}>
+						<option value='One'>One</option>
+						<option value='Two'>Two</option>
+						<option value='Three'>Three</option>
+					</Input>
 				</FormRow>
 				<FormRow half>
 					<Input
@@ -70,7 +80,7 @@ const NoteForm = () => {
 				</FormRow>
 			</BaseForm>
 			<CreateBtnContainer>
-				<Button btnStyle='link_gray' onClick={() => {}}>
+				<Button btnStyle='link_gray' onClick={handleCancel}>
 					Cancel
 				</Button>
 				<Button btnStyle='primary' onClick={() => {}}>

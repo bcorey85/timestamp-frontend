@@ -51,10 +51,11 @@
 }
 
 .nav {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
 	flex: 1 1 auto;
+
+	& ul:first-of-type {
+		margin-bottom: 8rem;
+	}
 }
 
 .create_btn {

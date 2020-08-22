@@ -59,6 +59,7 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 		e.preventDefault();
 
 		const res = await request(config);
+		console.log(res);
 
 		if (res.success === false) {
 			return;
@@ -70,7 +71,7 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 				token: res.data.token
 			})
 		);
-		router.push(`/app/${res.data.id}/dashboard`);
+		router.push(`/app/[userId]/dashboard`, `/app/${res.data.id}/dashboard`);
 	};
 
 	return (

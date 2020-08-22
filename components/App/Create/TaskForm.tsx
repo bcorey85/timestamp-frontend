@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 
-const TaskForm = () => {
+interface Props {
+	handleCancel: (e: SyntheticEvent) => void;
+}
+
+const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	return (
 		<div>
 			<BaseForm>
@@ -24,8 +28,11 @@ const TaskForm = () => {
 						id='project'
 						label='Project'
 						value={null}
-						onChange={() => {}}
-					/>
+						onChange={() => {}}>
+						<option value='One'>One</option>
+						<option value='Two'>Two</option>
+						<option value='Three'>Three</option>
+					</Input>
 				</FormRow>
 				<FormRow>
 					<Input
@@ -48,9 +55,10 @@ const TaskForm = () => {
 			</BaseForm>
 
 			<CreateBtnContainer>
-				<Button btnStyle='link_gray' onClick={() => {}}>
+				<Button btnStyle='link_gray' onClick={handleCancel}>
 					Cancel
 				</Button>
+
 				<Button btnStyle='primary' onClick={() => {}}>
 					Create Task
 				</Button>

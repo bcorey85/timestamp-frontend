@@ -15,39 +15,71 @@ interface Props {
 	error?: Error;
 	onChange: (props: any) => any;
 	autoComplete?: string;
+	children?: any;
 }
 
-const Input = ({
+interface LabelProps {
+	id: string;
+	children?: any;
+}
+
+const Label = ({ id, children }: LabelProps): JSX.Element => {
+	return (
+		<label htmlFor={id} className={styles.input_label}>
+			{children}
+		</label>
+	);
+};
+
+const TextArea = ({ label, id, value, error, ...rest }: Props): JSX.Element => {
+	return (
+		<div className={styles.container}>
+			{label ? <Label id={id}>{label}</Label> : null}
+			<textarea
+				id={id}
+				{...rest}
+				className={styles.textarea}
+				value={value}
+			/>
+			<div className={styles.error_container}>
+				{(error && error.message) || null}
+			</div>
+		</div>
+	);
+};
+
+const Select = ({
 	id,
-	type,
 	label,
 	value,
 	error,
+	children,
 	...rest
 }: Props): JSX.Element => {
-	const labelElement = (
-		<label htmlFor={id} className={styles.input_label}>
-			{label}
-		</label>
-	);
-
-	if (type === 'textarea') {
-		return (
-			<div className={styles.container}>
-				{label ? labelElement : null}
-				<textarea
-					id={id}
-					{...rest}
-					className={styles.textarea}
-					value={value}
-				/>
-			</div>
-		);
-	}
-
 	return (
 		<div className={styles.container}>
-			{label ? labelElement : null}
+			{label ? <Label id={id}>{label}</Label> : null}
+			<select className={styles.select} value={value} {...rest}>
+				{children}
+			</select>
+			<div className={styles.error_container}>
+				{(error && error.message) || null}
+			</div>
+		</div>
+	);
+};
+
+const BaseInput = ({
+	label,
+	id,
+	value,
+	type,
+	error,
+	...rest
+}: Props): JSX.Element => {
+	return (
+		<div className={styles.container}>
+			{label ? <Label id={id}>{label}</Label> : null}
 			<input
 				type={type}
 				id={id}
@@ -59,6 +91,54 @@ const Input = ({
 				{(error && error.message) || null}
 			</div>
 		</div>
+	);
+};
+
+const Input = ({
+	id,
+	type,
+	label,
+	value,
+	error,
+	children,
+	...rest
+}: Props): JSX.Element => {
+	if (type === 'select') {
+		return (
+			<Select
+				label={label}
+				id={id}
+				type={type}
+				value={value}
+				error={error}
+				{...rest}>
+				{children}
+			</Select>
+		);
+	}
+
+	if (type === 'textarea') {
+		return (
+			<TextArea
+				label={label}
+				id={id}
+				type={type}
+				value={value}
+				error={error}
+				{...rest}
+			/>
+		);
+	}
+
+	return (
+		<BaseInput
+			label={label}
+			id={id}
+			type={type}
+			error={error}
+			{...rest}
+			value={value}
+		/>
 	);
 };
 

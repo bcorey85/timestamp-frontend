@@ -77,7 +77,7 @@ const ResetPassword = (): JSX.Element => {
 			})
 		);
 
-		router.push('/');
+		router.push(`/app/[userId]/dashboard`, `/app/${res.data.id}/dashboard`);
 	};
 
 	return (
