@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	width: 100%;
+	border: 1px solid var(--gray200);
+	background-color: var(--gray100);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+	margin-bottom: 4rem;
+}
+
+.btn {
+	height: 4.8rem;
+	background-color: var(--gray100);
+	border: none;
+	width: 33.33%;
+
+	&:not(:last-of-type) {
+		border-right: 1px solid var(--gray200);
+	}
+}
+
+.btn_active {
+	@extend .btn;
+	background-color: var(--white);
+}

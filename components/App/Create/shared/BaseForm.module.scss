@@ -1,0 +1,11 @@
+.form {
+}
+
+.full_input {
+}
+
+.half_input {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 2.4rem;
+}

@@ -6,6 +6,7 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar';
 import { DashboardSection } from '../shared/DashboardSection';
+import { DashboardHeader } from '../shared/DashboardHeader';
 
 import { selectUser } from '../../../redux/user';
 import styles from './Dashboard.module.scss';
@@ -18,10 +19,10 @@ const Dashboard = (): JSX.Element => {
 	return (
 		<div>
 			<div className={styles.header}>
-				<hgroup>
-					<h4>Dashboard</h4>
-					<h1>Welcome to Timestamp</h1>
-				</hgroup>
+				<DashboardHeader
+					heading='Welcome to Timestamp'
+					subheading='Dashboard'
+				/>
 
 				<div className={styles.btn_container}>
 					<Link

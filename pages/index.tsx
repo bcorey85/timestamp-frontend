@@ -6,8 +6,6 @@ export default function Home(props) {
 		<Layout>
 			<Meta pageTitle='Home' />
 			Capture your learning progress in time.
-			<div>04</div>
-			<div>51</div>
 		</Layout>
 	);
 }

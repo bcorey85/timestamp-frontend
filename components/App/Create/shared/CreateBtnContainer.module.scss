@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-top: 4rem;
+
+	& button {
+		max-width: 12rem;
+		margin-bottom: 0;
+		margin-left: 4rem;
+	}
+}
