@@ -1,8 +1,7 @@
-@import '../../../styles/mediaQueries.scss';
+@import '../../styles/mediaQueries.scss';
 
 .breadcrumb {
 	color: var(--gray400);
-	margin-bottom: .8rem;
 
 	@include respondH(550) {
 		margin-top: 2.4rem;

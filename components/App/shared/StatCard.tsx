@@ -5,17 +5,34 @@ import { TypeIcon, IconType } from './TypeIcon';
 
 import styles from './StatCard.module.scss';
 
-const StatCard = (): JSX.Element => {
+interface Props {
+	title: string;
+	type: IconType;
+	stat: string;
+	href: string;
+	as: string;
+	linkText: string;
+}
+
+const StatCard = ({
+	type,
+	title,
+	stat,
+	href,
+	as,
+	linkText
+}: Props): JSX.Element => {
 	return (
 		<div className={styles.card}>
 			<div className={styles.header}>
-				<TypeIcon type={IconType.time} />Hours
+				<TypeIcon type={type} />
+				{title}
 			</div>
 
-			<div className={styles.stat}>10,000</div>
+			<div className={styles.stat}>{stat}</div>
 			<div className={styles.link}>
-				<Link href='/'>
-					<a>View Activity</a>
+				<Link href={href} as={as}>
+					<a>{linkText}</a>
 				</Link>
 			</div>
 		</div>

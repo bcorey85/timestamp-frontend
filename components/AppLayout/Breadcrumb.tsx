@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { TypeIcon, IconType } from './TypeIcon';
+import { TypeIcon, IconType } from '../App/shared/TypeIcon';
 
 import styles from './Breadcrumb.module.scss';
 

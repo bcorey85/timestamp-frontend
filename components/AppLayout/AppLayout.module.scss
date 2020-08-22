@@ -13,18 +13,29 @@
 	position: relative;
 	display: flex;
 	flex: 1 1 auto;
+	background-color: var(--gray100);
 
 	@include respondH(550) {
 		min-height: 64rem;
 	}
 }
 
+.nav_container {
+	margin: 4rem 0;
+}
+
 .main {
-	padding: 8rem;
+	padding: 0 8rem 8rem 8rem;
 	flex: 1 1 auto;
-	background-color: var(--gray100);
 
 	@include respondH(550) {
 		padding-top: 6.4rem;
 	}
+}
+
+.wrapper {
+	width: 100%;
+	max-width: 144rem;
+	padding-right: 8rem;
+	border-right: 1px solid var(--gray200);
 }

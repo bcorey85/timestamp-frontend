@@ -3,6 +3,18 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 4rem;
+
+	& hgroup {
+		& h1 {
+			font-weight: 600;
+		}
+
+		& h4 {
+			color: var(--gray300);
+			font-weight: 500;
+			line-height: 1;
+		}
+	}
 }
 
 .btn_container {
@@ -14,9 +26,5 @@
 	& button {
 		max-width: 16rem;
 		margin-bottom: 0;
-	}
-
-	& a {
-		color: var(--gray500);
 	}
 }

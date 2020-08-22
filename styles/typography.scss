@@ -4,6 +4,8 @@ body {
 	font-family: var(--font-sans);
 	font-size: 1.6rem;
 	line-height: 1.6;
+	font-feature-settings: 'ss01' 1;
+	font-variant-numeric: tabular-nums;
 
 	@include respondH(550) {
 		font-size: 1.4rem;

@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 
-import { Breadcrumb } from '../shared/Breadcrumb';
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar';
@@ -16,24 +15,19 @@ import { RecentSection } from '../shared/RecentSection';
 const Dashboard = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 
-	const breadcrumbLinks = [
-		{
-			iconType: IconType.none,
-			href: `/app/${userId}/dashboard`,
-			text: 'Dashboard'
-		}
-	];
-
 	return (
 		<div>
-			<Breadcrumb links={breadcrumbLinks} />
 			<div className={styles.header}>
-				<h1>Welcome to Timestamp</h1>
+				<hgroup>
+					<h4>Dashboard</h4>
+					<h1>Welcome to Timestamp</h1>
+				</hgroup>
+
 				<div className={styles.btn_container}>
 					<Link
 						href='/app/[userId]/settings'
 						as={`/app/${userId}/settings`}>
-						<a>Settings</a>
+						<a className='link-gray'>Settings</a>
 					</Link>
 					<Button btnStyle='outline' onClick={() => {}}>
 						<TypeIcon type={IconType.project} />
