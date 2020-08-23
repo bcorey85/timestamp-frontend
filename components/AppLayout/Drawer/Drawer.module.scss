@@ -2,7 +2,7 @@
 
 .drawer {
 	position: relative;
-	background-color: var(--white);
+	background-color: var(--gray100);
 	flex: 0 0 var(--app-drawer-width);
 	width: 24rem;
 	padding: 4rem 0;
@@ -79,6 +79,6 @@
 
 .create_icon {
 	margin-left: -2rem;
-	margin-right: .4rem;
-	font-size: 1.6rem;
+	margin-right: .8rem;
+	font-size: 1.4rem;
 }

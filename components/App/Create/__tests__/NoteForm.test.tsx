@@ -5,7 +5,7 @@ import { NoteForm } from '../NoteForm';
 
 describe('NoteForm', () => {
 	it('renders', () => {
-		const wrapper = shallow(<NoteForm />);
+		const wrapper = shallow(<NoteForm handleCancel={jest.fn} />);
 		expect(wrapper).not.toBeNull();
 	});
 });

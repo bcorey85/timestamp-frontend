@@ -1,18 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Create } from '../Create';
+import { UpdateDetails } from '../UpdateDetails';
 
 import {
 	mockStore,
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
-describe('Create', () => {
+describe('UpdateDetails', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<Create />
+				<UpdateDetails mode='email' />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

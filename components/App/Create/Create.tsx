@@ -33,7 +33,10 @@ const Create = () => {
 
 	return (
 		<div className={styles.container}>
-			<DashboardHeader heading={currentPage} subheading='Create' />
+			<DashboardHeader
+				heading={`New ${currentPage}`}
+				subheading='Create'
+			/>
 			<div className={styles.form}>
 				<CreateNav
 					currentPage={currentPage}

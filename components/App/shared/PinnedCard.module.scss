@@ -5,6 +5,7 @@
 	padding: 1.6rem;
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow);
+	cursor: pointer;
 
 	&:not(:last-of-type) {
 		margin-right: 2.4rem;
@@ -28,28 +29,22 @@
 .time {
 	display: flex;
 	justify-content: space-between;
-	font-size: 1.2rem;
+	font-size: 1.4rem;
+	color: var(--gray400);
 	margin-bottom: .8rem;
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .body {
-	color: var(--black100);
+	color: var(--black200);
 	margin-bottom: 1.6rem;
+	line-height: 1.7;
 }
 
 .stats {
-	margin-bottom: .8rem;
+	margin-bottom: .4rem;
 	display: flex;
 	justify-content: space-between;
-
-	& div:first-of-type {
-		font-weight: 600;
-		color: var(--gray400);
-	}
-
-	& div:last-of-type {
-		font-weight: 700;
-		color: var(--black200);
-	}
+	color: var(--gray400);
+	font-weight: 400;
 }

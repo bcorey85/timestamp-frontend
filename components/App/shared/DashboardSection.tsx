@@ -10,7 +10,7 @@ interface Props {
 const DashboardSection = ({ children, title }: Props): JSX.Element => {
 	return (
 		<section className={styles.container}>
-			{title ? <h3>{title}</h3> : null}
+			{title ? <h2 className='section_heading'>{title}</h2> : null}
 			{children}
 		</section>
 	);

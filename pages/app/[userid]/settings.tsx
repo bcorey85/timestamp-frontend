@@ -2,12 +2,13 @@ import React from 'react';
 
 import { PrivateRoute } from '../../../components/Auth/PrivateRoute';
 import { Meta } from '../../../components/Meta/Meta';
+import { Settings } from '../../../components/App/Settings/Settings';
 
 const SettingsPage = () => {
 	return (
 		<PrivateRoute>
 			<Meta pageTitle='Settings' />
-			SettingsPage
+			<Settings />
 		</PrivateRoute>
 	);
 };

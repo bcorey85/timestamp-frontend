@@ -3,10 +3,10 @@
 	--font-serif: 'Crimson Pro', serif;
 	--font-mono: 'Inconsolata', monospace;
 
-	--gray100: hsl(167, 5%, 96%);
+	--gray100: hsl(167, 5%, 95%);
 	--gray200: hsl(167, 5%, 90%);
-	--gray300: hsl(167, 5%, 60%);
-	--gray400: hsl(167, 5%, 50%);
+	--gray300: hsl(167, 5%, 50%);
+	--gray400: hsl(167, 5%, 45%);
 	--gray500: hsl(167, 10%, 40%);
 
 	--black200: hsl(167, 10%, 20%);
@@ -25,11 +25,11 @@
 	--secondary400: hsl(50, 100%, 55%);
 	--secondary500: hsl(50, 100%, 42%);
 
-	--red-error: hsl(360, 80%, 65%);
-	--green-success: hsl(119, 65%, 65%);
+	--red-error: hsl(0, 60%, 54%);
+	--green-success: hsl(121, 100%, 27%);
 
-	--box-shadow: 0px 2px 6px hsla(0, 100%, 0%, 5%);
-	--box-shadow-wide: 0px 2px 20px hsla(0, 100%, 0%, 10%);
+	--box-shadow: 0px 2px 4px hsla(0, 100%, 0%, 8%);
+	--box-shadow-wide: 0px 2px 10px hsla(0, 100%, 0%, 15%);
 	--border-radius: 2px;
 
 	--project: hsl(340, 70%, 55%);
@@ -55,11 +55,20 @@ a {
 a:hover,
 a.link-gray:hover {
 	color: var(--secondary500);
+	font-weight: 600;
 }
 
 a.link-gray {
-	color: var(--gray500);
+	color: var(--gray400);
+	font-weight: 600;
 	font-size: 1.4rem;
+}
+
+.section_heading {
+	font-size: 1.4rem;
+	font-weight: 500;
+	color: var(--gray300);
+	margin-bottom: 1.6rem;
 }
 
 button,

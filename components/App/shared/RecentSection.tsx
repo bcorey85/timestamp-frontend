@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { RecentItem } from './RecentItem';
+import { IconType } from './TypeIcon';
 
 import styles from './RecentSection.module.scss';
-import { IconType } from './TypeIcon';
 
 const RecentSection = (): JSX.Element => {
 	return (
-		<div>
+		<div className={styles.container}>
 			<RecentItem
 				type={IconType.note}
 				title='Note title'

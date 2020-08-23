@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { Input } from '../Input';
 
 describe('Input', () => {
-	it('renders an input and label', () => {
+	it('renders an input', () => {
 		const wrapper = shallow(
 			<Input
 				id='email'
@@ -14,12 +14,12 @@ describe('Input', () => {
 				value={'test@gmail.com'}
 			/>
 		);
+
 		expect(wrapper).not.toBeNull();
-		expect(wrapper.find('label').length).toBe(1);
-		expect(wrapper.find('input').length).toBe(1);
+		expect(wrapper.find('BaseInput').length).toBe(1);
 	});
 
-	it('renders a textarea and label', () => {
+	it('renders a textarea', () => {
 		const wrapper = shallow(
 			<Input
 				id='comments'
@@ -30,7 +30,24 @@ describe('Input', () => {
 			/>
 		);
 		expect(wrapper).not.toBeNull();
-		expect(wrapper.find('label').length).toBe(1);
-		expect(wrapper.find('textarea').length).toBe(1);
+		expect(wrapper.find('TextArea').length).toBe(1);
+	});
+
+	it('renders a select and child options', () => {
+		const wrapper = shallow(
+			<Input
+				id='comments'
+				type='select'
+				label='Comments'
+				onChange={() => {}}
+				value={'test'}>
+				<option value='test'>Test</option>
+				<option value='test'>Test</option>
+				<option value='test'>Test</option>
+			</Input>
+		);
+		expect(wrapper).not.toBeNull();
+		expect(wrapper.find('Select').length).toBe(1);
+		expect(wrapper.find('option').length).toBe(3);
 	});
 });
