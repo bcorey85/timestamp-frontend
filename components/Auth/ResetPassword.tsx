@@ -9,7 +9,7 @@ import { Button } from '../shared/Button';
 import { ErrorDisplay } from '../shared/ErrorDisplay';
 
 import { login } from '../../redux/user';
-import { resetPasswordRequestConfig } from '../../api/auth';
+import { resetPasswordApiConfig } from '../../api/auth';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 
@@ -22,7 +22,7 @@ const ResetPassword = (): JSX.Element => {
 		password: null,
 		passwordConfirm: null
 	});
-	const [ resetRequest, resetData, resetErrors ] = useApiRequest();
+	const { request: resetRequest, errors: resetErrors } = useApiRequest();
 	const router = useRouter();
 
 	const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const ResetPassword = (): JSX.Element => {
 			});
 		}
 
-		const config = resetPasswordRequestConfig({
+		const config = resetPasswordApiConfig({
 			password,
 			token: tokenid as string
 		});

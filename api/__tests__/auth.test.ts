@@ -1,13 +1,13 @@
 import {
-	signupRequestConfig,
-	loginRequestConfig,
-	forgotPasswordRequestConfig,
-	resetPasswordRequestConfig
+	signupApiConfig,
+	loginApiConfig,
+	forgotPasswordApiConfig,
+	resetPasswordApiConfig
 } from '../auth';
 
 describe('Auth Api Configs', () => {
 	it('returns a signup request config', () => {
-		const config = signupRequestConfig({
+		const config = signupApiConfig({
 			email: 'test@gmail.com',
 			password: '111111'
 		});
@@ -22,7 +22,7 @@ describe('Auth Api Configs', () => {
 	});
 
 	it('returns a login request config', () => {
-		const config = loginRequestConfig({
+		const config = loginApiConfig({
 			email: 'test@gmail.com',
 			password: '111111'
 		});
@@ -37,7 +37,7 @@ describe('Auth Api Configs', () => {
 	});
 
 	it('returns a forgot password request config', () => {
-		const config = forgotPasswordRequestConfig('test@gmail.com');
+		const config = forgotPasswordApiConfig('test@gmail.com');
 
 		expect(config.url).toBe(
 			'http://localhost:5000/api/auth/forgot-password'
@@ -50,7 +50,7 @@ describe('Auth Api Configs', () => {
 	});
 
 	it('returns a reset password request config', () => {
-		const config = resetPasswordRequestConfig({
+		const config = resetPasswordApiConfig({
 			password: 'newpassword',
 			token: 'token'
 		});

@@ -1,25 +1,20 @@
 import { useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { ApiRequest, ApiResponse } from '../api';
 
 const useApiRequest = () => {
 	const [ data, setData ] = useState(null);
 	const [ errors, setErrors ] = useState([]);
 
-	const apiRequest = async ({
+	const request = async ({
 		url,
 		method,
 		payload,
 		token
-	}: ApiRequest): Promise<AxiosResponse> => {
+	}: ApiRequest): Promise<ApiResponse> => {
 		setErrors([]);
-		try {
-			// const response = await axios[method](url, payload, {
-			// 	headers: {
-			// 		Authorization: 'Bearer ' + token
-			// 	}
-			// });
 
+		try {
 			const response = await axios.request({
 				url,
 				method,
@@ -36,7 +31,12 @@ const useApiRequest = () => {
 			return error.response.data;
 		}
 	};
-	return [ apiRequest, data, errors ];
+
+	return {
+		request,
+		data,
+		errors
+	};
 };
 
 export { useApiRequest };

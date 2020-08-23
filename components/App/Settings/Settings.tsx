@@ -5,6 +5,7 @@ import { Button } from '../../shared/Button';
 
 import styles from './Settings.module.scss';
 import { UpdateDetails } from './UpdateDetails';
+import { useApiRequest } from '../../../hooks/useApiRequest';
 
 const Settings = (): JSX.Element => {
 	const [ updatePasswordOpen, setUpdatePasswordOpen ] = useState(false);
@@ -41,9 +42,17 @@ const Settings = (): JSX.Element => {
 						Change Password
 					</Button>
 					{updatePasswordOpen ? (
-						<UpdateDetails mode={'password'} />
+						<UpdateDetails
+							mode={'password'}
+							closeForm={() => setUpdatePasswordOpen(false)}
+						/>
 					) : null}
-					{updateEmailOpen ? <UpdateDetails mode={'email'} /> : null}
+					{updateEmailOpen ? (
+						<UpdateDetails
+							mode={'email'}
+							closeForm={() => setUpdateEmailOpen(false)}
+						/>
+					) : null}
 				</div>
 			</section>
 			<section className={styles.section}>

@@ -2,17 +2,12 @@ import React from 'react';
 
 import styles from './Input.module.scss';
 
-interface Error {
-	field: string;
-	message: string;
-}
-
 interface Props {
 	id: string;
 	type: string;
 	label?: string;
 	value: string | number;
-	error?: Error;
+	error?: string;
 	onChange: (props: any) => any;
 	autoComplete?: string;
 	children?: any;
@@ -41,9 +36,7 @@ const TextArea = ({ label, id, value, error, ...rest }: Props): JSX.Element => {
 				className={styles.textarea}
 				value={value}
 			/>
-			<div className={styles.error_container}>
-				{(error && error.message) || null}
-			</div>
+			<div className={styles.error_container}>{error || null}</div>
 		</div>
 	);
 };
@@ -62,9 +55,7 @@ const Select = ({
 			<select className={styles.select} value={value} {...rest}>
 				{children}
 			</select>
-			<div className={styles.error_container}>
-				{(error && error.message) || null}
-			</div>
+			<div className={styles.error_container}>{error || null}</div>
 		</div>
 	);
 };
@@ -87,9 +78,7 @@ const BaseInput = ({
 				className={styles.input}
 				value={value}
 			/>
-			<div className={styles.error_container}>
-				{(error && error.message) || null}
-			</div>
+			<div className={styles.error_container}>{error || null}</div>
 		</div>
 	);
 };

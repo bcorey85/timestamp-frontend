@@ -18,7 +18,7 @@ export interface AuthenticatedResponse {
 
 type email = string;
 
-export const signupRequestConfig = (payload: UserCredentials): ApiRequest => {
+export const signupApiConfig = (payload: UserCredentials): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/signup`,
 		method: 'post',
@@ -27,7 +27,7 @@ export const signupRequestConfig = (payload: UserCredentials): ApiRequest => {
 	};
 };
 
-export const loginRequestConfig = (payload: UserCredentials): ApiRequest => {
+export const loginApiConfig = (payload: UserCredentials): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/login`,
 		method: 'post',
@@ -36,7 +36,7 @@ export const loginRequestConfig = (payload: UserCredentials): ApiRequest => {
 	};
 };
 
-export const forgotPasswordRequestConfig = (email: email): ApiRequest => {
+export const forgotPasswordApiConfig = (email: email): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/forgot-password`,
 		method: 'post',
@@ -45,7 +45,7 @@ export const forgotPasswordRequestConfig = (email: email): ApiRequest => {
 	};
 };
 
-export const resetPasswordRequestConfig = ({
+export const resetPasswordApiConfig = ({
 	password,
 	token
 }: ResetRequest): ApiRequest => {

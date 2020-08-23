@@ -21,6 +21,7 @@ export interface ApiError {
 
 export interface ApiResponse {
 	success: boolean;
+	message?: string;
 	data?: { [key: string]: any };
 	errors?: Error[];
 }

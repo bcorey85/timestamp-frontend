@@ -7,8 +7,9 @@ import { AuthHeader } from './shared/AuthHeader';
 
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
-import { forgotPasswordRequestConfig } from '../../api/auth';
+import { forgotPasswordApiConfig } from '../../api/auth';
 import { ApiError } from '../../api/index';
+import { formatErrors } from '../../utils/formatErrors';
 
 import styles from './ForgotPassword.module.scss';
 
@@ -16,26 +17,27 @@ interface Props {
 	toggleForm: () => void;
 }
 
+interface Errors {
+	email?: string;
+	generic?: ApiError[];
+}
+
 const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 	const [ email, setEmail ] = useInputState('');
 	const [ formSent, setFormSent ] = useState(false);
-	const [ errors, setErrors ] = useState({ email: null });
-	const [
-		forgotPasswordRequest,
-		forgotPasswordData,
-		forgotPasswordErrors
-	] = useApiRequest();
+	const [ errors, setErrors ] = useState<Errors>({
+		email: null,
+		generic: []
+	});
+	const {
+		request: forgotPasswordRequest,
+		errors: forgotPasswordErrors
+	} = useApiRequest();
 
 	useEffect(
 		() => {
-			const errors = {
-				email:
-					forgotPasswordErrors[
-						forgotPasswordErrors.findIndex(
-							(err: ApiError) => err.field === 'email'
-						)
-					] || null
-			};
+			const errors = formatErrors([ 'email' ], forgotPasswordErrors);
+			console.log(errors);
 
 			setErrors(errors);
 		},
@@ -44,7 +46,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 
 	const handlePasswordRequest = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		const config = forgotPasswordRequestConfig(email);
+		const config = forgotPasswordApiConfig(email);
 
 		const res = await forgotPasswordRequest(config);
 

@@ -9,47 +9,52 @@ import { AuthHeader } from './shared/AuthHeader';
 
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
-import { signupRequestConfig, loginRequestConfig } from '../../api/auth';
+import { signupApiConfig, loginApiConfig } from '../../api/auth';
 import { login } from '../../redux/user';
-import { ApiRequest, ApiResponse, ApiError } from '../../api/index';
+import { ApiRequest, ApiResponse } from '../../api/index';
+import { formatErrors } from '../../utils/formatErrors';
 
 import styles from './SignIn.module.scss';
+import { ErrorDisplay } from '../shared/ErrorDisplay';
+import { ApiError } from 'next/dist/next-server/server/api-utils';
 
-type Request = (config: ApiRequest) => ApiResponse;
+type Request = (config: ApiRequest) => Promise<ApiResponse>;
 
 interface Props {
 	toggleForm: () => void;
 }
 
-const errorField = (field: string, errorArray: ApiError[]) => {
-	return errorArray[errorArray.findIndex(err => err.field === field)] || null;
-};
+interface Errors {
+	email?: string;
+	password?: string;
+	generic?: ApiError[];
+}
 
 const SignIn = ({ toggleForm }: Props): JSX.Element => {
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
-	const [ errors, setErrors ] = useState({ email: null, password: null });
-	const [ signupRequest, signupData, signupErrors ] = useApiRequest();
-	const [ loginRequest, loginData, loginErrors ] = useApiRequest();
+	const [ errors, setErrors ] = useState<Errors>({
+		email: null,
+		password: null,
+		generic: []
+	});
+	const { request: signupRequest, errors: signupErrors } = useApiRequest();
+	const { request: loginRequest, errors: loginErrors } = useApiRequest();
 	const dispatch = useDispatch();
 	const router = useRouter();
 
 	useEffect(
 		() => {
 			const errorArray = [ ...signupErrors, ...loginErrors ];
-
-			const errors = {
-				email: errorField('email', errorArray),
-				password: errorField('password', errorArray)
-			};
+			const errors = formatErrors([ 'email', 'password' ], errorArray);
 
 			setErrors(errors);
 		},
 		[ signupErrors, loginErrors ]
 	);
 
-	const signupConfig = signupRequestConfig({ email, password });
-	const loginConfig = loginRequestConfig({ email, password });
+	const signupConfig = signupApiConfig({ email, password });
+	const loginConfig = loginApiConfig({ email, password });
 
 	const handleAuth = async (
 		e: SyntheticEvent,
@@ -57,9 +62,12 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 		request: Request
 	) => {
 		e.preventDefault();
-
+		setErrors({
+			email: null,
+			password: null,
+			generic: []
+		});
 		const res = await request(config);
-		console.log(res);
 
 		if (res.success === false) {
 			return;
@@ -71,6 +79,7 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 				token: res.data.token
 			})
 		);
+
 		router.push(`/app/[userId]/dashboard`, `/app/${res.data.id}/dashboard`);
 	};
 
@@ -82,6 +91,7 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 				</h1>
 				<h5>Please sign up or login to your account</h5>
 			</AuthHeader>
+			<ErrorDisplay errors={errors.generic} />
 			<Input
 				type='email'
 				id='email'

@@ -23,19 +23,19 @@ const StatCard = ({
 	linkText
 }: Props): JSX.Element => {
 	return (
-		<div className={styles.card}>
-			<div className={styles.header}>
-				<TypeIcon type={type} />
-				{title}
-			</div>
+		<Link href={href} as={as}>
+			<div className={styles.card}>
+				<div className={styles.header}>
+					<TypeIcon type={type} />
+					{title}
+				</div>
 
-			<div className={styles.stat}>{stat}</div>
-			<div className={styles.link}>
-				<Link href={href} as={as}>
+				<div className={styles.stat}>{stat}</div>
+				<div className={styles.link}>
 					<a>{linkText}</a>
-				</Link>
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 };
 
