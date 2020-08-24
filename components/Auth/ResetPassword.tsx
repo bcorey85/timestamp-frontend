@@ -14,13 +14,21 @@ import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 
 import styles from './ResetPassword.module.scss';
+import { formatErrors } from '../../utils/formatErrors';
+
+interface Errors {
+	password?: string;
+	passwordConfirm?: string;
+	generic?: ApiError[];
+}
 
 const ResetPassword = (): JSX.Element => {
 	const [ password, setPassword ] = useInputState('');
 	const [ passwordConfirm, setPasswordConfirm ] = useInputState('');
-	const [ errors, setErrors ] = useState({
+	const [ errors, setErrors ] = useState<Errors>({
 		password: null,
-		passwordConfirm: null
+		passwordConfirm: null,
+		generic: []
 	});
 	const { request: resetRequest, errors: resetErrors } = useApiRequest();
 	const router = useRouter();
@@ -30,38 +38,22 @@ const ResetPassword = (): JSX.Element => {
 
 	useEffect(
 		() => {
-			setErrors({
-				password: null,
-				passwordConfirm: null
-			});
+			const errs = formatErrors(
+				[ 'password', 'passwordConfirm' ],
+				resetErrors
+			);
+
+			setErrors(errs);
 		},
-		[ password, passwordConfirm, setErrors ]
+		[ resetErrors ]
 	);
 
 	const handlePasswordReset = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		if (password.length < 6) {
-			return setErrors({
-				...errors,
-				password: {
-					message:
-						'Please add a valid password with at least 6 characters'
-				}
-			});
-		}
-
-		if (password !== passwordConfirm) {
-			return setErrors({
-				...errors,
-				passwordConfirm: {
-					message: 'Passwords do not match'
-				}
-			});
-		}
-
 		const config = resetPasswordApiConfig({
 			password,
+			passwordConfirm,
 			token: tokenid as string
 		});
 		const res = await resetRequest(config);
@@ -111,7 +103,7 @@ const ResetPassword = (): JSX.Element => {
 				<Button onClick={handlePasswordReset} btnStyle='primary'>
 					Reset Password
 				</Button>
-				<ErrorDisplay errors={resetErrors} />
+				<ErrorDisplay errors={errors.generic} />
 			</form>
 		</AuthContainer>
 	);

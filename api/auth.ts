@@ -8,6 +8,7 @@ interface UserCredentials {
 
 interface ResetRequest {
 	password: string;
+	passwordConfirm: string;
 	token: string;
 }
 
@@ -47,12 +48,13 @@ export const forgotPasswordApiConfig = (email: email): ApiRequest => {
 
 export const resetPasswordApiConfig = ({
 	password,
+	passwordConfirm,
 	token
 }: ResetRequest): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/auth/reset-password/${token}`,
 		method: 'put',
-		payload: { password },
+		payload: { password, passwordConfirm },
 		token: null
 	};
 };
