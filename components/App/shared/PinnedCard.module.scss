@@ -1,10 +1,10 @@
+@import '../../../styles/mixins.scss';
+
 .card {
-	background-color: var(--white);
 	height: 28rem;
 	flex: 0 0 24rem;
 	padding: 1.6rem;
-	border-radius: var(--border-radius);
-	box-shadow: var(--box-shadow);
+	@include panel;
 	cursor: pointer;
 
 	&:not(:last-of-type) {

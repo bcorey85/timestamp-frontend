@@ -1,4 +1,5 @@
 @import '../../../styles/mediaQueries.scss';
+@import '../../../styles/mixins.scss';
 
 .container {
 	position: relative;
@@ -6,9 +7,7 @@
 	width: 100%;
 	max-width: 102.4rem;
 	min-height: 72rem;
-	border: 1px solid var(--gray200);
-	border-radius: var(--border-radius);
-	box-shadow: var(--box-shadow);
+	@include panel;
 	padding: 2.4rem;
 
 	@include respondH(1024) {

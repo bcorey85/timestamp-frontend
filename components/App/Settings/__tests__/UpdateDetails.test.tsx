@@ -12,7 +12,7 @@ describe('UpdateDetails', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<UpdateDetails mode='email' />
+				<UpdateDetails mode='email' closeForm={jest.fn} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

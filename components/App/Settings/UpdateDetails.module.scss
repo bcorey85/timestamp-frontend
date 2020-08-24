@@ -1,6 +1,10 @@
+@import '../../../styles/mixins.scss';
+
 .container {
 	margin-top: 4rem;
 	max-width: 40rem;
+	padding: 1.6rem;
+	@include panel;
 
 	& button {
 		max-width: 16rem;
@@ -10,5 +14,5 @@
 
 .success {
 	color: var(--green-success);
-	font-weight: 600;
+	font-weight: 500;
 }

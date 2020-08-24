@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/user';
 
 import { formatErrors } from '../../../utils/formatErrors';
-import { ApiError } from 'next/dist/next-server/server/api-utils';
+import { ApiError } from '../../../api/index';
 
 interface Props {
 	mode: string;

@@ -15,9 +15,10 @@
 
 	& a {
 		color: var(--gray400);
+		font-weight: 500;
 
 		&:hover {
-			color: var(--secondary500);
+			color: var(--primary400);
 		}
 	}
 }

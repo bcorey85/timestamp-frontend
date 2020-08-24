@@ -20,10 +20,8 @@
 .active {
 	@extend .link;
 	position: relative;
-	background-color: var(--white);
-	border-top: 1px solid var(--gray200);
-	border-bottom: 1px solid var(--gray200);
-	box-shadow: var(--box-shadow);
+	background-color: var(--gray100);
+
 	font-weight: 600;
 
 	&::before {

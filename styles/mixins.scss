@@ -1,0 +1,6 @@
+@mixin panel {
+	background-color: var(--background-primary);
+	border-radius: var(--border-radius);
+	border: var(--border-primary);
+	box-shadow: var(--box-shadow);
+}

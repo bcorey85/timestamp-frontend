@@ -3,9 +3,10 @@
 	--font-serif: 'Crimson Pro', serif;
 	--font-mono: 'Inconsolata', monospace;
 
+	--gray50: hsl(167, 5%, 98%);
 	--gray100: hsl(167, 5%, 95%);
 	--gray200: hsl(167, 5%, 90%);
-	--gray300: hsl(167, 5%, 50%);
+	--gray300: hsl(167, 5%, 75%);
 	--gray400: hsl(167, 5%, 45%);
 	--gray500: hsl(167, 10%, 40%);
 
@@ -13,10 +14,10 @@
 	--black100: hsl(167, 10%, 30%);
 	--white: hsl(167, 10%, 100%);
 
-	--primary100: hsl(167, 75%, 85%);
-	--primary200: hsl(167, 75%, 75%);
-	--primary300: hsl(167, 75%, 55%);
-	--primary400: hsl(167, 90%, 40%);
+	--primary100: hsl(167, 60%, 85%);
+	--primary200: hsl(167, 65%, 65%);
+	--primary300: hsl(167, 65%, 55%);
+	--primary400: hsl(167, 85%, 35%);
 	--primary500: hsl(167, 90%, 27%);
 
 	--secondary100: hsl(50, 100%, 85%);
@@ -25,12 +26,16 @@
 	--secondary400: hsl(50, 100%, 55%);
 	--secondary500: hsl(50, 100%, 42%);
 
-	--red-error: hsl(0, 60%, 54%);
+	--red-error: hsl(0, 65%, 54%);
 	--green-success: hsl(121, 100%, 27%);
 
-	--box-shadow: 0px 2px 4px hsla(0, 100%, 0%, 8%);
-	--box-shadow-wide: 0px 2px 10px hsla(0, 100%, 0%, 15%);
-	--border-radius: 2px;
+	--box-shadow: 0px 2px 4px 0px hsla(167, 10%, 10%, 12%);
+	--box-shadow-wide: 0px 2px 10px hsla(167, 10%, 10%, 15%);
+	--border-radius: 4px;
+
+	--background-primary: var(--white);
+	--background-secondary: var(--gray50);
+	--border-primary: 1px solid var(--gray200);
 
 	--project: hsl(340, 70%, 55%);
 	--task: hsl(250, 65%, 55%);
@@ -54,7 +59,7 @@ a {
 
 a:hover,
 a.link-gray:hover {
-	color: var(--secondary500);
+	color: var(--primary400);
 	font-weight: 600;
 }
 
@@ -62,13 +67,6 @@ a.link-gray {
 	color: var(--gray400);
 	font-weight: 600;
 	font-size: 1.4rem;
-}
-
-.section_heading {
-	font-size: 1.4rem;
-	font-weight: 500;
-	color: var(--gray300);
-	margin-bottom: 1.6rem;
 }
 
 button,
@@ -90,7 +88,7 @@ button.btn-link {
 }
 
 button.btn-link:hover {
-	color: var(--secondary500);
+	color: var(--primary400);
 }
 
 select {

@@ -1,8 +1,7 @@
+@import '../../../styles/mixins.scss';
+
 .container {
-	background-color: var(--white);
-	border-radius: var(--border-radius);
-	box-shadow: var(--box-shadow);
-	border: 1px solid var(--gray200);
+	@include panel;
 	margin-bottom: .4rem;
 	display: flex;
 	justify-content: space-between;
@@ -14,12 +13,12 @@
 
 .title {
 	font-weight: 500;
-	color: var(--black100);
+	color: var(--black200);
 }
 
 .meta {
 	width: 25%;
 	display: flex;
 	justify-content: space-between;
-	color: var(--gray400);
+	color: var(--gray500);
 }

@@ -1,8 +1,10 @@
+@import '../../../styles/mixins.scss';
+
 .container {
 }
 
 .form {
 	max-width: 64rem;
-	background-color: var(--white);
+	@include panel;
 	padding: 4rem 6.4rem;
 }
