@@ -52,6 +52,7 @@ describe('Auth Api Configs', () => {
 	it('returns a reset password request config', () => {
 		const config = resetPasswordApiConfig({
 			password: 'newpassword',
+			passwordConfirm: 'newpassword',
 			token: 'token'
 		});
 
@@ -60,7 +61,8 @@ describe('Auth Api Configs', () => {
 		);
 		expect(config.method).toBe('put');
 		expect(config.payload).toStrictEqual({
-			password: 'newpassword'
+			password: 'newpassword',
+			passwordConfirm: 'newpassword'
 		});
 		expect(config.token).toBe(null);
 	});

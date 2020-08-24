@@ -12,9 +12,9 @@ import { login } from '../../redux/user';
 import { resetPasswordApiConfig } from '../../api/auth';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
-
-import styles from './ResetPassword.module.scss';
 import { formatErrors } from '../../utils/formatErrors';
+import { ApiError } from '../../api/index';
+import styles from './ResetPassword.module.scss';
 
 interface Errors {
 	password?: string;
