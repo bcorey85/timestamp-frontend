@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Switch from 'react-switch';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { DashboardHeader } from '../shared/DashboardHeader';
 import { Button } from '../../shared/Button';
 
 import styles from './Settings.module.scss';
 import { UpdateDetails } from './UpdateDetails';
+import { IconType } from '../../App/shared/TypeIcon';
 import { useApiRequest } from '../../../hooks/useApiRequest';
+import { setDarkColorMode, selectInterface } from '../../../redux/interface';
 
 const Settings = (): JSX.Element => {
+	const { darkColorMode } = useSelector(selectInterface);
+
 	const [ updatePasswordOpen, setUpdatePasswordOpen ] = useState(false);
 	const [ updateEmailOpen, setUpdateEmailOpen ] = useState(false);
+	const [ darkModeChecked, setDarkModeChecked ] = useState(darkColorMode);
+	const dispatch = useDispatch();
 
 	const handleUpdatePassword = (mode: string) => {
 		setUpdateEmailOpen(false);
@@ -21,9 +29,28 @@ const Settings = (): JSX.Element => {
 		setUpdateEmailOpen(!updateEmailOpen);
 	};
 
+	const handleDarkModeToggle = (mode: string | null) => {
+		if (mode === 'light') {
+			dispatch(setDarkColorMode({ darkColorMode: false }));
+			return setDarkModeChecked(false);
+		}
+
+		if (mode === 'dark') {
+			dispatch(setDarkColorMode({ darkColorMode: true }));
+			return setDarkModeChecked(true);
+		}
+
+		dispatch(setDarkColorMode({ darkColorMode: !darkModeChecked }));
+		setDarkModeChecked(!darkModeChecked);
+	};
+
 	return (
 		<div>
-			<DashboardHeader heading='Settings' subheading='Account' />
+			<DashboardHeader
+				heading='Settings'
+				subheading='Account'
+				subheadingType={IconType.generic}
+			/>
 			<section className={styles.section}>
 				<h2 className='section_heading'>User Details</h2>
 				<div>
@@ -58,8 +85,28 @@ const Settings = (): JSX.Element => {
 			<section className={styles.section}>
 				<h2 className='section_heading'>Interface</h2>
 				<div>
-					Color mode
-					<div>Light Mode / Dark Mode</div>
+					<div className={styles.dark_mode_toggle}>
+						<button
+							onClick={e => handleDarkModeToggle('light')}
+							className={styles.dark_mode_btn}>
+							Light Mode
+						</button>
+						<label>
+							<Switch
+								onChange={e => handleDarkModeToggle(null)}
+								checked={darkModeChecked}
+								offColor='#e4e7e6'
+								onColor='#303634'
+								checkedIcon={false}
+								uncheckedIcon={false}
+							/>
+						</label>
+						<button
+							onClick={e => handleDarkModeToggle('dark')}
+							className={styles.dark_mode_btn}>
+							Dark Mode
+						</button>
+					</div>
 				</div>
 			</section>
 			<section className={styles.section}>

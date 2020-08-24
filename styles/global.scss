@@ -53,6 +53,8 @@
 }
 
 body.dark {
+	--gray500: hsl(167, 5%, 30%);
+	--gray400: hsl(167, 5%, 28%);
 	--background-primary: var(--black200);
 	--background-secondary: var(--black100);
 	--background-tertiary: var(--gray500);
@@ -92,6 +94,7 @@ textarea,
 select {
 	font-family: inherit;
 	font-size: inherit;
+	color: var(--text300);
 }
 
 button {

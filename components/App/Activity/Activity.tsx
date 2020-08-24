@@ -10,33 +10,20 @@ import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
 
 import { selectUser } from '../../../redux/user';
-import styles from './Dashboard.module.scss';
-import { PinnedSection } from '../shared/PinnedSection';
+import styles from './Activity.module.scss';
 import { RecentSection } from '../shared/RecentSection';
 
-const Dashboard = (): JSX.Element => {
+const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 
 	return (
 		<div>
 			<div className={styles.header}>
 				<DashboardHeader
-					heading='Welcome to Timestamp'
-					subheading='Dashboard'
-					subheadingType={IconType.generic}
+					heading='User Stats'
+					subheading='Activity'
+					subheadingType={IconType.time}
 				/>
-
-				<div className={styles.btn_container}>
-					<Link
-						href='/app/[userId]/settings'
-						as={`/app/${userId}/settings`}>
-						<a className='link-gray'>Settings</a>
-					</Link>
-					<Button btnStyle='outline' onClick={() => {}}>
-						<TypeIcon type={IconType.project} />
-						New Project
-					</Button>
-				</div>
 			</div>
 			<DashboardSection>
 				<StatsBar>
@@ -74,9 +61,7 @@ const Dashboard = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</DashboardSection>
-			<DashboardSection title='Pinned Favorites'>
-				<PinnedSection />
-			</DashboardSection>
+			Filter
 			<DashboardSection title='Recent Items'>
 				<RecentSection />
 			</DashboardSection>
@@ -84,4 +69,4 @@ const Dashboard = (): JSX.Element => {
 	);
 };
 
-export { Dashboard };
+export { Activity };

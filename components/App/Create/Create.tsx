@@ -42,15 +42,17 @@ const Create = () => {
 					currentPage={currentPage}
 					handleClick={handlePageChange}
 				/>
-				{currentPage === CreatePage.project ? (
-					<ProjectForm handleCancel={handleCancel} />
-				) : null}
-				{currentPage === CreatePage.task ? (
-					<TaskForm handleCancel={handleCancel} />
-				) : null}
-				{currentPage === CreatePage.note ? (
-					<NoteForm handleCancel={handleCancel} />
-				) : null}
+				<div className={styles.form_body}>
+					{currentPage === CreatePage.project ? (
+						<ProjectForm handleCancel={handleCancel} />
+					) : null}
+					{currentPage === CreatePage.task ? (
+						<TaskForm handleCancel={handleCancel} />
+					) : null}
+					{currentPage === CreatePage.note ? (
+						<NoteForm handleCancel={handleCancel} />
+					) : null}
+				</div>
 			</div>
 		</div>
 	);

@@ -1,23 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
-export enum Pages {
-	dashboard = 'dashboard',
-	projects = 'projects',
-	tasks = 'tasks',
-	notes = 'notes',
-	activity = 'activity',
-	settings = 'settings',
-	search = 'search',
-	create = 'create'
-}
-
 const interfaceSlice = createSlice({
 	name: 'interface',
 	initialState: {
 		drawerOpen: true,
 		searchOpen: false,
-
+		darkColorMode: false,
 		baseUrl: null
 	},
 	reducers: {
@@ -26,6 +15,16 @@ const interfaceSlice = createSlice({
 		},
 		toggleSearch: state => {
 			state.searchOpen = !state.searchOpen;
+		},
+		setDarkColorMode: (state, action) => {
+			const darkMode = action.payload.darkColorMode;
+			if (darkMode === true) {
+				document.body.classList.add('dark');
+			} else {
+				document.body.classList.remove('dark');
+			}
+
+			state.darkColorMode = action.payload.darkColorMode;
 		}
 	}
 });
@@ -34,4 +33,8 @@ export const interfaceReducer = interfaceSlice.reducer;
 
 export const selectInterface = (state: RootState) => state.interface;
 
-export const { toggleDrawer, toggleSearch } = interfaceSlice.actions;
+export const {
+	toggleDrawer,
+	toggleSearch,
+	setDarkColorMode
+} = interfaceSlice.actions;

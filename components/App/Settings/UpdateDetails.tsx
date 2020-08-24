@@ -83,7 +83,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 	if (mode === 'email') {
 		return (
 			<form className={styles.container}>
-				<h3>New Email</h3>
+				<h3>Edit Email</h3>
 				<Input
 					type='email'
 					label='Email'
@@ -107,7 +107,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 
 	return (
 		<form className={styles.container}>
-			<h3>New Password</h3>
+			<h3>Change Password</h3>
 
 			<Input
 				type='password'

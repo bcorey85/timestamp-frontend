@@ -8,8 +8,6 @@ import styles from './Nav.module.scss';
 
 const Nav = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
-	console.log(!!userId && !!token);
-
 	return (
 		<nav className={styles.nav}>
 			<ul>

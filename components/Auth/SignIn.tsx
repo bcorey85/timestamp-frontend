@@ -16,7 +16,7 @@ import { formatErrors } from '../../utils/formatErrors';
 
 import styles from './SignIn.module.scss';
 import { ErrorDisplay } from '../shared/ErrorDisplay';
-import { ApiError } from 'next/dist/next-server/server/api-utils';
+import { ApiError } from '../../api/index';
 
 type Request = (config: ApiRequest) => Promise<ApiResponse>;
 
