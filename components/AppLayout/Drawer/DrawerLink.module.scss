@@ -6,7 +6,7 @@
 	align-items: center;
 	padding-left: 4rem;
 	font-size: 1.4rem;
-	color: var(--black200);
+	color: var(--text500);
 	border: none;
 	background: none;
 	font-weight: 500;
@@ -20,7 +20,7 @@
 .active {
 	@extend .link;
 	position: relative;
-	background-color: var(--gray100);
+	background-color: var(--background-tertiary);
 
 	font-weight: 600;
 

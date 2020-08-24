@@ -13,14 +13,14 @@
 }
 
 .btn:focus {
-	outline-color: var(--black100);
+	outline-color: var(--text400);
 }
 
 .btn_primary {
 	@extend .btn;
 	background-color: var(--primary500);
 	border: 1px solid var(--primary500);
-	color: var(--white);
+	color: var(--white); // dont change for dark mode
 
 	&:hover {
 		border: 1px solid var(--primary400);
@@ -32,11 +32,11 @@
 	@extend .btn;
 	background-color: transparent;
 	border: var(--border-primary);
-	color: var(--gray500);
+	color: var(--text300);
 
 	&:hover {
 		background-color: var(--primary400);
-		color: white;
+		color: var(--text500);
 		border: 1px solid var(--primary400);
 	}
 }
@@ -50,7 +50,7 @@
 
 .btn_link_gray {
 	@extend .btn_link;
-	color: var(--gray500);
+	color: var(--text300);
 	font-size: 1.4rem;
 
 	&:hover {
@@ -75,6 +75,6 @@
 
 	&:hover {
 		background-color: var(--red-error);
-		color: var(--white);
+		color: var(--text500);
 	}
 }

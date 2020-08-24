@@ -15,7 +15,7 @@
 .title {
 	font-size: 1.6rem;
 	font-weight: 600;
-	color: var(--black200);
+	color: var(--text500);
 	display: flex;
 	align-items: center;
 	margin-bottom: 1.6rem;
@@ -23,20 +23,20 @@
 
 .hours {
 	font-weight: 700;
-	color: var(--black200);
+	color: var(--text500);
 }
 
 .time {
 	display: flex;
 	justify-content: space-between;
 	font-size: 1.4rem;
-	color: var(--gray400);
+	color: var(--text300);
 	margin-bottom: .8rem;
 	font-weight: 400;
 }
 
 .body {
-	color: var(--black200);
+	color: var(--text500);
 	margin-bottom: 1.6rem;
 	line-height: 1.7;
 }
@@ -45,6 +45,6 @@
 	margin-bottom: .4rem;
 	display: flex;
 	justify-content: space-between;
-	color: var(--gray400);
+	color: var(--text300);
 	font-weight: 400;
 }

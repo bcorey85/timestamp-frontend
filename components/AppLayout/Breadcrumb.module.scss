@@ -1,8 +1,6 @@
 @import '../../styles/mediaQueries.scss';
 
 .breadcrumb {
-	color: var(--gray400);
-
 	@include respondH(550) {
 		margin-top: 2.4rem;
 		margin-left: 3.2rem;
@@ -14,7 +12,7 @@
 	}
 
 	& a {
-		color: var(--gray400);
+		color: var(--text300);
 		font-weight: 500;
 
 		&:hover {
@@ -25,7 +23,7 @@
 
 .spacer {
 	margin: 0 1.2rem;
-	color: var(--gray400);
+	color: var(--text300);
 	font-weight: 500;
 	@include respondH(550) {
 		margin: 0 .8rem;

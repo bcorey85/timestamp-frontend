@@ -8,10 +8,10 @@
 	--gray200: hsl(167, 5%, 90%);
 	--gray300: hsl(167, 5%, 75%);
 	--gray400: hsl(167, 5%, 45%);
-	--gray500: hsl(167, 10%, 40%);
+	--gray500: hsl(167, 5%, 40%);
 
-	--black200: hsl(167, 10%, 20%);
-	--black100: hsl(167, 10%, 30%);
+	--black200: hsl(167, 5%, 20%);
+	--black100: hsl(167, 5%, 25%);
 	--white: hsl(167, 10%, 100%);
 
 	--primary100: hsl(167, 60%, 85%);
@@ -35,7 +35,12 @@
 
 	--background-primary: var(--white);
 	--background-secondary: var(--gray50);
+	--background-tertiary: var(--gray100);
 	--border-primary: 1px solid var(--gray200);
+	--text500: var(--black200);
+	--text400: var(--black100);
+	--text300: var(--gray500);
+	--text200: var(--gray400);
 
 	--project: hsl(340, 70%, 55%);
 	--task: hsl(250, 65%, 55%);
@@ -47,9 +52,21 @@
 	--footer-height: 16rem;
 }
 
+body.dark {
+	--background-primary: var(--black200);
+	--background-secondary: var(--black100);
+	--background-tertiary: var(--gray500);
+	--border-primary: 1px solid var(--gray400);
+	--text500: var(--white);
+	--text400: var(--white);
+	--text300: var(--gray50);
+	--text200: var(--gray100);
+	color: var(--white);
+}
+
 body {
-	background-color: var(--white);
-	color: var(--black200);
+	background-color: var(--background-primary);
+	color: var(--text500);
 }
 
 a {
@@ -64,7 +81,7 @@ a.link-gray:hover {
 }
 
 a.link-gray {
-	color: var(--gray400);
+	color: var(--text300);
 	font-weight: 600;
 	font-size: 1.4rem;
 }

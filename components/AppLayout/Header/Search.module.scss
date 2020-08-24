@@ -12,7 +12,7 @@
 	right: 2.4rem;
 	height: 6.4rem;
 	box-shadow: var(--box-shadow-wide);
-	background-color: var(--white);
+	background-color: var(--background-primary);
 	border-radius: var(--border-radius);
 	border: var(--border-primary);
 	width: 100%;
@@ -36,7 +36,7 @@
 	& input,
 	select {
 		height: 3.2rem;
-		background-color: var(--gray100);
+		background-color: var(--background-tertiary);
 	}
 
 	& select {
@@ -58,7 +58,7 @@
 	background: none;
 	border: none;
 	border-radius: var(--border-radius);
-	color: var(--gray400);
+	color: var(--text300);
 	box-sizing: content-box;
 	font-size: 1.6rem;
 }

@@ -2,7 +2,7 @@
 
 .drawer {
 	position: relative;
-	background-color: var(--white);
+	background-color: var(--background-primary);
 	flex: 0 0 var(--app-drawer-width);
 	width: 24rem;
 	padding: 4rem 0;
@@ -72,7 +72,7 @@
 	line-height: 4.8rem;
 
 	&:hover {
-		background-color: var(--secondary500);
+		background-color: var(--primary400);
 		color: var(--white);
 	}
 }
