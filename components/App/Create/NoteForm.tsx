@@ -6,24 +6,24 @@ import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 
 import { useInputState } from '../../../hooks/useInputState';
+import { useTags } from '../../../hooks/useTags';
+import { TagInput } from './TagInput';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
 }
 
 const NoteForm = ({ handleCancel }: Props): JSX.Element => {
+	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
 	const [ project, setProject ] = useInputState('');
 	const [ task, setTask ] = useInputState('');
 	const [ start, setStart ] = useInputState('');
 	const [ end, setEnd ] = useInputState('');
-	const [ tags, setTags ] = useState([]);
-
-	const handleTags = () => {}; // create useTagInput hook
 
 	const handleSubmit = () => {
-		const payload = { title, project, task, start, end, description };
+		const payload = { title, project, task, start, end, description, tags };
 		console.log(payload);
 
 		// handle config, api submit, errors
@@ -48,6 +48,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						label='Project'
 						value={project}
 						onChange={setProject}>
+						<option value={null} />
 						<option value='One'>One</option>
 						<option value='Two'>Two</option>
 						<option value='Three'>Three</option>
@@ -58,6 +59,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						label='Task'
 						value={task}
 						onChange={setTask}>
+						<option value={null} />
 						<option value='One'>One</option>
 						<option value='Two'>Two</option>
 						<option value='Three'>Three</option>
@@ -80,12 +82,10 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow>
-					<Input
-						type='text'
-						id='tags'
-						label='Tags'
-						value={tags[0]}
-						onChange={handleTags}
+					<TagInput
+						handleAddTag={handleAddTag}
+						handleRemoveTag={handleRemoveTag}
+						tags={tags}
 					/>
 				</FormRow>
 				<FormRow>

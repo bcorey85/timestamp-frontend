@@ -1,0 +1,11 @@
+.tag {
+	background-color: var(--background-tertiary);
+	border: var(--border-primary);
+	border-radius: var(--border-radius);
+	padding: .4rem .8rem;
+
+	& svg {
+		margin-left: .4rem;
+		font-size: 1.2rem;
+	}
+}
