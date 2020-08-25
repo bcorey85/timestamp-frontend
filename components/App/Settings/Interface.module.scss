@@ -1,0 +1,15 @@
+.dark_mode_toggle {
+	display: flex;
+	align-items: center;
+	margin-top: .8rem;
+
+	& label {
+		margin: 0 .8rem;
+	}
+}
+
+.dark_mode_btn {
+	background-color: transparent;
+	color: var(--text500);
+	border: none;
+}

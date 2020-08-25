@@ -3,28 +3,3 @@
 	padding-bottom: 4rem;
 	border-bottom: var(--border-primary);
 }
-
-.edit_form {
-	margin-top: 1.6rem;
-}
-
-.btn_container {
-	max-width: 16rem;
-	margin-top: 3.2rem;
-}
-
-.dark_mode_toggle {
-	display: flex;
-	align-items: center;
-	margin-top: .8rem;
-
-	& label {
-		margin: 0 .8rem;
-	}
-}
-
-.dark_mode_btn {
-	background-color: transparent;
-	color: var(--text500);
-	border: none;
-}
