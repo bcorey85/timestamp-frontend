@@ -1,15 +1,34 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 
+import { useInputState } from '../../../hooks/useInputState';
+
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
 }
 
 const NoteForm = ({ handleCancel }: Props): JSX.Element => {
+	const [ title, setTitle ] = useInputState('');
+	const [ description, setDescription ] = useInputState('');
+	const [ project, setProject ] = useInputState('');
+	const [ task, setTask ] = useInputState('');
+	const [ start, setStart ] = useInputState('');
+	const [ end, setEnd ] = useInputState('');
+	const [ tags, setTags ] = useState([]);
+
+	const handleTags = () => {}; // create useTagInput hook
+
+	const handleSubmit = () => {
+		const payload = { title, project, task, start, end, description };
+		console.log(payload);
+
+		// handle config, api submit, errors
+	};
+
 	return (
 		<div>
 			<BaseForm>
@@ -18,8 +37,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='text'
 						id='title'
 						label='Note Title'
-						value={null}
-						onChange={() => {}}
+						value={title}
+						onChange={setTitle}
 					/>
 				</FormRow>
 				<FormRow half>
@@ -27,8 +46,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='project'
 						label='Project'
-						value={null}
-						onChange={() => {}}>
+						value={project}
+						onChange={setProject}>
 						<option value='One'>One</option>
 						<option value='Two'>Two</option>
 						<option value='Three'>Three</option>
@@ -37,8 +56,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='task'
 						label='Task'
-						value={null}
-						onChange={() => {}}>
+						value={task}
+						onChange={setTask}>
 						<option value='One'>One</option>
 						<option value='Two'>Two</option>
 						<option value='Three'>Three</option>
@@ -49,15 +68,15 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='datetime-local'
 						id='start'
 						label='Start'
-						value={null}
-						onChange={() => {}}
+						value={start}
+						onChange={setStart}
 					/>
 					<Input
 						type='datetime-local'
 						id='end'
 						label='End'
-						value={null}
-						onChange={() => {}}
+						value={end}
+						onChange={setEnd}
 					/>
 				</FormRow>
 				<FormRow>
@@ -65,8 +84,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='text'
 						id='tags'
 						label='Tags'
-						value={null}
-						onChange={() => {}}
+						value={tags[0]}
+						onChange={handleTags}
 					/>
 				</FormRow>
 				<FormRow>
@@ -74,8 +93,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='textarea'
 						id='description'
 						label='Description'
-						value={null}
-						onChange={() => {}}
+						value={description}
+						onChange={setDescription}
 					/>
 				</FormRow>
 			</BaseForm>
@@ -83,7 +102,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 				<Button btnStyle='link_gray' onClick={handleCancel}>
 					Cancel
 				</Button>
-				<Button btnStyle='primary' onClick={() => {}}>
+				<Button btnStyle='primary' onClick={handleSubmit}>
 					Create Note
 				</Button>
 			</CreateBtnContainer>

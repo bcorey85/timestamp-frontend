@@ -64,10 +64,6 @@ const Search = (): JSX.Element => {
 			{searchOpen && <SearchForm />}
 		</div>
 	);
-
-	// return <div>{searchOpen ? <SearchForm /> : <SearchToggle />}</div>;
-
-	return;
 };
 
 export { Search };
