@@ -37,7 +37,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 		request: updateUserRequest,
 		errors: updateUserErrors
 	} = useApiRequest();
-	const { userId } = useSelector(selectUser);
+	const { userId, token } = useSelector(selectUser);
 
 	useEffect(
 		() => {
@@ -66,7 +66,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 			};
 		}
 
-		const config = updateUserApiConfig(payload, userId);
+		const config = updateUserApiConfig(payload, token, userId);
 		const res = await updateUserRequest(config);
 
 		if (res.success === false) {

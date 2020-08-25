@@ -1,0 +1,54 @@
+// @import '../../sass/abstracts/variables';
+// @import '../../sass/abstracts//mixins';
+@import '../../../styles/mixins.scss';
+
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	padding: 1.6rem;
+	top: 0;
+	left: 0;
+	min-height: 100%;
+	width: 100%;
+	z-index: 4;
+	color: var(--text500);
+	background-color: rgba(0, 0, 0, .5);
+
+	// @include respond(500) {
+	// 	padding: .8rem;
+	// }
+
+	&_container {
+		width: 100%;
+		max-width: 40rem;
+		position: relative;
+		@include panel;
+		padding: 3.6rem 4rem;
+
+		// @include respond(500) {
+		// 	max-width: 32rem;
+		// }
+	}
+
+	&_close {
+		position: absolute;
+		top: 2.4rem;
+		right: 2.4rem;
+
+		& div {
+			display: flex;
+			justify-content: flex-end;
+			align-items: flex-start;
+			cursor: pointer;
+			height: 4.8rem;
+			width: 4.8rem;
+
+			& svg {
+				font-size: 2.4rem;
+				color: var(--gray300);
+			}
+		}
+	}
+}

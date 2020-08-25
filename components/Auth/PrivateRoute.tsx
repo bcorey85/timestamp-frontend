@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 interface Token {
 	iat: number;
 	user: string;
-	expires: number;
+	exp: number;
 }
 
 interface Props {
@@ -28,6 +28,7 @@ const PrivateRoute = ({ children }: Props) => {
 
 	useEffect(() => {
 		const isAuthenticated = !!(user && user.token);
+		console.log(isAuthenticated);
 
 		if (!isAuthenticated) {
 			dispatch(logout());
@@ -36,7 +37,7 @@ const PrivateRoute = ({ children }: Props) => {
 		}
 
 		const token: Token = jwtDecode(user.token);
-		const expiredToken = token.expires < Date.now();
+		const expiredToken = token.exp * 1000 < Date.now();
 
 		if (expiredToken) {
 			dispatch(logout());
@@ -63,6 +64,8 @@ const PrivateRoute = ({ children }: Props) => {
 
 PrivateRoute.getInitialProps = async (context: NextPageContext) => {
 	let query = context.query;
+	console.log(query);
+
 	return { query };
 };
 

@@ -9,12 +9,25 @@ interface UpdateRequest {
 
 export const updateUserApiConfig = (
 	payload: UpdateRequest,
+	token: string,
 	userId: string
 ): ApiRequest => {
 	return {
-		url: `${apiBaseUrl}/user/${userId}`,
+		url: `${apiBaseUrl}/users/${userId}`,
 		method: 'put',
 		payload: payload,
-		token: null
+		token: token
+	};
+};
+
+export const deleteUserApiConfig = (
+	userId: string,
+	token: string
+): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/users/${userId}`,
+		method: 'delete',
+		payload: null,
+		token: token
 	};
 };

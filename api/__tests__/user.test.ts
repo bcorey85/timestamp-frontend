@@ -1,8 +1,9 @@
-import { updateUserApiConfig } from '../user';
+import { updateUserApiConfig, deleteUserApiConfig } from '../user';
 
 describe('Auth Api Configs', () => {
 	it('returns an update user request config', () => {
 		const userId = '123456';
+		const token = '123456';
 
 		const config = updateUserApiConfig(
 			{
@@ -10,16 +11,29 @@ describe('Auth Api Configs', () => {
 				password: '111111',
 				passwordConfirm: '1111111'
 			},
+			token,
 			userId
 		);
 
-		expect(config.url).toBe(`http://localhost:5000/api/user/${userId}`);
+		expect(config.url).toBe(`http://localhost:5000/api/users/${userId}`);
 		expect(config.method).toBe('put');
 		expect(config.payload).toStrictEqual({
 			email: 'test@gmail.com',
 			password: '111111',
 			passwordConfirm: '1111111'
 		});
-		expect(config.token).toBe(null);
+		expect(config.token).toBe('123456');
+	});
+
+	it('returns an delete user request config', () => {
+		const userId = '123456';
+		const token = '123456';
+
+		const config = deleteUserApiConfig(token, userId);
+
+		expect(config.url).toBe(`http://localhost:5000/api/users/${userId}`);
+		expect(config.method).toBe('delete');
+		expect(config.payload).toStrictEqual(null);
+		expect(config.token).toBe('123456');
 	});
 });

@@ -1,0 +1,18 @@
+// @import '../../sass/abstracts/mixins';
+
+.modal_controls {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 4rem;
+
+	// @include respond(500) {
+	// 	justify-content: space-between;
+	// 	margin-bottom: 1.6rem;
+	// }
+
+	& button:not(:last-of-type) {
+		margin-right: 1.6rem;
+	}
+}
