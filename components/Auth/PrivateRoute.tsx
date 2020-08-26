@@ -7,6 +7,7 @@ import { AppLayout } from '../../components/AppLayout/AppLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser, logout } from '../../redux/user';
 import { useRouter } from 'next/router';
+import { Loading } from '../shared/Loading';
 
 interface Token {
 	iat: number;
@@ -28,7 +29,6 @@ const PrivateRoute = ({ children }: Props) => {
 
 	useEffect(() => {
 		const isAuthenticated = !!(user && user.token);
-		console.log(isAuthenticated);
 
 		if (!isAuthenticated) {
 			dispatch(logout());
@@ -56,7 +56,11 @@ const PrivateRoute = ({ children }: Props) => {
 	}, []);
 
 	if (isLoading) {
-		return <AppLayout>{null}</AppLayout>;
+		return (
+			<AppLayout>
+				<Loading />
+			</AppLayout>
+		);
 	}
 
 	return <AppLayout>{children}</AppLayout>;

@@ -37,7 +37,6 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 	useEffect(
 		() => {
 			const errors = formatErrors([ 'email' ], forgotPasswordErrors);
-			console.log(errors);
 
 			setErrors(errors);
 		},

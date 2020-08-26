@@ -4,10 +4,13 @@ import { Button } from '../../shared/Button';
 import { UpdateDetails } from './UpdateDetails';
 
 import styles from './UserDetails.module.scss';
+import { useSelector } from 'react-redux';
+import { selectAppData } from '../../../redux/appData';
 
 const UserDetails = (): JSX.Element => {
 	const [ updatePasswordOpen, setUpdatePasswordOpen ] = useState(false);
 	const [ updateEmailOpen, setUpdateEmailOpen ] = useState(false);
+	const { email, lastLogin, createdAt } = useSelector(selectAppData);
 
 	const handleUpdatePassword = (mode: string) => {
 		setUpdateEmailOpen(false);
@@ -23,14 +26,14 @@ const UserDetails = (): JSX.Element => {
 		<React.Fragment>
 			<h2 className='section_heading'>User Details</h2>
 			<div>
-				Email: bcorey85@gmail.com ({' '}
+				Email: {email}({' '}
 				<Button btnStyle='link_primary' onClick={handleUpdateEmail}>
 					edit
 				</Button>{' '}
 				)
 			</div>
-			<div>Account Created: 02/26/2019</div>
-			<div>Last Login: 03/31/2019</div>
+			<div>Account Created: {new Date(createdAt).toLocaleString()}</div>
+			<div>Last Login: {new Date(lastLogin).toLocaleString()}</div>
 			<div className={styles.edit_form}>
 				<Button btnStyle='link_primary' onClick={handleUpdatePassword}>
 					Change Password

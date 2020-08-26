@@ -23,6 +23,10 @@ const Interface = (): JSX.Element => {
 						checked={darkModeChecked}
 						offColor='#e4e7e6'
 						onColor='#303634'
+						onHandleColor='#078368'
+						offHandleColor='#078368'
+						height={24}
+						handleDiameter={24}
 						checkedIcon={false}
 						uncheckedIcon={false}
 					/>

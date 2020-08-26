@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
@@ -8,13 +9,14 @@ import { StatsBar } from '../shared/StatsBar';
 import { StatCard } from '../shared/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
+import { RecentSection } from '../shared/RecentSection';
 
 import { selectUser } from '../../../redux/user';
 import styles from './Task.module.scss';
-import { RecentSection } from '../shared/RecentSection';
 
 const Task = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const router = useRouter();
 
 	return (
 		<div>
@@ -31,7 +33,14 @@ const Task = (): JSX.Element => {
 						as={`/app/${userId}/settings`}>
 						<a className='link-gray'>Edit Task</a>
 					</Link>
-					<Button btnStyle='outline' onClick={() => {}}>
+					<Button
+						btnStyle='outline'
+						onClick={() => {
+							router.push(
+								`/app/[userId]/create?action=task`,
+								`/app/${userId}/create?action=task`
+							);
+						}}>
 						<TypeIcon type={IconType.task} />
 						New Task
 					</Button>

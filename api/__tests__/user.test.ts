@@ -5,15 +5,17 @@ describe('Auth Api Configs', () => {
 		const userId = '123456';
 		const token = '123456';
 
-		const config = updateUserApiConfig(
-			{
-				email: 'test@gmail.com',
-				password: '111111',
-				passwordConfirm: '1111111'
-			},
+		const payload = {
+			email: 'test@gmail.com',
+			password: '111111',
+			passwordConfirm: '1111111'
+		};
+
+		const config = updateUserApiConfig({
+			payload,
 			token,
 			userId
-		);
+		});
 
 		expect(config.url).toBe(`http://localhost:5000/api/users/${userId}`);
 		expect(config.method).toBe('put');
@@ -29,7 +31,7 @@ describe('Auth Api Configs', () => {
 		const userId = '123456';
 		const token = '123456';
 
-		const config = deleteUserApiConfig(token, userId);
+		const config = deleteUserApiConfig({ token, userId });
 
 		expect(config.url).toBe(`http://localhost:5000/api/users/${userId}`);
 		expect(config.method).toBe('delete');

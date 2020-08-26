@@ -1,32 +1,60 @@
 import React, { SyntheticEvent, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
+import { TagInput } from './TagInput';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
-import { TagInput } from './TagInput';
+import { useSelector } from 'react-redux';
+import { selectAppData } from '../../../redux/appData';
+import { createNoteApiConfig, Note } from '../../../api/note';
+import { selectUser } from '../../../redux/user';
+import { useApiRequest } from '../../../hooks/useApiRequest';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
 }
 
 const NoteForm = ({ handleCancel }: Props): JSX.Element => {
+	const { userId, token } = useSelector(selectUser);
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
-	const [ project, setProject ] = useInputState('');
-	const [ task, setTask ] = useInputState('');
+	const [ projectId, setProjectId ] = useInputState('');
+	const [ taskId, setTaskId ] = useInputState('');
 	const [ start, setStart ] = useInputState('');
 	const [ end, setEnd ] = useInputState('');
+	const {
+		request: createNoteRequest,
+		errors: createNoteErrors
+	} = useApiRequest();
+	const appData = useSelector(selectAppData);
+	const router = useRouter();
 
-	const handleSubmit = () => {
-		const payload = { title, project, task, start, end, description, tags };
-		console.log(payload);
+	const handleSubmit = async () => {
+		const payload = {
+			title,
+			projectId: parseInt(projectId),
+			taskId: parseInt(taskId),
+			start,
+			end,
+			description,
+			tags
+		} as Note;
 
-		// handle config, api submit, errors
+		const config = createNoteApiConfig({ payload, userId, token });
+		const res = await createNoteRequest(config);
+
+		if (res.success) {
+			router.push(
+				`/app/[userId]/dashboard`,
+				`/app/${res.data.id}/dashboard`
+			);
+		}
 	};
 
 	return (
@@ -46,23 +74,39 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='project'
 						label='Project'
-						value={project}
-						onChange={setProject}>
+						value={projectId}
+						onChange={setProjectId}>
 						<option value={null} />
-						<option value='One'>One</option>
-						<option value='Two'>Two</option>
-						<option value='Three'>Three</option>
+						{appData.projects.map(project => {
+							return (
+								<option
+									value={project.project_id}
+									key={project.project_id}>
+									{project.title}
+								</option>
+							);
+						})}
 					</Input>
 					<Input
 						type='select'
 						id='task'
 						label='Task'
-						value={task}
-						onChange={setTask}>
+						value={taskId}
+						onChange={setTaskId}>
 						<option value={null} />
-						<option value='One'>One</option>
-						<option value='Two'>Two</option>
-						<option value='Three'>Three</option>
+						{appData.tasks
+							.filter(
+								task => task.project_id === parseInt(projectId)
+							)
+							.map(task => {
+								return (
+									<option
+										value={task.task_id}
+										key={task.task_id}>
+										{task.title}
+									</option>
+								);
+							})}
 					</Input>
 				</FormRow>
 				<FormRow half>

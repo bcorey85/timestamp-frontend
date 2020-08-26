@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
@@ -20,8 +20,26 @@ export enum CreatePage {
 const Create = () => {
 	const { userId } = useSelector(selectUser);
 	const router = useRouter();
-
 	const [ currentPage, setCurrentPage ] = useState(CreatePage.project);
+
+	useEffect(() => {
+		console.log(router.query.action);
+
+		if (router.query && router.query.action) {
+			{
+				router.query.action === 'project' &&
+					setCurrentPage(CreatePage.project);
+			}
+			{
+				router.query.action === 'task' &&
+					setCurrentPage(CreatePage.task);
+			}
+			{
+				router.query.action === 'note' &&
+					setCurrentPage(CreatePage.note);
+			}
+		}
+	}, []);
 
 	const handlePageChange = (page: CreatePage) => {
 		setCurrentPage(page);

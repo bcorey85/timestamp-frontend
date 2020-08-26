@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -8,24 +9,50 @@ import { TagInput } from './TagInput';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
+import { useSelector } from 'react-redux';
+import { selectAppData } from '../../../redux/appData';
+import { selectUser } from '../../../redux/user';
+import { useApiRequest } from '../../../hooks/useApiRequest';
+import { createTaskApiConfig, Task } from '../../../api/task';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
 }
 
 const TaskForm = ({ handleCancel }: Props): JSX.Element => {
+	const { userId, token } = useSelector(selectUser);
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
-	const [ project, setProject ] = useInputState('');
+	const [ projectId, setProjectId ] = useInputState('');
+	const {
+		request: createTaskRequest,
+		errors: createTaskErrors
+	} = useApiRequest();
+	const appData = useSelector(selectAppData);
+	const router = useRouter();
 
-	const handleTags = () => {}; // create useTagInput hook
+	const handleSubmit = async () => {
+		const payload = {
+			title,
+			projectId: parseInt(projectId),
+			description,
+			tags
+		} as Task;
 
-	const handleSubmit = () => {
-		const payload = { title, project, description, tags };
-		console.log(payload);
+		const config = createTaskApiConfig({ payload, userId, token });
+
+		const res = await createTaskRequest(config);
+		console.log(res);
 
 		// handle config, api submit, errors
+
+		if (res.success) {
+			router.push(
+				`/app/[userId]/dashboard`,
+				`/app/${res.data.id}/dashboard`
+			);
+		}
 	};
 
 	return (
@@ -45,12 +72,18 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='project'
 						label='Project'
-						value={project}
-						onChange={setProject}>
+						value={projectId}
+						onChange={setProjectId}>
 						<option value={null} />
-						<option value='One'>One</option>
-						<option value='Two'>Two</option>
-						<option value='Three'>Three</option>
+						{appData.projects.map(project => {
+							return (
+								<option
+									value={project.project_id}
+									key={project.project_id}>
+									{project.title}
+								</option>
+							);
+						})}
 					</Input>
 				</FormRow>
 				<FormRow>

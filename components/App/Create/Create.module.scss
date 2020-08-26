@@ -5,10 +5,10 @@
 
 .form {
 	max-width: 64rem;
+	@include panel;
 }
 
 .form_body {
-	@include panel;
 	border-top: none;
 	padding: 5.6rem 6.4rem;
 	border-top-left-radius: 0;

@@ -25,3 +25,8 @@ export interface ApiResponse {
 	data?: { [key: string]: any };
 	errors?: Error[];
 }
+
+export interface UserCredentials {
+	userId: string;
+	token: string;
+}

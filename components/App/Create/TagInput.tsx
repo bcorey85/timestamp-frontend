@@ -25,7 +25,7 @@ const TagInput = ({
 
 	const handleAdd = (e: SyntheticEvent) => {
 		e.preventDefault();
-		handleAddTag(currentTag);
+		handleAddTag('#' + currentTag);
 		setCurrentTag('');
 	};
 

@@ -4,7 +4,13 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Modal.module.scss';
 
-const Modal = ({ toggleModal, isOpen, children }) => {
+interface Props {
+	children?: any;
+	toggleModal: (boolean: boolean) => void;
+	isOpen: boolean;
+}
+
+const Modal = ({ toggleModal, isOpen, children }: Props): JSX.Element => {
 	if (!isOpen) {
 		return <div />;
 	}
@@ -13,7 +19,7 @@ const Modal = ({ toggleModal, isOpen, children }) => {
 		<div className={styles.modal}>
 			<div className={styles.modal_container}>
 				<div className={styles.modal_close}>
-					<div onClick={toggleModal}>
+					<div onClick={() => toggleModal(false)}>
 						<FontAwesomeIcon icon={faTimes} />
 					</div>
 				</div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
@@ -13,9 +13,47 @@ import { selectUser } from '../../../redux/user';
 import styles from './Dashboard.module.scss';
 import { PinnedSection } from '../shared/PinnedSection';
 import { RecentSection } from '../shared/RecentSection';
+import { Loading } from '../../shared/Loading';
+import { useApiRequest } from '../../../hooks/useApiRequest';
+import { getUserApiConfig } from '../../../api/user';
+import { selectAppData, setAppData } from '../../../redux/appData';
+import { useRouter } from 'next/router';
 
 const Dashboard = (): JSX.Element => {
-	const { userId } = useSelector(selectUser);
+	const {
+		request: getUserRequest,
+		data: getUserData,
+		errors: getUserErrors
+	} = useApiRequest();
+	const [ isLoading, setIsLoading ] = useState(true);
+	const { userId, token } = useSelector(selectUser);
+	const appData = useSelector(selectAppData);
+	const dispatch = useDispatch();
+	const router = useRouter();
+
+	useEffect(() => {
+		const getUserData = async () => {
+			const config = getUserApiConfig({ userId, token });
+			const res = await getUserRequest(config);
+
+			if (res.success === true) {
+				setIsLoading(false);
+				console.log(res.data.user);
+
+				dispatch(setAppData({ appData: res.data.user }));
+			}
+		};
+
+		getUserData();
+	}, []);
+
+	if (isLoading) {
+		return (
+			<div>
+				<Loading />
+			</div>
+		);
+	}
 
 	return (
 		<div>
@@ -32,7 +70,14 @@ const Dashboard = (): JSX.Element => {
 						as={`/app/${userId}/settings`}>
 						<a className='link-gray'>Settings</a>
 					</Link>
-					<Button btnStyle='outline' onClick={() => {}}>
+					<Button
+						btnStyle='outline'
+						onClick={() => {
+							router.push(
+								`/app/[userId]/create`,
+								`/app/${userId}/create?action=project`
+							);
+						}}>
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>
@@ -43,7 +88,7 @@ const Dashboard = (): JSX.Element => {
 					<StatCard
 						type={IconType.time}
 						title={'Hours'}
-						stat={'10,000'}
+						stat={appData.hours}
 						href={'/app/[userId/activity'}
 						as={`/app/${userId}/activity`}
 						linkText='View Activity'
@@ -51,7 +96,7 @@ const Dashboard = (): JSX.Element => {
 					<StatCard
 						type={IconType.project}
 						title={'Projects'}
-						stat={'4'}
+						stat={appData.projects.length}
 						href={'/app/[userId/projects'}
 						as={`/app/${userId}/projects`}
 						linkText='View Projects'
@@ -59,7 +104,7 @@ const Dashboard = (): JSX.Element => {
 					<StatCard
 						type={IconType.task}
 						title={'Tasks'}
-						stat={'25'}
+						stat={appData.tasks.length}
 						href={'/app/[userId/tasks'}
 						as={`/app/${userId}/tasks`}
 						linkText='View Tasks'
@@ -67,7 +112,7 @@ const Dashboard = (): JSX.Element => {
 					<StatCard
 						type={IconType.note}
 						title={'Notes'}
-						stat={'482'}
+						stat={appData.notes.length}
 						href={'/app/[userId/notes'}
 						as={`/app/${userId}/notes`}
 						linkText='View Notes'

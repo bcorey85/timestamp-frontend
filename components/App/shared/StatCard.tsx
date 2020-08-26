@@ -8,7 +8,7 @@ import styles from './StatCard.module.scss';
 interface Props {
 	title: string;
 	type: IconType;
-	stat: string;
+	stat: string | number;
 	href: string;
 	as: string;
 	linkText: string;

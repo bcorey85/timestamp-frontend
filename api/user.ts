@@ -1,17 +1,34 @@
 import { apiBaseUrl } from './index';
-import { ApiRequest } from './index';
+import { ApiRequest, UserCredentials } from './index';
 
-interface UpdateRequest {
+interface UpdatePayload {
 	email?: string;
 	password?: string;
 	passwordConfirm?: string;
 }
 
-export const updateUserApiConfig = (
-	payload: UpdateRequest,
-	token: string,
-	userId: string
-): ApiRequest => {
+interface UpdateRequest extends UserCredentials {
+	payload: UpdatePayload;
+}
+
+interface GetRequest extends UserCredentials {}
+
+interface DeleteRequest extends UserCredentials {}
+
+export const getUserApiConfig = ({ userId, token }: GetRequest): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/users/${userId}`,
+		method: 'get',
+		payload: null,
+		token: token
+	};
+};
+
+export const updateUserApiConfig = ({
+	payload,
+	token,
+	userId
+}: UpdateRequest): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/users/${userId}`,
 		method: 'put',
@@ -20,10 +37,10 @@ export const updateUserApiConfig = (
 	};
 };
 
-export const deleteUserApiConfig = (
-	userId: string,
-	token: string
-): ApiRequest => {
+export const deleteUserApiConfig = ({
+	userId,
+	token
+}: DeleteRequest): ApiRequest => {
 	return {
 		url: `${apiBaseUrl}/users/${userId}`,
 		method: 'delete',

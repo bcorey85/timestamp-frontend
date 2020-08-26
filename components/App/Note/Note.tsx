@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
@@ -8,13 +9,14 @@ import { StatsBar } from '../shared/StatsBar';
 import { StatCard } from '../shared/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
+import { RecentSection } from '../shared/RecentSection';
 
 import { selectUser } from '../../../redux/user';
 import styles from './Note.module.scss';
-import { RecentSection } from '../shared/RecentSection';
 
 const Note = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const router = useRouter();
 
 	return (
 		<div>
@@ -31,7 +33,14 @@ const Note = (): JSX.Element => {
 						as={`/app/${userId}/settings`}>
 						<a className='link-gray'>Edit Note</a>
 					</Link>
-					<Button btnStyle='outline' onClick={() => {}}>
+					<Button
+						btnStyle='outline'
+						onClick={() => {
+							router.push(
+								`/app/[userId]/create?action=note`,
+								`/app/${userId}/create?action=note`
+							);
+						}}>
 						<TypeIcon type={IconType.note} />
 						New Note
 					</Button>

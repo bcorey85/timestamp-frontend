@@ -17,10 +17,12 @@ import storage from 'redux-persist/lib/storage';
 
 import { userReducer } from './user';
 import { interfaceReducer } from './interface';
+import { appDataReducer } from './appData';
 
 const rootReducer = combineReducers({
 	user: userReducer,
-	interface: interfaceReducer
+	interface: interfaceReducer,
+	appData: appDataReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

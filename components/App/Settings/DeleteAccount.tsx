@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
@@ -7,14 +7,13 @@ import { Button } from '../../shared/Button';
 import { Modal, ModalContent, ModalControls } from '../../shared/Modal/Modal';
 
 import { selectUser, logout } from '../../../redux/user';
-import { useToggle } from '../../../hooks/useToggle';
 import { deleteUserApiConfig } from '../../../api/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import styles from './DeleteAccount.module.scss';
 
 const DeleteAccount = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
-	const [ deleteModalOpen, setDeleteModalOpen ] = useToggle(false);
+	const [ deleteModalOpen, setDeleteModalOpen ] = useState(false);
 	const {
 		request: deleteUserRequest,
 		errors: deleteUserErrors
@@ -22,17 +21,15 @@ const DeleteAccount = (): JSX.Element => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 
-	const openDeleteModal = () => {
-		setDeleteModalOpen(true);
+	const toggleDeleteModal = (boolean: boolean) => {
+		setDeleteModalOpen(boolean);
 	};
 
 	const handleDelete = async () => {
-		console.log('deleting account');
-
 		setDeleteModalOpen(false);
 		dispatch(logout());
 
-		const config = deleteUserApiConfig(userId, token);
+		const config = deleteUserApiConfig({ userId, token });
 
 		await deleteUserRequest(config);
 
@@ -46,11 +43,15 @@ const DeleteAccount = (): JSX.Element => {
 				Warning this action is permanent. All account data will be lost
 			</p>
 			<div className={styles.btn_container}>
-				<Button btnStyle='delete' onClick={openDeleteModal}>
+				<Button
+					btnStyle='delete'
+					onClick={() => {
+						toggleDeleteModal(true);
+					}}>
 					Delete
 				</Button>
 			</div>
-			<Modal toggleModal={setDeleteModalOpen} isOpen={deleteModalOpen}>
+			<Modal toggleModal={toggleDeleteModal} isOpen={deleteModalOpen}>
 				<ModalContent>
 					<div className={styles.delete_msg}>
 						<h1>Delete Account</h1>

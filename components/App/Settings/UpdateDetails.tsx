@@ -66,7 +66,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 			};
 		}
 
-		const config = updateUserApiConfig(payload, token, userId);
+		const config = updateUserApiConfig({ payload, token, userId });
 		const res = await updateUserRequest(config);
 
 		if (res.success === false) {
