@@ -19,8 +19,8 @@ const Nav = (): JSX.Element => {
 				{!!userId && !!token ? (
 					<li>
 						<Link
-							href='/app/[userId]/dashboard'
-							as={`/app/${userId}/dashboard`}>
+							href='/app/[userId]/projects'
+							as={`/app/${userId}/projects`}>
 							<a>Dashboard</a>
 						</Link>
 					</li>

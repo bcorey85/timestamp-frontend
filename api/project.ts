@@ -1,13 +1,13 @@
 import { apiBaseUrl } from './index';
 import { ApiRequest, UserCredentials } from './index';
 
-export interface Project {
+export interface ProjectPayload {
 	title?: string;
 	description?: string;
 }
 
 interface CreateProject extends UserCredentials {
-	payload: Project;
+	payload: ProjectPayload;
 }
 
 export const createProjectApiConfig = ({

@@ -9,13 +9,15 @@ import { StatsBar } from '../shared/StatsBar';
 import { StatCard } from '../shared/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
-import { RecentSection } from '../shared/RecentSection';
+import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectUser } from '../../../redux/user';
+import { selectAppData } from '../../../redux/appData';
 import styles from './Task.module.scss';
 
 const Task = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const appData = useSelector(selectAppData);
 	const router = useRouter();
 
 	return (
@@ -28,11 +30,6 @@ const Task = (): JSX.Element => {
 				/>
 
 				<div className={styles.btn_container}>
-					<Link
-						href='/app/[userId]/settings'
-						as={`/app/${userId}/settings`}>
-						<a className='link-gray'>Edit Task</a>
-					</Link>
 					<Button
 						btnStyle='outline'
 						onClick={() => {
@@ -46,45 +43,29 @@ const Task = (): JSX.Element => {
 					</Button>
 				</div>
 			</div>
-			<DashboardSection>
+			{/* <DashboardSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
 						title={'Hours'}
-						stat={'10,000'}
+						stat={appData.hours}
 						href={'/app/[userId/activity'}
 						as={`/app/${userId}/activity`}
 						linkText='View Activity'
 					/>
 					<StatCard
-						type={IconType.project}
-						title={'Projects'}
-						stat={'4'}
-						href={'/app/[userId/projects'}
-						as={`/app/${userId}/projects`}
-						linkText='View Projects'
-					/>
-					<StatCard
-						type={IconType.task}
-						title={'Tasks'}
-						stat={'25'}
-						href={'/app/[userId/tasks'}
-						as={`/app/${userId}/tasks`}
-						linkText='View Tasks'
-					/>
-					<StatCard
 						type={IconType.note}
 						title={'Notes'}
-						stat={'482'}
+						stat={appData.notes.length}
 						href={'/app/[userId/notes'}
 						as={`/app/${userId}/notes`}
 						linkText='View Notes'
 					/>
 				</StatsBar>
 			</DashboardSection>
-			Filter
-			<DashboardSection title='Recent Items'>
-				<RecentSection />
+			*/}
+			<DashboardSection title='Tasks'>
+				<ListSection items={appData.tasks} />
 			</DashboardSection>
 		</div>
 	);

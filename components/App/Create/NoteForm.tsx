@@ -11,7 +11,7 @@ import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
-import { createNoteApiConfig, Note } from '../../../api/note';
+import { createNoteApiConfig, NotePayload } from '../../../api/note';
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 
@@ -36,7 +36,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	const router = useRouter();
 
 	const handleSubmit = async () => {
-		const payload = {
+		const payload: NotePayload = {
 			title,
 			projectId: parseInt(projectId),
 			taskId: parseInt(taskId),
@@ -44,7 +44,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 			end,
 			description,
 			tags
-		} as Note;
+		};
 
 		const config = createNoteApiConfig({ payload, userId, token });
 		const res = await createNoteRequest(config);

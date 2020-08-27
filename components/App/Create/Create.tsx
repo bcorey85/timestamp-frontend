@@ -7,6 +7,7 @@ import { ProjectForm } from './ProjectForm';
 import { DashboardHeader } from '../shared/DashboardHeader';
 import { TaskForm } from './TaskForm';
 import { NoteForm } from './NoteForm';
+import { IconType } from '../shared/TypeIcon';
 
 import { selectUser } from '../../../redux/user';
 import styles from './Create.module.scss';
@@ -23,8 +24,6 @@ const Create = () => {
 	const [ currentPage, setCurrentPage ] = useState(CreatePage.project);
 
 	useEffect(() => {
-		console.log(router.query.action);
-
 		if (router.query && router.query.action) {
 			{
 				router.query.action === 'project' &&
@@ -54,6 +53,7 @@ const Create = () => {
 			<DashboardHeader
 				heading={`New ${currentPage}`}
 				subheading='Create'
+				subheadingType={IconType.generic}
 			/>
 			<div className={styles.form}>
 				<CreateNav

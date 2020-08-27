@@ -12,7 +12,7 @@ import { DashboardHeader } from '../shared/DashboardHeader';
 import { selectUser } from '../../../redux/user';
 import styles from './Dashboard.module.scss';
 import { PinnedSection } from '../shared/PinnedSection';
-import { RecentSection } from '../shared/RecentSection';
+import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { getUserApiConfig } from '../../../api/user';
@@ -65,11 +65,6 @@ const Dashboard = (): JSX.Element => {
 				/>
 
 				<div className={styles.btn_container}>
-					<Link
-						href='/app/[userId]/settings'
-						as={`/app/${userId}/settings`}>
-						<a className='link-gray'>Settings</a>
-					</Link>
 					<Button
 						btnStyle='outline'
 						onClick={() => {
@@ -123,7 +118,7 @@ const Dashboard = (): JSX.Element => {
 				<PinnedSection />
 			</DashboardSection>
 			<DashboardSection title='Recent Items'>
-				<RecentSection />
+				<ListSection items={[]} />
 			</DashboardSection>
 		</div>
 	);

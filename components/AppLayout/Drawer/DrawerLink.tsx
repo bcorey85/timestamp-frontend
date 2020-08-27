@@ -6,7 +6,7 @@ import { selectUser } from '../../../redux/user';
 
 interface Props {
 	route?: string;
-	children: string;
+	children?: any;
 	onClick?: () => any;
 }
 

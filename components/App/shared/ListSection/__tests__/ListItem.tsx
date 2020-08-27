@@ -1,13 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { RecentItem } from '../RecentItem';
-import { IconType } from '../TypeIcon';
+import { ListItem } from '../ListItem';
+import { IconType } from '../../TypeIcon';
 
-describe('RecentItem', () => {
+describe('ListItem', () => {
 	it('renders', () => {
 		const wrapper = shallow(
-			<RecentItem
+			<ListItem
+				href='/'
+				as='/'
 				type={IconType.note}
 				title='test'
 				date='12/12/2019'

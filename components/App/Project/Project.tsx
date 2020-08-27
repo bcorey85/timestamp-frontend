@@ -9,7 +9,7 @@ import { StatsBar } from '../shared/StatsBar';
 import { StatCard } from '../shared/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
-import { RecentSection } from '../shared/RecentSection';
+import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
@@ -31,11 +31,6 @@ const Project = (): JSX.Element => {
 				/>
 
 				<div className={styles.btn_container}>
-					<Link
-						href='/app/[userId]/settings'
-						as={`/app/${userId}/settings`}>
-						<a className='link-gray'>Settings</a>
-					</Link>
 					<Button
 						btnStyle='outline'
 						onClick={() => {
@@ -49,7 +44,7 @@ const Project = (): JSX.Element => {
 					</Button>
 				</div>
 			</div>
-			<DashboardSection>
+			{/* <DashboardSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -84,9 +79,9 @@ const Project = (): JSX.Element => {
 						linkText='View Notes'
 					/>
 				</StatsBar>
-			</DashboardSection>
-			<DashboardSection title='Recent Items'>
-				<RecentSection />
+			</DashboardSection> */}
+			<DashboardSection title='Projects'>
+				<ListSection items={appData.projects} />
 			</DashboardSection>
 		</div>
 	);

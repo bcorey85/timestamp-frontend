@@ -53,23 +53,28 @@
 }
 
 .search_toggle_btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 3.2rem;
 	width: 3.2rem;
 	background: none;
 	border: none;
 	border-radius: var(--border-radius);
-	color: var(--text200);
+	color: var(--text300);
 	box-sizing: content-box;
-	font-size: 1.6rem;
+	font-size: 2rem;
 }
 
 .search_btn {
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 3.2rem;
 	flex: 0 0 3.2rem;
 	border: none;
 	border-left: var(--border-primary);
 	background-color: var(--primary500);
 	color: var(--white);
-	font-size: 1.6rem;
+	font-size: 2rem;
 }

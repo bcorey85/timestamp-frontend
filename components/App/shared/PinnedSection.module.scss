@@ -1,36 +1,8 @@
 .container {
 	position: relative;
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(5, minmax(24rem, 24rem));
+	grid-gap: 2.4rem;
+	flex-wrap: wrap;
 	padding: .8rem 0;
-	overflow: hidden;
-}
-
-.nav_container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-.pagination {
-	display: flex;
-	align-items: center;
-	color: var(--text300);
-}
-
-.arrow {
-	height: 4rem;
-	width: 4rem;
-	background: none;
-	border: none;
-	color: var(--text300);
-	margin: 0 2.4rem;
-	font-size: 1.6rem;
-}
-
-.left_arrow {
-	@extend .arrow;
-}
-
-.right_arrow {
-	@extend .arrow;
 }

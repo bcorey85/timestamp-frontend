@@ -1,14 +1,9 @@
 @import '../../../styles/mixins.scss';
 
 .card {
-	flex: 0 0 24rem;
 	padding: 1.6rem;
 	@include panel;
 	cursor: pointer;
-
-	&:not(:last-of-type) {
-		margin-right: 2.4rem;
-	}
 }
 
 .title {

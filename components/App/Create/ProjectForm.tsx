@@ -9,7 +9,7 @@ import { BaseForm, FormRow } from './shared/BaseForm';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
-import { createProjectApiConfig, Project } from '../../../api/project';
+import { createProjectApiConfig, ProjectPayload } from '../../../api/project';
 import { useRouter } from 'next/router';
 
 interface Props {
@@ -27,7 +27,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	const router = useRouter();
 
 	const handleSubmit = async () => {
-		const payload = { title, description } as Project;
+		const payload: ProjectPayload = { title, description };
 
 		const config = createProjectApiConfig({ payload, userId, token });
 

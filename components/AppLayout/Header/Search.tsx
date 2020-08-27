@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSearch, selectInterface } from '../../../redux/interface';
 import { useInputState } from '../../../hooks/useInputState';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FiSearch } from 'react-icons/fi';
+import { BiSearchAlt2 } from 'react-icons/bi';
 
 import styles from './Search.module.scss';
 
@@ -33,7 +33,7 @@ const SearchForm = () => {
 					<button
 						className={styles.search_btn}
 						onClick={handleSearch}>
-						<FontAwesomeIcon icon={faSearch} />
+						<BiSearchAlt2 />
 					</button>
 				</div>
 			</div>
@@ -50,7 +50,7 @@ const SearchToggle = () => {
 
 	return (
 		<button onClick={handleToggle} className={styles.search_toggle_btn}>
-			<FontAwesomeIcon icon={faSearch} />
+			<BiSearchAlt2 />
 		</button>
 	);
 };

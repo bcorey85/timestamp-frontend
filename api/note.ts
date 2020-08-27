@@ -1,7 +1,7 @@
 import { apiBaseUrl } from './index';
 import { ApiRequest, UserCredentials } from './index';
 
-export interface Note {
+export interface NotePayload {
 	title?: string;
 	description?: string;
 	projectId: number;
@@ -12,7 +12,7 @@ export interface Note {
 }
 
 interface CreateNote extends UserCredentials {
-	payload: Note;
+	payload: NotePayload;
 }
 
 export const createNoteApiConfig = ({

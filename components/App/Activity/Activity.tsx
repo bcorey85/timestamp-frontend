@@ -11,10 +11,12 @@ import { DashboardHeader } from '../shared/DashboardHeader';
 
 import { selectUser } from '../../../redux/user';
 import styles from './Activity.module.scss';
-import { RecentSection } from '../shared/RecentSection';
+import { ListSection } from '../shared/ListSection/ListSection';
+import { selectAppData } from '../../../redux/appData';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const appData = useSelector(selectAppData);
 
 	return (
 		<div>
@@ -63,7 +65,7 @@ const Activity = (): JSX.Element => {
 			</DashboardSection>
 			Filter
 			<DashboardSection title='Recent Items'>
-				<RecentSection />
+				<ListSection notes={appData.notes} />
 			</DashboardSection>
 		</div>
 	);

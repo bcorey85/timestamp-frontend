@@ -1,19 +1,19 @@
 .link {
-	height: 4.8rem;
-	width: 100%;
+	height: 4rem;
 	margin-bottom: .8rem;
+	width: 100%;
 	display: flex;
 	align-items: center;
-	padding-left: 4rem;
+	padding-left: 1.6rem;
 	font-size: 1.4rem;
-	color: var(--text500);
+	color: var(--text300);
 	border: none;
 	background: none;
 	font-weight: 500;
 
 	&:hover {
-		background-color: var(--gray200);
-		color: var(--black200);
+		background-color: var(--background-tertiary);
+		color: var(--text300);
 	}
 }
 
@@ -21,18 +21,8 @@
 	@extend .link;
 	position: relative;
 	background-color: var(--background-tertiary);
-
-	font-weight: 600;
-
-	&::before {
-		position: absolute;
-		content: '';
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 6px;
-		background-color: var(--primary500);
-	}
+	color: var(--text300);
+	border-radius: var(--border-radius);
 }
 
 .inactive {

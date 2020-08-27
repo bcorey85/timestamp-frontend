@@ -1,0 +1,22 @@
+@import '../../../../styles/mixins.scss';
+
+.container {
+	@include panel;
+	margin-bottom: .4rem;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	padding: 1.6rem 1.6rem;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.title {
+	font-weight: 500;
+	color: var(--text500);
+}
+
+.time,
+.date {
+	text-align: right;
+	color: var(--text300);
+}

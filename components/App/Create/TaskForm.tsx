@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
-import { createTaskApiConfig, Task } from '../../../api/task';
+import { createTaskApiConfig, TaskPayload } from '../../../api/task';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
@@ -33,19 +33,16 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	const router = useRouter();
 
 	const handleSubmit = async () => {
-		const payload = {
+		const payload: TaskPayload = {
 			title,
 			projectId: parseInt(projectId),
 			description,
 			tags
-		} as Task;
+		};
 
 		const config = createTaskApiConfig({ payload, userId, token });
 
 		const res = await createTaskRequest(config);
-		console.log(res);
-
-		// handle config, api submit, errors
 
 		if (res.success) {
 			router.push(

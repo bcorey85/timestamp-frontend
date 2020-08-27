@@ -1,10 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from './PinnedSection.module.scss';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { PinnedCard } from './PinnedCard';
 import { IconType } from './TypeIcon';
+import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
+
+import styles from './PinnedSection.module.scss';
 
 const PinnedSection = (): JSX.Element => {
 	return (
@@ -51,17 +51,27 @@ const PinnedSection = (): JSX.Element => {
 					stat1='15'
 					stat2='104'
 				/>
+				<PinnedCard
+					title='Project Name'
+					type={IconType.project}
+					hours='49'
+					body='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting...'
+					label1='Tasks'
+					label2='Notes'
+					stat1='15'
+					stat2='104'
+				/>
+				<PinnedCard
+					title='Project Name'
+					type={IconType.project}
+					hours='49'
+					body='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting...'
+					label1='Tasks'
+					label2='Notes'
+					stat1='15'
+					stat2='104'
+				/>
 			</section>
-			<nav className={styles.nav_container}>
-				<button className={styles.left_arrow}>
-					<FontAwesomeIcon icon={faArrowLeft} />
-				</button>
-				<div className={styles.pagination}>Page 1 / 5</div>
-
-				<button className={styles.right_arrow}>
-					<FontAwesomeIcon icon={faArrowRight} />
-				</button>
-			</nav>
 		</div>
 	);
 };

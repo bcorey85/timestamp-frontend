@@ -1,7 +1,7 @@
 import { apiBaseUrl } from './index';
 import { ApiRequest, UserCredentials } from './index';
 
-export interface Task {
+export interface TaskPayload {
 	title?: string;
 	description?: string;
 	projectId: number;
@@ -9,7 +9,7 @@ export interface Task {
 }
 
 interface CreateTask extends UserCredentials {
-	payload: Task;
+	payload: TaskPayload;
 }
 
 export const createTaskApiConfig = ({
