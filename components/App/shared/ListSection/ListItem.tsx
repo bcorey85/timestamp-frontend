@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { TypeIcon, IconType } from '../TypeIcon';
 
 import styles from './ListItem.module.scss';
+import { PinnedIcon } from '../PinnedSection/PinnedIcon';
 
 interface Props {
 	type: IconType;
@@ -12,6 +13,7 @@ interface Props {
 	time: string;
 	href: string;
 	as: string;
+	pinned: boolean;
 }
 
 const ListItem = ({
@@ -20,7 +22,8 @@ const ListItem = ({
 	date,
 	time,
 	href,
-	as
+	as,
+	pinned
 }: Props): JSX.Element => {
 	return (
 		<Link href={href} as={as}>
@@ -31,6 +34,9 @@ const ListItem = ({
 				</div>
 				<div className={styles.date}>{date}</div>
 				<div className={styles.time}>{time !== null ? time : null}</div>
+				<div className={styles.pinned}>
+					{pinned ? <PinnedIcon pinned={true} /> : null}
+				</div>
 			</div>
 		</Link>
 	);

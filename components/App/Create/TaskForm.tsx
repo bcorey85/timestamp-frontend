@@ -6,6 +6,7 @@ import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './TagInput';
+import { PinInput } from './PinInput';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
@@ -25,6 +26,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
 	const [ projectId, setProjectId ] = useInputState('');
+	const [ pinned, setPinned ] = useState(false);
 	const {
 		request: createTaskRequest,
 		errors: createTaskErrors
@@ -37,7 +39,8 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 			title,
 			projectId: parseInt(projectId),
 			description,
-			tags
+			tags,
+			pinned
 		};
 
 		const config = createTaskApiConfig({ payload, userId, token });
@@ -55,6 +58,12 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	return (
 		<div>
 			<BaseForm>
+				<FormRow>
+					<PinInput
+						pinned={pinned}
+						handlePin={() => setPinned(!pinned)}
+					/>
+				</FormRow>
 				<FormRow>
 					<Input
 						type='text'

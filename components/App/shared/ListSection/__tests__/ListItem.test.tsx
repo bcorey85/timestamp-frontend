@@ -14,6 +14,7 @@ describe('ListItem', () => {
 				title='test'
 				date='12/12/2019'
 				time='2:00pm - 9:00pm'
+				pinned={true}
 			/>
 		);
 		expect(wrapper).not.toBeNull();

@@ -7,6 +7,7 @@ import { assignType } from '../../../../utils/assignType';
 import { formatDateTime } from '../../../../utils/formatDateTime';
 import { selectUser } from '../../../../redux/user';
 import styles from './ListSection.module.scss';
+import { generatePathName } from '../../../../utils/generatePathName';
 
 interface Props {
 	items: any[];
@@ -14,12 +15,11 @@ interface Props {
 
 const ListSection = ({ items }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
-	console.log(items);
 
 	if (items.length === 0) {
 		return (
 			<div className={styles.container}>
-				<span className={styles.empty_list}>No items to list</span>
+				<span className={styles.empty_list}>( Empty )</span>
 			</div>
 		);
 	}
@@ -29,16 +29,18 @@ const ListSection = ({ items }: Props): JSX.Element => {
 			{items.map(item => {
 				const type = assignType(item);
 				const meta = formatDateTime(item, type);
+				const { href, as } = generatePathName(item, type);
 
 				return (
 					<ListItem
-						href='/app/[userId]/dashboard'
-						as={`/app/${userId}/dashboard`}
+						href={`/app/[userId]/${href}`}
+						as={`/app/${userId}/${as}`}
 						type={type}
 						title={item.title}
 						date={meta.date}
 						time={meta.time}
-						key={item.note_id}
+						key={item.created_at}
+						pinned={item.pinned}
 					/>
 				);
 			})}

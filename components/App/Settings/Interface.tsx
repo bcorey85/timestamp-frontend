@@ -15,7 +15,7 @@ const Interface = (): JSX.Element => {
 				<button
 					onClick={e => handleDarkModeToggle('light')}
 					className={styles.dark_mode_btn}>
-					Light Mode
+					Light Theme
 				</button>
 				<label>
 					<Switch
@@ -34,7 +34,7 @@ const Interface = (): JSX.Element => {
 				<button
 					onClick={e => handleDarkModeToggle('dark')}
 					className={styles.dark_mode_btn}>
-					Dark Mode
+					Dark Theme
 				</button>
 			</div>
 		</React.Fragment>

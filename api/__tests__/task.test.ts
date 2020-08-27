@@ -1,4 +1,4 @@
-import { createProjectApiConfig } from '../project';
+import { createTaskApiConfig } from '../task';
 
 describe('Auth Api Configs', () => {
 	it('returns a project config request config', () => {
@@ -8,20 +8,24 @@ describe('Auth Api Configs', () => {
 		const payload = {
 			title: 'test',
 			description: 'test description',
+			projectId: 1,
+			tags: [ 'one', 'two' ],
 			pinned: true
 		};
 
-		const config = createProjectApiConfig({
+		const config = createTaskApiConfig({
 			payload,
 			token,
 			userId
 		});
 
-		expect(config.url).toBe(`http://localhost:5000/api/projects/${userId}`);
+		expect(config.url).toBe(`http://localhost:5000/api/tasks/${userId}`);
 		expect(config.method).toBe('post');
 		expect(config.payload).toStrictEqual({
 			title: 'test',
 			description: 'test description',
+			projectId: 1,
+			tags: [ 'one', 'two' ],
 			pinned: true
 		});
 		expect(config.token).toBe('123456');

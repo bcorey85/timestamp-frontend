@@ -65,7 +65,7 @@ const Activity = (): JSX.Element => {
 			</DashboardSection>
 			Filter
 			<DashboardSection title='Recent Items'>
-				<ListSection notes={appData.notes} />
+				<ListSection items={appData.notes} />
 			</DashboardSection>
 		</div>
 	);

@@ -2,8 +2,9 @@ import { apiBaseUrl } from './index';
 import { ApiRequest, UserCredentials } from './index';
 
 export interface ProjectPayload {
-	title?: string;
-	description?: string;
+	title: string;
+	description: string;
+	pinned: boolean;
 }
 
 interface CreateProject extends UserCredentials {

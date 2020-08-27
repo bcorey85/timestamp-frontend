@@ -4,7 +4,7 @@
 	@include panel;
 	margin-bottom: .4rem;
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
+	grid-template-columns: 2fr .5fr .75fr .5fr;
 	padding: 1.6rem 1.6rem;
 	line-height: 1;
 	cursor: pointer;
@@ -19,4 +19,8 @@
 .date {
 	text-align: right;
 	color: var(--text300);
+}
+
+.pinned {
+	margin-left: auto;
 }

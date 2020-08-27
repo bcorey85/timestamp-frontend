@@ -2,10 +2,11 @@ import { apiBaseUrl } from './index';
 import { ApiRequest, UserCredentials } from './index';
 
 export interface TaskPayload {
-	title?: string;
-	description?: string;
+	title: string;
+	description: string;
 	projectId: number;
 	tags: string[];
+	pinned: boolean;
 }
 
 interface CreateTask extends UserCredentials {

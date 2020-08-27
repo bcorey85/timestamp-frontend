@@ -6,6 +6,7 @@ import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
+import { PinInput } from './PinInput';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
+	const [ pinned, setPinned ] = useState(false);
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
 	const { userId, token } = useSelector(selectUser);
@@ -27,7 +29,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	const router = useRouter();
 
 	const handleSubmit = async () => {
-		const payload: ProjectPayload = { title, description };
+		const payload: ProjectPayload = { title, description, pinned };
 
 		const config = createProjectApiConfig({ payload, userId, token });
 
@@ -45,6 +47,12 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	return (
 		<div>
 			<BaseForm>
+				<FormRow>
+					<PinInput
+						pinned={pinned}
+						handlePin={() => setPinned(!pinned)}
+					/>
+				</FormRow>
 				<FormRow>
 					<Input
 						type='text'

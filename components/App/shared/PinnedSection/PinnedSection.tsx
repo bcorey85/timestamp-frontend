@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PinnedCard } from './PinnedCard';
-import { IconType } from './TypeIcon';
+import { IconType } from '../TypeIcon';
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 
 import styles from './PinnedSection.module.scss';

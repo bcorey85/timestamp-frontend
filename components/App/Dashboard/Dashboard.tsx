@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
@@ -8,16 +8,16 @@ import { StatsBar } from '../shared/StatsBar';
 import { StatCard } from '../shared/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
-
-import { selectUser } from '../../../redux/user';
-import styles from './Dashboard.module.scss';
-import { PinnedSection } from '../shared/PinnedSection';
+import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
+
+import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { getUserApiConfig } from '../../../api/user';
 import { selectAppData, setAppData } from '../../../redux/appData';
-import { useRouter } from 'next/router';
+
+import styles from './Dashboard.module.scss';
 
 const Dashboard = (): JSX.Element => {
 	const {

@@ -6,6 +6,7 @@ import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './TagInput';
+import { PinInput } from './PinInput';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
@@ -28,6 +29,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	const [ taskId, setTaskId ] = useInputState('');
 	const [ start, setStart ] = useInputState('');
 	const [ end, setEnd ] = useInputState('');
+	const [ pinned, setPinned ] = useState(false);
 	const {
 		request: createNoteRequest,
 		errors: createNoteErrors
@@ -43,7 +45,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 			start,
 			end,
 			description,
-			tags
+			tags,
+			pinned
 		};
 
 		const config = createNoteApiConfig({ payload, userId, token });
@@ -60,6 +63,12 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	return (
 		<div>
 			<BaseForm>
+				<FormRow>
+					<PinInput
+						pinned={pinned}
+						handlePin={() => setPinned(!pinned)}
+					/>
+				</FormRow>
 				<FormRow>
 					<Input
 						type='text'

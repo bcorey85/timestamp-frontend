@@ -11,28 +11,21 @@ export enum IconType {
 	none = 'none'
 }
 
+interface ItemType {
+	project: 'project';
+	task: 'task';
+	note: 'note';
+	time: 'time';
+	generic: 'generic';
+	none: 'none';
+}
+
 interface Props {
-	type: IconType;
+	type: keyof ItemType;
 }
 
 const TypeIcon = ({ type }: Props): JSX.Element => {
-	if (type === 'project') {
-		return <span className={styles.project} />;
-	}
-
-	if (type === 'task') {
-		return <span className={styles.task} />;
-	}
-
-	if (type === 'time') {
-		return <span className={styles.time} />;
-	}
-
-	if (type === 'note') {
-		return <span className={styles.note} />;
-	}
-
-	return <span className={styles.generic} />;
+	return <span className={styles[type]} />;
 };
 
 export { TypeIcon };

@@ -1,11 +1,12 @@
 import { IconType } from '../components/App/shared/TypeIcon';
 
-const assignType = item => {
+const assignType = (item: any) => {
 	const isNote = !!item.note_id;
 	const isTask = !!item.task_id && !item.note_id;
 	const isProject = !!item.project_id && !item.task_id;
 
 	let type;
+
 	if (isNote) {
 		type = IconType.note;
 	}

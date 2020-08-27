@@ -1,4 +1,8 @@
-import { updateUserApiConfig, deleteUserApiConfig } from '../user';
+import {
+	updateUserApiConfig,
+	deleteUserApiConfig,
+	getUserApiConfig
+} from '../user';
 
 describe('Auth Api Configs', () => {
 	it('returns an update user request config', () => {
@@ -35,6 +39,18 @@ describe('Auth Api Configs', () => {
 
 		expect(config.url).toBe(`http://localhost:5000/api/users/${userId}`);
 		expect(config.method).toBe('delete');
+		expect(config.payload).toStrictEqual(null);
+		expect(config.token).toBe('123456');
+	});
+
+	it('returns a get user request config', () => {
+		const userId = '123456';
+		const token = '123456';
+
+		const config = getUserApiConfig({ token, userId });
+
+		expect(config.url).toBe(`http://localhost:5000/api/users/${userId}`);
+		expect(config.method).toBe('get');
 		expect(config.payload).toStrictEqual(null);
 		expect(config.token).toBe('123456');
 	});

@@ -2,13 +2,14 @@ import { apiBaseUrl } from './index';
 import { ApiRequest, UserCredentials } from './index';
 
 export interface NotePayload {
-	title?: string;
-	description?: string;
+	title: string;
+	description: string;
 	projectId: number;
 	taskId: number;
 	start: Date;
 	end: Date;
 	tags: string[];
+	pinned: boolean;
 }
 
 interface CreateNote extends UserCredentials {

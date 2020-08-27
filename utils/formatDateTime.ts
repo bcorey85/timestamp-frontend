@@ -1,6 +1,6 @@
 import { IconType } from '../components/App/shared/TypeIcon';
 
-const formatDateTime = (item, type) => {
+const formatDateTime = (item: any, type: string) => {
 	let meta;
 	if (type === IconType.note) {
 		const start = new Date(Date.parse(item.start));

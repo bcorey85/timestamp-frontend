@@ -1,0 +1,14 @@
+.container {
+	height: 4rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	margin-bottom: 1.6rem;
+	border: none;
+	background: transparent;
+
+	& svg {
+		margin-left: .4rem;
+	}
+}

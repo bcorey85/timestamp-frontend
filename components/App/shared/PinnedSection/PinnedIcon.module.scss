@@ -1,0 +1,10 @@
+.icon {
+	height: 1.6rem;
+	width: 1.6rem;
+	color: var(--gray400);
+}
+
+.icon_pinned {
+	@extend .icon;
+	color: var(--primary400);
+}

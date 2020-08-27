@@ -1,7 +1,8 @@
 import React from 'react';
 
+import { IconType, TypeIcon } from '../TypeIcon';
+
 import styles from './PinnedCard.module.scss';
-import { IconType, TypeIcon } from './TypeIcon';
 
 interface Props {
 	title: string;
