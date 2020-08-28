@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -25,7 +25,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
-	const [ projectId, setProjectId ] = useInputState('');
+	const [ projectId, setProjectId ] = useState('');
 	const [ pinned, setPinned ] = useState(false);
 	const {
 		request: createTaskRequest,
@@ -33,6 +33,12 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	} = useApiRequest();
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
+
+	useEffect(() => {
+		if (router.query && router.query.projectId) {
+			setProjectId(router.query.projectId as string);
+		}
+	}, []);
 
 	const handleSubmit = async () => {
 		const payload: TaskPayload = {
@@ -76,7 +82,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						id='project'
 						label='Project'
 						value={projectId}
-						onChange={setProjectId}>
+						onChange={e => setProjectId(e.target.value)}>
 						<option value={null} />
 						{appData.projects.map(project => {
 							return (

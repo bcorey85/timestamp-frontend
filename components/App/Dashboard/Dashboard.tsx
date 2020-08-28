@@ -18,6 +18,7 @@ import { selectAppData, setAppData } from '../../../redux/appData';
 
 import styles from './Dashboard.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { usePagination } from '../../../hooks/usePagination';
 
 const Dashboard = (): JSX.Element => {
 	const {
@@ -26,10 +27,16 @@ const Dashboard = (): JSX.Element => {
 		errors: getUserErrors
 	} = useApiRequest();
 	const [ isLoading, setIsLoading ] = useState(true);
+
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const dispatch = useDispatch();
 	const { router } = useRouterService();
+	const pinnedItems = [
+		...appData.notes,
+		...appData.projects,
+		...appData.tasks
+	].filter(item => item.pinned === true);
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -111,13 +118,7 @@ const Dashboard = (): JSX.Element => {
 				</StatsBar>
 			</DashboardSection>
 			<DashboardSection title='Pinned Favorites'>
-				<PinnedSection
-					items={[
-						...appData.notes,
-						...appData.projects,
-						...appData.tasks
-					].filter(item => item.pinned === true)}
-				/>
+				<PinnedSection items={pinnedItems} />
 			</DashboardSection>
 			<DashboardSection title='Recent Items'>
 				<ListSection items={appData.recentItems} />

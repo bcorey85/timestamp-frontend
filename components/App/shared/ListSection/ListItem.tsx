@@ -1,15 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { TypeIcon, IconType } from '../TypeIcon';
-
-import styles from './ListItem.module.scss';
 import { PinnedIcon } from '../PinnedSection/PinnedIcon';
 
+import { ItemType } from '../../../../utils/ItemService';
+import { TypeIcon, IconType } from '../TypeIcon';
+import styles from './ListItem.module.scss';
+import { StringService } from '../../../../utils/StringService';
+
 interface Props {
-	type: IconType;
+	type: keyof ItemType;
 	title: string;
-	date: Date;
+	date: string;
 	time: string;
 	href: string;
 	as: string;
@@ -30,7 +32,7 @@ const ListItem = ({
 			<div className={styles.container}>
 				<div className={styles.title}>
 					<TypeIcon type={type} />
-					{title}
+					{StringService.truncate(title, 60)}
 				</div>
 				<div className={styles.date}>{date}</div>
 				<div className={styles.time}>{time !== null ? time : null}</div>

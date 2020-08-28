@@ -1,4 +1,5 @@
 import React from 'react';
+import { ItemType } from '../../../utils/ItemService';
 
 import styles from './TypeIcon.module.scss';
 
@@ -11,17 +12,14 @@ export enum IconType {
 	none = 'none'
 }
 
-interface ItemType {
-	project: 'project';
-	task: 'task';
-	note: 'note';
+interface Icon extends ItemType {
 	time: 'time';
 	generic: 'generic';
 	none: 'none';
 }
 
 interface Props {
-	type: keyof ItemType;
+	type: keyof Icon;
 }
 
 const TypeIcon = ({ type }: Props): JSX.Element => {

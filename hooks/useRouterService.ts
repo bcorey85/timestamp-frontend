@@ -31,7 +31,7 @@ const useRouterService = () => {
 		query
 	};
 
-	return { router };
+	return { router, nextRouter };
 };
 
 export { useRouterService };

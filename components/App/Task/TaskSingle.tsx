@@ -43,16 +43,20 @@ const TaskSingle = (): JSX.Element => {
 						).toLocaleDateString()}
 					</p>
 				</div>
-
-				{console.log(currentTask)}
-
 				<div className={styles.btn_container}>
+					<Button
+						btnStyle='link_gray'
+						onClick={() => router.pushUnique('create?action=task')}>
+						Edit
+					</Button>
 					<Button
 						btnStyle='outline'
 						onClick={() =>
-							router.pushUnique('create?action=project')}>
-						<TypeIcon type={IconType.project} />
-						Edit
+							router.pushUnique(
+								`create?action=note&projectId=${currentTask.project_id}&taskId=${currentTask.task_id}`
+							)}>
+						<TypeIcon type={IconType.note} />
+						Create Note
 					</Button>
 				</div>
 			</div>

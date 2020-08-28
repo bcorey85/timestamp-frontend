@@ -7,6 +7,7 @@ import { PinnedCard } from './PinnedCard';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { ItemService } from '../../../../utils/ItemService';
 import styles from './PinnedSection.module.scss';
+import { usePagination } from '../../../../hooks/usePagination';
 
 interface Props {
 	items: any[];
@@ -14,6 +15,14 @@ interface Props {
 
 const PinnedSection = ({ items }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const {
+		next,
+		back,
+		page,
+		currentIndex,
+		startIndex,
+		endIndex
+	} = usePagination(items, 1);
 
 	if (items.length === 0) {
 		return <div>( Empty )</div>;
@@ -24,11 +33,16 @@ const PinnedSection = ({ items }: Props): JSX.Element => {
 			<section className={styles.container}>
 				<button
 					className={
-						false ? styles.overflow_left : styles.overflow_hidden
-					}>
+						currentIndex !== startIndex ? (
+							styles.overflow_left
+						) : (
+							styles.overflow_hidden
+						)
+					}
+					onClick={() => back()}>
 					<BiChevronLeft />
 				</button>
-				{items.map(item => {
+				{page.map(item => {
 					const currentItem = new ItemService(item);
 					const { href, as } = currentItem.pathname;
 					const {
@@ -50,18 +64,23 @@ const PinnedSection = ({ items }: Props): JSX.Element => {
 							date={date}
 							time={time}
 							description={description}
-							label1={null}
-							label2={null}
-							stat1={null}
-							stat2={null}
+							label1={'Fake Stat 1'}
+							label2={'Fake Stat 2'}
+							stat1={'100'}
+							stat2={'100'}
 							key={created_at.toString()}
 						/>
 					);
 				})}
 				<button
 					className={
-						true ? styles.overflow_right : styles.overflow_hidden
-					}>
+						currentIndex !== endIndex ? (
+							styles.overflow_right
+						) : (
+							styles.overflow_hidden
+						)
+					}
+					onClick={() => next()}>
 					<BiChevronRight />
 				</button>
 			</section>

@@ -44,15 +44,22 @@ const ProjectSingle = (): JSX.Element => {
 					</p>
 				</div>
 
-				{console.log(currentProject)}
-
 				<div className={styles.btn_container}>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							router.pushUnique('create?action=project')}>
+						Edit
+					</Button>
+
 					<Button
 						btnStyle='outline'
 						onClick={() =>
-							router.pushUnique('create?action=project')}>
-						<TypeIcon type={IconType.project} />
-						Edit
+							router.pushUnique(
+								`create?action=task&projectId=${currentProject.project_id}`
+							)}>
+						<TypeIcon type={IconType.task} />
+						Create Task
 					</Button>
 				</div>
 			</div>

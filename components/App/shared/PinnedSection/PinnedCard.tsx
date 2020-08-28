@@ -1,17 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { TypeIcon, IconType } from '../TypeIcon';
+import { TypeIcon } from '../TypeIcon';
+import { ItemType } from '../../../../utils/ItemService';
+import { PinnedIcon } from './PinnedIcon';
 
+import { StringService } from '../../../../utils/StringService';
 import styles from './PinnedCard.module.scss';
 
 interface Props {
 	href: string;
 	as: string;
-	type: IconType;
+	type: keyof ItemType;
 	title: string;
 	hours?: string;
-	date?: Date;
+	date?: string;
 	time?: string;
 	description: string;
 	label1: string;
@@ -28,7 +31,7 @@ const CardHours = ({ hourAmount }: { hourAmount: string }) => {
 	);
 };
 
-const CardDate = ({ date, time }: { date: Date; time: string }) => {
+const CardDate = ({ date, time }: { date: string; time: string }) => {
 	return (
 		<React.Fragment>
 			<div>{date}</div>
@@ -55,8 +58,13 @@ const PinnedCard = ({
 		<Link href={href} as={as}>
 			<div className={styles.card}>
 				<div className={styles.title}>
-					<TypeIcon type={type} />
-					<span>{title}</span>
+					<div>
+						<TypeIcon type={type} />
+						<span>{StringService.truncate(title, 20)}</span>
+					</div>
+					<div className={styles.pinned}>
+						<PinnedIcon pinned={true} />
+					</div>
 				</div>
 
 				<div className={styles.time}>
@@ -66,7 +74,9 @@ const PinnedCard = ({
 						<CardHours hourAmount={Number(hours).toFixed(1)} />
 					)}
 				</div>
-				<div className={styles.body}>{description}</div>
+				<div className={styles.body}>
+					{StringService.truncate(description, 84)}
+				</div>
 				<div className={styles.stats}>
 					<div>{label1}</div>
 					<div>{stat1}</div>

@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -25,8 +25,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
-	const [ projectId, setProjectId ] = useInputState('');
-	const [ taskId, setTaskId ] = useInputState('');
+	const [ projectId, setProjectId ] = useState('');
+	const [ taskId, setTaskId ] = useState('');
 	const [ startTime, setStartTime ] = useInputState('');
 	const [ endTime, setEndTime ] = useInputState('');
 	const [ pinned, setPinned ] = useState(false);
@@ -36,6 +36,16 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	} = useApiRequest();
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
+
+	useEffect(() => {
+		if (router.query && router.query.projectId) {
+			setProjectId(router.query.projectId as string);
+		}
+
+		if (router.query && router.query.taskId) {
+			setTaskId(router.query.taskId as string);
+		}
+	}, []);
 
 	const handleSubmit = async () => {
 		const payload: NotePayload = {
@@ -81,7 +91,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						id='project'
 						label='Project'
 						value={projectId}
-						onChange={setProjectId}>
+						onChange={e => setProjectId(e.target.value)}>
 						<option value={null} />
 						{appData.projects.map(project => {
 							return (
@@ -98,7 +108,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						id='task'
 						label='Task'
 						value={taskId}
-						onChange={setTaskId}>
+						onChange={e => setTaskId(e.target.value)}>
 						<option value={null} />
 						{appData.tasks
 							.filter(

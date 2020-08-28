@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NextPageContext } from 'next';
-import jwtDecode from 'jwt-decode';
 
 import { AppLayout } from '../../components/AppLayout/AppLayout';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { selectUser, logout } from '../../redux/user';
-import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/user';
 import { Loading } from '../shared/Loading';
 import { useRouterService } from '../../hooks/useRouterService';
-
-interface Token {
-	iat: number;
-	user: string;
-	exp: number;
-}
+import { useAuthentication } from '../../hooks/useAuthentication';
 
 interface Props {
 	children?: any;
@@ -22,34 +15,15 @@ interface Props {
 
 const PrivateRoute = ({ children }: Props) => {
 	const [ isLoading, setIsLoading ] = useState(true);
-	const user = useSelector(selectUser);
 	const { router } = useRouterService();
+	const { isAuthenticated, tokenExpired, isAuthorized } = useAuthentication();
 
 	const dispatch = useDispatch();
-	const { userId } = router.query;
 
 	useEffect(() => {
-		const isAuthenticated = !!(user && user.token);
-
-		if (!isAuthenticated) {
+		if (!isAuthenticated || tokenExpired || !isAuthorized) {
 			dispatch(logout());
 			router.push.auth();
-			return;
-		}
-
-		const token: Token = jwtDecode(user.token);
-		const expiredToken = token.exp * 1000 < Date.now();
-
-		if (expiredToken) {
-			dispatch(logout());
-			router.push.auth();
-			return;
-		}
-
-		const isAuthorized = user.userId === userId;
-
-		if (!isAuthorized) {
-			router.push.dashboard();
 			return;
 		}
 
