@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser, logout } from '../../redux/user';
 import { useRouter } from 'next/router';
 import { Loading } from '../shared/Loading';
+import { useRouterService } from '../../hooks/useRouterService';
 
 interface Token {
 	iat: number;
@@ -22,7 +23,7 @@ interface Props {
 const PrivateRoute = ({ children }: Props) => {
 	const [ isLoading, setIsLoading ] = useState(true);
 	const user = useSelector(selectUser);
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const dispatch = useDispatch();
 	const { userId } = router.query;
@@ -32,7 +33,7 @@ const PrivateRoute = ({ children }: Props) => {
 
 		if (!isAuthenticated) {
 			dispatch(logout());
-			router.push('/auth');
+			router.push.auth();
 			return;
 		}
 
@@ -41,14 +42,14 @@ const PrivateRoute = ({ children }: Props) => {
 
 		if (expiredToken) {
 			dispatch(logout());
-			router.push('/auth');
+			router.push.auth();
 			return;
 		}
 
 		const isAuthorized = user.userId === userId;
 
 		if (!isAuthorized) {
-			router.push(`/app/${user.userId}/dashboard`);
+			router.push.dashboard();
 			return;
 		}
 

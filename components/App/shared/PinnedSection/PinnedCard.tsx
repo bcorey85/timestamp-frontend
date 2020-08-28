@@ -11,7 +11,7 @@ interface Props {
 	type: IconType;
 	title: string;
 	hours?: string;
-	date?: string;
+	date?: Date;
 	time?: string;
 	description: string;
 	label1: string;
@@ -28,7 +28,7 @@ const CardHours = ({ hourAmount }: { hourAmount: string }) => {
 	);
 };
 
-const CardDate = ({ date, time }: { date: string; time: string }) => {
+const CardDate = ({ date, time }: { date: Date; time: string }) => {
 	return (
 		<React.Fragment>
 			<div>{date}</div>

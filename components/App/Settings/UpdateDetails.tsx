@@ -1,16 +1,16 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import styles from './UpdateDetails.module.scss';
 import { Input } from '../../shared/Input';
 import { useInputState } from '../../../hooks/useInputState';
 import { Button } from '../../shared/Button';
+
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { updateUserApiConfig } from '../../../api/user';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/user';
-
-import { formatErrors } from '../../../utils/formatErrors';
 import { ApiError } from '../../../api/index';
+import { ErrorService } from '../../../utils/ErrorService';
+import styles from './UpdateDetails.module.scss';
 
 interface Props {
 	mode: string;
@@ -41,7 +41,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 
 	useEffect(
 		() => {
-			const errors = formatErrors(
+			const errors = ErrorService.formatErrors(
 				[ 'email', 'password' ],
 				updateUserErrors
 			);

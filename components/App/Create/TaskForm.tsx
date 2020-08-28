@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { useRouter } from 'next/router';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -15,6 +14,7 @@ import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { createTaskApiConfig, TaskPayload } from '../../../api/task';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
@@ -32,7 +32,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 		errors: createTaskErrors
 	} = useApiRequest();
 	const appData = useSelector(selectAppData);
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const handleSubmit = async () => {
 		const payload: TaskPayload = {
@@ -48,10 +48,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 		const res = await createTaskRequest(config);
 
 		if (res.success) {
-			router.push(
-				`/app/[userId]/dashboard`,
-				`/app/${res.data.id}/dashboard`
-			);
+			router.push.dashboard();
 		}
 	};
 

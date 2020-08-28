@@ -18,13 +18,14 @@
 }
 
 .stat {
-	font-size: 4rem;
+	font-size: 3.6rem;
 	line-height: 1;
 	font-weight: 600;
 	text-align: right;
 	margin-bottom: .8rem;
 	font-feature-settings: inherit;
 	font-variant-numeric: inherit;
+	color: var(--text400);
 }
 
 .link {

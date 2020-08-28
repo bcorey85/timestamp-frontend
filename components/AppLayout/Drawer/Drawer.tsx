@@ -20,16 +20,17 @@ import { logout } from '../../../redux/user';
 import { selectInterface } from '../../../redux/interface';
 import { selectUser } from '../../../redux/user';
 import styles from './Drawer.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const Drawer = (): JSX.Element => {
 	const dispatch = useDispatch();
-	const router = useRouter();
+	const { router } = useRouterService();
 	const { userId } = useSelector(selectUser);
 	const { drawerOpen } = useSelector(selectInterface);
 
 	const handleLogout = () => {
 		dispatch(logout());
-		router.push('/');
+		router.push.root();
 		return;
 	};
 

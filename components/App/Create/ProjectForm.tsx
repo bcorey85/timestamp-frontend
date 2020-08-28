@@ -11,7 +11,7 @@ import { PinInput } from './PinInput';
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { createProjectApiConfig, ProjectPayload } from '../../../api/project';
-import { useRouter } from 'next/router';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
@@ -26,7 +26,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 		request: createProjectRequest,
 		errors: createProjectErrors
 	} = useApiRequest();
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const handleSubmit = async () => {
 		const payload: ProjectPayload = { title, description, pinned };
@@ -37,10 +37,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 		// handle errors
 
 		if (res.success) {
-			router.push(
-				`/app/[userId]/dashboard`,
-				`/app/${res.data.id}/dashboard`
-			);
+			router.push.dashboard();
 		}
 	};
 

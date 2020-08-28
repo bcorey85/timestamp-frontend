@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 
 import { CreateNav } from './shared/CreateNav';
 import { ProjectForm } from './ProjectForm';
@@ -9,7 +7,7 @@ import { TaskForm } from './TaskForm';
 import { NoteForm } from './NoteForm';
 import { IconType } from '../shared/TypeIcon';
 
-import { selectUser } from '../../../redux/user';
+import { useRouterService } from '../../../hooks/useRouterService';
 import styles from './Create.module.scss';
 
 export enum CreatePage {
@@ -19,8 +17,7 @@ export enum CreatePage {
 }
 
 const Create = () => {
-	const { userId } = useSelector(selectUser);
-	const router = useRouter();
+	const { router } = useRouterService();
 	const [ currentPage, setCurrentPage ] = useState(CreatePage.project);
 
 	useEffect(() => {
@@ -45,7 +42,7 @@ const Create = () => {
 	};
 
 	const handleCancel = () => {
-		router.push('/app/[userId]/dashboard', `/app/${userId}/dashboard`);
+		router.push.dashboard();
 	};
 
 	return (

@@ -10,6 +10,7 @@ import { selectUser, logout } from '../../../redux/user';
 import { deleteUserApiConfig } from '../../../api/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import styles from './DeleteAccount.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const DeleteAccount = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
@@ -18,7 +19,7 @@ const DeleteAccount = (): JSX.Element => {
 		request: deleteUserRequest,
 		errors: deleteUserErrors
 	} = useApiRequest();
-	const router = useRouter();
+	const { router } = useRouterService();
 	const dispatch = useDispatch();
 
 	const toggleDeleteModal = (boolean: boolean) => {
@@ -33,7 +34,7 @@ const DeleteAccount = (): JSX.Element => {
 
 		await deleteUserRequest(config);
 
-		router.push('/');
+		router.push.root();
 	};
 
 	return (

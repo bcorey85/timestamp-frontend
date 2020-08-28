@@ -9,8 +9,7 @@ import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { forgotPasswordApiConfig } from '../../api/auth';
 import { ApiError } from '../../api/index';
-import { formatErrors } from '../../utils/formatErrors';
-
+import { ErrorService } from '../../utils/ErrorService';
 import styles from './ForgotPassword.module.scss';
 
 interface Props {
@@ -36,7 +35,10 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 
 	useEffect(
 		() => {
-			const errors = formatErrors([ 'email' ], forgotPasswordErrors);
+			const errors = ErrorService.formatErrors(
+				[ 'email' ],
+				forgotPasswordErrors
+			);
 
 			setErrors(errors);
 		},

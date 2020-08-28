@@ -1,5 +1,4 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
-import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { AuthContainer } from './shared/AuthContainer';
@@ -12,9 +11,10 @@ import { login } from '../../redux/user';
 import { resetPasswordApiConfig } from '../../api/auth';
 import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
-import { formatErrors } from '../../utils/formatErrors';
 import { ApiError } from '../../api/index';
+import { ErrorService } from '../../utils/ErrorService';
 import styles from './ResetPassword.module.scss';
+import { useRouterService } from '../../hooks/useRouterService';
 
 interface Errors {
 	password?: string;
@@ -31,14 +31,14 @@ const ResetPassword = (): JSX.Element => {
 		generic: []
 	});
 	const { request: resetRequest, errors: resetErrors } = useApiRequest();
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const dispatch = useDispatch();
 	const { tokenid } = router.query;
 
 	useEffect(
 		() => {
-			const errs = formatErrors(
+			const errs = ErrorService.formatErrors(
 				[ 'password', 'passwordConfirm' ],
 				resetErrors
 			);
@@ -69,7 +69,7 @@ const ResetPassword = (): JSX.Element => {
 			})
 		);
 
-		router.push(`/app/[userId]/dashboard`, `/app/${res.data.id}/dashboard`);
+		router.push.dashboard();
 	};
 
 	return (

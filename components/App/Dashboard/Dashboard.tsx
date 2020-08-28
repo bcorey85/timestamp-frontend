@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
@@ -18,6 +17,7 @@ import { getUserApiConfig } from '../../../api/user';
 import { selectAppData, setAppData } from '../../../redux/appData';
 
 import styles from './Dashboard.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const Dashboard = (): JSX.Element => {
 	const {
@@ -29,7 +29,7 @@ const Dashboard = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const dispatch = useDispatch();
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -67,12 +67,8 @@ const Dashboard = (): JSX.Element => {
 				<div className={styles.btn_container}>
 					<Button
 						btnStyle='outline'
-						onClick={() => {
-							router.push(
-								`/app/[userId]/create`,
-								`/app/${userId}/create?action=project`
-							);
-						}}>
+						onClick={() =>
+							router.pushUnique('create?action=project')}>
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>

@@ -14,11 +14,12 @@ import { ListSection } from '../shared/ListSection/ListSection';
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import styles from './Task.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const TaskSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const currentTask = appData.tasks.filter(task => {
 		return task.task_id === Number(router.query.taskId);
@@ -48,12 +49,8 @@ const TaskSingle = (): JSX.Element => {
 				<div className={styles.btn_container}>
 					<Button
 						btnStyle='outline'
-						onClick={() => {
-							router.push(
-								`/app/[userId]/create?action=project`,
-								`/app/${userId}/create?action=project`
-							);
-						}}>
+						onClick={() =>
+							router.pushUnique('create?action=project')}>
 						<TypeIcon type={IconType.project} />
 						Edit
 					</Button>

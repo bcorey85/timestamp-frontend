@@ -6,13 +6,13 @@
 	display: grid;
 	grid-template-columns: 2fr .5fr .75fr .5fr;
 	padding: 1.6rem 1.6rem;
-	line-height: 1;
+	line-height: 1.6rem;
 	cursor: pointer;
 }
 
 .title {
 	font-weight: 500;
-	color: var(--text500);
+	color: var(--text300);
 }
 
 .time,
@@ -23,4 +23,7 @@
 
 .pinned {
 	margin-left: auto;
+	& svg {
+		display: flex;
+	}
 }

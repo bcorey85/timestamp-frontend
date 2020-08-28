@@ -14,12 +14,12 @@ import { ListSection } from '../shared/ListSection/ListSection';
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import styles from './Project.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const Project = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const router = useRouter();
-	console.log(appData.projects);
+	const { router } = useRouterService();
 
 	return (
 		<div>
@@ -33,12 +33,8 @@ const Project = (): JSX.Element => {
 				<div className={styles.btn_container}>
 					<Button
 						btnStyle='outline'
-						onClick={() => {
-							router.push(
-								`/app/[userId]/create?action=project`,
-								`/app/${userId}/create?action=project`
-							);
-						}}>
+						onClick={() =>
+							router.pushUnique('create?action=project')}>
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>

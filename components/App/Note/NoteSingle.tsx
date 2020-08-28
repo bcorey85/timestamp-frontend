@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
@@ -14,11 +12,12 @@ import { ListSection } from '../shared/ListSection/ListSection';
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import styles from './Note.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const NoteSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const currentNote = appData.notes.filter(note => {
 		return note.note_id === Number(router.query.noteId);
@@ -48,12 +47,7 @@ const NoteSingle = (): JSX.Element => {
 				<div className={styles.btn_container}>
 					<Button
 						btnStyle='outline'
-						onClick={() => {
-							router.push(
-								`/app/[userId]/create?action=note`,
-								`/app/${userId}/create?action=note`
-							);
-						}}>
+						onClick={() => router.pushUnique('create?action=note')}>
 						<TypeIcon type={IconType.note} />
 						Edit
 					</Button>

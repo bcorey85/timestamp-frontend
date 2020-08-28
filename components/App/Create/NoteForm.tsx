@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { useRouter } from 'next/router';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -15,6 +14,7 @@ import { selectAppData } from '../../../redux/appData';
 import { createNoteApiConfig, NotePayload } from '../../../api/note';
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
@@ -35,7 +35,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 		errors: createNoteErrors
 	} = useApiRequest();
 	const appData = useSelector(selectAppData);
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	const handleSubmit = async () => {
 		const payload: NotePayload = {
@@ -53,10 +53,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 		const res = await createNoteRequest(config);
 
 		if (res.success) {
-			router.push(
-				`/app/[userId]/dashboard`,
-				`/app/${res.data.id}/dashboard`
-			);
+			router.push.dashboard();
 		}
 	};
 

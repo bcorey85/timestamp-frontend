@@ -12,11 +12,10 @@ import { useApiRequest } from '../../hooks/useApiRequest';
 import { signupApiConfig, loginApiConfig } from '../../api/auth';
 import { login } from '../../redux/user';
 import { ApiRequest, ApiResponse } from '../../api/index';
-import { formatErrors } from '../../utils/formatErrors';
-
-import styles from './SignIn.module.scss';
 import { ErrorDisplay } from '../shared/ErrorDisplay';
 import { ApiError } from '../../api/index';
+import { ErrorService } from '../../utils/ErrorService';
+import styles from './SignIn.module.scss';
 
 type Request = (config: ApiRequest) => Promise<ApiResponse>;
 
@@ -46,7 +45,10 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 	useEffect(
 		() => {
 			const errorArray = [ ...signupErrors, ...loginErrors ];
-			const errors = formatErrors([ 'email', 'password' ], errorArray);
+			const errors = ErrorService.formatErrors(
+				[ 'email', 'password' ],
+				errorArray
+			);
 
 			setErrors(errors);
 		},

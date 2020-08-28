@@ -4,10 +4,9 @@ import { selectUser } from '../../../../redux/user';
 
 import { PinnedCard } from './PinnedCard';
 
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { ItemService } from '../../../../utils/ItemService';
 import styles from './PinnedSection.module.scss';
-import { assignType } from '../../../../utils/assignType';
-import { generatePathName } from '../../../../utils/generatePathName';
-import { formatDateTime } from '../../../../utils/formatDateTime';
 
 interface Props {
 	items: any[];
@@ -21,31 +20,50 @@ const PinnedSection = ({ items }: Props): JSX.Element => {
 	}
 
 	return (
-		<div>
+		<div className={styles.wrapper}>
 			<section className={styles.container}>
+				<button
+					className={
+						false ? styles.overflow_left : styles.overflow_hidden
+					}>
+					<BiChevronLeft />
+				</button>
 				{items.map(item => {
-					const type = assignType(item);
-					const { href, as } = generatePathName(item, type);
+					const currentItem = new ItemService(item);
+					const { href, as } = currentItem.pathname;
+					const {
+						title,
+						created_at,
+						hours,
+						description
+					} = currentItem.item;
+					const { date, time } = currentItem.meta;
+					const { type } = currentItem;
 
-					const { date, time } = formatDateTime(item, type);
 					return (
 						<PinnedCard
 							href={`/app/[userId]/${href}`}
 							as={`/app/${userId}/${as}`}
-							title={item.title}
+							title={title}
 							type={type}
-							hours={Number(item.hours).toFixed(1)}
+							hours={Number(hours).toFixed(1)}
 							date={date}
 							time={time}
-							description={item.description}
+							description={description}
 							label1={null}
 							label2={null}
 							stat1={null}
 							stat2={null}
-							key={item.created_at}
+							key={created_at.toString()}
 						/>
 					);
 				})}
+				<button
+					className={
+						true ? styles.overflow_right : styles.overflow_hidden
+					}>
+					<BiChevronRight />
+				</button>
 			</section>
 		</div>
 	);

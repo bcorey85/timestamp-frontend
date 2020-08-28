@@ -9,7 +9,7 @@ import { PinnedIcon } from '../PinnedSection/PinnedIcon';
 interface Props {
 	type: IconType;
 	title: string;
-	date: string;
+	date: Date;
 	time: string;
 	href: string;
 	as: string;

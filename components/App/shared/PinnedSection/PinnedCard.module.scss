@@ -2,8 +2,10 @@
 
 .card {
 	padding: 1.6rem;
+	min-width: 24rem;
 	@include panel;
 	cursor: pointer;
+	margin-right: 1.6rem;
 }
 
 .title {
@@ -23,8 +25,8 @@
 .time {
 	display: flex;
 	justify-content: space-between;
-	font-size: 1.4rem;
-	color: var(--text300);
+	font-size: 1.2rem;
+	color: var(--text400);
 	margin-bottom: .8rem;
 	font-weight: 400;
 }

@@ -14,11 +14,12 @@ import { ListSection } from '../shared/ListSection/ListSection';
 import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
 import styles from './Task.module.scss';
+import { useRouterService } from '../../../hooks/useRouterService';
 
 const Task = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const router = useRouter();
+	const { router } = useRouterService();
 
 	return (
 		<div>
@@ -32,12 +33,7 @@ const Task = (): JSX.Element => {
 				<div className={styles.btn_container}>
 					<Button
 						btnStyle='outline'
-						onClick={() => {
-							router.push(
-								`/app/[userId]/create?action=task`,
-								`/app/${userId}/create?action=task`
-							);
-						}}>
+						onClick={() => router.pushUnique('create?action=task')}>
 						<TypeIcon type={IconType.task} />
 						New Task
 					</Button>
