@@ -3,6 +3,7 @@
 .app_layout {
 	position: relative;
 	font-size: 1.4rem;
+	max-width: 100%;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -25,6 +26,7 @@
 }
 
 .main {
+	max-width: 100%;
 	padding: 0 8rem 8rem 8rem;
 	flex: 1 1 auto;
 

@@ -11,6 +11,7 @@ import { IconType, TypeIcon } from '../App/shared/TypeIcon';
 import styles from './AppLayout.module.scss';
 import { MobileCreateButton } from './MobileCreateButton';
 import { selectUser } from '../../redux/user';
+import { selectInterface } from '../../redux/interface';
 
 interface Props {
 	children?: any;
@@ -18,6 +19,7 @@ interface Props {
 
 const AppLayout = ({ children }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const { drawerOpen } = useSelector(selectInterface);
 	const [ breadcrumbLinks, setBreadcrumLinks ] = useState([
 		{
 			iconType: IconType.none,
@@ -55,7 +57,13 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 			<Header />
 			<div className={styles.main_container}>
 				<Drawer />
-				<main className={styles.main}>
+				<main
+					className={styles.main}
+					style={
+						drawerOpen ? (
+							{ maxWidth: 'calc(100% - var(--app-drawer-width))' }
+						) : null
+					}>
 					<nav className={styles.nav_container}>
 						<Breadcrumb links={breadcrumbLinks} />
 					</nav>

@@ -41,8 +41,7 @@
 	--text400: var(--black100);
 	--text300: var(--gray500);
 	--text200: var(--gray400);
-	--transparent-light: hsla(167, 5%, 0%, 20%);
-	--transparent-dark: hsla(167, 5%, 0%, 40%);
+	--slider-transparency: hsla(167, 5%, 98%, 50%);
 
 	--project: hsl(340, 70%, 55%);
 	--task: hsl(250, 65%, 55%);
@@ -65,6 +64,7 @@ body.dark {
 	--text400: var(--white);
 	--text300: var(--gray50);
 	--text200: var(--gray100);
+	--slider-transparency: hsla(167, 5%, 25%, 85%);
 	color: var(--white);
 }
 
