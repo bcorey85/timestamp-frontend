@@ -1,0 +1,66 @@
+.slider_wrapper {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	transition: all .3s ease-out;
+}
+
+.overflow_left,
+.overflow_right {
+	height: 100%;
+	width: 4.8rem;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	font-size: 4rem;
+	border: none;
+
+	z-index: 5;
+
+	& button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: none;
+		border: none;
+		color: var(--white);
+	}
+
+	& svg {
+		width: 3.6rem;
+		height: 3.6rem;
+		background-color: var(--primary500);
+		border-radius: 50%;
+	}
+}
+
+.overflow_left {
+	left: 0;
+	background: linear-gradient(
+		to right,
+		var(--background-secondary) 5%,
+		rgba(255, 255, 255, 0)
+	);
+	justify-content: flex-start;
+}
+
+.overflow_right {
+	right: 0;
+	background: linear-gradient(
+		to left,
+		var(--background-secondary) 5%,
+		rgba(255, 255, 255, 0)
+	);
+	justify-content: flex-end;
+}
+
+.overflow_left:hover,
+.overflow_right:hover {
+	color: var(--primary400);
+}
+
+.overflow_hidden {
+	display: none;
+}

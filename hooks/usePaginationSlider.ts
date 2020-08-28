@@ -24,8 +24,6 @@ const usePaginationSlider = (ref, itemWidth: number) => {
 
 	const slideRight = () => {
 		const nextOffset = currentOffset - itemWidth;
-		console.log(nextOffset);
-		console.log(maxWidth * -1);
 
 		if (nextOffset < maxRightBound) {
 			setCurrentOffset(maxRightBound);

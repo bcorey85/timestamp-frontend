@@ -1,13 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../../redux/user';
 
 import { PinnedCard } from './PinnedCard';
+import { Slider } from '../../shared/Slider';
 
-import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { ItemService } from '../../../../utils/ItemService';
 import styles from './PinnedSection.module.scss';
-import { usePaginationSlider } from '../../../../hooks/usePaginationSlider';
 
 interface Props {
 	items: any[];
@@ -16,37 +15,13 @@ interface Props {
 const PinnedSection = ({ items }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 
-	const sliderRef = useRef<HTMLDivElement>(null);
-	const {
-		slideLeft,
-		slideRight,
-		currentOffset,
-		maxWidth,
-		maxRightBound,
-		transformDistance
-	} = usePaginationSlider(sliderRef, 264);
-
 	if (items.length === 0) {
 		return <div>( Empty )</div>;
 	}
 
 	return (
 		<section className={styles.container}>
-			<button
-				className={
-					currentOffset !== 0 ? (
-						styles.overflow_left
-					) : (
-						styles.overflow_hidden
-					)
-				}
-				onClick={() => slideLeft()}>
-				<BiChevronLeft />
-			</button>
-			<div
-				className={styles.slider_wrapper}
-				ref={sliderRef}
-				style={{ transform: transformDistance }}>
+			<Slider itemPixelWidth={264}>
 				{items.map(item => {
 					const currentItem = new ItemService(item);
 					const { href, as } = currentItem.pathname;
@@ -77,18 +52,7 @@ const PinnedSection = ({ items }: Props): JSX.Element => {
 						/>
 					);
 				})}
-			</div>
-			<button
-				className={
-					currentOffset !== maxRightBound ? (
-						styles.overflow_right
-					) : (
-						styles.overflow_hidden
-					)
-				}
-				onClick={() => slideRight()}>
-				<BiChevronRight />
-			</button>
+			</Slider>
 		</section>
 	);
 };
