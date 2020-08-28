@@ -5,7 +5,6 @@ import { TypeIcon } from '../TypeIcon';
 import { ItemType } from '../../../../utils/ItemService';
 import { PinnedIcon } from './PinnedIcon';
 
-import { StringService } from '../../../../utils/StringService';
 import styles from './PinnedCard.module.scss';
 
 interface Props {
@@ -58,9 +57,9 @@ const PinnedCard = ({
 		<Link href={href} as={as}>
 			<div className={styles.card}>
 				<div className={styles.title}>
-					<div>
+					<div className={styles.title_container}>
 						<TypeIcon type={type} />
-						<span>{StringService.truncate(title, 20)}</span>
+						{title}
 					</div>
 					<div className={styles.pinned}>
 						<PinnedIcon pinned={true} />
@@ -74,9 +73,7 @@ const PinnedCard = ({
 						<CardHours hourAmount={Number(hours).toFixed(1)} />
 					)}
 				</div>
-				<div className={styles.body}>
-					{StringService.truncate(description, 84)}
-				</div>
+				<div className={styles.body}>{description}</div>
 				<div className={styles.stats}>
 					<div>{label1}</div>
 					<div>{stat1}</div>

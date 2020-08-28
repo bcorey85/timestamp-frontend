@@ -3,7 +3,7 @@
 .card {
 	padding: 1.6rem;
 	flex: 0 0 24rem;
-	height: 24rem;
+	height: 26.4rem;
 	@include panel;
 	display: flex;
 	flex-direction: column;
@@ -19,6 +19,13 @@
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 1.6rem;
+}
+
+.title_container {
+	max-width: calc(24rem - 5.6rem);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .hours {
@@ -40,6 +47,11 @@
 	margin-bottom: 1.6rem;
 	line-height: 1.7;
 	flex: 1 1 auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
 }
 
 .stats {

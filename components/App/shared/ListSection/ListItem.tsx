@@ -4,9 +4,8 @@ import Link from 'next/link';
 import { PinnedIcon } from '../PinnedSection/PinnedIcon';
 
 import { ItemType } from '../../../../utils/ItemService';
-import { TypeIcon, IconType } from '../TypeIcon';
+import { TypeIcon } from '../TypeIcon';
 import styles from './ListItem.module.scss';
-import { StringService } from '../../../../utils/StringService';
 
 interface Props {
 	type: keyof ItemType;
@@ -32,7 +31,7 @@ const ListItem = ({
 			<div className={styles.container}>
 				<div className={styles.title}>
 					<TypeIcon type={type} />
-					{StringService.truncate(title, 60)}
+					{title}
 				</div>
 				<div className={styles.date}>{date}</div>
 				<div className={styles.time}>{time !== null ? time : null}</div>

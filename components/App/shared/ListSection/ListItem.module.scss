@@ -13,6 +13,9 @@
 .title {
 	font-weight: 500;
 	color: var(--text300);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .time,
