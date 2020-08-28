@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../../redux/user';
 
@@ -7,7 +7,7 @@ import { PinnedCard } from './PinnedCard';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { ItemService } from '../../../../utils/ItemService';
 import styles from './PinnedSection.module.scss';
-import { usePagination } from '../../../../hooks/usePagination';
+import { usePaginationSlider } from '../../../../hooks/usePaginationSlider';
 
 interface Props {
 	items: any[];
@@ -15,34 +15,39 @@ interface Props {
 
 const PinnedSection = ({ items }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+
+	const sliderRef = useRef<HTMLDivElement>(null);
 	const {
-		next,
-		back,
-		page,
-		currentIndex,
-		startIndex,
-		endIndex
-	} = usePagination(items, 1);
+		slideLeft,
+		slideRight,
+		currentOffset,
+		maxWidth,
+		maxRightBound,
+		transformDistance
+	} = usePaginationSlider(sliderRef, 264);
 
 	if (items.length === 0) {
 		return <div>( Empty )</div>;
 	}
 
 	return (
-		<div className={styles.wrapper}>
-			<section className={styles.container}>
-				<button
-					className={
-						currentIndex !== startIndex ? (
-							styles.overflow_left
-						) : (
-							styles.overflow_hidden
-						)
-					}
-					onClick={() => back()}>
-					<BiChevronLeft />
-				</button>
-				{page.map(item => {
+		<section className={styles.container}>
+			<button
+				className={
+					currentOffset !== 0 ? (
+						styles.overflow_left
+					) : (
+						styles.overflow_hidden
+					)
+				}
+				onClick={() => slideLeft()}>
+				<BiChevronLeft />
+			</button>
+			<div
+				className={styles.slider_wrapper}
+				ref={sliderRef}
+				style={{ transform: transformDistance }}>
+				{items.map(item => {
 					const currentItem = new ItemService(item);
 					const { href, as } = currentItem.pathname;
 					const {
@@ -72,19 +77,19 @@ const PinnedSection = ({ items }: Props): JSX.Element => {
 						/>
 					);
 				})}
-				<button
-					className={
-						currentIndex !== endIndex ? (
-							styles.overflow_right
-						) : (
-							styles.overflow_hidden
-						)
-					}
-					onClick={() => next()}>
-					<BiChevronRight />
-				</button>
-			</section>
-		</div>
+			</div>
+			<button
+				className={
+					currentOffset !== maxRightBound ? (
+						styles.overflow_right
+					) : (
+						styles.overflow_hidden
+					)
+				}
+				onClick={() => slideRight()}>
+				<BiChevronRight />
+			</button>
+		</section>
 	);
 };
 

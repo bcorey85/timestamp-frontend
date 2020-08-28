@@ -1,13 +1,15 @@
-.wrapper {
+.slider_wrapper {
 	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	padding: .8rem 0;
+	transition: all .3s;
 }
 
 .container {
 	position: relative;
-	display: flex;
-	flex-wrap: nowrap;
+	transition: all .3s;
 	overflow-x: hidden;
-	padding: .8rem 0;
 }
 
 .overflow_left {
@@ -32,6 +34,7 @@
 	font-size: 4rem;
 	border: none;
 	color: var(--white);
+	z-index: 5;
 }
 
 .overflow_left:hover,

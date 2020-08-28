@@ -1,5 +1,6 @@
 import React from 'react';
 import { ImStarEmpty, ImStarFull } from 'react-icons/im';
+import { RiStarLine, RiStarFill } from 'react-icons/ri';
 
 import styles from './PinnedIcon.module.scss';
 
@@ -11,9 +12,9 @@ const PinnedIcon = ({ pinned }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
 			{pinned ? (
-				<ImStarFull className={styles.icon_pinned} />
+				<RiStarFill className={styles.icon_pinned} />
 			) : (
-				<ImStarEmpty className={styles.icon} />
+				<RiStarLine className={styles.icon} />
 			)}
 		</React.Fragment>
 	);
