@@ -3,8 +3,8 @@ import { IconType } from '../components/App/shared/TypeIcon';
 const formatDateTime = (item: any, type: string) => {
 	let meta;
 	if (type === IconType.note) {
-		const start = new Date(Date.parse(item.start));
-		const end = new Date(Date.parse(item.end));
+		const start = new Date(Date.parse(item.start_time));
+		const end = new Date(Date.parse(item.end_time));
 		const date = start.toLocaleDateString();
 		const startTime = start.toLocaleTimeString([], {
 			hour: '2-digit',

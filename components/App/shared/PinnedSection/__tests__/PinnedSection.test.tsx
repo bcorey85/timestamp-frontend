@@ -12,7 +12,7 @@ describe('PinnedSection', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<PinnedSection />
+				<PinnedSection items={[]} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

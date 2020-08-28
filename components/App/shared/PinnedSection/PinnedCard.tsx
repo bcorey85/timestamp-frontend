@@ -1,16 +1,19 @@
 import React from 'react';
+import Link from 'next/link';
 
-import { IconType, TypeIcon } from '../TypeIcon';
+import { TypeIcon, IconType } from '../TypeIcon';
 
 import styles from './PinnedCard.module.scss';
 
 interface Props {
-	title: string;
+	href: string;
+	as: string;
 	type: IconType;
+	title: string;
 	hours?: string;
 	date?: string;
 	time?: string;
-	body: string;
+	description: string;
 	label1: string;
 	label2: string;
 	stat1: string;
@@ -20,7 +23,7 @@ interface Props {
 const CardHours = ({ hourAmount }: { hourAmount: string }) => {
 	return (
 		<div>
-			<span className={styles.hourAmount}>{hourAmount}</span> hours
+			<span className={styles.hourAmount}>{hourAmount}</span> hr
 		</div>
 	);
 };
@@ -35,41 +38,45 @@ const CardDate = ({ date, time }: { date: string; time: string }) => {
 };
 
 const PinnedCard = ({
-	title,
+	href,
+	as,
 	type,
+	title,
 	hours,
 	date,
 	time,
-	body,
+	description,
 	label1,
 	label2,
 	stat1,
 	stat2
 }: Props): JSX.Element => {
 	return (
-		<div className={styles.card}>
-			<div className={styles.title}>
-				<TypeIcon type={type} />
-				<span>{title}</span>
-			</div>
+		<Link href={href} as={as}>
+			<div className={styles.card}>
+				<div className={styles.title}>
+					<TypeIcon type={type} />
+					<span>{title}</span>
+				</div>
 
-			<div className={styles.time}>
-				{hours ? (
-					<CardHours hourAmount={hours} />
-				) : (
-					<CardDate date={date} time={time} />
-				)}
+				<div className={styles.time}>
+					{date && time ? (
+						<CardDate date={date} time={time} />
+					) : (
+						<CardHours hourAmount={Number(hours).toFixed(1)} />
+					)}
+				</div>
+				<div className={styles.body}>{description}</div>
+				<div className={styles.stats}>
+					<div>{label1}</div>
+					<div>{stat1}</div>
+				</div>
+				<div className={styles.stats}>
+					<div>{label2}</div>
+					<div>{stat2}</div>
+				</div>
 			</div>
-			<div className={styles.body}>{body}</div>
-			<div className={styles.stats}>
-				<div>{label1}</div>
-				<div>{stat1}</div>
-			</div>
-			<div className={styles.stats}>
-				<div>{label2}</div>
-				<div>{stat2}</div>
-			</div>
-		</div>
+		</Link>
 	);
 };
 

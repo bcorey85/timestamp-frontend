@@ -13,62 +13,62 @@ import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
-import styles from './Project.module.scss';
+import styles from './Note.module.scss';
 
-const ProjectSingle = (): JSX.Element => {
+const NoteSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const router = useRouter();
 
-	const currentProject = appData.projects.filter(project => {
-		return project.project_id === Number(router.query.projectId);
+	const currentNote = appData.notes.filter(note => {
+		return note.note_id === Number(router.query.noteId);
 	})[0];
 
 	return (
 		<div>
 			<div className={styles.header}>
 				<DashboardHeader
-					heading={currentProject.title}
-					subheading='Project'
-					subheadingType={IconType.project}
+					heading={currentNote.title}
+					subheading='Note'
+					subheadingType={IconType.note}
 				/>
 				<div className={styles.meta}>
-					<p>{currentProject.description}</p>
-					<p>Hours: {currentProject.hours}</p>
+					<p>{currentNote.description}</p>
+					<p>Hours: {currentNote.hours}</p>
 					<p>
 						Started On:
 						{new Date(
-							Date.parse(currentProject.created_at)
+							Date.parse(currentNote.created_at)
 						).toLocaleDateString()}
 					</p>
 				</div>
 
-				{console.log(currentProject)}
+				{console.log(currentNote)}
 
 				<div className={styles.btn_container}>
 					<Button
 						btnStyle='outline'
 						onClick={() => {
 							router.push(
-								`/app/[userId]/create?action=project`,
-								`/app/${userId}/create?action=project`
+								`/app/[userId]/create?action=note`,
+								`/app/${userId}/create?action=note`
 							);
 						}}>
-						<TypeIcon type={IconType.project} />
+						<TypeIcon type={IconType.note} />
 						Edit
 					</Button>
 				</div>
 			</div>
 
-			<DashboardSection title='Tasks'>
+			{/* <DashboardSection title='Tasks'>
 				<ListSection
-					items={appData.tasks.filter(
-						task => task.project_id === currentProject.project_id
+					items={appData.notes.filter(
+						note => note.task_id === currentNote.task_id
 					)}
 				/>
-			</DashboardSection>
+			</DashboardSection> */}
 		</div>
 	);
 };
 
-export { ProjectSingle };
+export { NoteSingle };

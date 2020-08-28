@@ -48,7 +48,7 @@ const PrivateRoute = ({ children }: Props) => {
 		const isAuthorized = user.userId === userId;
 
 		if (!isAuthorized) {
-			router.push(`/app/${user.userId}/projects`);
+			router.push(`/app/${user.userId}/dashboard`);
 			return;
 		}
 

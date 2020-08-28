@@ -10,8 +10,8 @@ describe('Auth Api Configs', () => {
 			description: 'test description',
 			projectId: 1,
 			taskId: 1,
-			start: new Date('1/2/2020'),
-			end: new Date('1/2/2020'),
+			startTime: new Date('1/2/2020'),
+			endTime: new Date('1/2/2020'),
 			tags: [ 'one', 'two' ],
 			pinned: true
 		};
@@ -24,16 +24,7 @@ describe('Auth Api Configs', () => {
 
 		expect(config.url).toBe(`http://localhost:5000/api/notes/${userId}`);
 		expect(config.method).toBe('post');
-		expect(config.payload).toStrictEqual({
-			title: 'test',
-			description: 'test description',
-			projectId: 1,
-			taskId: 1,
-			start: new Date('1/2/2020'),
-			end: new Date('1/2/2020'),
-			tags: [ 'one', 'two' ],
-			pinned: true
-		});
+		expect(config.payload).toStrictEqual(payload);
 		expect(config.token).toBe('123456');
 	});
 });

@@ -13,37 +13,37 @@ import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
-import styles from './Project.module.scss';
+import styles from './Task.module.scss';
 
-const ProjectSingle = (): JSX.Element => {
+const TaskSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const router = useRouter();
 
-	const currentProject = appData.projects.filter(project => {
-		return project.project_id === Number(router.query.projectId);
+	const currentTask = appData.tasks.filter(task => {
+		return task.task_id === Number(router.query.taskId);
 	})[0];
 
 	return (
 		<div>
 			<div className={styles.header}>
 				<DashboardHeader
-					heading={currentProject.title}
-					subheading='Project'
-					subheadingType={IconType.project}
+					heading={currentTask.title}
+					subheading='Task'
+					subheadingType={IconType.task}
 				/>
 				<div className={styles.meta}>
-					<p>{currentProject.description}</p>
-					<p>Hours: {currentProject.hours}</p>
+					<p>{currentTask.description}</p>
+					<p>Hours: {currentTask.hours}</p>
 					<p>
 						Started On:
 						{new Date(
-							Date.parse(currentProject.created_at)
+							Date.parse(currentTask.created_at)
 						).toLocaleDateString()}
 					</p>
 				</div>
 
-				{console.log(currentProject)}
+				{console.log(currentTask)}
 
 				<div className={styles.btn_container}>
 					<Button
@@ -60,10 +60,10 @@ const ProjectSingle = (): JSX.Element => {
 				</div>
 			</div>
 
-			<DashboardSection title='Tasks'>
+			<DashboardSection title='Notes'>
 				<ListSection
-					items={appData.tasks.filter(
-						task => task.project_id === currentProject.project_id
+					items={appData.notes.filter(
+						note => note.task_id === currentTask.task_id
 					)}
 				/>
 			</DashboardSection>
@@ -71,4 +71,4 @@ const ProjectSingle = (): JSX.Element => {
 	);
 };
 
-export { ProjectSingle };
+export { TaskSingle };

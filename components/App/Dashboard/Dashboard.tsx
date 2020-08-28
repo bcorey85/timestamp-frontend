@@ -84,7 +84,7 @@ const Dashboard = (): JSX.Element => {
 						type={IconType.time}
 						title={'Hours'}
 						stat={appData.hours}
-						href={'/app/[userId/activity'}
+						href={'/app/[userId]/activity'}
 						as={`/app/${userId}/activity`}
 						linkText='View Activity'
 					/>
@@ -92,7 +92,7 @@ const Dashboard = (): JSX.Element => {
 						type={IconType.project}
 						title={'Projects'}
 						stat={appData.projects.length}
-						href={'/app/[userId/projects'}
+						href={'/app/[userId]/projects'}
 						as={`/app/${userId}/projects`}
 						linkText='View Projects'
 					/>
@@ -100,7 +100,7 @@ const Dashboard = (): JSX.Element => {
 						type={IconType.task}
 						title={'Tasks'}
 						stat={appData.tasks.length}
-						href={'/app/[userId/tasks'}
+						href={'/app/[userId]/tasks'}
 						as={`/app/${userId}/tasks`}
 						linkText='View Tasks'
 					/>
@@ -108,17 +108,23 @@ const Dashboard = (): JSX.Element => {
 						type={IconType.note}
 						title={'Notes'}
 						stat={appData.notes.length}
-						href={'/app/[userId/notes'}
+						href={'/app/[userId]/notes'}
 						as={`/app/${userId}/notes`}
 						linkText='View Notes'
 					/>
 				</StatsBar>
 			</DashboardSection>
 			<DashboardSection title='Pinned Favorites'>
-				<PinnedSection />
+				<PinnedSection
+					items={[
+						...appData.notes,
+						...appData.projects,
+						...appData.tasks
+					].filter(item => item.pinned === true)}
+				/>
 			</DashboardSection>
 			<DashboardSection title='Recent Items'>
-				<ListSection items={[]} />
+				<ListSection items={appData.recentItems} />
 			</DashboardSection>
 		</div>
 	);

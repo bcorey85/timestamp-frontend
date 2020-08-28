@@ -8,6 +8,8 @@ describe('PinnedCard', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<PinnedCard
+				href={'/'}
+				as={'/'}
 				title='test'
 				type={IconType.project}
 				hours='50'
@@ -16,7 +18,7 @@ describe('PinnedCard', () => {
 				label2='test'
 				stat1='1'
 				stat2='2'
-				body='null'
+				description='null'
 			/>
 		);
 		expect(wrapper).not.toBeNull();

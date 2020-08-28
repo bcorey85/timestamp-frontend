@@ -27,8 +27,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	const [ description, setDescription ] = useInputState('');
 	const [ projectId, setProjectId ] = useInputState('');
 	const [ taskId, setTaskId ] = useInputState('');
-	const [ start, setStart ] = useInputState('');
-	const [ end, setEnd ] = useInputState('');
+	const [ startTime, setStartTime ] = useInputState('');
+	const [ endTime, setEndTime ] = useInputState('');
 	const [ pinned, setPinned ] = useState(false);
 	const {
 		request: createNoteRequest,
@@ -42,8 +42,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 			title,
 			projectId: parseInt(projectId),
 			taskId: parseInt(taskId),
-			start,
-			end,
+			startTime,
+			endTime,
 			description,
 			tags,
 			pinned
@@ -123,15 +123,15 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='datetime-local'
 						id='start'
 						label='Start'
-						value={start}
-						onChange={setStart}
+						value={startTime}
+						onChange={setStartTime}
 					/>
 					<Input
 						type='datetime-local'
 						id='end'
 						label='End'
-						value={end}
-						onChange={setEnd}
+						value={endTime}
+						onChange={setEndTime}
 					/>
 				</FormRow>
 				<FormRow>

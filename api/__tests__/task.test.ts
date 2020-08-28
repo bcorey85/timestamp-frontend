@@ -21,13 +21,7 @@ describe('Auth Api Configs', () => {
 
 		expect(config.url).toBe(`http://localhost:5000/api/tasks/${userId}`);
 		expect(config.method).toBe('post');
-		expect(config.payload).toStrictEqual({
-			title: 'test',
-			description: 'test description',
-			projectId: 1,
-			tags: [ 'one', 'two' ],
-			pinned: true
-		});
+		expect(config.payload).toStrictEqual(payload);
 		expect(config.token).toBe('123456');
 	});
 });

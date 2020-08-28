@@ -10,7 +10,8 @@ const appDataSlice = createSlice({
 		tasks: [],
 		hours: null,
 		createdAt: null,
-		lastLogin: null
+		lastLogin: null,
+		recentItems: []
 	},
 	reducers: {
 		setAppData: (state, action) => {
@@ -22,6 +23,7 @@ const appDataSlice = createSlice({
 			state.notes = action.payload.appData.notes;
 			state.createdAt = action.payload.appData.created_at;
 			state.lastLogin = action.payload.appData.last_login;
+			state.recentItems = action.payload.appData.recentItems;
 		}
 	}
 });
