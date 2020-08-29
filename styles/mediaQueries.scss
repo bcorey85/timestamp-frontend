@@ -5,16 +5,46 @@
 		} //375px
 	}
 
+	@if $breakpoint == 400 {
+		@media only screen and (max-width: 25em) {
+			@content;
+		} //400px
+	}
+
 	@if $breakpoint == 550 {
 		@media only screen and (max-width: 34.375em) {
 			@content;
 		} //550px
 	}
 
+	@if $breakpoint == 680 {
+		@media only screen and (max-width: 42.5em) {
+			@content;
+		} //680px
+	}
+
+	@if $breakpoint == 960 {
+		@media only screen and (max-width: 60em) {
+			@content;
+		} //960px
+	}
+
 	@if $breakpoint == 1024 {
 		@media only screen and (max-width: 64em) {
 			@content;
 		} //1024px
+	}
+
+	@if $breakpoint == 1280 {
+		@media only screen and (max-width: 80em) {
+			@content;
+		} //1280px
+	}
+
+	@if $breakpoint == 1680 {
+		@media only screen and (max-width: 105em) {
+			@content;
+		} //1680px
 	}
 }
 

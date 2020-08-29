@@ -1,4 +1,5 @@
 @import '../../../styles/mixins.scss';
+@import '../../../styles/mediaQueries.scss';
 
 .card {
 	width: 24rem;
@@ -6,8 +7,16 @@
 	@include panel;
 	cursor: pointer;
 
+	@include respondH(680) {
+		width: 100%;
+	}
+
 	&:not(:last-of-type) {
 		margin-right: 2.4rem;
+
+		@include respondH(680) {
+			margin-right: 0;
+		}
 	}
 }
 
@@ -15,6 +24,10 @@
 	color: var(--text300);
 	font-weight: 600;
 	margin-bottom: .4rem;
+
+	@include respondH(680) {
+		margin-bottom: 0;
+	}
 }
 
 .stat {
@@ -26,6 +39,15 @@
 	font-feature-settings: inherit;
 	font-variant-numeric: inherit;
 	color: var(--text400);
+
+	@include respondH(960) {
+		font-size: 2.8rem;
+	}
+
+	@include respondH(680) {
+		font-size: 2.4rem;
+		margin-bottom: 0;
+	}
 }
 
 .link {
@@ -34,5 +56,9 @@
 	& a {
 		color: var(--text200);
 		font-weight: 500;
+	}
+
+	@include respondH(680) {
+		font-size: 1.2rem;
 	}
 }

@@ -19,7 +19,7 @@ interface Props {
 
 const AppLayout = ({ children }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
-	const { drawerOpen } = useSelector(selectInterface);
+
 	const [ breadcrumbLinks, setBreadcrumLinks ] = useState([
 		{
 			iconType: IconType.none,
@@ -55,19 +55,13 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	return (
 		<div className={styles.app_layout}>
 			<Header />
-			<div className={styles.main_container}>
+			<div className={styles.content}>
 				<Drawer />
-				<main
-					className={styles.main}
-					style={
-						drawerOpen ? (
-							{ maxWidth: 'calc(100% - var(--app-drawer-width))' }
-						) : null
-					}>
+				<main className={styles.main}>
 					<nav className={styles.nav_container}>
 						<Breadcrumb links={breadcrumbLinks} />
 					</nav>
-					<div className={styles.wrapper}>{children}</div>
+					{children}
 				</main>
 				<MobileCreateButton />
 			</div>

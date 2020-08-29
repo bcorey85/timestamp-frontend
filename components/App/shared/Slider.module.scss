@@ -31,8 +31,12 @@
 	& svg {
 		width: 3.6rem;
 		height: 3.6rem;
-		background-color: var(--primary500);
+		background-color: var(--gray300);
 		border-radius: 50%;
+
+		&:hover {
+			background-color: var(--primary400);
+		}
 	}
 }
 
