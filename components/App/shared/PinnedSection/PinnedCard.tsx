@@ -55,7 +55,7 @@ const PinnedCard = ({
 }: Props): JSX.Element => {
 	return (
 		<Link href={href} as={as}>
-			<div className={styles.card}>
+			<article className={styles.card}>
 				<div className={styles.title}>
 					<div className={styles.title_container}>
 						<TypeIcon type={type} />
@@ -67,11 +67,7 @@ const PinnedCard = ({
 				</div>
 
 				<div className={styles.time}>
-					{date && time ? (
-						<CardDate date={date} time={time} />
-					) : (
-						<CardHours hourAmount={Number(hours).toFixed(1)} />
-					)}
+					<CardDate date={date} time={time} />
 				</div>
 				<div className={styles.body}>{description}</div>
 				<div className={styles.stats}>
@@ -82,7 +78,7 @@ const PinnedCard = ({
 					<div>{label2}</div>
 					<div>{stat2}</div>
 				</div>
-			</div>
+			</article>
 		</Link>
 	);
 };

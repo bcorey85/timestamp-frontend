@@ -89,7 +89,7 @@ class ItemService {
 
 			this.meta = {
 				date,
-				time: null
+				time: Number(this.item.hours).toFixed(1).toString() + ' hr'
 			};
 		}
 	};

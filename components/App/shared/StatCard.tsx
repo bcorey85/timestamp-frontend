@@ -24,7 +24,7 @@ const StatCard = ({
 }: Props): JSX.Element => {
 	return (
 		<Link href={href} as={as}>
-			<div className={styles.card}>
+			<article className={styles.card}>
 				<div className={styles.header}>
 					<TypeIcon type={type} />
 					{title}
@@ -34,7 +34,7 @@ const StatCard = ({
 				<div className={styles.link}>
 					<a>{linkText}</a>
 				</div>
-			</div>
+			</article>
 		</Link>
 	);
 };

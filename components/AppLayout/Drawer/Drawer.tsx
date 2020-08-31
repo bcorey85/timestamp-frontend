@@ -11,8 +11,9 @@ import {
 	BiGridAlt,
 	BiSearchAlt2,
 	BiClipboard,
-	BiPlus
+	BiPlusMedical
 } from 'react-icons/bi';
+import { HiPlusCircle } from 'react-icons/hi';
 
 import { DrawerLink } from './DrawerLink';
 
@@ -39,7 +40,7 @@ const Drawer = (): JSX.Element => {
 			<div className={styles.btn_container}>
 				<Link href='/app/[userId]/create' as={`/app/${userId}/create`}>
 					<a className={styles.create_btn}>
-						<BiPlus className={styles.create_icon} />
+						<BiPlusMedical className={styles.create_icon} />
 						Create
 					</a>
 				</Link>

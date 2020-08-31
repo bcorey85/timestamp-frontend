@@ -7,6 +7,7 @@ interface ButtonStyle {
 	link_primary: 'link_primary';
 	link_gray: 'link_gray';
 	primary: 'primary';
+	secondary: 'secondary';
 	delete: 'delete';
 }
 

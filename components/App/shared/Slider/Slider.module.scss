@@ -1,10 +1,3 @@
-.slider_wrapper {
-	width: 100%;
-	display: flex;
-	flex-wrap: nowrap;
-	transition: all .3s ease-out;
-}
-
 .overflow_left,
 .overflow_right {
 	height: 100%;
@@ -67,4 +60,11 @@
 
 .overflow_hidden {
 	display: none;
+}
+
+.slider_wrapper {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	transition: all .3s ease-out;
 }

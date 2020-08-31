@@ -28,6 +28,19 @@
 	}
 }
 
+.btn_secondary {
+	@extend .btn;
+	background-color: var(--background-primary);
+	border: var(--border-primary);
+	box-shadow: var(--box-shadow);
+	color: var(--text400);
+
+	&:hover {
+		border: 1px solid var(--primary400);
+		background-color: var(--primary400);
+	}
+}
+
 .btn_outline {
 	@extend .btn;
 	background-color: transparent;

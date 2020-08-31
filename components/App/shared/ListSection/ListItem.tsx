@@ -28,7 +28,7 @@ const ListItem = ({
 }: Props): JSX.Element => {
 	return (
 		<Link href={href} as={as}>
-			<div className={styles.container}>
+			<article className={styles.container}>
 				<div className={styles.title}>
 					<TypeIcon type={type} />
 					{title}
@@ -38,7 +38,7 @@ const ListItem = ({
 				<div className={styles.pinned}>
 					{pinned ? <PinnedIcon pinned={true} /> : null}
 				</div>
-			</div>
+			</article>
 		</Link>
 	);
 };

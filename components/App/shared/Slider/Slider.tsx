@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
-import { usePaginationSlider } from '../../../hooks/usePaginationSlider';
+import { usePaginationSlider } from '../../../../hooks/usePaginationSlider';
 
 import styles from './Slider.module.scss';
 
@@ -9,7 +9,10 @@ interface LeftButtonProps {
 	currentOffset: number;
 	slideLeft: () => void;
 }
-const LeftButton = ({ currentOffset, slideLeft }) => {
+const LeftButton = ({
+	currentOffset,
+	slideLeft
+}: LeftButtonProps): JSX.Element => {
 	return (
 		<div
 			className={

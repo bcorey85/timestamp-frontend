@@ -7,9 +7,9 @@ import { StatsBar } from '../shared/StatsBar';
 import { StatCard } from '../shared/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
-import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
+import { PinnedFavorites } from './PinnedFavorites';
 
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -18,7 +18,6 @@ import { selectAppData, setAppData } from '../../../redux/appData';
 
 import styles from './Dashboard.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { usePagination } from '../../../hooks/usePagination';
 
 const Dashboard = (): JSX.Element => {
 	const {
@@ -73,7 +72,7 @@ const Dashboard = (): JSX.Element => {
 
 				<div className={styles.btn_container}>
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() =>
 							router.pushUnique('create?action=project')}>
 						<TypeIcon type={IconType.project} />
@@ -118,7 +117,7 @@ const Dashboard = (): JSX.Element => {
 				</StatsBar>
 			</DashboardSection>
 			<DashboardSection title='Pinned Favorites'>
-				<PinnedSection items={pinnedItems} />
+				<PinnedFavorites items={pinnedItems} />
 			</DashboardSection>
 			<DashboardSection title='Recent Items'>
 				<ListSection items={appData.recentItems} />

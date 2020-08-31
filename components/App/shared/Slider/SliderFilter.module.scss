@@ -1,0 +1,17 @@
+.nav {
+	margin-bottom: .8rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	position: relative;
+	z-index: 10;
+
+	& button {
+		margin-left: 1.6rem;
+	}
+
+	& svg {
+		height: 2rem;
+		width: 2rem;
+	}
+}

@@ -18,11 +18,13 @@ import storage from 'redux-persist/lib/storage';
 import { userReducer } from './user';
 import { interfaceReducer } from './interface';
 import { appDataReducer } from './appData';
+import { dashboardReducer } from './dashboard';
 
 const rootReducer = combineReducers({
 	user: userReducer,
 	interface: interfaceReducer,
-	appData: appDataReducer
+	appData: appDataReducer,
+	dashboard: dashboardReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
