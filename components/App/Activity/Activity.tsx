@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { StatsBar } from '../shared/StatsBar';
-import { StatCard } from '../shared/StatCard';
+import { StatsBar } from '../shared/StatsBar/StatsBar';
+import { StatCard } from '../shared/StatsBar/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
 

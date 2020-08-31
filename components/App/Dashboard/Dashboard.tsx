@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { StatsBar } from '../shared/StatsBar';
-import { StatCard } from '../shared/StatCard';
+import { StatsBar } from '../shared/StatsBar/StatsBar';
+import { StatCard } from '../shared/StatsBar/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
+import { DashboardPage } from '../shared/DashboardPage';
+import { SectionHeading } from '../shared/SectionHeading';
 
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -62,25 +64,27 @@ const Dashboard = (): JSX.Element => {
 	}
 
 	return (
-		<div>
-			<div className={styles.header}>
-				<DashboardHeader
-					heading='Welcome to Timestamp'
-					subheading='Dashboard'
-					subheadingType={IconType.generic}
-				/>
-
-				<div className={styles.btn_container}>
-					<Button
-						btnStyle='secondary'
-						onClick={() =>
-							router.pushUnique('create?action=project')}>
-						<TypeIcon type={IconType.project} />
-						New Project
-					</Button>
-				</div>
-			</div>
+		<DashboardPage>
 			<DashboardSection>
+				<div className={styles.header}>
+					<DashboardHeader
+						heading='Welcome to Timestamp'
+						subheading='Dashboard'
+						subheadingType={IconType.generic}
+					/>
+
+					<div className={styles.btn_container}>
+						<Button
+							btnStyle='secondary'
+							onClick={() =>
+								router.pushUnique('create?action=project')}>
+							<TypeIcon type={IconType.project} />
+							New Project
+						</Button>
+					</div>
+				</div>
+			</DashboardSection>
+			<DashboardSection full>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -116,13 +120,15 @@ const Dashboard = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</DashboardSection>
-			<DashboardSection title='Pinned Favorites'>
+			<SectionHeading>Pinned Favorites</SectionHeading>
+			<DashboardSection full>
 				<PinnedFavorites items={pinnedItems} />
 			</DashboardSection>
-			<DashboardSection title='Recent Items'>
+			<SectionHeading>Recent Activity</SectionHeading>
+			<DashboardSection>
 				<ListSection items={appData.recentItems} />
 			</DashboardSection>
-		</div>
+		</DashboardPage>
 	);
 };
 

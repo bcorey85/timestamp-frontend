@@ -1,3 +1,9 @@
 .container {
 	margin-bottom: 3.2rem;
+	grid-column: 2/3;
+}
+
+.container_full {
+	margin-bottom: 3.2rem;
+	grid-column: 1/4;
 }

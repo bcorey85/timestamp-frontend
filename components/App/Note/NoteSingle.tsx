@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { StatsBar } from '../shared/StatsBar';
-import { StatCard } from '../shared/StatCard';
+import { StatsBar } from '../shared/StatsBar/StatsBar';
+import { StatCard } from '../shared/StatsBar/StatCard';
 import { DashboardSection } from '../shared/DashboardSection';
 import { DashboardHeader } from '../shared/DashboardHeader';
 import { ListSection } from '../shared/ListSection/ListSection';

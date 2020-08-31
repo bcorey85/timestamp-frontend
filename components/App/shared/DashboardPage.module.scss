@@ -1,0 +1,6 @@
+.container {
+	display: grid;
+	width: 100%;
+	max-width: 100%;
+	grid-template-columns: 8rem 1fr 8rem;
+}

@@ -1,0 +1,14 @@
+@import '../../../../styles/mediaQueries.scss';
+
+.container {
+	background-color: var(--background-tertiary);
+	padding: .8rem 8rem;
+	width: 100%;
+	display: flex;
+
+	@include respondH(680) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1.6rem;
+	}
+}

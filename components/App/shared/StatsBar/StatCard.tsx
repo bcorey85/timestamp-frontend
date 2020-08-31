@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { TypeIcon, IconType } from './TypeIcon';
+import { TypeIcon, IconType } from '../TypeIcon';
 
 import styles from './StatCard.module.scss';
 

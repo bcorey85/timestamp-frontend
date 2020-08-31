@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { StatCard } from '../StatCard';
-import { IconType } from '../TypeIcon';
+import { IconType } from '../../TypeIcon';
 
 describe('StatCard', () => {
 	it('renders', () => {

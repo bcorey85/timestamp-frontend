@@ -1,12 +1,13 @@
 .overflow_left,
 .overflow_right {
 	height: 100%;
-	width: 4.8rem;
+	width: 8rem;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	font-size: 4rem;
 	border: none;
 
@@ -37,20 +38,18 @@
 	left: 0;
 	background: linear-gradient(
 		to right,
-		var(--slider-transparency) 5%,
+		var(--slider-transparency) 80%,
 		rgba(255, 255, 255, 0)
 	);
-	justify-content: flex-start;
 }
 
 .overflow_right {
 	right: 0;
 	background: linear-gradient(
 		to left,
-		var(--slider-transparency) 5%,
+		var(--slider-transparency) 80%,
 		rgba(255, 255, 255, 0)
 	);
-	justify-content: flex-end;
 }
 
 .overflow_left:hover,
@@ -67,4 +66,13 @@
 	display: flex;
 	flex-wrap: nowrap;
 	transition: all .3s ease-out;
+	display: grid;
+	grid-template-columns: 5.6rem repeat(50, 24rem) 5.6rem;
+	grid-template-rows: 1fr;
+	grid-gap: 2.4rem;
+
+	&::before,
+	&::after {
+		content: '';
+	}
 }
