@@ -1,7 +1,7 @@
 .overflow_left,
 .overflow_right {
 	height: 100%;
-	width: 8rem;
+	width: 7.4rem;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -36,20 +36,10 @@
 
 .overflow_left {
 	left: 0;
-	background: linear-gradient(
-		to right,
-		var(--slider-transparency) 80%,
-		rgba(255, 255, 255, 0)
-	);
 }
 
 .overflow_right {
 	right: 0;
-	background: linear-gradient(
-		to left,
-		var(--slider-transparency) 80%,
-		rgba(255, 255, 255, 0)
-	);
 }
 
 .overflow_left:hover,
@@ -62,13 +52,13 @@
 }
 
 .slider_wrapper {
+	--slider-length: 50;
+
 	width: 100%;
-	display: flex;
-	flex-wrap: nowrap;
 	transition: all .3s ease-out;
 	display: grid;
-	grid-template-columns: 5.6rem repeat(50, 24rem) 5.6rem;
-	grid-template-rows: 1fr;
+	grid-template-columns: 5.6rem repeat(var(--slider-length), 24rem) 5.6rem;
+	grid-template-rows: 26.8rem;
 	grid-gap: 2.4rem;
 
 	&::before,

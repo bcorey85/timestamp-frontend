@@ -1,9 +1,10 @@
 @import '../../../../styles/mediaQueries.scss';
+@import '../../../../styles/mixins.scss';
 
 .container {
+	@include fullWidth;
 	background-color: var(--background-tertiary);
 	padding: .8rem 8rem;
-	width: 100%;
 	display: flex;
 
 	@include respondH(680) {

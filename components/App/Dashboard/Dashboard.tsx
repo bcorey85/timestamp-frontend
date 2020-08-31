@@ -10,8 +10,6 @@ import { DashboardHeader } from '../shared/DashboardHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
-import { DashboardPage } from '../shared/DashboardPage';
-import { SectionHeading } from '../shared/SectionHeading';
 
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -64,27 +62,25 @@ const Dashboard = (): JSX.Element => {
 	}
 
 	return (
-		<DashboardPage>
-			<DashboardSection>
-				<div className={styles.header}>
-					<DashboardHeader
-						heading='Welcome to Timestamp'
-						subheading='Dashboard'
-						subheadingType={IconType.generic}
-					/>
+		<React.Fragment>
+			<div className={styles.header}>
+				<DashboardHeader
+					heading='Welcome to Timestamp'
+					subheading='Dashboard'
+					subheadingType={IconType.generic}
+				/>
 
-					<div className={styles.btn_container}>
-						<Button
-							btnStyle='secondary'
-							onClick={() =>
-								router.pushUnique('create?action=project')}>
-							<TypeIcon type={IconType.project} />
-							New Project
-						</Button>
-					</div>
+				<div className={styles.btn_container}>
+					<Button
+						btnStyle='secondary'
+						onClick={() =>
+							router.pushUnique('create?action=project')}>
+						<TypeIcon type={IconType.project} />
+						New Project
+					</Button>
 				</div>
-			</DashboardSection>
-			<DashboardSection full>
+			</div>
+			<DashboardSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -120,15 +116,13 @@ const Dashboard = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</DashboardSection>
-			<SectionHeading>Pinned Favorites</SectionHeading>
-			<DashboardSection full>
+			<DashboardSection title='Pinned Favorites'>
 				<PinnedFavorites items={pinnedItems} />
 			</DashboardSection>
-			<SectionHeading>Recent Activity</SectionHeading>
-			<DashboardSection>
+			<DashboardSection title='Recent Items'>
 				<ListSection items={appData.recentItems} />
 			</DashboardSection>
-		</DashboardPage>
+		</React.Fragment>
 	);
 };
 

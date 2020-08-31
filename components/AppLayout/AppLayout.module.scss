@@ -28,7 +28,9 @@
 .main {
 	width: 100%;
 	max-width: 144rem;
+	padding: 0 8rem 8rem 8rem;
 	border-right: var(--border-primary);
+	flex: 1 1 auto;
 
 	@include respondH(1680) {
 		max-width: calc(100% - var(--app-drawer-width));

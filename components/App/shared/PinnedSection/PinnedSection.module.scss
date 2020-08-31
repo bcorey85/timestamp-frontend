@@ -1,8 +1,8 @@
+@import '../../../../styles/mixins.scss';
+
 .container {
+	@include fullWidth;
 	position: relative;
 	transition: all .3s;
 	overflow-x: hidden;
-	padding: .4rem;
-	margin: -.4rem;
-	margin-top: 0;
 }
