@@ -104,8 +104,6 @@ class ItemService {
 
 	public getItem = () => {
 		return {
-			startTime: this.meta.startTime,
-			endTime: this.meta.endTime,
 			date: this.meta.date,
 			hours: this.meta.hours,
 			title: this.item.title,

@@ -36,10 +36,6 @@ const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
 						date={date}
 						time={time}
 						description={description}
-						label1={'Fake Stat 1'}
-						label2={'Fake Stat 2'}
-						stat1={'100'}
-						stat2={'100'}
 						key={created_at.toString()}
 					/>
 				);

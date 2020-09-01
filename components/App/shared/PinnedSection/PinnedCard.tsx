@@ -16,10 +16,6 @@ interface Props {
 	date?: string;
 	time?: string;
 	description: string;
-	label1: string;
-	label2: string;
-	stat1: string;
-	stat2: string;
 }
 
 const CardDate = ({
@@ -47,22 +43,18 @@ const PinnedCard = ({
 	hours,
 	date,
 	time,
-	description,
-	label1,
-	label2,
-	stat1,
-	stat2
+	description
 }: Props): JSX.Element => {
 	return (
 		<Link href={href} as={as}>
 			<article className={styles.card}>
+				<div className={styles.pinned}>
+					<PinnedIcon pinned={true} />
+				</div>
 				<div className={styles.title}>
 					<div className={styles.title_container}>
 						<TypeIcon type={type} />
 						{title}
-					</div>
-					<div className={styles.pinned}>
-						<PinnedIcon pinned={true} />
 					</div>
 				</div>
 
@@ -70,14 +62,6 @@ const PinnedCard = ({
 					<CardDate date={date} time={time} hours={hours} />
 				</div>
 				<div className={styles.body}>{description}</div>
-				<div className={styles.stats}>
-					<div>{label1}</div>
-					<div>{stat1}</div>
-				</div>
-				<div className={styles.stats}>
-					<div>{label2}</div>
-					<div>{stat2}</div>
-				</div>
 			</article>
 		</Link>
 	);
