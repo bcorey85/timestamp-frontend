@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-const usePaginationSlider = (ref, itemWidth: number) => {
+const usePaginationSlider = (width: number, itemWidth: number) => {
 	const [ currentOffset, setCurrentOffset ] = useState(0);
 	const [ maxWidth, setMaxWidth ] = useState(0);
 	const [ maxRightBound, setMaxRightBound ] = useState(0);
 	const [ maxLeftBound, setMaxLeftBound ] = useState(0);
 
-	useEffect(() => {
-		const maxWidth = ref.current.getBoundingClientRect().width;
-		setMaxWidth(maxWidth);
-		setMaxRightBound(maxWidth * -1);
-		setMaxLeftBound(0);
-	}, []);
+	useEffect(
+		() => {
+			const maxWidth = width;
+
+			setMaxWidth(maxWidth);
+			setMaxRightBound(maxWidth * -1);
+			setMaxLeftBound(0);
+		},
+		[ width ]
+	);
 
 	const slideLeft = () => {
 		const nextOffset = currentOffset + itemWidth;

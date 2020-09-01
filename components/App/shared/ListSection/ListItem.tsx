@@ -12,6 +12,7 @@ interface Props {
 	title: string;
 	date: string;
 	time: string;
+	hours: string;
 	href: string;
 	as: string;
 	pinned: boolean;
@@ -22,6 +23,7 @@ const ListItem = ({
 	title,
 	date,
 	time,
+	hours,
 	href,
 	as,
 	pinned
@@ -34,7 +36,8 @@ const ListItem = ({
 					{title}
 				</div>
 				<div className={styles.date}>{date}</div>
-				<div className={styles.time}>{time !== null ? time : null}</div>
+				<div className={styles.time}>{hours}</div>
+				<div className={styles.time}>{time}</div>
 				<div className={styles.pinned}>
 					{pinned ? <PinnedIcon pinned={true} /> : null}
 				</div>

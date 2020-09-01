@@ -1,3 +1,5 @@
+@import '../../../../styles/mediaQueries.scss';
+
 .overflow_left,
 .overflow_right {
 	height: 100%;
@@ -10,8 +12,11 @@
 	justify-content: center;
 	font-size: 4rem;
 	border: none;
-
 	z-index: 5;
+
+	@include respondH(1280) {
+		width: 4rem;
+	}
 
 	& button {
 		display: flex;
@@ -57,12 +62,21 @@
 	width: 100%;
 	transition: all .3s ease-out;
 	display: grid;
-	grid-template-columns: 5.6rem repeat(var(--slider-length), 24rem) 5.6rem;
+	grid-template-columns: 6.4rem;
+	grid-auto-flow: column;
+	grid-auto-columns: 24rem;
 	grid-template-rows: 26.8rem;
-	grid-gap: 2.4rem;
+	grid-gap: 1.6rem;
 
-	&::before,
-	&::after {
+	@include respondH(1280) {
+		grid-template-columns: 2.4rem;
+	}
+
+	@include respondH(550) {
+		grid-template-columns: 0rem;
+	}
+
+	&::before {
 		content: '';
 	}
 }

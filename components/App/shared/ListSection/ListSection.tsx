@@ -28,7 +28,7 @@ const ListSection = ({ items }: Props): JSX.Element => {
 				const currentItem = new ItemService(item);
 				const { href, as } = currentItem.pathname;
 				const { title, created_at, pinned } = currentItem.item;
-				const { date, time } = currentItem.meta;
+				const { date, time, hours } = currentItem.meta;
 				const { type } = currentItem;
 
 				return (
@@ -39,6 +39,7 @@ const ListSection = ({ items }: Props): JSX.Element => {
 						title={title}
 						date={date}
 						time={time}
+						hours={hours}
 						key={created_at.toString()}
 						pinned={pinned}
 					/>

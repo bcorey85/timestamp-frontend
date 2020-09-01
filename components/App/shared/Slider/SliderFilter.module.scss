@@ -1,3 +1,5 @@
+@import '../../../../styles/mediaQueries.scss';
+
 .nav {
 	margin-bottom: .8rem;
 	display: flex;
@@ -5,6 +7,14 @@
 	position: relative;
 	z-index: 10;
 	padding: 0 8rem;
+
+	@include respondH(1280) {
+		padding: 0 4rem;
+	}
+
+	@include respondH(550) {
+		padding: 0 1.6rem;
+	}
 
 	& button {
 		margin-left: 1.6rem;

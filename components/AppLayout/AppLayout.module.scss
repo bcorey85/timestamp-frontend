@@ -44,6 +44,7 @@
 		max-width: 100%;
 	}
 
-	@include respondH(400) {
+	@include respondH(550) {
+		padding: 0 1.6rem 4rem 1.6rem;
 	}
 }

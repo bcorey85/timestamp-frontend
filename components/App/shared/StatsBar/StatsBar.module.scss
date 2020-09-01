@@ -7,9 +7,17 @@
 	padding: .8rem 8rem;
 	display: flex;
 
+	@include respondH(1280) {
+		padding: .8rem 4rem;
+	}
+
 	@include respondH(680) {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 1.6rem;
+	}
+
+	@include respondH(550) {
+		padding: .8rem 1.6rem;
 	}
 }

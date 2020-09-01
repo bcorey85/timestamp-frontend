@@ -44,7 +44,6 @@ const Dashboard = (): JSX.Element => {
 
 			if (res.success === true) {
 				setIsLoading(false);
-				console.log(res.data.user);
 
 				dispatch(setAppData({ appData: res.data.user }));
 			}

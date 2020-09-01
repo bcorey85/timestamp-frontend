@@ -4,7 +4,8 @@
 	@include panel;
 	margin-bottom: .4rem;
 	display: grid;
-	grid-template-columns: 2fr .5fr .75fr .5fr;
+	grid-template-columns: auto 10.4rem 14.8rem 24rem 6.4rem;
+	grid-gap: 1.6rem;
 	padding: 1.6rem 1.6rem;
 	line-height: 1.6rem;
 	cursor: pointer;

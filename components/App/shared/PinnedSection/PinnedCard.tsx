@@ -22,19 +22,19 @@ interface Props {
 	stat2: string;
 }
 
-const CardHours = ({ hourAmount }: { hourAmount: string }) => {
-	return (
-		<div>
-			<span className={styles.hourAmount}>{hourAmount}</span> hr
-		</div>
-	);
-};
-
-const CardDate = ({ date, time }: { date: string; time: string }) => {
+const CardDate = ({
+	date,
+	time,
+	hours
+}: {
+	date: string;
+	time: string;
+	hours: string;
+}) => {
 	return (
 		<React.Fragment>
 			<div>{date}</div>
-			<div>{time}</div>
+			<div>{time ? time : hours}</div>
 		</React.Fragment>
 	);
 };
@@ -67,7 +67,7 @@ const PinnedCard = ({
 				</div>
 
 				<div className={styles.time}>
-					<CardDate date={date} time={time} />
+					<CardDate date={date} time={time} hours={hours} />
 				</div>
 				<div className={styles.body}>{description}</div>
 				<div className={styles.stats}>

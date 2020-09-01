@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 import { usePaginationSlider } from '../../../../hooks/usePaginationSlider';
@@ -62,13 +62,23 @@ interface SliderProps {
 
 const Slider = ({ children, itemPixelWidth }: SliderProps): JSX.Element => {
 	const sliderRef = useRef<HTMLDivElement>(null);
+	const [ currentWidth, setCurrentWidth ] = useState(null);
+
 	const {
 		slideLeft,
 		slideRight,
 		currentOffset,
 		maxRightBound,
 		transformDistance
-	} = usePaginationSlider(sliderRef, itemPixelWidth);
+	} = usePaginationSlider(currentWidth, itemPixelWidth);
+
+	useEffect(
+		() => {
+			console.log(sliderRef.current.scrollWidth);
+			setCurrentWidth(sliderRef.current.scrollWidth);
+		},
+		[ sliderRef.current ]
+	);
 
 	return (
 		<React.Fragment>

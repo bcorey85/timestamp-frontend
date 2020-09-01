@@ -12,7 +12,7 @@
 	}
 
 	&:not(:last-of-type) {
-		margin-right: 2.4rem;
+		margin-right: 1.6rem;
 
 		@include respondH(680) {
 			margin-right: 0;

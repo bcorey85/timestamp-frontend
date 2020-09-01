@@ -31,6 +31,7 @@ interface Pathname {
 interface Meta {
 	date: string;
 	time?: string;
+	hours: string;
 }
 
 class ItemService {
@@ -65,6 +66,7 @@ class ItemService {
 	};
 
 	private generateProperties = (type: keyof ItemType) => {
+		// @ts-ignore
 		const typeId: keyof Item = this.item[`${type}_id`];
 		const rootPath = `${type}s`;
 		const filePath = [ `${type}Id` ];
@@ -82,14 +84,16 @@ class ItemService {
 
 			this.meta = {
 				date,
-				time: `${startTime} - ${endTime}`
+				time: `${startTime} - ${endTime}`,
+				hours: Number(this.item.hours).toFixed(1).toString() + ' hr'
 			};
 		} else {
 			const date = moment(this.item.updated_at).format('l');
 
 			this.meta = {
 				date,
-				time: Number(this.item.hours).toFixed(1).toString() + ' hr'
+				time: null,
+				hours: Number(this.item.hours).toFixed(1).toString() + ' hr'
 			};
 		}
 	};

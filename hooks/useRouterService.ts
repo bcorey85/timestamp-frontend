@@ -18,7 +18,7 @@ const useRouterService = () => {
 		root: () => nextRouter.push('/')
 	};
 
-	const pushUnique = path => {
+	const pushUnique = (path: string) => {
 		return nextRouter.push(
 			`/app/[userId]/${path}`,
 			`/app/${userId}/${path}`

@@ -22,13 +22,8 @@ const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
 			{items.map(item => {
 				const currentItem = new ItemService(item);
 				const { href, as } = currentItem.pathname;
-				const {
-					title,
-					created_at,
-					hours,
-					description
-				} = currentItem.item;
-				const { date, time } = currentItem.meta;
+				const { title, created_at, description } = currentItem.item;
+				const { date, time, hours } = currentItem.meta;
 				const { type } = currentItem;
 
 				return (
@@ -37,7 +32,7 @@ const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
 						as={`/app/${userId}/${as}`}
 						title={title}
 						type={type}
-						hours={Number(hours).toFixed(1)}
+						hours={hours}
 						date={date}
 						time={time}
 						description={description}
@@ -60,7 +55,7 @@ interface Props {
 const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const [ currentPage, setCurrentPage ] = useState('all');
-	const itemPixelWidth = 264;
+	const itemPixelWidth = 256;
 
 	const changePage = (page: string) => {
 		setCurrentPage(page);
