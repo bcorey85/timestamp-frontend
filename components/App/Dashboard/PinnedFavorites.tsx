@@ -68,7 +68,6 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	return (
 		<PinnedSection>
 			<SliderFilter>
-				<BiFilter />
 				<Button btnStyle='link_gray' onClick={() => changePage('all')}>
 					All
 				</Button>

@@ -35,7 +35,11 @@ interface Meta {
 }
 
 class ItemService {
-	public meta: Meta = { date: null, time: null };
+	public meta: Meta = {
+		date: null,
+		time: null,
+		hours: null
+	};
 	public pathname: Pathname = { href: null, as: null };
 	public type: keyof ItemType = null;
 
@@ -96,6 +100,21 @@ class ItemService {
 				hours: Number(this.item.hours).toFixed(1).toString() + ' hr'
 			};
 		}
+	};
+
+	public getItem = () => {
+		return {
+			startTime: this.meta.startTime,
+			endTime: this.meta.endTime,
+			date: this.meta.date,
+			hours: this.meta.hours,
+			title: this.item.title,
+			pinned: this.item.pinned,
+			createdAt: this.item.created_at,
+			href: this.pathname.href,
+			as: this.pathname.as,
+			type: this.type
+		};
 	};
 }
 

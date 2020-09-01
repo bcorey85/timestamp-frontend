@@ -11,7 +11,6 @@ interface Props {
 	type: keyof ItemType;
 	title: string;
 	date: string;
-	time: string;
 	hours: string;
 	href: string;
 	as: string;
@@ -22,7 +21,6 @@ const ListItem = ({
 	type,
 	title,
 	date,
-	time,
 	hours,
 	href,
 	as,
@@ -31,13 +29,14 @@ const ListItem = ({
 	return (
 		<Link href={href} as={as}>
 			<article className={styles.container}>
+				<div className={styles.date}>{date}</div>
 				<div className={styles.title}>
 					<TypeIcon type={type} />
 					{title}
 				</div>
-				<div className={styles.date}>{date}</div>
+
 				<div className={styles.time}>{hours}</div>
-				<div className={styles.time}>{time}</div>
+
 				<div className={styles.pinned}>
 					{pinned ? <PinnedIcon pinned={true} /> : null}
 				</div>

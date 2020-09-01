@@ -74,7 +74,6 @@ const Slider = ({ children, itemPixelWidth }: SliderProps): JSX.Element => {
 
 	useEffect(
 		() => {
-			console.log(sliderRef.current.scrollWidth);
 			setCurrentWidth(sliderRef.current.scrollWidth);
 		},
 		[ sliderRef.current ]
