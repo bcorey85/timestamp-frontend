@@ -13,6 +13,8 @@ export interface Item {
 	start_time?: Date;
 	end_time?: Date;
 	tags?: string;
+	notes: number;
+	tasks: number;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -109,6 +111,8 @@ class ItemService {
 			title: this.item.title,
 			pinned: this.item.pinned,
 			createdAt: this.item.created_at,
+			notes: this.item.notes || null,
+			tasks: this.item.tasks || null,
 			href: this.pathname.href,
 			as: this.pathname.as,
 			type: this.type

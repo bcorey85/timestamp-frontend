@@ -63,7 +63,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 					<Input
 						type='textarea'
 						id='description'
-						label='Description'
+						label='Goal'
 						value={description}
 						onChange={setDescription}
 					/>

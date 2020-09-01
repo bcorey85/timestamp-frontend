@@ -18,6 +18,7 @@ import { selectAppData, setAppData } from '../../../redux/appData';
 
 import styles from './Dashboard.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { ItemService } from '../../../utils/ItemService';
 
 const Dashboard = (): JSX.Element => {
 	const {
@@ -26,7 +27,6 @@ const Dashboard = (): JSX.Element => {
 		errors: getUserErrors
 	} = useApiRequest();
 	const [ isLoading, setIsLoading ] = useState(true);
-
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const dispatch = useDispatch();
@@ -36,6 +36,15 @@ const Dashboard = (): JSX.Element => {
 		...appData.projects,
 		...appData.tasks
 	].filter(item => item.pinned === true);
+	const recentProjects = appData.recentItems.filter(
+		item => new ItemService(item).type === 'project'
+	);
+	const recentNotes = appData.recentItems.filter(
+		item => new ItemService(item).type === 'note'
+	);
+	const recentTasks = appData.recentItems.filter(
+		item => new ItemService(item).type === 'task'
+	);
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -118,8 +127,14 @@ const Dashboard = (): JSX.Element => {
 			<DashboardSection title='Pinned Favorites'>
 				<PinnedFavorites items={pinnedItems} />
 			</DashboardSection>
-			<DashboardSection title='Recent Items'>
-				<ListSection items={appData.recentItems} />
+			<DashboardSection title='Recent Notes'>
+				<ListSection items={recentNotes} />
+			</DashboardSection>
+			<DashboardSection title='Recent Tasks'>
+				<ListSection items={recentTasks} />
+			</DashboardSection>
+			<DashboardSection title='Recent Projects'>
+				<ListSection items={recentProjects} />
 			</DashboardSection>
 		</React.Fragment>
 	);

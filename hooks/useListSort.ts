@@ -27,7 +27,7 @@ const useListSort = (items: any[]) => {
 				return -1;
 			}
 
-			if (typeof item1 !== 'string') {
+			if (filter === 'pinned') {
 				return item1 - item2;
 			}
 

@@ -17,12 +17,21 @@ interface PinnedItemsProps {
 }
 
 const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
+	console.log(items);
+
 	return (
 		<React.Fragment>
 			{items.map(item => {
 				const currentItem = new ItemService(item);
 				const { href, as } = currentItem.pathname;
-				const { title, created_at, description } = currentItem.item;
+				const {
+					title,
+					created_at,
+					description,
+					notes,
+					tasks,
+					tags
+				} = currentItem.item;
 				const { date, time, hours } = currentItem.meta;
 				const { type } = currentItem;
 
@@ -35,8 +44,11 @@ const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
 						hours={hours}
 						date={date}
 						time={time}
+						notes={notes}
+						tasks={tasks}
 						description={description}
 						key={created_at.toString()}
+						tags={tags}
 					/>
 				);
 			})}

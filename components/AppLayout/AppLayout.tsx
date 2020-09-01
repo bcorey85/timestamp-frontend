@@ -57,12 +57,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 			<Header />
 			<div className={styles.content}>
 				<Drawer />
-				<main className={styles.main}>
-					<nav className={styles.nav_container}>
-						<Breadcrumb links={breadcrumbLinks} />
-					</nav>
-					{children}
-				</main>
+				<main className={styles.main}>{children}</main>
 				<MobileCreateButton />
 			</div>
 

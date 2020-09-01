@@ -41,15 +41,12 @@ const NoteSingle = (): JSX.Element => {
 						).toLocaleDateString()}
 					</p>
 				</div>
-
-				{console.log(currentNote)}
-
 				<div className={styles.btn_container}>
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() => router.pushUnique('create?action=note')}>
 						<TypeIcon type={IconType.note} />
-						Edit
+						Edit Note
 					</Button>
 				</div>
 			</div>

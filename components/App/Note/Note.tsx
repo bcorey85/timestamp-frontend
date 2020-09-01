@@ -30,7 +30,7 @@ const Note = (): JSX.Element => {
 
 				<div className={styles.btn_container}>
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() => router.pushUnique('create?action=note')}>
 						<TypeIcon type={IconType.note} />
 						New Note

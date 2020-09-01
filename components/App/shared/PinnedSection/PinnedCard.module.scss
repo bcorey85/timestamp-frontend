@@ -33,17 +33,17 @@
 }
 
 .body {
+	flex: 1 1 auto;
 	color: var(--text500);
 	line-height: 1.7;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 6;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 }
 
 .stats {
-	margin-bottom: .4rem;
 	display: flex;
 	justify-content: space-between;
 	color: var(--text300);

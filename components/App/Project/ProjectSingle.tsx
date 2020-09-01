@@ -37,7 +37,7 @@ const ProjectSingle = (): JSX.Element => {
 					<p>{currentProject.description}</p>
 					<p>Hours: {currentProject.hours}</p>
 					<p>
-						Started On:
+						Started On:{' '}
 						{new Date(
 							Date.parse(currentProject.created_at)
 						).toLocaleDateString()}
@@ -53,13 +53,13 @@ const ProjectSingle = (): JSX.Element => {
 					</Button>
 
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() =>
 							router.pushUnique(
 								`create?action=task&projectId=${currentProject.project_id}`
 							)}>
 						<TypeIcon type={IconType.task} />
-						Create Task
+						Add Task
 					</Button>
 				</div>
 			</div>

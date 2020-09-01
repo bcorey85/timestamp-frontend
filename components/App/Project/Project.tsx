@@ -32,7 +32,7 @@ const Project = (): JSX.Element => {
 
 				<div className={styles.btn_container}>
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() =>
 							router.pushUnique('create?action=project')}>
 						<TypeIcon type={IconType.project} />

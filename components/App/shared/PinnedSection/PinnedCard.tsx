@@ -16,6 +16,9 @@ interface Props {
 	date?: string;
 	time?: string;
 	description: string;
+	notes?: number;
+	tasks?: number;
+	tags?: string;
 }
 
 const CardDate = ({
@@ -35,6 +38,61 @@ const CardDate = ({
 	);
 };
 
+interface CardStatsProps {
+	type: keyof ItemType;
+	tags: string;
+	notes: number;
+	tasks: number;
+	hours: string;
+}
+
+const CardStats = ({ type, tags, notes, tasks, hours }: CardStatsProps) => {
+	if (type === 'project') {
+		return (
+			<React.Fragment>
+				<div className={styles.stats}>
+					<div>Tasks:</div>
+					<div>{tasks}</div>
+				</div>
+				<div className={styles.stats}>
+					<div>Notes:</div>
+					<div>{notes}</div>
+				</div>
+			</React.Fragment>
+		);
+	}
+
+	if (type === 'task') {
+		return (
+			<React.Fragment>
+				<div className={styles.stats}>
+					<div>Notes:</div>
+					<div>{notes}</div>
+				</div>
+				<div className={styles.stats}>
+					<div>Tags:</div>
+					<div>
+						{tags.length > 0 ? tags.substring(0, 20) : 'None'}
+					</div>
+				</div>
+			</React.Fragment>
+		);
+	}
+
+	return (
+		<React.Fragment>
+			<div className={styles.stats}>
+				<div>Hours:</div>
+				<div>{hours}</div>
+			</div>
+			<div className={styles.stats}>
+				<div>Tags:</div>
+				<div>{tags.length > 0 ? tags.substring(0, 20) : 'None'}</div>
+			</div>
+		</React.Fragment>
+	);
+};
+
 const PinnedCard = ({
 	href,
 	as,
@@ -42,8 +100,11 @@ const PinnedCard = ({
 	title,
 	hours,
 	date,
+	notes,
+	tasks,
 	time,
-	description
+	description,
+	tags
 }: Props): JSX.Element => {
 	return (
 		<Link href={href} as={as}>
@@ -62,6 +123,13 @@ const PinnedCard = ({
 					<CardDate date={date} time={time} hours={hours} />
 				</div>
 				<div className={styles.body}>{description}</div>
+				<CardStats
+					type={type}
+					tags={tags}
+					notes={notes}
+					tasks={tasks}
+					hours={hours}
+				/>
 			</article>
 		</Link>
 	);

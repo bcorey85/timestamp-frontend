@@ -32,7 +32,7 @@ const Task = (): JSX.Element => {
 
 				<div className={styles.btn_container}>
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() => router.pushUnique('create?action=task')}>
 						<TypeIcon type={IconType.task} />
 						New Task

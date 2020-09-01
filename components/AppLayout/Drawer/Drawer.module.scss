@@ -4,7 +4,7 @@
 	position: relative;
 	background-color: var(--background-primary);
 	flex: 0 0 var(--app-drawer-width);
-	padding: 4rem 1.6rem;
+	padding: 10.4rem 1.6rem;
 	border-right: var(--border-primary);
 	display: flex;
 	flex-direction: column;
@@ -40,8 +40,7 @@
 }
 
 .btn_container {
-	margin-top: 4.8rem;
-	margin-bottom: 4rem;
+	margin-bottom: 8rem;
 	font-size: 1.4rem;
 
 	& img {
@@ -74,7 +73,6 @@
 	width: 100%;
 	border-radius: var(--border-radius);
 	height: 4.8rem;
-	margin: 2.4rem 0 4rem 0;
 	text-align: center;
 	font-size: 1.6rem;
 	line-height: 4.8rem;

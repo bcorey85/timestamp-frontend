@@ -50,13 +50,13 @@ const TaskSingle = (): JSX.Element => {
 						Edit
 					</Button>
 					<Button
-						btnStyle='outline'
+						btnStyle='secondary'
 						onClick={() =>
 							router.pushUnique(
 								`create?action=note&projectId=${currentTask.project_id}&taskId=${currentTask.task_id}`
 							)}>
 						<TypeIcon type={IconType.note} />
-						Create Note
+						Add Note
 					</Button>
 				</div>
 			</div>
