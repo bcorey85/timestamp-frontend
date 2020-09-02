@@ -63,7 +63,7 @@ const Activity = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</AppPageSection>
-			Filter
+
 			<AppPageSection title='Recent Items'>
 				<ListSection type='note' items={appData.notes} />
 			</AppPageSection>

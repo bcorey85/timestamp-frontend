@@ -51,12 +51,24 @@
 
 	--app-drawer-width: 24rem;
 	--app-header-height: 6.4rem;
+	--app-vertical-padding: 8rem;
+	--app-horizontal-padding: 8rem;
 	--footer-height: 16rem;
 
-	--list-grid: 8rem auto 6.4rem 6.4rem 6.4rem 2.4rem;
+	--list-grid: 8rem auto 6.4rem 6.4rem 7.2rem 2.4rem;
+
+	@include respondH(1280) {
+		--app-vertical-padding: 4rem;
+		--app-horizontal-padding: 4rem;
+	}
 
 	@include respondH(680) {
 		--list-grid: 8rem auto 2.4rem;
+	}
+
+	@include respondH(550) {
+		--app-vertical-padding: 4rem;
+		--app-horizontal-padding: 1.6rem;
 	}
 }
 

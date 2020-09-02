@@ -28,7 +28,7 @@
 .main {
 	width: 100%;
 	max-width: 144rem;
-	padding: 8rem;
+	padding: var(--app-vertical-padding) var(--app-horizontal-padding);
 	border-right: var(--border-primary);
 	flex: 1 1 auto;
 
@@ -36,15 +36,7 @@
 		max-width: calc(100% - var(--app-drawer-width));
 	}
 
-	@include respondH(1280) {
-		padding: 4rem;
-	}
-
 	@include respondH(1024) {
 		max-width: 100%;
-	}
-
-	@include respondH(550) {
-		padding: 4rem 1.6rem;
 	}
 }
