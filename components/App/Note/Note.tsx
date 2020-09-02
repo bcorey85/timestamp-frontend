@@ -5,14 +5,16 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { DashboardSection } from '../shared/DashboardSection';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
+
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
-import styles from './Note.module.scss';
 
 const Note = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -21,23 +23,23 @@ const Note = (): JSX.Element => {
 
 	return (
 		<div>
-			<div className={styles.header}>
-				<DashboardHeader
+			<AppPageHeader>
+				<AppPageTitle
 					heading='All Notes'
 					subheading='Note'
 					subheadingType={IconType.note}
 				/>
 
-				<div className={styles.btn_container}>
+				<AppPageHeaderControls>
 					<Button
 						btnStyle='secondary'
 						onClick={() => router.pushUnique('create?action=note')}>
 						<TypeIcon type={IconType.note} />
 						New Note
 					</Button>
-				</div>
-			</div>
-			{/* <DashboardSection>
+				</AppPageHeaderControls>
+			</AppPageHeader>
+			{/* <AppPageSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -56,11 +58,11 @@ const Note = (): JSX.Element => {
 						linkText='View Notes'
 					/>
 				</StatsBar>
-			</DashboardSection> */}
+			</AppPageSection> */}
 
-			<DashboardSection title='Notes'>
+			<AppPageSection title='Notes'>
 				<ListSection type='note' items={appData.notes} />
-			</DashboardSection>
+			</AppPageSection>
 		</div>
 	);
 };

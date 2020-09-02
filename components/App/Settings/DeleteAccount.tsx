@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { Button } from '../../shared/Button';
@@ -39,7 +38,6 @@ const DeleteAccount = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<h2 className='section_heading'>Delete Account</h2>
 			<p>
 				Warning this action is permanent. All account data will be lost
 			</p>

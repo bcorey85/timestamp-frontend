@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { CreateNav } from './shared/CreateNav';
 import { ProjectForm } from './ProjectForm';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { TaskForm } from './TaskForm';
 import { NoteForm } from './NoteForm';
 import { IconType } from '../shared/TypeIcon';
@@ -46,12 +47,14 @@ const Create = () => {
 	};
 
 	return (
-		<div className={styles.container}>
-			<DashboardHeader
-				heading={`New ${currentPage}`}
-				subheading='Create'
-				subheadingType={IconType.generic}
-			/>
+		<React.Fragment>
+			<AppPageHeader>
+				<AppPageTitle
+					heading={`New ${currentPage}`}
+					subheading='Create'
+					subheadingType={IconType.generic}
+				/>
+			</AppPageHeader>
 			<div className={styles.form}>
 				<CreateNav
 					currentPage={currentPage}
@@ -69,7 +72,7 @@ const Create = () => {
 					) : null}
 				</div>
 			</div>
-		</div>
+		</React.Fragment>
 	);
 };
 

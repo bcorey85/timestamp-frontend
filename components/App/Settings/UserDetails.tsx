@@ -24,7 +24,6 @@ const UserDetails = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<h2 className='section_heading'>User Details</h2>
 			<div>
 				Email: {email}({' '}
 				<Button btnStyle='link_primary' onClick={handleUpdateEmail}>

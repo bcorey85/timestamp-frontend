@@ -5,8 +5,10 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { DashboardSection } from '../shared/DashboardSection';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
@@ -15,8 +17,6 @@ import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { getUserApiConfig } from '../../../api/user';
 import { selectAppData, setAppData } from '../../../redux/appData';
-
-import styles from './Dashboard.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { ItemService } from '../../../utils/ItemService';
 
@@ -36,6 +36,7 @@ const Dashboard = (): JSX.Element => {
 		...appData.projects,
 		...appData.tasks
 	].filter(item => item.pinned === true);
+
 	const recentProjects = appData.recentItems.filter(
 		item => new ItemService(item).type === 'project'
 	);
@@ -71,14 +72,13 @@ const Dashboard = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<div className={styles.header}>
-				<DashboardHeader
+			<AppPageHeader>
+				<AppPageTitle
 					heading='Welcome to Timestamp'
 					subheading='Dashboard'
 					subheadingType={IconType.generic}
 				/>
-
-				<div className={styles.btn_container}>
+				<AppPageHeaderControls>
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
@@ -86,9 +86,9 @@ const Dashboard = (): JSX.Element => {
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>
-				</div>
-			</div>
-			<DashboardSection>
+				</AppPageHeaderControls>
+			</AppPageHeader>
+			<AppPageSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -123,19 +123,19 @@ const Dashboard = (): JSX.Element => {
 						linkText='View Notes'
 					/>
 				</StatsBar>
-			</DashboardSection>
-			<DashboardSection title='Pinned Favorites'>
+			</AppPageSection>
+			<AppPageSection title='Pinned Favorites'>
 				<PinnedFavorites items={pinnedItems} />
-			</DashboardSection>
-			<DashboardSection title='Recent Notes'>
+			</AppPageSection>
+			<AppPageSection title='Recent Notes'>
 				<ListSection type='note' items={recentNotes} />
-			</DashboardSection>
-			<DashboardSection title='Recent Tasks'>
+			</AppPageSection>
+			<AppPageSection title='Recent Tasks'>
 				<ListSection type='task' items={recentTasks} />
-			</DashboardSection>
-			<DashboardSection title='Recent Projects'>
+			</AppPageSection>
+			<AppPageSection title='Recent Projects'>
 				<ListSection type='project' items={recentProjects} />
-			</DashboardSection>
+			</AppPageSection>
 		</React.Fragment>
 	);
 };

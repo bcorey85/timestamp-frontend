@@ -19,8 +19,8 @@ const taskBtns = [
 const projectBtns = [
 	{ btnType: 'show_mobile', filter: 'date', title: 'Date' },
 	{ btnType: 'show_mobile', filter: 'title', title: 'Title' },
-	{ btnType: 'hide_mobile', filter: 'notes', title: 'Notes' },
 	{ btnType: 'hide_mobile', filter: 'tasks', title: 'Tasks' },
+	{ btnType: 'hide_mobile', filter: 'notes', title: 'Notes' },
 	{ btnType: 'hide_mobile', filter: 'hours', title: 'Hours' },
 	{ btnType: 'show_mobile', filter: 'pinned', title: 'Pin' }
 ];

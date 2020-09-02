@@ -10,7 +10,6 @@ const Interface = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<h2 className='section_heading'>Interface</h2>
 			<div className={styles.dark_mode_toggle}>
 				<button
 					onClick={e => handleDarkModeToggle('light')}

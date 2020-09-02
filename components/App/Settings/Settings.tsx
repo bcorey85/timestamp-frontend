@@ -1,30 +1,34 @@
 import React from 'react';
 
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { IconType } from '../../App/shared/TypeIcon';
 import { UserDetails } from './UserDetails';
 import { Interface } from './Interface';
 import { DeleteAccount } from './DeleteAccount';
 
 import styles from './Settings.module.scss';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
 
 const Settings = (): JSX.Element => {
 	return (
 		<div>
-			<DashboardHeader
-				heading='Settings'
-				subheading='Account'
-				subheadingType={IconType.generic}
-			/>
-			<section className={styles.section}>
+			<AppPageHeader>
+				<AppPageTitle
+					heading='Settings'
+					subheading='Account'
+					subheadingType={IconType.generic}
+				/>
+			</AppPageHeader>
+			<AppPageSection title='User Details'>
 				<UserDetails />
-			</section>
-			<section className={styles.section}>
+			</AppPageSection>
+			<AppPageSection title='Interface'>
 				<Interface />
-			</section>
-			<section className={styles.section}>
+			</AppPageSection>
+			<AppPageSection title='Delete Account'>
 				<DeleteAccount />
-			</section>
+			</AppPageSection>
 		</div>
 	);
 };

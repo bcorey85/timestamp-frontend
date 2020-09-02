@@ -1,6 +1,7 @@
 @import '../../../../styles/mixins.scss';
 
 .card {
+	position: relative;
 	padding: 1.6rem;
 	height: 26.4rem;
 	@include panel;
@@ -16,6 +17,7 @@
 }
 
 .title_container {
+	max-width: 19.2rem;
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
@@ -55,6 +57,7 @@
 }
 
 .pinned {
+	position: absolute;
 	right: 1.6rem;
 	top: 1.6rem;
 	margin-left: auto;

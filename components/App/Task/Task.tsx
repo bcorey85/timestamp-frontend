@@ -7,13 +7,14 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { DashboardSection } from '../shared/DashboardSection';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
-import styles from './Task.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
 
 const Task = (): JSX.Element => {
@@ -23,23 +24,23 @@ const Task = (): JSX.Element => {
 
 	return (
 		<div>
-			<div className={styles.header}>
-				<DashboardHeader
+			<AppPageHeader>
+				<AppPageTitle
 					heading='All Tasks'
 					subheading='Task'
 					subheadingType={IconType.task}
 				/>
 
-				<div className={styles.btn_container}>
+				<AppPageHeaderControls>
 					<Button
 						btnStyle='secondary'
 						onClick={() => router.pushUnique('create?action=task')}>
 						<TypeIcon type={IconType.task} />
 						New Task
 					</Button>
-				</div>
-			</div>
-			{/* <DashboardSection>
+				</AppPageHeaderControls>
+			</AppPageHeader>
+			{/* <AppPageSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -58,11 +59,11 @@ const Task = (): JSX.Element => {
 						linkText='View Notes'
 					/>
 				</StatsBar>
-			</DashboardSection>
+			</AppPageSection>
 			*/}
-			<DashboardSection title='Tasks'>
+			<AppPageSection title='Tasks'>
 				<ListSection type='task' items={appData.tasks} />
-			</DashboardSection>
+			</AppPageSection>
 		</div>
 	);
 };

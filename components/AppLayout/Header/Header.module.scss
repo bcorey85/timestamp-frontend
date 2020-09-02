@@ -10,7 +10,7 @@
 	border-bottom: var(--border-primary);
 	box-shadow: var(--box-shadow);
 	background-color: var(--background-primary);
-	z-index: 2;
+	z-index: 150;
 
 	@include respondH(550) {
 		z-index: 1;

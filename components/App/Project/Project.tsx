@@ -7,13 +7,14 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { DashboardSection } from '../shared/DashboardSection';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
-import styles from './Project.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
 
 const Project = (): JSX.Element => {
@@ -23,14 +24,14 @@ const Project = (): JSX.Element => {
 
 	return (
 		<div>
-			<div className={styles.header}>
-				<DashboardHeader
+			<AppPageHeader>
+				<AppPageTitle
 					heading='All Projects'
 					subheading='Project'
 					subheadingType={IconType.project}
 				/>
 
-				<div className={styles.btn_container}>
+				<AppPageHeaderControls>
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
@@ -38,9 +39,9 @@ const Project = (): JSX.Element => {
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>
-				</div>
-			</div>
-			{/* <DashboardSection>
+				</AppPageHeaderControls>
+			</AppPageHeader>
+			{/* <AppPageSection>
 				<StatsBar>
 					<StatCard
 						type={IconType.time}
@@ -75,10 +76,10 @@ const Project = (): JSX.Element => {
 						linkText='View Notes'
 					/>
 				</StatsBar>
-			</DashboardSection> */}
-			<DashboardSection title='Projects'>
+			</AppPageSection> */}
+			<AppPageSection title='Projects'>
 				<ListSection type='project' items={appData.projects} />
-			</DashboardSection>
+			</AppPageSection>
 		</div>
 	);
 };

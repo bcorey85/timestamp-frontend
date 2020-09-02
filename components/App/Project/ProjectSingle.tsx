@@ -7,14 +7,16 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { DashboardSection } from '../shared/DashboardSection';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
-import styles from './Project.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 
 const ProjectSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -27,24 +29,24 @@ const ProjectSingle = (): JSX.Element => {
 
 	return (
 		<div>
-			<div className={styles.header}>
-				<DashboardHeader
+			<AppPageHeader>
+				<AppPageTitle
 					heading={currentProject.title}
 					subheading='Project'
-					subheadingType={IconType.project}
-				/>
-				<div className={styles.meta}>
-					<p>{currentProject.description}</p>
-					<p>Hours: {currentProject.hours}</p>
-					<p>
-						Started On:{' '}
-						{new Date(
-							Date.parse(currentProject.created_at)
-						).toLocaleDateString()}
-					</p>
-				</div>
+					subheadingType={IconType.project}>
+					<AppPageMeta>
+						<p>{currentProject.description}</p>
+						<p>Hours: {currentProject.hours}</p>
+						<p>
+							Started On:{' '}
+							{new Date(
+								Date.parse(currentProject.created_at)
+							).toLocaleDateString()}
+						</p>
+					</AppPageMeta>
+				</AppPageTitle>
 
-				<div className={styles.btn_container}>
+				<AppPageHeaderControls>
 					<Button
 						btnStyle='link_gray'
 						onClick={() =>
@@ -61,17 +63,25 @@ const ProjectSingle = (): JSX.Element => {
 						<TypeIcon type={IconType.task} />
 						Add Task
 					</Button>
-				</div>
-			</div>
+				</AppPageHeaderControls>
+			</AppPageHeader>
 
-			<DashboardSection title='Tasks'>
+			<AppPageSection title='Tasks'>
 				<ListSection
-					type='project'
+					type='task'
 					items={appData.tasks.filter(
 						task => task.project_id === currentProject.project_id
 					)}
 				/>
-			</DashboardSection>
+			</AppPageSection>
+			<AppPageSection title='Recent Notes'>
+				<ListSection
+					type='note'
+					items={appData.notes.filter(
+						note => note.project_id === currentProject.project_id
+					)}
+				/>
+			</AppPageSection>
 		</div>
 	);
 };

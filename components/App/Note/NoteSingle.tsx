@@ -5,13 +5,15 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { DashboardSection } from '../shared/DashboardSection';
-import { DashboardHeader } from '../shared/DashboardHeader';
+import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
+import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
+import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
-import styles from './Note.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
 
 const NoteSingle = (): JSX.Element => {
@@ -25,39 +27,40 @@ const NoteSingle = (): JSX.Element => {
 
 	return (
 		<div>
-			<div className={styles.header}>
-				<DashboardHeader
+			<AppPageHeader>
+				<AppPageTitle
 					heading={currentNote.title}
 					subheading='Note'
-					subheadingType={IconType.note}
-				/>
-				<div className={styles.meta}>
-					<p>{currentNote.description}</p>
-					<p>Hours: {currentNote.hours}</p>
-					<p>
-						Started On:
-						{new Date(
-							Date.parse(currentNote.created_at)
-						).toLocaleDateString()}
-					</p>
-				</div>
-				<div className={styles.btn_container}>
+					subheadingType={IconType.note}>
+					<AppPageMeta>
+						<p>{currentNote.description}</p>
+						<p>Hours: {currentNote.hours}</p>
+						<p>
+							Started On:
+							{new Date(
+								Date.parse(currentNote.created_at)
+							).toLocaleDateString()}
+						</p>
+					</AppPageMeta>
+				</AppPageTitle>
+
+				<AppPageHeaderControls>
 					<Button
 						btnStyle='secondary'
 						onClick={() => router.pushUnique('create?action=note')}>
 						<TypeIcon type={IconType.note} />
 						Edit Note
 					</Button>
-				</div>
-			</div>
+				</AppPageHeaderControls>
+			</AppPageHeader>
 
-			{/* <DashboardSection title='Tasks'>
+			{/* <AppPageSection title='Tasks'>
 				<ListSection
 					items={appData.notes.filter(
 						note => note.task_id === currentNote.task_id
 					)}
 				/>
-			</DashboardSection> */}
+			</AppPageSection> */}
 		</div>
 	);
 };
