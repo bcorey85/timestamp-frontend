@@ -1,14 +1,16 @@
 @import '../../../../styles/mixins.scss';
 
 .container {
-	@include panel;
-	margin-bottom: .4rem;
 	display: grid;
 	grid-template-columns: 10.4rem auto 12rem 6.4rem;
 	grid-gap: 1.6rem;
 	padding: 1.6rem;
 	line-height: 1.6rem;
 	cursor: pointer;
+
+	&:not(:last-of-type) {
+		border-bottom: var(--border-primary);
+	}
 }
 
 .title {

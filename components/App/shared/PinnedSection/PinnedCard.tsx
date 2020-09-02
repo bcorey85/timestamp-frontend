@@ -49,47 +49,47 @@ interface CardStatsProps {
 const CardStats = ({ type, tags, notes, tasks, hours }: CardStatsProps) => {
 	if (type === 'project') {
 		return (
-			<React.Fragment>
-				<div className={styles.stats}>
+			<div className={styles.stats}>
+				<div className={styles.stat_row}>
 					<div>Tasks:</div>
 					<div>{tasks}</div>
 				</div>
-				<div className={styles.stats}>
+				<div className={styles.stat_row}>
 					<div>Notes:</div>
 					<div>{notes}</div>
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 
 	if (type === 'task') {
 		return (
-			<React.Fragment>
-				<div className={styles.stats}>
+			<div className={styles.stats}>
+				<div className={styles.stat_row}>
 					<div>Notes:</div>
 					<div>{notes}</div>
 				</div>
-				<div className={styles.stats}>
+				<div className={styles.stat_row}>
 					<div>Tags:</div>
 					<div>
 						{tags.length > 0 ? tags.substring(0, 20) : 'None'}
 					</div>
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 
 	return (
-		<React.Fragment>
-			<div className={styles.stats}>
+		<div className={styles.stats}>
+			<div className={styles.stat_row}>
 				<div>Hours:</div>
 				<div>{hours}</div>
 			</div>
-			<div className={styles.stats}>
+			<div className={styles.stat_row}>
 				<div>Tags:</div>
 				<div>{tags.length > 0 ? tags.substring(0, 20) : 'None'}</div>
 			</div>
-		</React.Fragment>
+		</div>
 	);
 };
 

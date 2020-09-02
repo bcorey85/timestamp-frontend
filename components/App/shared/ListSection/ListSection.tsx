@@ -30,38 +30,40 @@ const ListSection = ({ items }: Props): JSX.Element => {
 	}
 
 	return (
-		<div className={styles.container}>
+		<React.Fragment>
 			<ListFilter
 				sortFunction={handleSort}
 				currentFilter={currentFilter}
 				sortDesc={sortDesc}
 			/>
-			{filteredItems.map(item => {
-				const {
-					href,
-					as,
-					title,
-					createdAt,
-					pinned,
-					date,
-					hours,
-					type
-				} = item;
+			<div className={styles.container}>
+				{filteredItems.map(item => {
+					const {
+						href,
+						as,
+						title,
+						createdAt,
+						pinned,
+						date,
+						hours,
+						type
+					} = item;
 
-				return (
-					<ListItem
-						href={`/app/[userId]/${href}`}
-						as={`/app/${userId}/${as}`}
-						type={type}
-						title={title}
-						date={date}
-						hours={hours}
-						key={createdAt.toString()}
-						pinned={pinned}
-					/>
-				);
-			})}
-		</div>
+					return (
+						<ListItem
+							href={`/app/[userId]/${href}`}
+							as={`/app/${userId}/${as}`}
+							type={type}
+							title={title}
+							date={date}
+							hours={hours}
+							key={createdAt.toString()}
+							pinned={pinned}
+						/>
+					);
+				})}
+			</div>
+		</React.Fragment>
 	);
 };
 

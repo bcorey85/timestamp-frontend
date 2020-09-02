@@ -1,4 +1,7 @@
+@import '../../../../styles/mixins.scss';
+
 .container {
+	@include panel;
 	padding: .4rem;
 	margin: -.4rem;
 	margin-top: 0;
