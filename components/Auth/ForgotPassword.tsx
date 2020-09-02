@@ -62,7 +62,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 		return (
 			<React.Fragment>
 				<AuthHeader>
-					<h1>Thank You</h1>
+					<h1 className='serif'>Thank You</h1>
 					<h5>
 						Please check your email to complete your password reset
 						request

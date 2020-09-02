@@ -17,8 +17,6 @@ interface PinnedItemsProps {
 }
 
 const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
-	console.log(items);
-
 	return (
 		<React.Fragment>
 			{items.map(item => {

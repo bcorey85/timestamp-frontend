@@ -14,10 +14,6 @@ describe('PinnedCard', () => {
 				type={IconType.project}
 				hours='50'
 				date='9/5/2019'
-				label1='test'
-				label2='test'
-				stat1='1'
-				stat2='2'
 				description='null'
 			/>
 		);

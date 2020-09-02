@@ -128,13 +128,13 @@ const Dashboard = (): JSX.Element => {
 				<PinnedFavorites items={pinnedItems} />
 			</DashboardSection>
 			<DashboardSection title='Recent Notes'>
-				<ListSection items={recentNotes} />
+				<ListSection type='note' items={recentNotes} />
 			</DashboardSection>
 			<DashboardSection title='Recent Tasks'>
-				<ListSection items={recentTasks} />
+				<ListSection type='task' items={recentTasks} />
 			</DashboardSection>
 			<DashboardSection title='Recent Projects'>
-				<ListSection items={recentProjects} />
+				<ListSection type='project' items={recentProjects} />
 			</DashboardSection>
 		</React.Fragment>
 	);

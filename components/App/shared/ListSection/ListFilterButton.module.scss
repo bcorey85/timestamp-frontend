@@ -1,0 +1,20 @@
+.btn_container {
+	text-align: left;
+}
+@import '../../../../styles/mediaQueries.scss';
+
+.btn_container {
+	text-align: left;
+}
+
+.btn_container_show_mobile {
+	@extend .btn_container;
+}
+
+.btn_container_hide_mobile {
+	@extend .btn_container;
+
+	@include respondH(680) {
+		display: none;
+	}
+}

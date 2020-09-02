@@ -1,89 +1,72 @@
 import React from 'react';
-import { BiChevronUp, BiChevronDown } from 'react-icons/bi';
-
-import { Button } from '../../../shared/Button';
 
 import styles from './ListFilter.module.scss';
+import { noteBtns, taskBtns, projectBtns } from './ListConfig';
+import { ListFilterButton } from './ListFilterButton';
+import { ItemType } from '../../../../utils/ItemService';
 
 interface Props {
-	sortFunction: (param: string) => void;
+	sortFunction: (filter: string) => void;
 	currentFilter: string;
 	sortDesc: boolean;
+	type: keyof ItemType;
 }
-
-const ListIcon = ({ sortDesc }: { sortDesc: boolean }) => {
-	if (sortDesc) {
-		return (
-			<span className={styles.direction_icon}>
-				<BiChevronDown />
-			</span>
-		);
-	}
-	return (
-		<span className={styles.direction_icon}>
-			<BiChevronUp />
-		</span>
-	);
-};
 
 const ListFilter = ({
 	sortFunction,
 	currentFilter,
-	sortDesc
+	sortDesc,
+	type
 }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
-			<Button
-				btnStyle='link_gray'
-				onClick={() => {
-					sortFunction('date');
-				}}>
-				<span className={styles.heading}>
-					Date
-					{currentFilter === 'date' ? (
-						<ListIcon sortDesc={sortDesc} />
-					) : null}
-				</span>
-			</Button>
+			{type === 'note' ? (
+				noteBtns.map(note => {
+					return (
+						<ListFilterButton
+							type={note.btnType}
+							triggerFilter={note.filter}
+							title={note.title}
+							currentFilter={currentFilter}
+							sortDesc={sortDesc}
+							sortFunction={sortFunction}
+							key={note.filter}
+						/>
+					);
+				})
+			) : null}
 
-			<Button
-				btnStyle='link_gray'
-				onClick={() => {
-					sortFunction('title');
-				}}>
-				<span className={styles.heading}>
-					Title
-					{currentFilter === 'title' ? (
-						<ListIcon sortDesc={sortDesc} />
-					) : null}
-				</span>
-			</Button>
+			{type === 'task' ? (
+				taskBtns.map(task => {
+					return (
+						<ListFilterButton
+							type={task.btnType}
+							triggerFilter={task.filter}
+							title={task.title}
+							currentFilter={currentFilter}
+							sortDesc={sortDesc}
+							sortFunction={sortFunction}
+							key={task.filter}
+						/>
+					);
+				})
+			) : null}
 
-			<Button
-				btnStyle='link_gray'
-				onClick={() => {
-					sortFunction('hours');
-				}}>
-				<span className={styles.heading}>
-					Hours
-					{currentFilter === 'hours' ? (
-						<ListIcon sortDesc={sortDesc} />
-					) : null}
-				</span>
-			</Button>
-
-			<Button
-				btnStyle='link_gray'
-				onClick={() => {
-					sortFunction('pinned');
-				}}>
-				<span className={styles.heading}>
-					Pin
-					{currentFilter === 'pinned' ? (
-						<ListIcon sortDesc={sortDesc} />
-					) : null}
-				</span>
-			</Button>
+			{type === 'project' ? (
+				projectBtns.map(project => {
+					return (
+						<ListFilterButton
+							type={project.btnType}
+							triggerFilter={project.filter}
+							title={project.title}
+							currentFilter={currentFilter}
+							sortDesc={sortDesc}
+							sortFunction={sortFunction}
+							key={project.filter}
+						/>
+					);
+				})
+			) : null}
 		</div>
 	);
 };

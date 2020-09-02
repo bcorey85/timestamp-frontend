@@ -61,7 +61,7 @@ const Task = (): JSX.Element => {
 			</DashboardSection>
 			*/}
 			<DashboardSection title='Tasks'>
-				<ListSection items={appData.tasks} />
+				<ListSection type='task' items={appData.tasks} />
 			</DashboardSection>
 		</div>
 	);

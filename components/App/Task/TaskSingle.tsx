@@ -63,6 +63,7 @@ const TaskSingle = (): JSX.Element => {
 
 			<DashboardSection title='Notes'>
 				<ListSection
+					type='task'
 					items={appData.notes.filter(
 						note => note.task_id === currentTask.task_id
 					)}

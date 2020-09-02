@@ -1,22 +1,11 @@
 .container {
 	position: relative;
 	display: grid;
-	grid-template-columns: 10.4rem auto 12rem 6.4rem;
+	grid-template-columns: var(--list-grid);
 	grid-gap: 1.6rem;
+	padding: 0 1.6rem;
 
 	& button {
 		padding-bottom: .8rem;
 	}
-}
-
-.heading {
-	position: relative;
-}
-
-.direction_icon {
-	display: inline-block;
-	position: absolute;
-	right: -1.6rem;
-	top: .2rem;
-	padding-left: .4rem;
 }

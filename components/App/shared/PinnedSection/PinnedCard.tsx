@@ -33,7 +33,7 @@ const CardDate = ({
 	return (
 		<React.Fragment>
 			<div>{date}</div>
-			<div>{time ? time : hours}</div>
+			<div>{time ? time : `${hours} hr`}</div>
 		</React.Fragment>
 	);
 };

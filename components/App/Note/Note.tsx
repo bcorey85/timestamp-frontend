@@ -59,7 +59,7 @@ const Note = (): JSX.Element => {
 			</DashboardSection> */}
 
 			<DashboardSection title='Notes'>
-				<ListSection items={appData.notes} />
+				<ListSection type='note' items={appData.notes} />
 			</DashboardSection>
 		</div>
 	);

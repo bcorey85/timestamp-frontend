@@ -66,6 +66,7 @@ const ProjectSingle = (): JSX.Element => {
 
 			<DashboardSection title='Tasks'>
 				<ListSection
+					type='project'
 					items={appData.tasks.filter(
 						task => task.project_id === currentProject.project_id
 					)}

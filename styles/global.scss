@@ -1,3 +1,5 @@
+@import './mediaQueries.scss';
+
 :root {
 	--font-sans: 'Inter', sans-serif;
 	--font-serif: 'Crimson Pro', serif;
@@ -50,6 +52,12 @@
 	--app-drawer-width: 24rem;
 	--app-header-height: 6.4rem;
 	--footer-height: 16rem;
+
+	--list-grid: 8rem auto 6.4rem 6.4rem 6.4rem 2.4rem;
+
+	@include respondH(680) {
+		--list-grid: 8rem auto 2.4rem;
+	}
 }
 
 body.dark {

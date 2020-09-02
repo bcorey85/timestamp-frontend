@@ -1,8 +1,9 @@
 @import '../../../../styles/mixins.scss';
+@import '../../../../styles/mediaQueries.scss';
 
 .container {
 	display: grid;
-	grid-template-columns: 10.4rem auto 12rem 6.4rem;
+	grid-template-columns: var(--list-grid);
 	grid-gap: 1.6rem;
 	padding: 1.6rem;
 	line-height: 1.6rem;
@@ -15,18 +16,38 @@
 
 .title {
 	font-weight: 400;
-	color: var(--text400);
+	color: var(--text500);
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
 
-.time {
-	text-align: right;
+.stat {
 	color: var(--text300);
+	font-size: 1.2rem;
+	font-weight: 500;
 }
+
 .date {
-	color: var(--text300);
+	@extend .stat;
+}
+
+.time {
+	@extend .stat;
+	text-align: right;
+
+	@include respondH(680) {
+		display: none;
+	}
+}
+
+.number {
+	@extend .stat;
+	text-align: right;
+
+	@include respondH(680) {
+		display: none;
+	}
 }
 
 .pinned {

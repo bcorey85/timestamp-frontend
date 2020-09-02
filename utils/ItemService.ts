@@ -1,4 +1,3 @@
-import { IconType } from '../components/App/shared/TypeIcon';
 import moment from 'moment';
 
 export interface Item {
@@ -13,8 +12,8 @@ export interface Item {
 	start_time?: Date;
 	end_time?: Date;
 	tags?: string;
-	notes: number;
-	tasks: number;
+	notes?: number;
+	tasks?: number;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -33,6 +32,8 @@ interface Pathname {
 interface Meta {
 	date: string;
 	time?: string;
+	startTime: string;
+	endTime: string;
 	hours: string;
 }
 
@@ -40,6 +41,8 @@ class ItemService {
 	public meta: Meta = {
 		date: null,
 		time: null,
+		startTime: null,
+		endTime: null,
 		hours: null
 	};
 	public pathname: Pathname = { href: null, as: null };
@@ -90,16 +93,20 @@ class ItemService {
 
 			this.meta = {
 				date,
+				startTime,
+				endTime,
 				time: `${startTime} - ${endTime}`,
-				hours: Number(this.item.hours).toFixed(1).toString() + ' hr'
+				hours: Number(this.item.hours).toFixed(1)
 			};
 		} else {
 			const date = moment(this.item.updated_at).format('l');
 
 			this.meta = {
 				date,
+				startTime: null,
+				endTime: null,
 				time: null,
-				hours: Number(this.item.hours).toFixed(1).toString() + ' hr'
+				hours: Number(this.item.hours).toFixed(1).toString()
 			};
 		}
 	};
@@ -108,6 +115,8 @@ class ItemService {
 		return {
 			date: this.meta.date,
 			hours: this.meta.hours,
+			startTime: this.meta.startTime,
+			endTime: this.meta.endTime,
 			title: this.item.title,
 			pinned: this.item.pinned,
 			createdAt: this.item.created_at,

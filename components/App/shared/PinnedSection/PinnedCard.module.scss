@@ -1,7 +1,6 @@
 @import '../../../../styles/mixins.scss';
 
 .card {
-	position: relative;
 	padding: 1.6rem;
 	height: 26.4rem;
 	@include panel;
@@ -11,16 +10,14 @@
 }
 
 .title {
-	line-height: 1.4;
 	font-weight: 600;
 	color: var(--text400);
-	margin-bottom: .8rem;
+	margin-bottom: .4rem;
 }
 
 .title_container {
-	max-width: 19.2rem;
 	display: -webkit-box;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
@@ -36,7 +33,7 @@
 
 .body {
 	color: var(--text400);
-	line-height: 1.6;
+	line-height: 1.7;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -58,7 +55,6 @@
 }
 
 .pinned {
-	position: absolute;
 	right: 1.6rem;
 	top: 1.6rem;
 	margin-left: auto;

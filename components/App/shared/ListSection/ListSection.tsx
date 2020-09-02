@@ -5,16 +5,17 @@ import { ListItem } from './ListItem';
 import { ListFilter } from './ListFilter';
 
 import { selectUser } from '../../../../redux/user';
-import { ItemService } from '../../../../utils/ItemService';
+import { ItemService, ItemType } from '../../../../utils/ItemService';
 import { useListSort } from '../../../../hooks/useListSort';
 
 import styles from './ListSection.module.scss';
 
 interface Props {
 	items: any[];
+	type: keyof ItemType;
 }
 
-const ListSection = ({ items }: Props): JSX.Element => {
+const ListSection = ({ items, type }: Props): JSX.Element => {
 	const formattedItems = items.map(item => new ItemService(item).getItem());
 	const { userId } = useSelector(selectUser);
 	const { handleSort, filteredItems, currentFilter, sortDesc } = useListSort(
@@ -32,6 +33,7 @@ const ListSection = ({ items }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
 			<ListFilter
+				type={type}
 				sortFunction={handleSort}
 				currentFilter={currentFilter}
 				sortDesc={sortDesc}
@@ -46,7 +48,11 @@ const ListSection = ({ items }: Props): JSX.Element => {
 						pinned,
 						date,
 						hours,
-						type
+						startTime,
+						endTime,
+						type,
+						tasks,
+						notes
 					} = item;
 
 					return (
@@ -57,8 +63,12 @@ const ListSection = ({ items }: Props): JSX.Element => {
 							title={title}
 							date={date}
 							hours={hours}
+							startTime={startTime}
+							endTime={endTime}
 							key={createdAt.toString()}
 							pinned={pinned}
+							tasks={tasks}
+							notes={notes}
 						/>
 					);
 				})}

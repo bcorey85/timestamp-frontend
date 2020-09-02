@@ -27,6 +27,16 @@ const useListSort = (items: any[]) => {
 				return -1;
 			}
 
+			if (filter === 'startTime' || filter === 'endTime') {
+				const time1 = a[filter];
+				const time2 = b[filter];
+
+				return (
+					Date.parse('01/01/1970 ' + time1).valueOf() -
+					Date.parse('01/01/1970 ' + time2).valueOf()
+				);
+			}
+
 			if (filter === 'pinned') {
 				return item1 - item2;
 			}
@@ -41,9 +51,9 @@ const useListSort = (items: any[]) => {
 		return sorted;
 	};
 
-	const handleSort = (param: string) => {
-		if (param !== currentFilter) {
-			setCurrentFilter(param);
+	const handleSort = (filter: string) => {
+		if (filter !== currentFilter) {
+			setCurrentFilter(filter);
 			setSortDesc(false);
 		} else {
 			setSortDesc(!sortDesc);

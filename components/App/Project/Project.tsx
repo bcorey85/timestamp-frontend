@@ -77,7 +77,7 @@ const Project = (): JSX.Element => {
 				</StatsBar>
 			</DashboardSection> */}
 			<DashboardSection title='Projects'>
-				<ListSection items={appData.projects} />
+				<ListSection type='project' items={appData.projects} />
 			</DashboardSection>
 		</div>
 	);
