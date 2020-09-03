@@ -12,13 +12,16 @@ import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { CreateModal } from '../Create/CreateModal';
 
 import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { useToggle } from '../../../hooks/useToggle';
 
 const Task = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 
@@ -32,9 +35,7 @@ const Task = (): JSX.Element => {
 				/>
 
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='secondary'
-						onClick={() => router.pushUnique('create?action=task')}>
+					<Button btnStyle='secondary' onClick={toggleCreateModal}>
 						<TypeIcon type={IconType.task} />
 						New Task
 					</Button>
@@ -64,6 +65,12 @@ const Task = (): JSX.Element => {
 			<AppPageSection title='Tasks'>
 				<ListSection type='task' items={appData.tasks} />
 			</AppPageSection>
+
+			<CreateModal
+				toggleModal={toggleCreateModal}
+				isOpen={createModalOpen}
+				type='task'
+			/>
 		</div>
 	);
 };

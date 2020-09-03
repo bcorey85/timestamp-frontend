@@ -13,15 +13,18 @@ import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { CreateModal } from '../Create/CreateModal';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import styles from './Task.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { useToggle } from '../../../hooks/useToggle';
 
 const TaskSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
+	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
 	const { router } = useRouterService();
 
 	const currentTask = appData.tasks.filter(task => {
@@ -53,12 +56,7 @@ const TaskSingle = (): JSX.Element => {
 						onClick={() => router.pushUnique('create?action=task')}>
 						Edit
 					</Button>
-					<Button
-						btnStyle='secondary'
-						onClick={() =>
-							router.pushUnique(
-								`create?action=note&projectId=${currentTask.project_id}&taskId=${currentTask.task_id}`
-							)}>
+					<Button btnStyle='secondary' onClick={toggleCreateModal}>
 						<TypeIcon type={IconType.note} />
 						Add Note
 					</Button>
@@ -73,6 +71,14 @@ const TaskSingle = (): JSX.Element => {
 					)}
 				/>
 			</AppPageSection>
+
+			<CreateModal
+				toggleModal={toggleCreateModal}
+				isOpen={createModalOpen}
+				type='note'
+				initialProjectId={currentTask.project_id}
+				initialTaskId={currentTask.task_id}
+			/>
 		</div>
 	);
 };

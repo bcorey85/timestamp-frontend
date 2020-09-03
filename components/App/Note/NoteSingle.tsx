@@ -11,13 +11,16 @@ import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { CreateModal } from '../Create/CreateModal';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { useToggle } from '../../../hooks/useToggle';
 
 const NoteSingle = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 
@@ -45,9 +48,7 @@ const NoteSingle = (): JSX.Element => {
 				</AppPageTitle>
 
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='secondary'
-						onClick={() => router.pushUnique('create?action=note')}>
+					<Button btnStyle='secondary' onClick={toggleCreateModal}>
 						<TypeIcon type={IconType.note} />
 						Edit Note
 					</Button>
@@ -61,6 +62,14 @@ const NoteSingle = (): JSX.Element => {
 					)}
 				/>
 			</AppPageSection> */}
+
+			<CreateModal
+				toggleModal={toggleCreateModal}
+				isOpen={createModalOpen}
+				type='note'
+				initialProjectId={currentNote.project_id}
+				initialTaskId={currentNote.task_id}
+			/>
 		</div>
 	);
 };

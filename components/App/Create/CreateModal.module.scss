@@ -1,5 +1,30 @@
-@import '../../../styles/mediaQueries.scss';
 @import '../../../styles/mixins.scss';
+@import '../../../styles/mediaQueries.scss';
+
+.container {
+}
+
+.form {
+	max-width: 48rem;
+	margin: 0 auto;
+	@include panel;
+
+	@include respondH(400) {
+		margin-left: -1.6rem;
+		margin-right: -1.6rem;
+	}
+}
+
+.form_body {
+	border-top: none;
+	padding: 3.6rem 2.4rem;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+
+	@include respondH(550) {
+		padding: 2.4rem 1.6rem;
+	}
+}
 
 .modal {
 	display: flex;
@@ -23,32 +48,10 @@
 		width: 100%;
 		max-width: 52rem;
 		position: relative;
-		@include panel;
-		padding: 3.6rem 4rem;
+		z-index: 300;
 
 		@include respondH(550) {
-			max-width: 32rem;
-			padding: 2.4rem;
-		}
-	}
-
-	&_close {
-		position: absolute;
-		top: 2.4rem;
-		right: 2.4rem;
-
-		& div {
-			display: flex;
-			justify-content: flex-end;
-			align-items: flex-start;
-			cursor: pointer;
-			height: 4.8rem;
-			width: 4.8rem;
-
-			& svg {
-				font-size: 2.4rem;
-				color: var(--gray300);
-			}
+			padding: 1.6rem;
 		}
 	}
 }

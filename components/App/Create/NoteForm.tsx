@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 
 import { Input } from '../../shared/Input';
 import { DateTimeInput } from '../../shared/DateTimeInput';
@@ -19,15 +19,23 @@ import { useRouterService } from '../../../hooks/useRouterService';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
+	initialProjectId?: string;
+	initialTaskId?: string;
 }
 
-const NoteForm = ({ handleCancel }: Props): JSX.Element => {
+const NoteForm = ({
+	handleCancel,
+	initialProjectId,
+	initialTaskId
+}: Props): JSX.Element => {
+	console.log(initialProjectId, initialTaskId);
+
 	const { userId, token } = useSelector(selectUser);
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
-	const [ projectId, setProjectId ] = useState('');
-	const [ taskId, setTaskId ] = useState('');
+	const [ projectId, setProjectId ] = useState(initialProjectId || '');
+	const [ taskId, setTaskId ] = useState(initialTaskId || '');
 	const [ startTime, setStartTime ] = useInputState('');
 	const [ endTime, setEndTime ] = useInputState('');
 	const [ startDate, setStartDate ] = useInputState('');
@@ -40,16 +48,6 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	} = useApiRequest();
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
-
-	useEffect(() => {
-		if (router.query && router.query.projectId) {
-			setProjectId(router.query.projectId as string);
-		}
-
-		if (router.query && router.query.taskId) {
-			setTaskId(router.query.taskId as string);
-		}
-	}, []);
 
 	const handleTime = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -67,7 +65,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 		}
 	};
 
-	const handleSubmit = async () => {
+	const handleSubmit = async e => {
+		e.preventDefault();
 		const start = new Date(startDate + ' ' + startTime);
 		const end = new Date(endDate + ' ' + endTime);
 
@@ -86,7 +85,7 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 		const res = await createNoteRequest(config);
 
 		if (res.success) {
-			router.push.dashboard();
+			handleCancel(e);
 		}
 	};
 

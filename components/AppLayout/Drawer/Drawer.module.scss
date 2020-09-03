@@ -41,13 +41,12 @@
 
 .btn_container {
 	margin-bottom: 8rem;
-	font-size: 1.4rem;
 
-	& img {
-		display: block;
-		width: 12rem;
-		margin: 0 auto;
-		margin-bottom: 8rem;
+	& button {
+		font-size: 1.6rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 }
 
@@ -61,25 +60,6 @@
 
 	& ul:first-of-type {
 		margin-bottom: 8rem;
-	}
-}
-
-.create_btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: var(--primary500);
-	color: var(--white);
-	width: 100%;
-	border-radius: var(--border-radius);
-	height: 4.8rem;
-	text-align: center;
-	font-size: 1.6rem;
-	line-height: 4.8rem;
-
-	&:hover {
-		background-color: var(--primary400);
-		color: var(--white);
 	}
 }
 

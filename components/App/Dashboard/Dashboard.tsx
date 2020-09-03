@@ -12,13 +12,15 @@ import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
+import { Modal } from '../../shared/Modal/Modal';
+import { CreateModal } from '../Create/CreateModal';
 
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { getUserApiConfig } from '../../../api/user';
 import { selectAppData, setAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { ItemService } from '../../../utils/ItemService';
+import { useToggle } from '../../../hooks/useToggle';
 
 const Dashboard = (): JSX.Element => {
 	const {
@@ -27,6 +29,7 @@ const Dashboard = (): JSX.Element => {
 		errors: getUserErrors
 	} = useApiRequest();
 	const [ isLoading, setIsLoading ] = useState(true);
+	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const dispatch = useDispatch();
@@ -69,10 +72,7 @@ const Dashboard = (): JSX.Element => {
 					subheadingType={IconType.generic}
 				/>
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='secondary'
-						onClick={() =>
-							router.pushUnique('create?action=project')}>
+					<Button btnStyle='secondary' onClick={toggleCreateModal}>
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>
@@ -129,6 +129,12 @@ const Dashboard = (): JSX.Element => {
 					items={appData.recentItems.projects}
 				/>
 			</AppPageSection>
+
+			<CreateModal
+				toggleModal={toggleCreateModal}
+				isOpen={createModalOpen}
+				type='project'
+			/>
 		</React.Fragment>
 	);
 };

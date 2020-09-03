@@ -21,8 +21,13 @@ import { selectInterface } from '../../../redux/interface';
 import { selectUser } from '../../../redux/user';
 import styles from './Drawer.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { Button } from '../../shared/Button';
 
-const Drawer = (): JSX.Element => {
+interface Props {
+	toggleCreateModal: () => void;
+}
+
+const Drawer = ({ toggleCreateModal }: Props): JSX.Element => {
 	const dispatch = useDispatch();
 	const { router } = useRouterService();
 	const { userId } = useSelector(selectUser);
@@ -37,12 +42,10 @@ const Drawer = (): JSX.Element => {
 	return (
 		<aside className={drawerOpen ? styles.drawer : styles.drawer_closed}>
 			<div className={styles.btn_container}>
-				<Link href='/app/[userId]/create' as={`/app/${userId}/create`}>
-					<a className={styles.create_btn}>
-						<BiPlus className={styles.create_icon} />
-						Create
-					</a>
-				</Link>
+				<Button onClick={toggleCreateModal} btnStyle='primary'>
+					<BiPlus className={styles.create_icon} />
+					Create
+				</Button>
 			</div>
 			<nav className={styles.nav}>
 				<ul className={styles.nav_links}>

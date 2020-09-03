@@ -12,13 +12,16 @@ import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { CreateModal } from '../Create/CreateModal';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { useToggle } from '../../../hooks/useToggle';
 
 const Project = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 
@@ -32,10 +35,7 @@ const Project = (): JSX.Element => {
 				/>
 
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='secondary'
-						onClick={() =>
-							router.pushUnique('create?action=project')}>
+					<Button btnStyle='secondary' onClick={toggleCreateModal}>
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>
@@ -80,6 +80,12 @@ const Project = (): JSX.Element => {
 			<AppPageSection title='Projects'>
 				<ListSection type='project' items={appData.projects} />
 			</AppPageSection>
+
+			<CreateModal
+				toggleModal={toggleCreateModal}
+				isOpen={createModalOpen}
+				type='project'
+			/>
 		</div>
 	);
 };

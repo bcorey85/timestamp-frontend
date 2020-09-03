@@ -28,7 +28,8 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	} = useApiRequest();
 	const { router } = useRouterService();
 
-	const handleSubmit = async () => {
+	const handleSubmit = async e => {
+		e.preventDefault();
 		const payload: ProjectPayload = { title, description, pinned };
 
 		const config = createProjectApiConfig({ payload, userId, token });
@@ -37,7 +38,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 		// handle errors
 
 		if (res.success) {
-			router.push.dashboard();
+			handleCancel(e);
 		}
 	};
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { Header } from './Header/Header';
@@ -7,11 +7,14 @@ import { Drawer } from './Drawer/Drawer';
 import { Footer } from '../Layout/Footer/Footer';
 import { Breadcrumb } from './Breadcrumb';
 import { IconType, TypeIcon } from '../App/shared/TypeIcon';
-
-import styles from './AppLayout.module.scss';
 import { MobileCreateButton } from './MobileCreateButton';
+import { CreateModal } from '../App/Create/CreateModal';
+
 import { selectUser } from '../../redux/user';
-import { selectInterface } from '../../redux/interface';
+import { selectInterface, toggleCreateModal } from '../../redux/interface';
+import styles from './AppLayout.module.scss';
+import { selectCreateModal } from '../../redux/createModal';
+import { useCreateModal } from '../../hooks/useCreateModal';
 
 interface Props {
 	children?: any;
@@ -19,6 +22,13 @@ interface Props {
 
 const AppLayout = ({ children }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+
+	const {
+		createModalOpen,
+		createModalPage,
+		toggleCreateModal
+	} = useCreateModal();
+	const dispatch = useDispatch();
 
 	const [ breadcrumbLinks, setBreadcrumLinks ] = useState([
 		{
@@ -56,9 +66,16 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 		<div className={styles.app_layout}>
 			<Header />
 			<div className={styles.content}>
-				<Drawer />
-				<main className={styles.main}>{children}</main>
-				<MobileCreateButton />
+				<Drawer toggleCreateModal={toggleCreateModal} />
+				<main className={styles.main}>
+					{children}
+					<CreateModal
+						isOpen={createModalOpen}
+						toggleModal={toggleCreateModal}
+						type={createModalPage}
+					/>
+				</main>
+				<MobileCreateButton toggleCreateModal={toggleCreateModal} />
 			</div>
 
 			<Footer />

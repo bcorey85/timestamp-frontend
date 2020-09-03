@@ -6,16 +6,18 @@ import { selectUser } from '../../redux/user';
 import styles from './MobileCreateButton.module.scss';
 import { BiPlus } from 'react-icons/bi';
 
-const MobileCreateButton = () => {
+interface Props {
+	toggleCreateModal: () => void;
+}
+
+const MobileCreateButton = ({ toggleCreateModal }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 
 	return (
 		<div className={styles.container}>
-			<Link href='/app/[userId]/create' as={`/app/${userId}/create`}>
-				<a className={styles.button}>
-					<BiPlus />
-				</a>
-			</Link>
+			<button onClick={toggleCreateModal} className={styles.button}>
+				<BiPlus />
+			</button>
 		</div>
 	);
 };

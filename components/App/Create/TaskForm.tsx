@@ -40,7 +40,8 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 		}
 	}, []);
 
-	const handleSubmit = async () => {
+	const handleSubmit = async e => {
+		e.preventDefault();
 		const payload: TaskPayload = {
 			title,
 			projectId: parseInt(projectId),
@@ -54,7 +55,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 		const res = await createTaskRequest(config);
 
 		if (res.success) {
-			router.push.dashboard();
+			handleCancel(e);
 		}
 	};
 
