@@ -11,7 +11,11 @@ const appDataSlice = createSlice({
 		hours: null,
 		createdAt: null,
 		lastLogin: null,
-		recentItems: []
+		recentItems: {
+			notes: [],
+			tasks: [],
+			projects: []
+		}
 	},
 	reducers: {
 		setAppData: (state, action) => {

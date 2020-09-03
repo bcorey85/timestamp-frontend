@@ -37,16 +37,6 @@ const Dashboard = (): JSX.Element => {
 		...appData.tasks
 	].filter(item => item.pinned === true);
 
-	const recentProjects = appData.recentItems.filter(
-		item => new ItemService(item).type === 'project'
-	);
-	const recentNotes = appData.recentItems.filter(
-		item => new ItemService(item).type === 'note'
-	);
-	const recentTasks = appData.recentItems.filter(
-		item => new ItemService(item).type === 'task'
-	);
-
 	useEffect(() => {
 		const getUserData = async () => {
 			const config = getUserApiConfig({ userId, token });
@@ -128,13 +118,16 @@ const Dashboard = (): JSX.Element => {
 				<PinnedFavorites items={pinnedItems} />
 			</AppPageSection>
 			<AppPageSection title='Recent Notes'>
-				<ListSection type='note' items={recentNotes} />
+				<ListSection type='note' items={appData.recentItems.notes} />
 			</AppPageSection>
 			<AppPageSection title='Recent Tasks'>
-				<ListSection type='task' items={recentTasks} />
+				<ListSection type='task' items={appData.recentItems.tasks} />
 			</AppPageSection>
 			<AppPageSection title='Recent Projects'>
-				<ListSection type='project' items={recentProjects} />
+				<ListSection
+					type='project'
+					items={appData.recentItems.projects}
+				/>
 			</AppPageSection>
 		</React.Fragment>
 	);
