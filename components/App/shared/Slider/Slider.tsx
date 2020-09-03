@@ -62,7 +62,7 @@ interface SliderProps {
 
 const Slider = ({ children, itemPixelWidth }: SliderProps): JSX.Element => {
 	const sliderRef = useRef<HTMLDivElement>(null);
-	const [ currentWidth, setCurrentWidth ] = useState(null);
+	const [ cardAmount, setCardAmount ] = useState(null);
 
 	const {
 		slideLeft,
@@ -70,11 +70,11 @@ const Slider = ({ children, itemPixelWidth }: SliderProps): JSX.Element => {
 		currentOffset,
 		maxRightBound,
 		transformDistance
-	} = usePaginationSlider(currentWidth, itemPixelWidth);
+	} = usePaginationSlider(itemPixelWidth, cardAmount);
 
 	useEffect(
 		() => {
-			setCurrentWidth(sliderRef.current.scrollWidth);
+			setCardAmount(sliderRef.current.children.length);
 		},
 		[ sliderRef.current ]
 	);
