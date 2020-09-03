@@ -1,8 +1,8 @@
-@import '../../styles/mediaQueries.scss';
-
 .container {
 	width: 100%;
+	max-width: 100%;
 	margin-bottom: .8rem;
+	overflow: hidden;
 }
 
 .input {
@@ -14,21 +14,5 @@
 	background-color: var(--background-secondary);
 	font-size: inherit;
 	font-family: inherit;
-}
-
-.select {
-	@extend .input;
-}
-
-.textarea {
-	@extend .input;
-	height: 24rem;
-}
-
-.input:focus,
-.textarea:focus,
-.select:focus {
-	background-color: var(--background-primary);
-	border: 2px solid var(--text400);
-	outline: none;
+	margin-bottom: .8rem;
 }

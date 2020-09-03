@@ -1,4 +1,8 @@
 import React from 'react';
+import Flatpickr from 'react-flatpickr';
+
+import { InputLabel } from './InputLabel';
+import { InputError } from './InputError';
 
 import styles from './Input.module.scss';
 
@@ -13,30 +17,17 @@ interface Props {
 	children?: any;
 }
 
-interface LabelProps {
-	id: string;
-	children?: any;
-}
-
-const Label = ({ id, children }: LabelProps): JSX.Element => {
-	return (
-		<label htmlFor={id} className={styles.input_label}>
-			{children}
-		</label>
-	);
-};
-
 const TextArea = ({ label, id, value, error, ...rest }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
-			{label ? <Label id={id}>{label}</Label> : null}
+			{label ? <InputLabel id={id}>{label}</InputLabel> : null}
 			<textarea
 				id={id}
 				{...rest}
 				className={styles.textarea}
 				value={value}
 			/>
-			<div className={styles.error_container}>{error || null}</div>
+			<InputError error={error} />
 		</div>
 	);
 };
@@ -51,11 +42,42 @@ const Select = ({
 }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
-			{label ? <Label id={id}>{label}</Label> : null}
+			{label ? <InputLabel id={id}>{label}</InputLabel> : null}
 			<select className={styles.select} value={value} {...rest}>
 				{children}
 			</select>
-			<div className={styles.error_container}>{error || null}</div>
+			<InputError error={error} />
+		</div>
+	);
+};
+
+const DateTime = ({
+	label,
+	id,
+	value,
+	type,
+	error,
+	...rest
+}: Props): JSX.Element => {
+	return (
+		<div className={styles.container}>
+			{label ? <InputLabel id={id}>{label}</InputLabel> : null}
+
+			<Flatpickr
+				id={id}
+				{...rest}
+				className={styles.input}
+				value={value}
+				options={{
+					enableTime: true,
+					time_24hr: false,
+					formatDate: {
+						dateFormat: 'Z'
+					}
+				}}
+			/>
+
+			<InputError error={error} />
 		</div>
 	);
 };
@@ -70,7 +92,7 @@ const BaseInput = ({
 }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
-			{label ? <Label id={id}>{label}</Label> : null}
+			{label ? <InputLabel id={id}>{label}</InputLabel> : null}
 			<input
 				type={type}
 				id={id}
@@ -78,7 +100,7 @@ const BaseInput = ({
 				className={styles.input}
 				value={value}
 			/>
-			<div className={styles.error_container}>{error || null}</div>
+			<InputError error={error} />
 		</div>
 	);
 };
@@ -109,6 +131,19 @@ const Input = ({
 	if (type === 'textarea') {
 		return (
 			<TextArea
+				label={label}
+				id={id}
+				type={type}
+				value={value}
+				error={error}
+				{...rest}
+			/>
+		);
+	}
+
+	if (type === 'date-time') {
+		return (
+			<DateTime
 				label={label}
 				id={id}
 				type={type}

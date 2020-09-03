@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store, persistor } from '../redux/store';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-// Prevent fontawesome from dynamically adding its css since we did it manually above
-config.autoAddCss = false;
 
 import { PersistGate } from 'redux-persist/integration/react';
 
 import '../styles/index.scss';
+import 'react-datetime/css/react-datetime.css';
+import 'flatpickr/dist/themes/airbnb.css';
 
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {

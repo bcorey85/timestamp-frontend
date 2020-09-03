@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
 
 import { Input } from '../../shared/Input';
+import { DateTimeInput } from '../../shared/DateTimeInput';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
@@ -29,6 +30,9 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	const [ taskId, setTaskId ] = useState('');
 	const [ startTime, setStartTime ] = useInputState('');
 	const [ endTime, setEndTime ] = useInputState('');
+	const [ startDate, setStartDate ] = useInputState('');
+	const [ endDate, setEndDate ] = useInputState('');
+
 	const [ pinned, setPinned ] = useState(false);
 	const {
 		request: createNoteRequest,
@@ -47,13 +51,32 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 		}
 	}, []);
 
+	const handleTime = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+		type: string
+	) => {
+		const date = e[0];
+		console.log(date);
+
+		if (type === 'start') {
+			setStartTime(date);
+		}
+
+		if (type === 'end') {
+			setEndTime(date);
+		}
+	};
+
 	const handleSubmit = async () => {
+		const start = new Date(startDate + ' ' + startTime);
+		const end = new Date(endDate + ' ' + endTime);
+
 		const payload: NotePayload = {
 			title,
 			projectId: parseInt(projectId),
 			taskId: parseInt(taskId),
-			startTime,
-			endTime,
+			startTime: start,
+			endTime: end,
 			description,
 			tags,
 			pinned
@@ -126,19 +149,21 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 					</Input>
 				</FormRow>
 				<FormRow half>
-					<Input
-						type='datetime-local'
+					<DateTimeInput
 						id='start'
 						label='Start'
-						value={startTime}
-						onChange={setStartTime}
+						dateValue={startDate}
+						timeValue={startTime}
+						handleDate={setStartDate}
+						handleTime={setStartTime}
 					/>
-					<Input
-						type='datetime-local'
+					<DateTimeInput
 						id='end'
 						label='End'
-						value={endTime}
-						onChange={setEndTime}
+						dateValue={endDate}
+						timeValue={endTime}
+						handleDate={setEndDate}
+						handleTime={setEndTime}
 					/>
 				</FormRow>
 				<FormRow>

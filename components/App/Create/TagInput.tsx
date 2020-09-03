@@ -3,8 +3,7 @@ import React, { SyntheticEvent, useState } from 'react';
 import { Tag } from './Tag';
 
 import styles from './TagInput.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { BiPlus } from 'react-icons/bi';
 
 interface Props {
 	handleAddTag: (tagName: string) => void;
@@ -51,7 +50,7 @@ const TagInput = ({
 					onChange={handleChange}
 				/>
 				<button onClick={handleAdd}>
-					<FontAwesomeIcon icon={faPlus} />
+					<BiPlus />
 				</button>
 			</div>
 

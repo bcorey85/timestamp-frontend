@@ -1,4 +1,6 @@
 .tag {
+	display: flex;
+	align-items: center;
 	background-color: var(--background-tertiary);
 	border: var(--border-primary);
 	border-radius: var(--border-radius);
@@ -6,6 +8,6 @@
 
 	& svg {
 		margin-left: .4rem;
-		font-size: 1.2rem;
+		font-size: 1.6rem;
 	}
 }

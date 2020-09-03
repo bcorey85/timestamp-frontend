@@ -2,9 +2,6 @@
 
 .container {
 	@include panel;
-	padding: .4rem;
-	margin: -.4rem;
-	margin-top: 0;
 }
 
 .empty_list {
