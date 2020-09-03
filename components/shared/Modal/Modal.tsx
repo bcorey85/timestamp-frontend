@@ -1,8 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Modal.module.scss';
+import { BiX } from 'react-icons/bi';
 
 interface Props {
 	children?: any;
@@ -20,7 +19,7 @@ const Modal = ({ toggleModal, isOpen, children }: Props): JSX.Element => {
 			<div className={styles.modal_container}>
 				<div className={styles.modal_close}>
 					<div onClick={() => toggleModal(false)}>
-						<FontAwesomeIcon icon={faTimes} />
+						<BiX />
 					</div>
 				</div>
 				{children}

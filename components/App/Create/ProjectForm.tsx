@@ -42,7 +42,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	};
 
 	return (
-		<div>
+		<React.Fragment>
 			<BaseForm>
 				<FormRow>
 					<PinInput
@@ -78,7 +78,7 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 					Create Project
 				</Button>
 			</CreateBtnContainer>
-		</div>
+		</React.Fragment>
 	);
 };
 

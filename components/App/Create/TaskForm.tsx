@@ -59,7 +59,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	};
 
 	return (
-		<div>
+		<React.Fragment>
 			<BaseForm>
 				<FormRow>
 					<PinInput
@@ -122,7 +122,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 					Create Task
 				</Button>
 			</CreateBtnContainer>
-		</div>
+		</React.Fragment>
 	);
 };
 

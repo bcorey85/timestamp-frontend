@@ -15,7 +15,6 @@
 	width: 33.33%;
 	color: var(--text200);
 	border-bottom: var(--border-primary);
-	font-weight: 500;
 
 	&:not(:last-of-type) {
 		border-right: var(--border-primary);
@@ -25,7 +24,7 @@
 .btn_active {
 	@extend .btn;
 	background-color: var(--background-primary);
-	color: var(--text300);
+	color: var(--text400);
 	border: none;
 	box-shadow: var(--box-shadow);
 }

@@ -1,3 +1,5 @@
+@import '../../../../styles/mediaQueries.scss';
+
 .form {
 }
 
@@ -7,5 +9,5 @@
 .half_input {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-gap: 2.4rem;
+	grid-gap: 1.6rem;
 }

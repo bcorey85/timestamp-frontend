@@ -1,5 +1,4 @@
-// @import '../../sass/abstracts/variables';
-// @import '../../sass/abstracts//mixins';
+@import '../../../styles/mediaQueries.scss';
 @import '../../../styles/mixins.scss';
 
 .modal {
@@ -12,13 +11,13 @@
 	left: 0;
 	min-height: 100%;
 	width: 100%;
-	z-index: 4;
+	z-index: 200;
 	color: var(--text500);
 	background-color: rgba(0, 0, 0, .5);
 
-	// @include respond(500) {
-	// 	padding: .8rem;
-	// }
+	@include respondH(550) {
+		padding: .8rem;
+	}
 
 	&_container {
 		width: 100%;
@@ -27,9 +26,10 @@
 		@include panel;
 		padding: 3.6rem 4rem;
 
-		// @include respond(500) {
-		// 	max-width: 32rem;
-		// }
+		@include respondH(550) {
+			max-width: 32rem;
+			padding: 2.4rem;
+		}
 	}
 
 	&_close {
