@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
@@ -12,18 +10,14 @@ import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { CreateModal } from '../Create/CreateModal';
 
-import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
-import { useRouterService } from '../../../hooks/useRouterService';
-import { useToggle } from '../../../hooks/useToggle';
+
+import { useCreateModal } from '../../../hooks/useCreateModal';
 
 const Task = (): JSX.Element => {
-	const { userId } = useSelector(selectUser);
-	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
+	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
-	const { router } = useRouterService();
 
 	return (
 		<div>
@@ -35,7 +29,10 @@ const Task = (): JSX.Element => {
 				/>
 
 				<AppPageHeaderControls>
-					<Button btnStyle='secondary' onClick={toggleCreateModal}>
+					<Button
+						btnStyle='secondary'
+						onClick={() =>
+							toggleCreateModal({ createModalPage: 'task' })}>
 						<TypeIcon type={IconType.task} />
 						New Task
 					</Button>
@@ -65,12 +62,6 @@ const Task = (): JSX.Element => {
 			<AppPageSection title='Tasks'>
 				<ListSection type='task' items={appData.tasks} />
 			</AppPageSection>
-
-			<CreateModal
-				toggleModal={toggleCreateModal}
-				isOpen={createModalOpen}
-				type='task'
-			/>
 		</div>
 	);
 };

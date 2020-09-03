@@ -16,7 +16,7 @@ export enum CreatePage {
 
 interface Props {
 	isOpen: boolean;
-	toggleModal: () => void;
+	toggleModal: (config) => void;
 	type: keyof ItemType;
 	initialTaskId?: string;
 	initialProjectId?: string;
@@ -31,12 +31,19 @@ const CreateModal = ({
 }: Props): JSX.Element => {
 	const [ currentPage, setCurrentPage ] = useState(CreatePage[type]);
 
+	useEffect(
+		() => {
+			setCurrentPage(CreatePage[type]);
+		},
+		[ type ]
+	);
+
 	const handlePageChange = (page: CreatePage) => {
 		setCurrentPage(page);
 	};
 
 	const handleCancel = () => {
-		toggleModal();
+		toggleModal(null);
 	};
 
 	if (!isOpen) {

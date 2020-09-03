@@ -28,8 +28,6 @@ const NoteForm = ({
 	initialProjectId,
 	initialTaskId
 }: Props): JSX.Element => {
-	console.log(initialProjectId, initialTaskId);
-
 	const { userId, token } = useSelector(selectUser);
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');

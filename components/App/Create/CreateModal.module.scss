@@ -8,6 +8,7 @@
 	max-width: 48rem;
 	margin: 0 auto;
 	@include panel;
+	overflow: auto;
 
 	@include respondH(400) {
 		margin-left: -1.6rem;
@@ -49,6 +50,8 @@
 		max-width: 52rem;
 		position: relative;
 		z-index: 300;
+		max-height: 100vh;
+		overflow-y: auto;
 
 		@include respondH(550) {
 			padding: 1.6rem;

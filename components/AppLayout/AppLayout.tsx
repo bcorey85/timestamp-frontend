@@ -11,7 +11,7 @@ import { MobileCreateButton } from './MobileCreateButton';
 import { CreateModal } from '../App/Create/CreateModal';
 
 import { selectUser } from '../../redux/user';
-import { selectInterface, toggleCreateModal } from '../../redux/interface';
+
 import styles from './AppLayout.module.scss';
 import { selectCreateModal } from '../../redux/createModal';
 import { useCreateModal } from '../../hooks/useCreateModal';
@@ -26,8 +26,11 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	const {
 		createModalOpen,
 		createModalPage,
-		toggleCreateModal
+		toggleCreateModal,
+		currentTaskId,
+		currentProjectId
 	} = useCreateModal();
+
 	const dispatch = useDispatch();
 
 	const [ breadcrumbLinks, setBreadcrumLinks ] = useState([
@@ -73,6 +76,8 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 						isOpen={createModalOpen}
 						toggleModal={toggleCreateModal}
 						type={createModalPage}
+						initialTaskId={currentTaskId}
+						initialProjectId={currentProjectId}
 					/>
 				</main>
 				<MobileCreateButton toggleCreateModal={toggleCreateModal} />

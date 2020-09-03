@@ -9,19 +9,14 @@ import { AppPageSection } from '../shared/AppPage/AppPageSection';
 import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
-import { CreateModal } from '../Create/CreateModal';
 import { ListSection } from '../shared/ListSection/ListSection';
 
-import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
-import { useRouterService } from '../../../hooks/useRouterService';
-import { useToggle } from '../../../hooks/useToggle';
+import { useCreateModal } from '../../../hooks/useCreateModal';
 
 const Note = (): JSX.Element => {
-	const { userId } = useSelector(selectUser);
-	const [ createModalOpen, toggleCreateModal ] = useToggle(false);
+	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
-	const { router } = useRouterService();
 
 	return (
 		<div>
@@ -33,7 +28,10 @@ const Note = (): JSX.Element => {
 				/>
 
 				<AppPageHeaderControls>
-					<Button btnStyle='secondary' onClick={toggleCreateModal}>
+					<Button
+						btnStyle='secondary'
+						onClick={() =>
+							toggleCreateModal({ createModalPage: 'note' })}>
 						<TypeIcon type={IconType.note} />
 						New Note
 					</Button>
@@ -63,12 +61,6 @@ const Note = (): JSX.Element => {
 			<AppPageSection title='Notes'>
 				<ListSection type='note' items={appData.notes} />
 			</AppPageSection>
-
-			<CreateModal
-				toggleModal={toggleCreateModal}
-				isOpen={createModalOpen}
-				type='note'
-			/>
 		</div>
 	);
 };

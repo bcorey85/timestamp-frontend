@@ -7,7 +7,7 @@ import styles from './MobileCreateButton.module.scss';
 import { BiPlus } from 'react-icons/bi';
 
 interface Props {
-	toggleCreateModal: () => void;
+	toggleCreateModal: (config) => void;
 }
 
 const MobileCreateButton = ({ toggleCreateModal }: Props): JSX.Element => {

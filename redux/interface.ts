@@ -17,11 +17,6 @@ const interfaceSlice = createSlice({
 		toggleSearch: state => {
 			state.searchOpen = !state.searchOpen;
 		},
-		toggleCreateModal: state => {
-			console.log('hit');
-
-			state.createModalOpen = !state.createModalOpen;
-		},
 		setDarkColorMode: (state, action) => {
 			const darkMode = action.payload.darkColorMode;
 			if (darkMode === true) {
@@ -42,6 +37,5 @@ export const selectInterface = (state: RootState) => state.interface;
 export const {
 	toggleDrawer,
 	toggleSearch,
-	toggleCreateModal,
 	setDarkColorMode
 } = interfaceSlice.actions;

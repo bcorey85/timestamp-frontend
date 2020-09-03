@@ -1,21 +1,38 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectInterface, toggleCreateModal } from '../redux/interface';
-import { selectCreateModal } from '../redux/createModal';
+import {
+	toggleCreateModal,
+	selectCreateModal,
+	setCreateModalPage,
+	setCurrentItemId
+} from '../redux/createModal';
+import { ItemType } from '../utils/ItemService';
+
+interface ModalConfig {
+	createModalPage?: keyof ItemType;
+	currentItemId?: {
+		noteId?: string;
+		taskId?: string;
+		projectId?: string;
+	};
+}
 
 const useCreateModal = () => {
-	const { createModalOpen } = useSelector(selectInterface);
-	const { createModalPage } = useSelector(selectCreateModal);
+	const { createModalOpen, createModalPage, currentItemId } = useSelector(
+		selectCreateModal
+	);
 	const dispatch = useDispatch();
 
-	const setCreateModalOpen = () => {
-		dispatch(toggleCreateModal());
+	const setCreateModalOpen = (config: ModalConfig) => {
+		dispatch(toggleCreateModal({ config }));
 	};
 
 	return {
 		createModalOpen,
 		toggleCreateModal: setCreateModalOpen,
-		createModalPage
+		createModalPage,
+		currentProjectId: currentItemId.projectId,
+		currentTaskId: currentItemId.taskId
 	};
 };
 

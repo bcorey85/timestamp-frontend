@@ -24,7 +24,7 @@ import { useRouterService } from '../../../hooks/useRouterService';
 import { Button } from '../../shared/Button';
 
 interface Props {
-	toggleCreateModal: () => void;
+	toggleCreateModal: (config) => void;
 }
 
 const Drawer = ({ toggleCreateModal }: Props): JSX.Element => {
