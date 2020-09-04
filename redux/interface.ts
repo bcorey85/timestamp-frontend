@@ -7,8 +7,7 @@ const interfaceSlice = createSlice({
 		drawerOpen: true,
 		searchOpen: false,
 		createModalOpen: false,
-		darkColorMode: false,
-		baseUrl: null
+		darkColorMode: false
 	},
 	reducers: {
 		toggleDrawer: state => {

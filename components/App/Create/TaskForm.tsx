@@ -7,6 +7,8 @@ import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './TagInput';
 import { PinInput } from './PinInput';
 
+import { ErrorService } from '../../../utils/ErrorService';
+import { ApiError } from '../../../api/index';
 import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
 import { useSelector } from 'react-redux';
@@ -20,7 +22,20 @@ interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
 }
 
+interface Errors {
+	title?: string;
+	description?: string;
+	projectId?: string;
+	generic?: ApiError[];
+}
+
 const TaskForm = ({ handleCancel }: Props): JSX.Element => {
+	const [ errors, setErrors ] = useState<Errors>({
+		title: null,
+		description: null,
+		projectId: null,
+		generic: []
+	});
 	const { userId, token } = useSelector(selectUser);
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
@@ -34,11 +49,17 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 
-	useEffect(() => {
-		if (router.query && router.query.projectId) {
-			setProjectId(router.query.projectId as string);
-		}
-	}, []);
+	useEffect(
+		() => {
+			const errors = ErrorService.formatErrors(
+				[ 'title', 'description', 'projectId' ],
+				createTaskErrors
+			);
+
+			setErrors(errors);
+		},
+		[ createTaskErrors ]
+	);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -75,6 +96,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						label='Task Title'
 						value={title}
 						onChange={setTitle}
+						error={errors.title}
 					/>
 				</FormRow>
 				<FormRow half>
@@ -83,7 +105,8 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						id='project'
 						label='Project'
 						value={projectId}
-						onChange={e => setProjectId(e.target.value)}>
+						onChange={e => setProjectId(e.target.value)}
+						error={errors.projectId}>
 						<option value={null} />
 						{appData.projects.map(project => {
 							return (
@@ -107,9 +130,10 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 					<Input
 						type='textarea'
 						id='description'
-						label='Goal'
+						label='Description'
 						value={description}
 						onChange={setDescription}
+						error={errors.description}
 					/>
 				</FormRow>
 			</BaseForm>

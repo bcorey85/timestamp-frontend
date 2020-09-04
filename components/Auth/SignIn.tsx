@@ -11,9 +11,8 @@ import { useInputState } from '../../hooks/useInputState';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { signupApiConfig, loginApiConfig } from '../../api/auth';
 import { login } from '../../redux/user';
-import { ApiRequest, ApiResponse } from '../../api/index';
+import { ApiRequest, ApiResponse, ApiError } from '../../api/index';
 import { ErrorDisplay } from '../shared/ErrorDisplay';
-import { ApiError } from '../../api/index';
 import { ErrorService } from '../../utils/ErrorService';
 import styles from './SignIn.module.scss';
 

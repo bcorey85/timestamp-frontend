@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/user';
 
@@ -8,6 +8,8 @@ import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 import { PinInput } from './PinInput';
 
+import { ErrorService } from '../../../utils/ErrorService';
+import { ApiError } from '../../../api/index';
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { createProjectApiConfig, ProjectPayload } from '../../../api/project';
@@ -17,7 +19,18 @@ interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
 }
 
+interface Errors {
+	title?: string;
+	description?: string;
+	generic?: ApiError[];
+}
+
 const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
+	const [ errors, setErrors ] = useState<Errors>({
+		title: null,
+		description: null,
+		generic: []
+	});
 	const [ pinned, setPinned ] = useState(false);
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
@@ -28,6 +41,18 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 	} = useApiRequest();
 	const { router } = useRouterService();
 
+	useEffect(
+		() => {
+			const errors = ErrorService.formatErrors(
+				[ 'title', 'description' ],
+				createProjectErrors
+			);
+
+			setErrors(errors);
+		},
+		[ createProjectErrors ]
+	);
+
 	const handleSubmit = async e => {
 		e.preventDefault();
 		const payload: ProjectPayload = { title, description, pinned };
@@ -35,7 +60,10 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 		const config = createProjectApiConfig({ payload, userId, token });
 
 		const res = await createProjectRequest(config);
-		// handle errors
+
+		if (res.success === false) {
+			return;
+		}
 
 		if (res.success) {
 			handleCancel(e);
@@ -58,15 +86,17 @@ const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
 						label='Project Title'
 						value={title}
 						onChange={setTitle}
+						error={errors.title}
 					/>
 				</FormRow>
 				<FormRow>
 					<Input
 						type='textarea'
 						id='description'
-						label='Goal'
+						label='Description'
 						value={description}
 						onChange={setDescription}
+						error={errors.description}
 					/>
 				</FormRow>
 			</BaseForm>

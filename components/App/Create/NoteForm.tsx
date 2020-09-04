@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
 
 import { Input } from '../../shared/Input';
 import { DateTimeInput } from '../../shared/DateTimeInput';
@@ -8,6 +8,8 @@ import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './TagInput';
 import { PinInput } from './PinInput';
 
+import { ErrorService } from '../../../utils/ErrorService';
+import { ApiError } from '../../../api/index';
 import { useInputState } from '../../../hooks/useInputState';
 import { useTags } from '../../../hooks/useTags';
 import { useSelector } from 'react-redux';
@@ -23,11 +25,30 @@ interface Props {
 	initialTaskId?: string;
 }
 
+interface Errors {
+	title?: string;
+	description?: string;
+	projectId?: string;
+	taskId?: string;
+	startTime?: string;
+	endTime?: string;
+	generic?: ApiError[];
+}
+
 const NoteForm = ({
 	handleCancel,
 	initialProjectId,
 	initialTaskId
 }: Props): JSX.Element => {
+	const [ errors, setErrors ] = useState<Errors>({
+		title: null,
+		description: null,
+		projectId: null,
+		taskId: null,
+		startTime: null,
+		endTime: null,
+		generic: []
+	});
 	const { userId, token } = useSelector(selectUser);
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
@@ -45,23 +66,25 @@ const NoteForm = ({
 		errors: createNoteErrors
 	} = useApiRequest();
 	const appData = useSelector(selectAppData);
-	const { router } = useRouterService();
 
-	const handleTime = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		type: string
-	) => {
-		const date = e[0];
-		console.log(date);
+	useEffect(
+		() => {
+			const errors = ErrorService.formatErrors(
+				[
+					'title',
+					'description',
+					'startTime',
+					'endTime',
+					'projectId',
+					'taskId'
+				],
+				createNoteErrors
+			);
 
-		if (type === 'start') {
-			setStartTime(date);
-		}
-
-		if (type === 'end') {
-			setEndTime(date);
-		}
-	};
+			setErrors(errors);
+		},
+		[ createNoteErrors ]
+	);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -81,6 +104,10 @@ const NoteForm = ({
 
 		const config = createNoteApiConfig({ payload, userId, token });
 		const res = await createNoteRequest(config);
+
+		if (res.success === false) {
+			return;
+		}
 
 		if (res.success) {
 			handleCancel(e);
@@ -103,6 +130,7 @@ const NoteForm = ({
 						label='Note Title'
 						value={title}
 						onChange={setTitle}
+						error={errors.title}
 					/>
 				</FormRow>
 				<FormRow half>
@@ -111,7 +139,8 @@ const NoteForm = ({
 						id='project'
 						label='Project'
 						value={projectId}
-						onChange={e => setProjectId(e.target.value)}>
+						onChange={e => setProjectId(e.target.value)}
+						error={errors.projectId}>
 						<option value={null} />
 						{appData.projects.map(project => {
 							return (
@@ -128,7 +157,8 @@ const NoteForm = ({
 						id='task'
 						label='Task'
 						value={taskId}
-						onChange={e => setTaskId(e.target.value)}>
+						onChange={e => setTaskId(e.target.value)}
+						error={errors.taskId}>
 						<option value={null} />
 						{appData.tasks
 							.filter(
@@ -153,6 +183,7 @@ const NoteForm = ({
 						timeValue={startTime}
 						handleDate={setStartDate}
 						handleTime={setStartTime}
+						error={errors.startTime}
 					/>
 					<DateTimeInput
 						id='end'
@@ -161,6 +192,7 @@ const NoteForm = ({
 						timeValue={endTime}
 						handleDate={setEndDate}
 						handleTime={setEndTime}
+						error={errors.endTime}
 					/>
 				</FormRow>
 				<FormRow>
@@ -177,6 +209,7 @@ const NoteForm = ({
 						label='Description'
 						value={description}
 						onChange={setDescription}
+						error={errors.description}
 					/>
 				</FormRow>
 			</BaseForm>
