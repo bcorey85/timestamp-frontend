@@ -8,7 +8,7 @@ import { Footer } from '../Layout/Footer/Footer';
 import { Breadcrumb } from './Breadcrumb';
 import { IconType, TypeIcon } from '../App/shared/TypeIcon';
 import { MobileCreateButton } from './MobileCreateButton';
-import { CreateModal } from '../App/Create/CreateModal';
+import { CreateModal } from '../App/shared/CreateModal';
 
 import { selectUser } from '../../redux/user';
 

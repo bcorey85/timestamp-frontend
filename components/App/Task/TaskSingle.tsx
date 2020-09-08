@@ -11,22 +11,43 @@ import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { CreateModal } from '../Create/CreateModal';
+import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
+import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
+import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
+import { DeleteModal } from '../shared/DeleteModal';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useToggle } from '../../../hooks/useToggle';
+import { useApiRequest } from '../../../hooks/useApiRequest';
+import { deleteTaskApiConfig } from '../../../api/task';
 
 const TaskSingle = (): JSX.Element => {
-	const { userId } = useSelector(selectUser);
+	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { toggleCreateModal } = useCreateModal();
+	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const { router } = useRouterService();
+	const { request: deleteTaskRequest } = useApiRequest();
 
 	const currentTask = appData.tasks.filter(task => {
 		return task.task_id === Number(router.query.taskId);
 	})[0];
+
+	const handleDelete = async () => {
+		const config = deleteTaskApiConfig({
+			taskId: currentTask.task_id,
+			userId,
+			token
+		});
+
+		await deleteTaskRequest(config);
+
+		toggleDeleteModal();
+		router.push.dashboard();
+	};
 
 	return (
 		<div>
@@ -48,11 +69,12 @@ const TaskSingle = (): JSX.Element => {
 				</AppPageTitle>
 
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='link_gray'
-						onClick={() => router.pushUnique('create?action=task')}>
-						Edit
-					</Button>
+					<OverflowMenu>
+						<OverflowEdit handleClick={() => {}}>Edit</OverflowEdit>
+						<OverflowDelete handleClick={toggleDeleteModal}>
+							Delete
+						</OverflowDelete>
+					</OverflowMenu>
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
@@ -78,6 +100,13 @@ const TaskSingle = (): JSX.Element => {
 					)}
 				/>
 			</AppPageSection>
+			<DeleteModal
+				title='Delete Task'
+				deleteItem={currentTask.title}
+				isOpen={deleteModalOpen}
+				toggleModal={toggleDeleteModal}
+				handleDelete={handleDelete}
+			/>
 		</div>
 	);
 };

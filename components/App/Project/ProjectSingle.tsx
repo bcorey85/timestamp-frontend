@@ -8,23 +8,46 @@ import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../shared/AppPage/AppPageSection';
 import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
 import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
-import { ListSection } from '../shared/ListSection/ListSection';
-
-import { selectAppData } from '../../../redux/appData';
-import { useRouterService } from '../../../hooks/useRouterService';
 import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
+import { ListSection } from '../shared/ListSection/ListSection';
+import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
+import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
+import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
+import { DeleteModal } from '../shared/DeleteModal';
 
+import { selectAppData } from '../../../redux/appData';
+import { selectUser } from '../../../redux/user';
+import { useRouterService } from '../../../hooks/useRouterService';
 import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useToggle } from '../../../hooks/useToggle';
+import { useApiRequest } from '../../../hooks/useApiRequest';
+import { deleteProjectApiConfig } from '../../../api/project';
 
 const ProjectSingle = (): JSX.Element => {
-	const { toggleCreateModal } = useCreateModal();
+	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
+	const { toggleCreateModal } = useCreateModal();
+	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const { router } = useRouterService();
+	const { request: deleteTaskRequest } = useApiRequest();
 
 	const currentProject = appData.projects.filter(project => {
 		return project.project_id === Number(router.query.projectId);
 	})[0];
+
+	const handleDelete = async () => {
+		const config = deleteProjectApiConfig({
+			projectId: currentProject.project_id,
+			userId,
+			token
+		});
+
+		await deleteTaskRequest(config);
+
+		toggleDeleteModal();
+		router.push.dashboard();
+	};
 
 	return (
 		<div>
@@ -46,13 +69,12 @@ const ProjectSingle = (): JSX.Element => {
 				</AppPageTitle>
 
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							router.pushUnique('create?action=project')}>
-						Edit
-					</Button>
-
+					<OverflowMenu>
+						<OverflowEdit handleClick={() => {}}>Edit</OverflowEdit>
+						<OverflowDelete handleClick={toggleDeleteModal}>
+							Delete
+						</OverflowDelete>
+					</OverflowMenu>
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
@@ -86,6 +108,13 @@ const ProjectSingle = (): JSX.Element => {
 					)}
 				/>
 			</AppPageSection>
+			<DeleteModal
+				title='Delete Project'
+				deleteItem={currentProject.title}
+				isOpen={deleteModalOpen}
+				toggleModal={toggleDeleteModal}
+				handleDelete={handleDelete}
+			/>
 		</div>
 	);
 };

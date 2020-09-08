@@ -1,0 +1,31 @@
+.container {
+	position: relative;
+}
+
+.menu {
+	position: absolute;
+	right: 0;
+	margin-top: .4rem;
+	min-width: 16rem;
+	height: auto;
+	transition: all .2s;
+	padding: .8rem;
+	box-shadow: var(--box-shadow);
+	border: var(--border-primary);
+	border-radius: var(--border-radius);
+}
+
+.menu_open {
+	@extend .menu;
+	transform: translateY(0);
+	background-color: var(--background-primary);
+	visibility: visible;
+	opacity: 1;
+}
+
+.menu_closed {
+	@extend .menu;
+	transform: translateY(-15%);
+	visibility: hidden;
+	opacity: 0;
+}

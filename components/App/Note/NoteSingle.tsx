@@ -10,20 +10,43 @@ import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
 import { AppPageMeta } from '../shared/AppPage/AppPageMeta';
 import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
+import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
+import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
+import { DeleteModal } from '../shared/DeleteModal';
 
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useToggle } from '../../../hooks/useToggle';
+import { useApiRequest } from '../../../hooks/useApiRequest';
+import { deleteNoteApiConfig } from '../../../api/note';
 
 const NoteSingle = (): JSX.Element => {
-	const { toggleCreateModal } = useCreateModal();
+	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
+	const { toggleCreateModal } = useCreateModal();
+	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const { router } = useRouterService();
+	const { request: deleteNoteRequest } = useApiRequest();
 
 	const currentNote = appData.notes.filter(note => {
 		return note.note_id === Number(router.query.noteId);
 	})[0];
+
+	const handleDelete = async () => {
+		const config = deleteNoteApiConfig({
+			noteId: currentNote.note_id,
+			userId,
+			token
+		});
+
+		await deleteNoteRequest(config);
+
+		toggleDeleteModal();
+		router.push.dashboard();
+	};
 
 	return (
 		<div>
@@ -45,30 +68,22 @@ const NoteSingle = (): JSX.Element => {
 				</AppPageTitle>
 
 				<AppPageHeaderControls>
-					<Button
-						btnStyle='secondary'
-						onClick={() =>
-							toggleCreateModal({
-								createModalPage: 'note',
-								currentItemId: {
-									noteId: currentNote.note_id || '',
-									projectId: currentNote.project_id || '',
-									taskId: currentNote.task_id || ''
-								}
-							})}>
-						<TypeIcon type={IconType.note} />
-						Edit Note
-					</Button>
+					<OverflowMenu>
+						<OverflowEdit handleClick={() => {}}>Edit</OverflowEdit>
+						<OverflowDelete handleClick={toggleDeleteModal}>
+							Delete
+						</OverflowDelete>
+					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
 
-			{/* <AppPageSection title='Tasks'>
-				<ListSection
-					items={appData.notes.filter(
-						note => note.task_id === currentNote.task_id
-					)}
-				/>
-			</AppPageSection> */}
+			<DeleteModal
+				title='Delete Note'
+				deleteItem={currentNote.title}
+				isOpen={deleteModalOpen}
+				toggleModal={toggleDeleteModal}
+				handleDelete={handleDelete}
+			/>
 		</div>
 	);
 };

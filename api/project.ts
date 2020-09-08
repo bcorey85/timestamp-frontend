@@ -11,6 +11,10 @@ interface CreateProject extends UserCredentials {
 	payload: ProjectPayload;
 }
 
+interface DeleteProject extends UserCredentials {
+	projectId: string | number;
+}
+
 export const createProjectApiConfig = ({
 	payload,
 	userId,
@@ -20,6 +24,18 @@ export const createProjectApiConfig = ({
 		url: `${apiBaseUrl}/projects/${userId}`,
 		method: 'post',
 		payload: payload,
+		token: token
+	};
+};
+
+export const deleteProjectApiConfig = ({
+	projectId,
+	userId,
+	token
+}: DeleteProject): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/projects/${userId}/${projectId}`,
+		method: 'delete',
 		token: token
 	};
 };

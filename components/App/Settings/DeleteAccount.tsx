@@ -52,7 +52,7 @@ const DeleteAccount = (): JSX.Element => {
 			</div>
 			<Modal toggleModal={toggleDeleteModal} isOpen={deleteModalOpen}>
 				<ModalContent>
-					<div className={styles.delete_msg}>
+					<div>
 						<h1>Delete Account</h1>
 						<p>
 							Are you sure you want to delete your account? (This

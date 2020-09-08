@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { CreateNav } from './shared/CreateNav';
-import { ProjectForm } from './ProjectForm';
-import { TaskForm } from './TaskForm';
-import { NoteForm } from './NoteForm';
+import { CreateNav } from '../Create/shared/CreateNav';
+import { ProjectForm } from '../Create/ProjectForm';
+import { TaskForm } from '../Create/TaskForm';
+import { NoteForm } from '../Create/NoteForm';
 
 import { ItemType } from '../../../utils/ItemService';
 import styles from './CreateModal.module.scss';
