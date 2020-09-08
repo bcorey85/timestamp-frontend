@@ -27,8 +27,6 @@ const DateTimeInput = ({
 	error,
 	...rest
 }: Props): JSX.Element => {
-	console.log(error);
-
 	return (
 		<div className={styles.container}>
 			{label ? <InputLabel id={`${id}-date`}>{label}</InputLabel> : null}

@@ -72,7 +72,11 @@ const CardStats = ({ type, tags, notes, tasks, hours }: CardStatsProps) => {
 				<div className={styles.stat_row}>
 					<div>Tags:</div>
 					<div>
-						{tags.length > 0 ? tags.substring(0, 20) : 'None'}
+						{tags && tags.length > 0 ? (
+							tags.substring(0, 20)
+						) : (
+							'None'
+						)}
 					</div>
 				</div>
 			</div>
@@ -87,7 +91,9 @@ const CardStats = ({ type, tags, notes, tasks, hours }: CardStatsProps) => {
 			</div>
 			<div className={styles.stat_row}>
 				<div>Tags:</div>
-				<div>{tags.length > 0 ? tags.substring(0, 20) : 'None'}</div>
+				<div>
+					{tags && tags.length > 0 ? tags.substring(0, 20) : 'None'}
+				</div>
 			</div>
 		</div>
 	);

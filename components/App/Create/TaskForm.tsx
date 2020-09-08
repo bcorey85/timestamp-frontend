@@ -20,6 +20,7 @@ import { useRouterService } from '../../../hooks/useRouterService';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
+	initialProjectId?: string;
 }
 
 interface Errors {
@@ -29,7 +30,7 @@ interface Errors {
 	generic?: ApiError[];
 }
 
-const TaskForm = ({ handleCancel }: Props): JSX.Element => {
+const TaskForm = ({ handleCancel, initialProjectId }: Props): JSX.Element => {
 	const [ errors, setErrors ] = useState<Errors>({
 		title: null,
 		description: null,
@@ -40,7 +41,7 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 	const { tags, handleAddTag, handleRemoveTag } = useTags();
 	const [ title, setTitle ] = useInputState('');
 	const [ description, setDescription ] = useInputState('');
-	const [ projectId, setProjectId ] = useState('');
+	const [ projectId, setProjectId ] = useState(initialProjectId || '');
 	const [ pinned, setPinned ] = useState(false);
 	const {
 		request: createTaskRequest,

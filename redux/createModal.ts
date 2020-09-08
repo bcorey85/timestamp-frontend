@@ -31,8 +31,6 @@ const createModalSlice = createSlice({
 
 			if (action.payload && action.payload.config) {
 				if (action.payload.config.currentItemId) {
-					console.log(action.payload.config.currentItemId);
-
 					state.currentItemId = action.payload.config.currentItemId;
 				}
 

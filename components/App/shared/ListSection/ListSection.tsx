@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { ListItem } from './ListItem';
@@ -22,7 +22,14 @@ const ListSection = ({ items, type }: Props): JSX.Element => {
 		formattedItems
 	);
 
-	if (items.length === 0) {
+	useEffect(
+		() => {
+			handleSort(currentFilter);
+		},
+		[ items ]
+	);
+
+	if (!items || items.length === 0) {
 		return (
 			<div className={styles.container}>
 				<span className={styles.empty_list}>( Empty )</span>

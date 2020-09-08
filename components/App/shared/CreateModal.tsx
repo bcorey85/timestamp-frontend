@@ -63,7 +63,10 @@ const CreateModal = ({
 							<ProjectForm handleCancel={handleCancel} />
 						) : null}
 						{currentPage === CreatePage.task ? (
-							<TaskForm handleCancel={handleCancel} />
+							<TaskForm
+								handleCancel={handleCancel}
+								initialProjectId={initialProjectId}
+							/>
 						) : null}
 						{currentPage === CreatePage.note ? (
 							<NoteForm
