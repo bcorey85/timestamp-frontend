@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { ItemType } from '../utils/ItemService';
+import { UiService } from '../utils/UiService';
 
 const createModalSlice = createSlice({
 	name: 'createModal',
 	initialState: {
 		createModalOpen: false,
-
+		createModalEditMode: false,
 		currentItemId: {
 			noteId: '',
 			taskId: '',
@@ -19,15 +20,7 @@ const createModalSlice = createSlice({
 			const nextModalState = !state.createModalOpen;
 			state.createModalOpen = nextModalState;
 
-			if (nextModalState === true) {
-				document.body.style.position = 'fixed';
-				document.body.style.top = `-${window.scrollY}px`;
-			} else {
-				const scrollY = document.body.style.top;
-				document.body.style.position = '';
-				document.body.style.top = '';
-				window.scrollTo(0, parseInt(scrollY || '0') * -1);
-			}
+			UiService.preventBodyScrollOnModalOpen(nextModalState);
 
 			if (action.payload && action.payload.config) {
 				if (action.payload.config.currentItemId) {
@@ -37,6 +30,11 @@ const createModalSlice = createSlice({
 				if (action.payload.config.createModalPage) {
 					state.createModalPage =
 						action.payload.config.createModalPage;
+				}
+
+				if (action.payload.config.createModalEditMode) {
+					state.createModalEditMode =
+						action.payload.config.createModalEditMode;
 				}
 			}
 		},

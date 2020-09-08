@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
+import { UiService } from '../utils/UiService';
 
 const interfaceSlice = createSlice({
 	name: 'interface',
@@ -17,12 +18,7 @@ const interfaceSlice = createSlice({
 			state.searchOpen = !state.searchOpen;
 		},
 		setDarkColorMode: (state, action) => {
-			const darkMode = action.payload.darkColorMode;
-			if (darkMode === true) {
-				document.body.classList.add('dark');
-			} else {
-				document.body.classList.remove('dark');
-			}
+			UiService.toggleDarkMode(action.payload.darkColorMode);
 
 			state.darkColorMode = action.payload.darkColorMode;
 		}

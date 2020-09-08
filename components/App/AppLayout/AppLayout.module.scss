@@ -1,0 +1,56 @@
+@import '../../../styles/mediaQueries.scss';
+
+.app_layout {
+	position: relative;
+	font-size: 1.4rem;
+	max-width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.content {
+	position: relative;
+	display: flex;
+	flex: 1 1 auto;
+	background-color: var(--background-secondary);
+
+	@include respondH(1024) {
+		min-height: 72rem;
+	}
+}
+
+.nav_container {
+	margin: 4rem 0;
+}
+
+.main {
+	width: 100%;
+	max-width: 144rem;
+	padding: var(--app-vertical-padding) var(--app-horizontal-padding);
+	border-right: var(--border-primary);
+	flex: 1 1 auto;
+
+	@include respondH(1680) {
+		max-width: calc(100% - var(--app-drawer-width));
+	}
+
+	@include respondH(1024) {
+		max-width: 100%;
+	}
+}
+
+.mobile_drawer {
+	display: none;
+
+	@include respondH(1024) {
+		display: block;
+	}
+}
+
+.desktop_drawer {
+	@include respondH(1024) {
+		display: none;
+	}
+}

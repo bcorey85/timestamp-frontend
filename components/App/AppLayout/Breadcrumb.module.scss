@@ -1,0 +1,32 @@
+@import '../../../styles/mediaQueries.scss';
+
+.breadcrumb {
+	@include respondH(550) {
+		margin-top: 2.4rem;
+		margin-left: 3.2rem;
+		font-size: 1.2rem;
+	}
+
+	& ul {
+		display: flex;
+		line-height: 1.4rem;
+	}
+
+	& a {
+		color: var(--text300);
+		font-weight: 500;
+
+		&:hover {
+			color: var(--primary400);
+		}
+	}
+}
+
+.spacer {
+	margin: 0 1.2rem;
+	color: var(--text300);
+	font-weight: 500;
+	@include respondH(550) {
+		margin: 0 .8rem;
+	}
+}

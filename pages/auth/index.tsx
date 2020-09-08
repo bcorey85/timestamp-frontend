@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Layout } from '../../components/Layout/Layout';
-import { Auth } from '../../components/Auth/Auth';
+import { Layout } from '../../components/Landing/Layout/Layout';
+import { Auth } from '../../components/Landing/Auth/Auth';
 import { Meta } from '../../components/Meta/Meta';
 
 const AuthPage = () => {

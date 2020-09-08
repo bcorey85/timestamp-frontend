@@ -1,0 +1,29 @@
+@import '../../../../styles/mediaQueries.scss';
+
+.header {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: var(--app-header-height);
+	padding: 1.6rem;
+	border-bottom: var(--border-primary);
+	box-shadow: var(--box-shadow);
+	background-color: var(--background-primary);
+	z-index: 150;
+
+	& img {
+		display: block;
+		height: 2.4rem;
+		margin-top: .4rem;
+
+		@include respondH(550) {
+			height: 2rem;
+		}
+	}
+}
+
+.nav_container {
+	display: flex;
+	align-items: center;
+}
