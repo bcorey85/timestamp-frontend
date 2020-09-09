@@ -1,29 +1,21 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useInputState } from '../useInputState';
 import { useTags } from '../useTags';
 import { useApiRequest } from '../useApiRequest';
 import { ErrorService } from '../../utils/ErrorService';
-import { ApiError } from '../../api/index';
 import { useSelector } from 'react-redux';
-import { createNoteApiConfig, NotePayload } from '../../api/note';
+import {
+	createNoteApiConfig,
+	NotePayload,
+	updateNoteApiConfig
+} from '../../api/note';
 import { selectUser } from '../../redux/user';
 import { selectCreateModal } from '../../redux/createModal';
-
-interface Errors {
-	title?: string;
-	description?: string;
-	projectId?: string;
-	taskId?: string;
-	startTime?: string;
-	endTime?: string;
-	generic?: ApiError[];
-}
-
-type handleClose = (e: SyntheticEvent) => void;
+import { NoteErrors, handleClose, SubmitType } from './index';
 
 const useNoteCreateForm = (handleClose: handleClose) => {
-	const [ errors, setErrors ] = useState<Errors>({
+	const [ errors, setErrors ] = useState<NoteErrors>({
 		title: null,
 		description: null,
 		projectId: null,
@@ -65,6 +57,11 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		errors: createNoteErrors
 	} = useApiRequest();
 
+	const {
+		request: updateNoteRequest,
+		errors: updateNoteErrors
+	} = useApiRequest();
+
 	useEffect(
 		() => {
 			const errors = ErrorService.formatErrors(
@@ -84,7 +81,26 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		[ createNoteErrors ]
 	);
 
-	const handleCreateSubmit = async e => {
+	useEffect(
+		() => {
+			const errors = ErrorService.formatErrors(
+				[
+					'title',
+					'description',
+					'startTime',
+					'endTime',
+					'projectId',
+					'taskId'
+				],
+				updateNoteErrors
+			);
+
+			setErrors(errors);
+		},
+		[ updateNoteErrors ]
+	);
+
+	const handleSubmit = async (e, type: keyof SubmitType) => {
 		e.preventDefault();
 		const start = new Date(startDate + ' ' + startTime);
 		const end = new Date(endDate + ' ' + endTime);
@@ -100,8 +116,19 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 			pinned
 		};
 
-		const config = createNoteApiConfig({ payload, userId, token });
-		const res = await createNoteRequest(config);
+		let res, config;
+		if (type === 'edit') {
+			config = updateNoteApiConfig({
+				noteId: currentItem.note_id,
+				payload,
+				userId,
+				token
+			});
+			res = await updateNoteRequest(config);
+		} else {
+			config = createNoteApiConfig({ payload, userId, token });
+			res = await createNoteRequest(config);
+		}
 
 		if (res.success === false) {
 			return;
@@ -110,11 +137,6 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		if (res.success) {
 			handleClose(e);
 		}
-	};
-
-	const handleEditSubmit = async e => {
-		e.preventDefault();
-		console.log('editing');
 	};
 
 	const formState = {
@@ -146,8 +168,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 
 	return {
 		editMode: createModalEditMode,
-		handleCreateSubmit,
-		handleEditSubmit,
+		handleSubmit,
 		errors,
 		formState,
 		formHandlers

@@ -13,6 +13,11 @@ interface CreateTask extends UserCredentials {
 	payload: TaskPayload;
 }
 
+interface UpdateTask extends UserCredentials {
+	payload: TaskPayload;
+	taskId: string | number;
+}
+
 interface DeleteTask extends UserCredentials {
 	taskId: string | number;
 }
@@ -25,6 +30,20 @@ export const createTaskApiConfig = ({
 	return {
 		url: `${apiBaseUrl}/tasks/${userId}`,
 		method: 'post',
+		payload: payload,
+		token: token
+	};
+};
+
+export const updateTaskApiConfig = ({
+	payload,
+	taskId,
+	userId,
+	token
+}: UpdateTask): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/tasks/${userId}/${taskId}`,
+		method: 'put',
 		payload: payload,
 		token: token
 	};

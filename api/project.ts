@@ -11,6 +11,11 @@ interface CreateProject extends UserCredentials {
 	payload: ProjectPayload;
 }
 
+interface UpdateProject extends UserCredentials {
+	payload: ProjectPayload;
+	projectId: string | number;
+}
+
 interface DeleteProject extends UserCredentials {
 	projectId: string | number;
 }
@@ -23,6 +28,20 @@ export const createProjectApiConfig = ({
 	return {
 		url: `${apiBaseUrl}/projects/${userId}`,
 		method: 'post',
+		payload: payload,
+		token: token
+	};
+};
+
+export const updateProjectApiConfig = ({
+	projectId,
+	payload,
+	userId,
+	token
+}: UpdateProject): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/projects/${userId}/${projectId}`,
+		method: 'put',
 		payload: payload,
 		token: token
 	};

@@ -1,29 +1,24 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useInputState } from '../useInputState';
 import { useTags } from '../useTags';
 import { useApiRequest } from '../useApiRequest';
-import { ApiError } from '../../api/index';
 import { ErrorService } from '../../utils/ErrorService';
 import { selectUser } from '../../redux/user';
-import { createTaskApiConfig, TaskPayload } from '../../api/task';
+import {
+	createTaskApiConfig,
+	TaskPayload,
+	updateTaskApiConfig
+} from '../../api/task';
 import { selectCreateModal } from '../../redux/createModal';
-
-interface Errors {
-	title?: string;
-	description?: string;
-	projectId?: string;
-	generic?: ApiError[];
-}
-
-type handleClose = (e: SyntheticEvent) => void;
+import { TaskErrors, handleClose, SubmitType } from './index';
 
 const useTaskCreateForm = (handleClose: handleClose) => {
 	const { currentItemId, currentItem, createModalEditMode } = useSelector(
 		selectCreateModal
 	);
-	const [ errors, setErrors ] = useState<Errors>({
+	const [ errors, setErrors ] = useState<TaskErrors>({
 		title: null,
 		description: null,
 		projectId: null,
@@ -46,6 +41,11 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		errors: createTaskErrors
 	} = useApiRequest();
 
+	const {
+		request: updateTaskRequest,
+		errors: updateTaskErrors
+	} = useApiRequest();
+
 	useEffect(
 		() => {
 			const errors = ErrorService.formatErrors(
@@ -58,7 +58,19 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		[ createTaskErrors ]
 	);
 
-	const handleCreateSubmit = async e => {
+	useEffect(
+		() => {
+			const errors = ErrorService.formatErrors(
+				[ 'title', 'description', 'projectId' ],
+				updateTaskErrors
+			);
+
+			setErrors(errors);
+		},
+		[ updateTaskErrors ]
+	);
+
+	const handleSubmit = async (e, type: keyof SubmitType) => {
 		e.preventDefault();
 		const payload: TaskPayload = {
 			title,
@@ -68,18 +80,27 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 			pinned
 		};
 
-		const config = createTaskApiConfig({ payload, userId, token });
+		let res, config;
+		if (type === 'edit') {
+			config = updateTaskApiConfig({
+				taskId: currentItem.task_id,
+				payload,
+				userId,
+				token
+			});
+			res = await updateTaskRequest(config);
+		} else {
+			config = createTaskApiConfig({ payload, userId, token });
+			res = await createTaskRequest(config);
+		}
 
-		const res = await createTaskRequest(config);
+		if (res.success === false) {
+			return;
+		}
 
 		if (res.success) {
 			handleClose(e);
 		}
-	};
-
-	const handleEditSubmit = async e => {
-		e.preventDefault();
-		console.log('editing');
 	};
 
 	const formState = {
@@ -101,8 +122,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 
 	return {
 		editMode: createModalEditMode,
-		handleCreateSubmit,
-		handleEditSubmit,
+		handleSubmit,
 		errors,
 		formState,
 		formHandlers

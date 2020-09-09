@@ -19,8 +19,7 @@ interface Props {
 const TaskForm = ({ handleClose }: Props): JSX.Element => {
 	const {
 		editMode,
-		handleCreateSubmit,
-		handleEditSubmit,
+		handleSubmit,
 		errors,
 		formState,
 		formHandlers
@@ -93,11 +92,15 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 				</Button>
 
 				{!editMode ? (
-					<Button btnStyle='primary' onClick={handleCreateSubmit}>
+					<Button
+						btnStyle='primary'
+						onClick={e => handleSubmit(e, 'new')}>
 						Create Task
 					</Button>
 				) : (
-					<Button btnStyle='primary' onClick={handleEditSubmit}>
+					<Button
+						btnStyle='primary'
+						onClick={e => handleSubmit(e, 'edit')}>
 						Save
 					</Button>
 				)}

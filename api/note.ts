@@ -16,6 +16,11 @@ interface CreateNote extends UserCredentials {
 	payload: NotePayload;
 }
 
+interface UpdateNote extends UserCredentials {
+	payload: NotePayload;
+	noteId: string | number;
+}
+
 interface DeleteNote extends UserCredentials {
 	noteId: string | number;
 }
@@ -28,6 +33,20 @@ export const createNoteApiConfig = ({
 	return {
 		url: `${apiBaseUrl}/notes/${userId}`,
 		method: 'post',
+		payload: payload,
+		token: token
+	};
+};
+
+export const updateNoteApiConfig = ({
+	noteId,
+	payload,
+	userId,
+	token
+}: UpdateNote): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/notes/${userId}/${noteId}`,
+		method: 'put',
 		payload: payload,
 		token: token
 	};

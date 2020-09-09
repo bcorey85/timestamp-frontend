@@ -5,23 +5,19 @@ import { selectUser } from '../../redux/user';
 import { useInputState } from '../useInputState';
 import { useApiRequest } from '../useApiRequest';
 import { ErrorService } from '../../utils/ErrorService';
-import { ApiError } from '../../api/index';
-import { createProjectApiConfig, ProjectPayload } from '../../api/project';
+import {
+	createProjectApiConfig,
+	ProjectPayload,
+	updateProjectApiConfig
+} from '../../api/project';
 import { selectCreateModal } from '../../redux/createModal';
-
-interface Errors {
-	title?: string;
-	description?: string;
-	generic?: ApiError[];
-}
-
-type handleClose = (e: SyntheticEvent) => void;
+import { handleClose, ProjectErrors, SubmitType } from './index';
 
 const useProjectCreateForm = (handleClose: handleClose) => {
 	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
 	const { userId, token } = useSelector(selectUser);
 
-	const [ errors, setErrors ] = useState<Errors>({
+	const [ errors, setErrors ] = useState<ProjectErrors>({
 		title: null,
 		description: null,
 		generic: []
@@ -38,6 +34,11 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		errors: createProjectErrors
 	} = useApiRequest();
 
+	const {
+		request: updateProjectRequest,
+		errors: updateProjectErrors
+	} = useApiRequest();
+
 	useEffect(
 		() => {
 			const errors = ErrorService.formatErrors(
@@ -50,13 +51,35 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		[ createProjectErrors ]
 	);
 
-	const handleCreateSubmit = async e => {
+	useEffect(
+		() => {
+			const errors = ErrorService.formatErrors(
+				[ 'title', 'description' ],
+				updateProjectErrors
+			);
+
+			setErrors(errors);
+		},
+		[ updateProjectErrors ]
+	);
+
+	const handleSubmit = async (e, type: keyof SubmitType) => {
 		e.preventDefault();
 		const payload: ProjectPayload = { title, description, pinned };
 
-		const config = createProjectApiConfig({ payload, userId, token });
-
-		const res = await createProjectRequest(config);
+		let res, config;
+		if (type === 'edit') {
+			config = updateProjectApiConfig({
+				projectId: currentItem.project_id,
+				payload,
+				userId,
+				token
+			});
+			res = await updateProjectRequest(config);
+		} else {
+			config = createProjectApiConfig({ payload, userId, token });
+			res = await createProjectRequest(config);
+		}
 
 		if (res.success === false) {
 			return;
@@ -65,11 +88,6 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		if (res.success) {
 			handleClose(e);
 		}
-	};
-
-	const handleEditSubmit = async e => {
-		e.preventDefault();
-		console.log('editing');
 	};
 
 	const formState = {
@@ -86,8 +104,7 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 
 	return {
 		editMode: createModalEditMode,
-		handleCreateSubmit,
-		handleEditSubmit,
+		handleSubmit,
 		errors,
 		formState,
 		formHandlers
