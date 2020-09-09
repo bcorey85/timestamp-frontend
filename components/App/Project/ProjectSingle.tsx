@@ -23,18 +23,21 @@ import { useCreateModal } from '../../../hooks/useCreateModal';
 import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteProjectApiConfig } from '../../../api/project';
+import { CreateModalService } from '../../../utils/CreateModalService';
+import { current } from '@reduxjs/toolkit';
 
 const ProjectSingle = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const { toggleCreateModal } = useCreateModal();
-	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const { router } = useRouterService();
-	const { request: deleteTaskRequest } = useApiRequest();
-
 	const currentProject = appData.projects.filter(project => {
 		return project.project_id === Number(router.query.projectId);
 	})[0];
+
+	const { toggleCreateModal } = useCreateModal(currentProject);
+	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
+
+	const { request: deleteTaskRequest } = useApiRequest();
 
 	const handleDelete = async () => {
 		const config = deleteProjectApiConfig({
@@ -67,25 +70,19 @@ const ProjectSingle = (): JSX.Element => {
 						</p>
 					</AppPageMeta>
 				</AppPageTitle>
-
 				<AppPageHeaderControls>
 					<OverflowMenu>
-						<OverflowEdit handleClick={() => {}}>Edit</OverflowEdit>
+						<OverflowEdit
+							handleClick={() => toggleCreateModal('edit')}>
+							Edit
+						</OverflowEdit>
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
 					</OverflowMenu>
 					<Button
 						btnStyle='secondary'
-						onClick={() =>
-							toggleCreateModal({
-								createModalPage: 'task',
-								currentItemId: {
-									noteId: '',
-									projectId: currentProject.project_id || '',
-									taskId: ''
-								}
-							})}>
+						onClick={() => toggleCreateModal('addChild')}>
 						<TypeIcon type={IconType.task} />
 						Add Task
 					</Button>

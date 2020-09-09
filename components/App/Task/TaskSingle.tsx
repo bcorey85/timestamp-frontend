@@ -27,14 +27,14 @@ import { deleteTaskApiConfig } from '../../../api/task';
 const TaskSingle = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const { toggleCreateModal } = useCreateModal();
-	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const { router } = useRouterService();
-	const { request: deleteTaskRequest } = useApiRequest();
-
 	const currentTask = appData.tasks.filter(task => {
 		return task.task_id === Number(router.query.taskId);
 	})[0];
+	const { toggleCreateModal } = useCreateModal(currentTask);
+	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
+
+	const { request: deleteTaskRequest } = useApiRequest();
 
 	const handleDelete = async () => {
 		const config = deleteTaskApiConfig({
@@ -70,22 +70,17 @@ const TaskSingle = (): JSX.Element => {
 
 				<AppPageHeaderControls>
 					<OverflowMenu>
-						<OverflowEdit handleClick={() => {}}>Edit</OverflowEdit>
+						<OverflowEdit
+							handleClick={() => toggleCreateModal('edit')}>
+							Edit
+						</OverflowEdit>
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
 					</OverflowMenu>
 					<Button
 						btnStyle='secondary'
-						onClick={() =>
-							toggleCreateModal({
-								createModalPage: 'note',
-								currentItemId: {
-									noteId: '',
-									projectId: currentTask.project_id || '',
-									taskId: currentTask.task_id || ''
-								}
-							})}>
+						onClick={() => toggleCreateModal('addChild')}>
 						<TypeIcon type={IconType.note} />
 						Add Note
 					</Button>

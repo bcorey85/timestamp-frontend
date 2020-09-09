@@ -32,7 +32,9 @@ const Task = (): JSX.Element => {
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
-							toggleCreateModal({ createModalPage: 'task' })}>
+							toggleCreateModal('new', {
+								createModalPage: 'task'
+							})}>
 						<TypeIcon type={IconType.task} />
 						New Task
 					</Button>

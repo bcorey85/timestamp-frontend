@@ -5,7 +5,7 @@ import { Nav } from './Nav';
 import {
 	mockStore,
 	MockReduxProvider
-} from '../../../test/__mocks__/mockRedux';
+} from '../../../../test/__mocks__/mockRedux';
 
 describe('Nav', () => {
 	it('renders', () => {

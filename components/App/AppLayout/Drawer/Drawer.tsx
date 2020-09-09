@@ -23,7 +23,7 @@ import { useRouterService } from '../../../../hooks/useRouterService';
 import styles from './Drawer.module.scss';
 
 interface Props {
-	toggleCreateModal: (config) => void;
+	toggleCreateModal: (mode, config) => void;
 	mobile?: boolean;
 }
 
@@ -56,7 +56,12 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 				className={drawerOpen ? styles.drawer : styles.drawer_closed}
 				onClick={mobile ? handleMobileClose : null}>
 				<div className={styles.btn_container}>
-					<Button onClick={toggleCreateModal} btnStyle='primary'>
+					<Button
+						onClick={() =>
+							toggleCreateModal('new', {
+								createModalPage: 'project'
+							})}
+						btnStyle='primary'>
 						<BiPlus className={styles.create_icon} />
 						Create
 					</Button>

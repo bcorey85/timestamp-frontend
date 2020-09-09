@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
-import { selectUser } from '../../../redux/user';
+import { selectUser } from '../../../../redux/user';
 
 import styles from './Nav.module.scss';
 

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-import { CreateNav } from '../Create/shared/CreateNav';
-import { ProjectForm } from '../Create/ProjectForm';
-import { TaskForm } from '../Create/TaskForm';
-import { NoteForm } from '../Create/NoteForm';
+import { CreateNav } from './shared/CreateNav';
+import { ProjectForm } from './ProjectForm';
+import { TaskForm } from './TaskForm';
+import { NoteForm } from './NoteForm';
 
 import { ItemType } from '../../../utils/ItemService';
 import styles from './CreateModal.module.scss';
+import { useSelector } from 'react-redux';
+import { selectCreateModal } from '../../../redux/createModal';
 
-export enum CreatePage {
-	project = 'Project',
-	task = 'Task',
-	note = 'Note'
+export interface CreatePage {
+	project: 'project';
+	task: 'task';
+	note: 'note';
 }
 
 interface Props {
@@ -29,18 +31,7 @@ const CreateModal = ({
 	initialProjectId,
 	initialTaskId
 }: Props): JSX.Element => {
-	const [ currentPage, setCurrentPage ] = useState(CreatePage[type]);
-
-	useEffect(
-		() => {
-			setCurrentPage(CreatePage[type]);
-		},
-		[ type ]
-	);
-
-	const handlePageChange = (page: CreatePage) => {
-		setCurrentPage(page);
-	};
+	const { createModalPage } = useSelector(selectCreateModal);
 
 	const handleCancel = () => {
 		toggleModal(null);
@@ -54,21 +45,18 @@ const CreateModal = ({
 		<div className={styles.modal}>
 			<div className={styles.modal_container}>
 				<div className={styles.form}>
-					<CreateNav
-						currentPage={currentPage}
-						handleClick={handlePageChange}
-					/>
+					<CreateNav currentPage={createModalPage} />
 					<div className={styles.form_body}>
-						{currentPage === CreatePage.project ? (
+						{createModalPage === 'project' ? (
 							<ProjectForm handleCancel={handleCancel} />
 						) : null}
-						{currentPage === CreatePage.task ? (
+						{createModalPage === 'task' ? (
 							<TaskForm
 								handleCancel={handleCancel}
 								initialProjectId={initialProjectId}
 							/>
 						) : null}
-						{currentPage === CreatePage.note ? (
+						{createModalPage === 'note' ? (
 							<NoteForm
 								handleCancel={handleCancel}
 								initialProjectId={initialProjectId}

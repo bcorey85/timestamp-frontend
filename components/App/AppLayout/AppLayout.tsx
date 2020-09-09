@@ -8,7 +8,7 @@ import { Footer } from '../../Landing/Layout/Footer/Footer';
 import { Breadcrumb } from './Breadcrumb';
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { MobileCreateButton } from './MobileCreateButton';
-import { CreateModal } from '../shared/CreateModal';
+import { CreateModal } from '../Create/CreateModal';
 
 import { selectUser } from '../../../redux/user';
 
@@ -55,15 +55,6 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 			text: 'Note'
 		}
 	]);
-	const router = useRouter();
-
-	// Build dictionary?
-	const routes = [];
-
-	useEffect(() => {
-		// filter if in dictionary
-		const routeArr = router.route.split('/').filter(route => {});
-	}, []);
 
 	return (
 		<div className={styles.app_layout}>

@@ -1,12 +1,12 @@
 import React, { SyntheticEvent } from 'react';
 
 import styles from './CreateNav.module.scss';
-import { CreatePage, Create } from '../Create';
+import { CreatePage } from '../CreateModal';
 import { IconType, TypeIcon } from '../../shared/TypeIcon';
+import { useCreateModal } from '../../../../hooks/useCreateModal';
 
 interface Props {
-	currentPage: CreatePage;
-	handleClick: (page: CreatePage) => void;
+	currentPage: keyof CreatePage;
 }
 
 interface BtnProps {
@@ -27,26 +27,28 @@ const CreateBtn = ({ active, type, text, handleClick }: BtnProps) => {
 	);
 };
 
-const CreateNav = ({ currentPage, handleClick }: Props) => {
+const CreateNav = ({ currentPage }: Props) => {
+	const { setCreateModalPage } = useCreateModal();
+
 	return (
 		<div className={styles.container}>
 			<CreateBtn
-				active={currentPage === CreatePage.project}
+				active={currentPage === 'project'}
 				type={IconType.project}
 				text='Project'
-				handleClick={() => handleClick(CreatePage.project)}
+				handleClick={() => setCreateModalPage('project')}
 			/>
 			<CreateBtn
-				active={currentPage === CreatePage.task}
+				active={currentPage === 'task'}
 				type={IconType.task}
 				text='Task'
-				handleClick={() => handleClick(CreatePage.task)}
+				handleClick={() => setCreateModalPage('task')}
 			/>
 			<CreateBtn
-				active={currentPage === CreatePage.note}
+				active={currentPage === 'note'}
 				type={IconType.note}
 				text='Note'
-				handleClick={() => handleClick(CreatePage.note)}
+				handleClick={() => setCreateModalPage('note')}
 			/>
 		</div>
 	);

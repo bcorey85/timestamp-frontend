@@ -26,14 +26,15 @@ import { deleteNoteApiConfig } from '../../../api/note';
 const NoteSingle = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
-	const { toggleCreateModal } = useCreateModal();
-	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const { router } = useRouterService();
-	const { request: deleteNoteRequest } = useApiRequest();
-
 	const currentNote = appData.notes.filter(note => {
 		return note.note_id === Number(router.query.noteId);
 	})[0];
+
+	const { toggleCreateModal } = useCreateModal(currentNote);
+	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
+
+	const { request: deleteNoteRequest } = useApiRequest();
 
 	const handleDelete = async () => {
 		const config = deleteNoteApiConfig({

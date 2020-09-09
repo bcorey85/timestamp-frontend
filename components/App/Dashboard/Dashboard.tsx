@@ -73,7 +73,9 @@ const Dashboard = (): JSX.Element => {
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
-							toggleCreateModal({ createModalPage: 'project' })}>
+							toggleCreateModal('new', {
+								createModalPage: 'project'
+							})}>
 						<TypeIcon type={IconType.project} />
 						New Project
 					</Button>

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { ItemType } from '../utils/ItemService';
 import { UiService } from '../utils/UiService';
+import { CreateModalService } from '../utils/CreateModalService';
 
 const createModalSlice = createSlice({
 	name: 'createModal',
@@ -21,28 +22,17 @@ const createModalSlice = createSlice({
 			state.createModalOpen = nextModalState;
 
 			UiService.preventBodyScrollOnModalOpen(nextModalState);
+			console.log(action.payload);
 
 			if (action.payload && action.payload.config) {
-				if (action.payload.config.currentItemId) {
-					state.currentItemId = action.payload.config.currentItemId;
-				}
-
-				if (action.payload.config.createModalPage) {
-					state.createModalPage =
-						action.payload.config.createModalPage;
-				}
-
-				if (action.payload.config.createModalEditMode) {
-					state.createModalEditMode =
-						action.payload.config.createModalEditMode;
-				}
+				CreateModalService.parseConfig(state, action);
+			} else {
+				CreateModalService.resetCurrentItem(state);
 			}
 		},
-		setCurrentItemId: (state, action) => {
-			state.currentItemId = action.payload;
-		},
 		setCreateModalPage: (state, action) => {
-			state.createModalPage = action.payload as keyof ItemType;
+			state.createModalPage = action.payload;
+			CreateModalService.resetCurrentItem(state);
 		}
 	}
 });
@@ -53,6 +43,5 @@ export const selectCreateModal = (state: RootState) => state.createModal;
 
 export const {
 	toggleCreateModal,
-	setCurrentItemId,
 	setCreateModalPage
 } = createModalSlice.actions;

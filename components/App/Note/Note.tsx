@@ -31,7 +31,9 @@ const Note = (): JSX.Element => {
 					<Button
 						btnStyle='secondary'
 						onClick={() =>
-							toggleCreateModal({ createModalPage: 'note' })}>
+							toggleCreateModal('new', {
+								createModalPage: 'note'
+							})}>
 						<TypeIcon type={IconType.note} />
 						New Note
 					</Button>

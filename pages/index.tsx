@@ -1,5 +1,5 @@
 import { Meta } from '../components/Meta/Meta';
-import { Layout } from '../components/Layout/Layout';
+import { Layout } from '../components/Landing/Layout/Layout';
 
 export default function Home(props) {
 	return (
