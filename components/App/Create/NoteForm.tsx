@@ -8,129 +8,29 @@ import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './TagInput';
 import { PinInput } from './PinInput';
 
-import { ErrorService } from '../../../utils/ErrorService';
-import { ApiError } from '../../../api/index';
-import { useInputState } from '../../../hooks/useInputState';
-import { useTags } from '../../../hooks/useTags';
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
-import { createNoteApiConfig, NotePayload } from '../../../api/note';
-import { selectUser } from '../../../redux/user';
-import { useApiRequest } from '../../../hooks/useApiRequest';
-import { useRouterService } from '../../../hooks/useRouterService';
-import { TagService } from '../../../utils/TagService';
-import { selectCreateModal } from '../../../redux/createModal';
+import { useNoteCreateForm } from '../../../hooks/create/useNoteCreateForm';
 
 interface Props {
-	handleCancel: (e: SyntheticEvent) => void;
+	handleClose: (e: SyntheticEvent) => void;
 }
 
-interface Errors {
-	title?: string;
-	description?: string;
-	projectId?: string;
-	taskId?: string;
-	startTime?: string;
-	endTime?: string;
-	generic?: ApiError[];
-}
-
-const NoteForm = ({ handleCancel }: Props): JSX.Element => {
-	const [ errors, setErrors ] = useState<Errors>({
-		title: null,
-		description: null,
-		projectId: null,
-		taskId: null,
-		startTime: null,
-		endTime: null,
-		generic: []
-	});
-	const { currentItemId, currentItem } = useSelector(selectCreateModal);
-
-	const { userId, token } = useSelector(selectUser);
-	const { tags, handleAddTag, handleRemoveTag } = useTags(
-		currentItem.tags || []
-	);
-	const [ title, setTitle ] = useInputState(currentItem.title || '');
-	const [ description, setDescription ] = useInputState(
-		currentItem.description || ''
-	);
-	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
-	const [ taskId, setTaskId ] = useState(currentItemId.taskId || '');
-	const [ startTime, setStartTime ] = useInputState(
-		currentItem.formattedTime.startTime || ''
-	);
-	const [ endTime, setEndTime ] = useInputState(
-		currentItem.formattedTime.endTime || ''
-	);
-	const [ startDate, setStartDate ] = useInputState(
-		currentItem.formattedTime.startDate || ''
-	);
-	const [ endDate, setEndDate ] = useInputState(
-		currentItem.formattedTime.endDate || ''
-	);
-
-	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
-	const {
-		request: createNoteRequest,
-		errors: createNoteErrors
-	} = useApiRequest();
+const NoteForm = ({ handleClose }: Props): JSX.Element => {
 	const appData = useSelector(selectAppData);
 
-	useEffect(
-		() => {
-			const errors = ErrorService.formatErrors(
-				[
-					'title',
-					'description',
-					'startTime',
-					'endTime',
-					'projectId',
-					'taskId'
-				],
-				createNoteErrors
-			);
-
-			setErrors(errors);
-		},
-		[ createNoteErrors ]
+	const { handleSubmit, errors, formState, formHandlers } = useNoteCreateForm(
+		handleClose
 	);
-
-	const handleSubmit = async e => {
-		e.preventDefault();
-		const start = new Date(startDate + ' ' + startTime);
-		const end = new Date(endDate + ' ' + endTime);
-
-		const payload: NotePayload = {
-			title,
-			projectId: parseInt(projectId),
-			taskId: parseInt(taskId),
-			startTime: start,
-			endTime: end,
-			description,
-			tags,
-			pinned
-		};
-
-		const config = createNoteApiConfig({ payload, userId, token });
-		const res = await createNoteRequest(config);
-
-		if (res.success === false) {
-			return;
-		}
-
-		if (res.success) {
-			handleCancel(e);
-		}
-	};
 
 	return (
 		<React.Fragment>
 			<BaseForm>
 				<FormRow>
 					<PinInput
-						pinned={pinned}
-						handlePin={() => setPinned(!pinned)}
+						pinned={formState.pinned}
+						handlePin={() =>
+							formHandlers.setPinned(!formState.pinned)}
 					/>
 				</FormRow>
 				<FormRow>
@@ -138,8 +38,8 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='text'
 						id='title'
 						label='Note Title'
-						value={title}
-						onChange={setTitle}
+						value={formState.title}
+						onChange={formHandlers.setTitle}
 						error={errors.title}
 					/>
 				</FormRow>
@@ -148,8 +48,9 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='project'
 						label='Project'
-						value={projectId}
-						onChange={e => setProjectId(e.target.value)}
+						value={formState.projectId}
+						onChange={e =>
+							formHandlers.setProjectId(e.target.value)}
 						error={errors.projectId}>
 						<option value={null} />
 						{appData.projects.map(project => {
@@ -166,13 +67,15 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='task'
 						label='Task'
-						value={taskId}
-						onChange={e => setTaskId(e.target.value)}
+						value={formState.taskId}
+						onChange={e => formHandlers.setTaskId(e.target.value)}
 						error={errors.taskId}>
 						<option value={null} />
 						{appData.tasks
 							.filter(
-								task => task.project_id === parseInt(projectId)
+								task =>
+									task.project_id ===
+									parseInt(formState.projectId)
 							)
 							.map(task => {
 								return (
@@ -189,27 +92,27 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 					<DateTimeInput
 						id='start'
 						label='Start'
-						dateValue={startDate}
-						timeValue={startTime}
-						handleDate={setStartDate}
-						handleTime={setStartTime}
+						dateValue={formState.startDate}
+						timeValue={formState.startTime}
+						handleDate={formHandlers.setStartDate}
+						handleTime={formHandlers.setStartTime}
 						error={errors.startTime}
 					/>
 					<DateTimeInput
 						id='end'
 						label='End'
-						dateValue={endDate}
-						timeValue={endTime}
-						handleDate={setEndDate}
-						handleTime={setEndTime}
+						dateValue={formState.endDate}
+						timeValue={formState.endTime}
+						handleDate={formHandlers.setEndDate}
+						handleTime={formHandlers.setEndTime}
 						error={errors.endTime}
 					/>
 				</FormRow>
 				<FormRow>
 					<TagInput
-						handleAddTag={handleAddTag}
-						handleRemoveTag={handleRemoveTag}
-						tags={tags}
+						handleAddTag={formHandlers.handleAddTag}
+						handleRemoveTag={formHandlers.handleRemoveTag}
+						tags={formState.tags}
 					/>
 				</FormRow>
 				<FormRow>
@@ -217,14 +120,14 @@ const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 						type='textarea'
 						id='description'
 						label='Description'
-						value={description}
-						onChange={setDescription}
+						value={formState.description}
+						onChange={formHandlers.setDescription}
 						error={errors.description}
 					/>
 				</FormRow>
 			</BaseForm>
 			<CreateBtnContainer>
-				<Button btnStyle='link_gray' onClick={handleCancel}>
+				<Button btnStyle='link_gray' onClick={handleClose}>
 					Cancel
 				</Button>
 				<Button btnStyle='primary' onClick={handleSubmit}>

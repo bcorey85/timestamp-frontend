@@ -13,8 +13,7 @@ import { CreateModal } from '../Create/CreateModal';
 import { selectUser } from '../../../redux/user';
 
 import styles from './AppLayout.module.scss';
-import { selectCreateModal } from '../../../redux/createModal';
-import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useCreateModal } from '../../../hooks/create/useCreateModal';
 
 interface Props {
 	children?: any;

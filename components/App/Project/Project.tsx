@@ -12,7 +12,7 @@ import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
-import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useCreateModal } from '../../../hooks/create/useCreateModal';
 
 const Project = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();

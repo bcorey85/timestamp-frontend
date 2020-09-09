@@ -3,7 +3,7 @@ import React, { SyntheticEvent } from 'react';
 import styles from './CreateNav.module.scss';
 import { CreatePage } from '../CreateModal';
 import { IconType, TypeIcon } from '../../shared/TypeIcon';
-import { useCreateModal } from '../../../../hooks/useCreateModal';
+import { useCreateModal } from '../../../../hooks/create/useCreateModal';
 
 interface Props {
 	currentPage: keyof CreatePage;

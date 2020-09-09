@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -7,94 +7,29 @@ import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './TagInput';
 import { PinInput } from './PinInput';
 
-import { ErrorService } from '../../../utils/ErrorService';
-import { ApiError } from '../../../api/index';
-import { useInputState } from '../../../hooks/useInputState';
-import { useTags } from '../../../hooks/useTags';
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
-import { selectUser } from '../../../redux/user';
-import { useApiRequest } from '../../../hooks/useApiRequest';
-import { createTaskApiConfig, TaskPayload } from '../../../api/task';
-import { useRouterService } from '../../../hooks/useRouterService';
-import { selectCreateModal } from '../../../redux/createModal';
+import { useTaskCreateForm } from '../../../hooks/create/useTaskCreateForm';
 
 interface Props {
-	handleCancel: (e: SyntheticEvent) => void;
+	handleClose: (e: SyntheticEvent) => void;
 	initialProjectId?: string;
 }
 
-interface Errors {
-	title?: string;
-	description?: string;
-	projectId?: string;
-	generic?: ApiError[];
-}
-
-const TaskForm = ({ handleCancel }: Props): JSX.Element => {
-	const { currentItemId, currentItem } = useSelector(selectCreateModal);
-
-	const [ errors, setErrors ] = useState<Errors>({
-		title: null,
-		description: null,
-		projectId: null,
-		generic: []
-	});
-	const { userId, token } = useSelector(selectUser);
-	const { tags, handleAddTag, handleRemoveTag } = useTags(
-		currentItem.tags || []
+const TaskForm = ({ handleClose }: Props): JSX.Element => {
+	const { handleSubmit, errors, formState, formHandlers } = useTaskCreateForm(
+		handleClose
 	);
-	const [ title, setTitle ] = useInputState(currentItem.title || '');
-	const [ description, setDescription ] = useInputState(
-		currentItem.description || ''
-	);
-	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
-	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
-	const {
-		request: createTaskRequest,
-		errors: createTaskErrors
-	} = useApiRequest();
 	const appData = useSelector(selectAppData);
-	const { router } = useRouterService();
-
-	useEffect(
-		() => {
-			const errors = ErrorService.formatErrors(
-				[ 'title', 'description', 'projectId' ],
-				createTaskErrors
-			);
-
-			setErrors(errors);
-		},
-		[ createTaskErrors ]
-	);
-
-	const handleSubmit = async e => {
-		e.preventDefault();
-		const payload: TaskPayload = {
-			title,
-			projectId: parseInt(projectId),
-			description,
-			tags,
-			pinned
-		};
-
-		const config = createTaskApiConfig({ payload, userId, token });
-
-		const res = await createTaskRequest(config);
-
-		if (res.success) {
-			handleCancel(e);
-		}
-	};
 
 	return (
 		<React.Fragment>
 			<BaseForm>
 				<FormRow>
 					<PinInput
-						pinned={pinned}
-						handlePin={() => setPinned(!pinned)}
+						pinned={formState.pinned}
+						handlePin={() =>
+							formHandlers.setPinned(!formState.pinned)}
 					/>
 				</FormRow>
 				<FormRow>
@@ -102,8 +37,8 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						type='text'
 						id='title'
 						label='Task Title'
-						value={title}
-						onChange={setTitle}
+						value={formState.title}
+						onChange={formHandlers.setTitle}
 						error={errors.title}
 					/>
 				</FormRow>
@@ -112,8 +47,9 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						type='select'
 						id='project'
 						label='Project'
-						value={projectId}
-						onChange={e => setProjectId(e.target.value)}
+						value={formState.projectId}
+						onChange={e =>
+							formHandlers.setProjectId(e.target.value)}
 						error={errors.projectId}>
 						<option value={null} />
 						{appData.projects.map(project => {
@@ -129,9 +65,9 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 				</FormRow>
 				<FormRow>
 					<TagInput
-						handleAddTag={handleAddTag}
-						handleRemoveTag={handleRemoveTag}
-						tags={tags}
+						handleAddTag={formHandlers.handleAddTag}
+						handleRemoveTag={formHandlers.handleRemoveTag}
+						tags={formState.tags}
 					/>
 				</FormRow>
 				<FormRow>
@@ -139,15 +75,15 @@ const TaskForm = ({ handleCancel }: Props): JSX.Element => {
 						type='textarea'
 						id='description'
 						label='Description'
-						value={description}
-						onChange={setDescription}
+						value={formState.description}
+						onChange={formHandlers.setDescription}
 						error={errors.description}
 					/>
 				</FormRow>
 			</BaseForm>
 
 			<CreateBtnContainer>
-				<Button btnStyle='link_gray' onClick={handleCancel}>
+				<Button btnStyle='link_gray' onClick={handleClose}>
 					Cancel
 				</Button>
 

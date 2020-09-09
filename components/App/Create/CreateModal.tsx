@@ -33,7 +33,7 @@ const CreateModal = ({
 }: Props): JSX.Element => {
 	const { createModalPage } = useSelector(selectCreateModal);
 
-	const handleCancel = () => {
+	const handleClose = () => {
 		toggleModal(null);
 	};
 
@@ -48,16 +48,16 @@ const CreateModal = ({
 					<CreateNav currentPage={createModalPage} />
 					<div className={styles.form_body}>
 						{createModalPage === 'project' ? (
-							<ProjectForm handleCancel={handleCancel} />
+							<ProjectForm handleClose={handleClose} />
 						) : null}
 						{createModalPage === 'task' ? (
 							<TaskForm
-								handleCancel={handleCancel}
+								handleClose={handleClose}
 								initialProjectId={initialProjectId}
 							/>
 						) : null}
 						{createModalPage === 'note' ? (
-							<NoteForm handleCancel={handleCancel} />
+							<NoteForm handleClose={handleClose} />
 						) : null}
 					</div>
 				</div>

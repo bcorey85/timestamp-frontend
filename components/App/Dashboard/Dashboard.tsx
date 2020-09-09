@@ -18,7 +18,7 @@ import { useApiRequest } from '../../../hooks/useApiRequest';
 import { getUserApiConfig } from '../../../api/user';
 import { selectAppData, setAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useCreateModal } from '../../../hooks/create/useCreateModal';
 
 const Dashboard = (): JSX.Element => {
 	const {

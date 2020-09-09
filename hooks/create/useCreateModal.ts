@@ -4,9 +4,9 @@ import {
 	toggleCreateModal,
 	selectCreateModal,
 	setCreateModalPage
-} from '../redux/createModal';
-import { ItemType, Item } from '../utils/ItemService';
-import { CreateModalService } from '../utils/CreateModalService';
+} from '../../redux/createModal';
+import { ItemType, Item } from '../../utils/ItemService';
+import { CreateModalService } from '../../utils/CreateModalService';
 
 interface ModalConfig {
 	createModalPage?: keyof ItemType;

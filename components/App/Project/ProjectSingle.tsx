@@ -19,7 +19,7 @@ import { DeleteModal } from '../shared/DeleteModal';
 import { selectAppData } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { useCreateModal } from '../../../hooks/useCreateModal';
+import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteProjectApiConfig } from '../../../api/project';
