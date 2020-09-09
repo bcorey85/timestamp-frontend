@@ -17,6 +17,7 @@ import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { createTaskApiConfig, TaskPayload } from '../../../api/task';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { selectCreateModal } from '../../../redux/createModal';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
@@ -30,7 +31,9 @@ interface Errors {
 	generic?: ApiError[];
 }
 
-const TaskForm = ({ handleCancel, initialProjectId }: Props): JSX.Element => {
+const TaskForm = ({ handleCancel }: Props): JSX.Element => {
+	const { currentItemId, currentItem } = useSelector(selectCreateModal);
+
 	const [ errors, setErrors ] = useState<Errors>({
 		title: null,
 		description: null,
@@ -38,11 +41,15 @@ const TaskForm = ({ handleCancel, initialProjectId }: Props): JSX.Element => {
 		generic: []
 	});
 	const { userId, token } = useSelector(selectUser);
-	const { tags, handleAddTag, handleRemoveTag } = useTags();
-	const [ title, setTitle ] = useInputState('');
-	const [ description, setDescription ] = useInputState('');
-	const [ projectId, setProjectId ] = useState(initialProjectId || '');
-	const [ pinned, setPinned ] = useState(false);
+	const { tags, handleAddTag, handleRemoveTag } = useTags(
+		currentItem.tags || []
+	);
+	const [ title, setTitle ] = useInputState(currentItem.title || '');
+	const [ description, setDescription ] = useInputState(
+		currentItem.description || ''
+	);
+	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
+	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
 	const {
 		request: createTaskRequest,
 		errors: createTaskErrors

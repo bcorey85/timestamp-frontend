@@ -4,7 +4,7 @@ import styles from './OverflowLink.module.scss';
 
 interface Props {
 	children?: any;
-	handleClick: () => void;
+	handleClick: (...args: any[]) => void;
 }
 
 const OverflowLink = ({ children, handleClick }: Props): JSX.Element => {

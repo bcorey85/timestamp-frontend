@@ -18,11 +18,11 @@ import { createNoteApiConfig, NotePayload } from '../../../api/note';
 import { selectUser } from '../../../redux/user';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { TagService } from '../../../utils/TagService';
+import { selectCreateModal } from '../../../redux/createModal';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
-	initialProjectId?: string;
-	initialTaskId?: string;
 }
 
 interface Errors {
@@ -35,11 +35,7 @@ interface Errors {
 	generic?: ApiError[];
 }
 
-const NoteForm = ({
-	handleCancel,
-	initialProjectId,
-	initialTaskId
-}: Props): JSX.Element => {
+const NoteForm = ({ handleCancel }: Props): JSX.Element => {
 	const [ errors, setErrors ] = useState<Errors>({
 		title: null,
 		description: null,
@@ -49,18 +45,32 @@ const NoteForm = ({
 		endTime: null,
 		generic: []
 	});
-	const { userId, token } = useSelector(selectUser);
-	const { tags, handleAddTag, handleRemoveTag } = useTags();
-	const [ title, setTitle ] = useInputState('');
-	const [ description, setDescription ] = useInputState('');
-	const [ projectId, setProjectId ] = useState(initialProjectId || '');
-	const [ taskId, setTaskId ] = useState(initialTaskId || '');
-	const [ startTime, setStartTime ] = useInputState('');
-	const [ endTime, setEndTime ] = useInputState('');
-	const [ startDate, setStartDate ] = useInputState('');
-	const [ endDate, setEndDate ] = useInputState('');
+	const { currentItemId, currentItem } = useSelector(selectCreateModal);
 
-	const [ pinned, setPinned ] = useState(false);
+	const { userId, token } = useSelector(selectUser);
+	const { tags, handleAddTag, handleRemoveTag } = useTags(
+		currentItem.tags || []
+	);
+	const [ title, setTitle ] = useInputState(currentItem.title || '');
+	const [ description, setDescription ] = useInputState(
+		currentItem.description || ''
+	);
+	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
+	const [ taskId, setTaskId ] = useState(currentItemId.taskId || '');
+	const [ startTime, setStartTime ] = useInputState(
+		currentItem.formattedTime.startTime || ''
+	);
+	const [ endTime, setEndTime ] = useInputState(
+		currentItem.formattedTime.endTime || ''
+	);
+	const [ startDate, setStartDate ] = useInputState(
+		currentItem.formattedTime.startDate || ''
+	);
+	const [ endDate, setEndDate ] = useInputState(
+		currentItem.formattedTime.endDate || ''
+	);
+
+	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
 	const {
 		request: createNoteRequest,
 		errors: createNoteErrors

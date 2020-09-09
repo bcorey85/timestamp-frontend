@@ -57,11 +57,7 @@ const CreateModal = ({
 							/>
 						) : null}
 						{createModalPage === 'note' ? (
-							<NoteForm
-								handleCancel={handleCancel}
-								initialProjectId={initialProjectId}
-								initialTaskId={initialTaskId}
-							/>
+							<NoteForm handleCancel={handleCancel} />
 						) : null}
 					</div>
 				</div>

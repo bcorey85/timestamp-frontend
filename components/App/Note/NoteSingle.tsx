@@ -70,7 +70,10 @@ const NoteSingle = (): JSX.Element => {
 
 				<AppPageHeaderControls>
 					<OverflowMenu>
-						<OverflowEdit handleClick={() => {}}>Edit</OverflowEdit>
+						<OverflowEdit
+							handleClick={() => toggleCreateModal('edit')}>
+							Edit
+						</OverflowEdit>
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>

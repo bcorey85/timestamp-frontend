@@ -1,4 +1,8 @@
+import moment from 'moment';
+
 import { Item, ItemType, ItemService } from './ItemService';
+import { initialCurrentItemId, initialCurrentItem } from '../redux/createModal';
+import { TagService } from './TagService';
 
 interface ItemIdentifier {
 	noteId?: number | string;
@@ -12,6 +16,10 @@ class CreateModalService {
 			state.currentItemId = action.payload.config.currentItemId;
 		}
 
+		if (action.payload.config.currentItem) {
+			state.currentItem = action.payload.config.currentItem;
+		}
+
 		if (action.payload.config.createModalPage) {
 			state.createModalPage = action.payload.config.createModalPage;
 		}
@@ -19,15 +27,14 @@ class CreateModalService {
 		if (action.payload.config.createModalEditMode) {
 			state.createModalEditMode =
 				action.payload.config.createModalEditMode;
+		} else {
+			state.createModalEditMode = false;
 		}
 	};
 
 	static resetCurrentItem = state => {
-		state.currentItemId = {
-			noteId: '',
-			taskId: '',
-			projectId: ''
-		};
+		state.currentItemId = initialCurrentItemId;
+		state.currentItem = initialCurrentItem;
 	};
 
 	public addChildItemConfig = (item: Item) => {
@@ -44,11 +51,21 @@ class CreateModalService {
 	public editCurrentItemConfig = (item: Item) => {
 		const itemIds = this.prefillItemIds(item);
 		const itemType = new ItemService(item).type;
+		const currentTags = item.tags ? TagService.split(item.tags) : [];
+		const formattedTime = this.splitDateTime(item);
 
-		return {
+		const config = {
 			currentItemId: itemIds,
+			currentItem: {
+				...item,
+				type: itemType,
+				tags: currentTags,
+				formattedTime
+			},
 			createModalPage: itemType
 		};
+
+		return config;
 	};
 
 	private prefillItemIds = (item: Item) => {
@@ -74,7 +91,28 @@ class CreateModalService {
 		return childType;
 	};
 
-	static loadItemForEdit = (item: Item) => {};
+	private splitDateTime = item => {
+		let formattedTime = {
+			startTime: '',
+			endTime: '',
+			startDate: '',
+			endDate: ''
+		};
+
+		if (item.start_time) {
+			const start = Date.parse(item.start_time);
+			formattedTime.startTime = moment(start).format('HH:mm');
+			formattedTime.startDate = moment(start).format('YYYY-MM-DD');
+		}
+
+		if (item.end_time) {
+			const end = Date.parse(item.end_time);
+			formattedTime.endTime = moment(end).format('HH:mm');
+			formattedTime.endDate = moment(end).format('YYYY-MM-DD');
+		}
+
+		return formattedTime;
+	};
 }
 
 export { CreateModalService };

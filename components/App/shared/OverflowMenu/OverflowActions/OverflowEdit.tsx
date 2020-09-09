@@ -4,7 +4,7 @@ import { BiPencil } from 'react-icons/bi';
 
 interface Props {
 	children?: any;
-	handleClick: () => void;
+	handleClick: (...args: any[]) => void;
 }
 
 const OverflowEdit = ({ children, handleClick }: Props): JSX.Element => {

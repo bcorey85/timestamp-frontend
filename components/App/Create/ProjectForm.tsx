@@ -14,6 +14,7 @@ import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { createProjectApiConfig, ProjectPayload } from '../../../api/project';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { selectCreateModal } from '../../../redux/createModal';
 
 interface Props {
 	handleCancel: (e: SyntheticEvent) => void;
@@ -26,15 +27,21 @@ interface Errors {
 }
 
 const ProjectForm = ({ handleCancel }: Props): JSX.Element => {
+	const { currentItem } = useSelector(selectCreateModal);
+	const { userId, token } = useSelector(selectUser);
+
 	const [ errors, setErrors ] = useState<Errors>({
 		title: null,
 		description: null,
 		generic: []
 	});
-	const [ pinned, setPinned ] = useState(false);
-	const [ title, setTitle ] = useInputState('');
-	const [ description, setDescription ] = useInputState('');
-	const { userId, token } = useSelector(selectUser);
+
+	const [ title, setTitle ] = useInputState(currentItem.title || '');
+	const [ description, setDescription ] = useInputState(
+		currentItem.description || ''
+	);
+	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
+
 	const {
 		request: createProjectRequest,
 		errors: createProjectErrors

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { TagService } from '../utils/TagService';
 
-const useTags = () => {
-	const [ tags, setTags ] = useState([]);
+const useTags = (initialState: string[]) => {
+	const [ tags, setTags ] = useState(initialState);
 
 	const handleAddTag = (tagName: string) => {
 		if (tags.includes(tagName)) {
 			return;
 		}
-		setTags([ ...tags, tagName ]);
+		setTags([ ...tags, TagService.trim(tagName) ]);
 	};
 
 	const handleRemoveTag = (tagName: string) => {
