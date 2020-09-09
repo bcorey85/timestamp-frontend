@@ -19,9 +19,14 @@ interface Props {
 const NoteForm = ({ handleClose }: Props): JSX.Element => {
 	const appData = useSelector(selectAppData);
 
-	const { handleSubmit, errors, formState, formHandlers } = useNoteCreateForm(
-		handleClose
-	);
+	const {
+		editMode,
+		handleCreateSubmit,
+		handleEditSubmit,
+		errors,
+		formState,
+		formHandlers
+	} = useNoteCreateForm(handleClose);
 
 	return (
 		<React.Fragment>
@@ -130,9 +135,16 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 				<Button btnStyle='link_gray' onClick={handleClose}>
 					Cancel
 				</Button>
-				<Button btnStyle='primary' onClick={handleSubmit}>
-					Create Note
-				</Button>
+
+				{!editMode ? (
+					<Button btnStyle='primary' onClick={handleCreateSubmit}>
+						Create Note
+					</Button>
+				) : (
+					<Button btnStyle='primary' onClick={handleEditSubmit}>
+						Save
+					</Button>
+				)}
 			</CreateBtnContainer>
 		</React.Fragment>
 	);

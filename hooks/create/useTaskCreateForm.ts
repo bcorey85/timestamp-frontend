@@ -20,7 +20,9 @@ interface Errors {
 type handleClose = (e: SyntheticEvent) => void;
 
 const useTaskCreateForm = (handleClose: handleClose) => {
-	const { currentItemId, currentItem } = useSelector(selectCreateModal);
+	const { currentItemId, currentItem, createModalEditMode } = useSelector(
+		selectCreateModal
+	);
 	const [ errors, setErrors ] = useState<Errors>({
 		title: null,
 		description: null,
@@ -56,7 +58,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		[ createTaskErrors ]
 	);
 
-	const handleSubmit = async e => {
+	const handleCreateSubmit = async e => {
 		e.preventDefault();
 		const payload: TaskPayload = {
 			title,
@@ -73,6 +75,11 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		if (res.success) {
 			handleClose(e);
 		}
+	};
+
+	const handleEditSubmit = async e => {
+		e.preventDefault();
+		console.log('editing');
 	};
 
 	const formState = {
@@ -92,7 +99,14 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		setPinned
 	};
 
-	return { handleSubmit, errors, formState, formHandlers };
+	return {
+		editMode: createModalEditMode,
+		handleCreateSubmit,
+		handleEditSubmit,
+		errors,
+		formState,
+		formHandlers
+	};
 };
 
 export { useTaskCreateForm };

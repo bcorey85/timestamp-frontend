@@ -14,7 +14,9 @@ interface Props {
 
 const ProjectForm = ({ handleClose }: Props): JSX.Element => {
 	const {
-		handleSubmit,
+		editMode,
+		handleCreateSubmit,
+		handleEditSubmit,
 		errors,
 		formState,
 		formHandlers
@@ -56,9 +58,15 @@ const ProjectForm = ({ handleClose }: Props): JSX.Element => {
 				<Button btnStyle='link_gray' onClick={handleClose}>
 					Cancel
 				</Button>
-				<Button btnStyle='primary' onClick={handleSubmit}>
-					Create Project
-				</Button>
+				{!editMode ? (
+					<Button btnStyle='primary' onClick={handleCreateSubmit}>
+						Create Project
+					</Button>
+				) : (
+					<Button btnStyle='primary' onClick={handleEditSubmit}>
+						Save
+					</Button>
+				)}
 			</CreateBtnContainer>
 		</React.Fragment>
 	);

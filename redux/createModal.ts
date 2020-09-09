@@ -53,6 +53,7 @@ const createModalSlice = createSlice({
 				CreateModalService.parseConfig(state, action);
 			} else {
 				CreateModalService.resetCurrentItem(state);
+				state.createModalEditMode = false;
 			}
 		},
 		setCreateModalPage: (state, action) => {

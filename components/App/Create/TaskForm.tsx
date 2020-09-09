@@ -17,9 +17,14 @@ interface Props {
 }
 
 const TaskForm = ({ handleClose }: Props): JSX.Element => {
-	const { handleSubmit, errors, formState, formHandlers } = useTaskCreateForm(
-		handleClose
-	);
+	const {
+		editMode,
+		handleCreateSubmit,
+		handleEditSubmit,
+		errors,
+		formState,
+		formHandlers
+	} = useTaskCreateForm(handleClose);
 	const appData = useSelector(selectAppData);
 
 	return (
@@ -87,9 +92,15 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 					Cancel
 				</Button>
 
-				<Button btnStyle='primary' onClick={handleSubmit}>
-					Create Task
-				</Button>
+				{!editMode ? (
+					<Button btnStyle='primary' onClick={handleCreateSubmit}>
+						Create Task
+					</Button>
+				) : (
+					<Button btnStyle='primary' onClick={handleEditSubmit}>
+						Save
+					</Button>
+				)}
 			</CreateBtnContainer>
 		</React.Fragment>
 	);

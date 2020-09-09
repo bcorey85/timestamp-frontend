@@ -32,7 +32,9 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		endTime: null,
 		generic: []
 	});
-	const { currentItemId, currentItem } = useSelector(selectCreateModal);
+	const { currentItemId, currentItem, createModalEditMode } = useSelector(
+		selectCreateModal
+	);
 	const { userId, token } = useSelector(selectUser);
 
 	const { tags, handleAddTag, handleRemoveTag } = useTags(
@@ -82,7 +84,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		[ createNoteErrors ]
 	);
 
-	const handleSubmit = async e => {
+	const handleCreateSubmit = async e => {
 		e.preventDefault();
 		const start = new Date(startDate + ' ' + startTime);
 		const end = new Date(endDate + ' ' + endTime);
@@ -108,6 +110,11 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		if (res.success) {
 			handleClose(e);
 		}
+	};
+
+	const handleEditSubmit = async e => {
+		e.preventDefault();
+		console.log('editing');
 	};
 
 	const formState = {
@@ -137,7 +144,14 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		setPinned
 	};
 
-	return { handleSubmit, errors, formState, formHandlers };
+	return {
+		editMode: createModalEditMode,
+		handleCreateSubmit,
+		handleEditSubmit,
+		errors,
+		formState,
+		formHandlers
+	};
 };
 
 export { useNoteCreateForm };

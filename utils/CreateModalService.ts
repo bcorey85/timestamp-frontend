@@ -44,7 +44,8 @@ class CreateModalService {
 
 		return {
 			currentItemId: itemIds,
-			createModalPage: childPage
+			createModalPage: childPage,
+			createModalEditMode: false
 		};
 	};
 
@@ -62,7 +63,8 @@ class CreateModalService {
 				tags: currentTags,
 				formattedTime
 			},
-			createModalPage: itemType
+			createModalPage: itemType,
+			createModalEditMode: true
 		};
 
 		return config;

@@ -18,7 +18,7 @@ interface Errors {
 type handleClose = (e: SyntheticEvent) => void;
 
 const useProjectCreateForm = (handleClose: handleClose) => {
-	const { currentItem } = useSelector(selectCreateModal);
+	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
 	const { userId, token } = useSelector(selectUser);
 
 	const [ errors, setErrors ] = useState<Errors>({
@@ -50,7 +50,7 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		[ createProjectErrors ]
 	);
 
-	const handleSubmit = async e => {
+	const handleCreateSubmit = async e => {
 		e.preventDefault();
 		const payload: ProjectPayload = { title, description, pinned };
 
@@ -67,6 +67,11 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		}
 	};
 
+	const handleEditSubmit = async e => {
+		e.preventDefault();
+		console.log('editing');
+	};
+
 	const formState = {
 		title,
 		description,
@@ -79,7 +84,14 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		setPinned
 	};
 
-	return { handleSubmit, errors, formState, formHandlers };
+	return {
+		editMode: createModalEditMode,
+		handleCreateSubmit,
+		handleEditSubmit,
+		errors,
+		formState,
+		formHandlers
+	};
 };
 
 export { useProjectCreateForm };
