@@ -51,18 +51,12 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 		[ appData.synced ]
 	);
 
-	if (isLoading) {
-		return <Loading />;
-	}
-
-	if (!isLoading && appDataErrors.length > 0) {
-		return (
-			<div>
-				An error occurred while fetching your account data. Please
-				contact an admin for support{' '}
-			</div>
-		);
-	}
+	const errorMessage = (
+		<div>
+			An error occurred while fetching your account data. Please contact
+			an admin for support
+		</div>
+	);
 
 	return (
 		<div className={styles.app_layout}>
@@ -82,6 +76,10 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 				</div>
 
 				<main className={styles.main}>
+					{isLoading ? <Loading /> : null}
+					{!isLoading && appDataErrors.length > 0 ? (
+						errorMessage
+					) : null}
 					{children}
 					<CreateModal
 						isOpen={createModalOpen}
