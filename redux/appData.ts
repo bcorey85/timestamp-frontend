@@ -4,6 +4,7 @@ import { RootState } from './store';
 const appDataSlice = createSlice({
 	name: 'appData',
 	initialState: {
+		synced: false,
 		email: null,
 		notes: [],
 		projects: [],
@@ -28,6 +29,9 @@ const appDataSlice = createSlice({
 			state.createdAt = action.payload.appData.created_at;
 			state.lastLogin = action.payload.appData.last_login;
 			state.recentItems = action.payload.appData.recentItems;
+		},
+		setAppDataSynced: (state, action) => {
+			state.synced = action.payload;
 		}
 	}
 });
@@ -36,4 +40,4 @@ export const appDataReducer = appDataSlice.reducer;
 
 export const selectAppData = (state: RootState) => state.appData;
 
-export const { setAppData } = appDataSlice.actions;
+export const { setAppData, setAppDataSynced } = appDataSlice.actions;

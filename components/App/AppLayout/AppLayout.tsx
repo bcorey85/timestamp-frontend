@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+import { useAppData } from '../../../hooks/useAppData';
 
 import { Header } from './Header/Header';
 import { Drawer } from './Drawer/Drawer';
@@ -9,11 +9,12 @@ import { Breadcrumb } from './Breadcrumb';
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { MobileCreateButton } from './MobileCreateButton';
 import { CreateModal } from '../Create/CreateModal';
+import { Loading } from '../../shared/Loading';
 
 import { selectUser } from '../../../redux/user';
-
-import styles from './AppLayout.module.scss';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
+import { setAppDataSynced } from '../../../redux/appData';
+import styles from './AppLayout.module.scss';
 
 interface Props {
 	children?: any;
@@ -21,7 +22,8 @@ interface Props {
 
 const AppLayout = ({ children }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
-
+	const [ isLoading, setIsLoading ] = useState(true);
+	const { fetchAppData, appData, appDataErrors } = useAppData();
 	const {
 		createModalOpen,
 		createModalPage,
@@ -29,31 +31,38 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 		currentTaskId,
 		currentProjectId
 	} = useCreateModal();
-
 	const dispatch = useDispatch();
 
-	const [ breadcrumbLinks, setBreadcrumbLinks ] = useState([
-		{
-			iconType: IconType.none,
-			href: `/app/${userId}/dashboard`,
-			text: 'Dashboard'
+	useEffect(
+		() => {
+			appData.synced;
+			if (appData.synced === false) {
+				fetchAppData();
+			}
+
+			if (appDataErrors.length > 0) {
+				return;
+			}
+
+			dispatch(setAppDataSynced(true));
+
+			setIsLoading(false);
 		},
-		{
-			iconType: IconType.project,
-			href: `/app/${userId}/dashboard`,
-			text: 'Project'
-		},
-		{
-			iconType: IconType.task,
-			href: `/app/${userId}/dashboard`,
-			text: 'Task'
-		},
-		{
-			iconType: IconType.note,
-			href: `/app/${userId}/dashboard`,
-			text: 'Note'
-		}
-	]);
+		[ appData.synced ]
+	);
+
+	if (isLoading) {
+		return <Loading />;
+	}
+
+	if (!isLoading && appDataErrors.length > 0) {
+		return (
+			<div>
+				An error occurred while fetching your account data. Please
+				contact an admin for support{' '}
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.app_layout}>
@@ -84,10 +93,32 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 				</main>
 				<MobileCreateButton toggleCreateModal={toggleCreateModal} />
 			</div>
-
 			<Footer />
 		</div>
 	);
 };
 
 export { AppLayout };
+
+// const [ breadcrumbLinks, setBreadcrumbLinks ] = useState([
+// 	{
+// 		iconType: IconType.none,
+// 		href: `/app/${userId}/dashboard`,
+// 		text: 'Dashboard'
+// 	},
+// 	{
+// 		iconType: IconType.project,
+// 		href: `/app/${userId}/dashboard`,
+// 		text: 'Project'
+// 	},
+// 	{
+// 		iconType: IconType.task,
+// 		href: `/app/${userId}/dashboard`,
+// 		text: 'Task'
+// 	},
+// 	{
+// 		iconType: IconType.note,
+// 		href: `/app/${userId}/dashboard`,
+// 		text: 'Note'
+// 	}
+// ]);

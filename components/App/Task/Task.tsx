@@ -13,7 +13,7 @@ import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';
 
-import { useCreateModal } from '../../../hooks/task/useCreateModal';
+import { useCreateModal } from '../../../hooks/create/useCreateModal';
 
 const Task = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();

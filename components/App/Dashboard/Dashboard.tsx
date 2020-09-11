@@ -14,52 +14,20 @@ import { Loading } from '../../shared/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
 
 import { selectUser } from '../../../redux/user';
-import { useApiRequest } from '../../../hooks/useApiRequest';
-import { getUserApiConfig } from '../../../api/user';
-import { selectAppData, setAppData } from '../../../redux/appData';
-import { useRouterService } from '../../../hooks/useRouterService';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
+import { useAppData } from '../../../hooks/useAppData';
 
 const Dashboard = (): JSX.Element => {
-	const {
-		request: getUserRequest,
-		data: getUserData,
-		errors: getUserErrors
-	} = useApiRequest();
-	const [ isLoading, setIsLoading ] = useState(true);
+	const { userId } = useSelector(selectUser);
+
+	const { appData } = useAppData();
 	const { toggleCreateModal } = useCreateModal();
-	const { userId, token } = useSelector(selectUser);
-	const appData = useSelector(selectAppData);
-	const dispatch = useDispatch();
-	const { router } = useRouterService();
+
 	const pinnedItems = [
 		...appData.notes,
 		...appData.projects,
 		...appData.tasks
 	].filter(item => item.pinned === true);
-
-	useEffect(() => {
-		const getUserData = async () => {
-			const config = getUserApiConfig({ userId, token });
-			const res = await getUserRequest(config);
-
-			if (res.success === true) {
-				setIsLoading(false);
-
-				dispatch(setAppData({ appData: res.data.user }));
-			}
-		};
-
-		getUserData();
-	}, []);
-
-	if (isLoading) {
-		return (
-			<div>
-				<Loading />
-			</div>
-		);
-	}
 
 	return (
 		<React.Fragment>

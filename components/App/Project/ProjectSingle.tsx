@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
@@ -16,17 +16,16 @@ import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdi
 import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
 import { DeleteModal } from '../shared/DeleteModal';
 
-import { selectAppData } from '../../../redux/appData';
+import { selectAppData, setAppDataSynced } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteProjectApiConfig } from '../../../api/project';
-import { CreateModalService } from '../../../utils/CreateModalService';
-import { current } from '@reduxjs/toolkit';
 
 const ProjectSingle = (): JSX.Element => {
+	const dispatch = useDispatch();
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
@@ -48,6 +47,7 @@ const ProjectSingle = (): JSX.Element => {
 
 		await deleteTaskRequest(config);
 
+		dispatch(setAppDataSynced(false));
 		toggleDeleteModal();
 		router.push.dashboard();
 	};

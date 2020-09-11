@@ -15,6 +15,7 @@ import { ApiRequest, ApiResponse, ApiError } from '../../../api/index';
 import { ErrorDisplay } from '../../shared/ErrorDisplay';
 import { ErrorService } from '../../../utils/ErrorService';
 import styles from './SignIn.module.scss';
+import { setAppDataSynced } from '../../../redux/appData';
 
 type Request = (config: ApiRequest) => Promise<ApiResponse>;
 
@@ -80,6 +81,7 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 				token: res.data.token
 			})
 		);
+		dispatch(setAppDataSynced(false));
 
 		router.push(`/app/[userId]/dashboard`, `/app/${res.data.id}/dashboard`);
 	};

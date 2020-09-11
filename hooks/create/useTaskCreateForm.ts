@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { useInputState } from '../useInputState';
 import { useTags } from '../useTags';
@@ -13,8 +13,10 @@ import {
 } from '../../api/task';
 import { selectCreateModal } from '../../redux/createModal';
 import { TaskErrors, handleClose, SubmitType } from './index';
+import { setAppDataSynced } from '../../redux/appData';
 
 const useTaskCreateForm = (handleClose: handleClose) => {
+	const dispatch = useDispatch();
 	const { currentItemId, currentItem, createModalEditMode } = useSelector(
 		selectCreateModal
 	);
@@ -100,6 +102,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 
 		if (res.success) {
 			handleClose(e);
+			dispatch(setAppDataSynced(false));
 		}
 	};
 

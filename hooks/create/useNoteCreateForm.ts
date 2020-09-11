@@ -4,7 +4,7 @@ import { useInputState } from '../useInputState';
 import { useTags } from '../useTags';
 import { useApiRequest } from '../useApiRequest';
 import { ErrorService } from '../../utils/ErrorService';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	createNoteApiConfig,
 	NotePayload,
@@ -13,8 +13,10 @@ import {
 import { selectUser } from '../../redux/user';
 import { selectCreateModal } from '../../redux/createModal';
 import { NoteErrors, handleClose, SubmitType } from './index';
+import { setAppDataSynced } from '../../redux/appData';
 
 const useNoteCreateForm = (handleClose: handleClose) => {
+	const dispatch = useDispatch();
 	const [ errors, setErrors ] = useState<NoteErrors>({
 		title: null,
 		description: null,
@@ -136,6 +138,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 
 		if (res.success) {
 			handleClose(e);
+			dispatch(setAppDataSynced(false));
 		}
 	};
 

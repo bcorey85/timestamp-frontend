@@ -15,6 +15,7 @@ import { ApiError } from '../../../api/index';
 import { ErrorService } from '../../../utils/ErrorService';
 import styles from './ResetPassword.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
+import { setAppDataSynced } from '../../../redux/appData';
 
 interface Errors {
 	password?: string;
@@ -68,6 +69,7 @@ const ResetPassword = (): JSX.Element => {
 				token: res.data.token
 			})
 		);
+		dispatch(setAppDataSynced(false));
 
 		router.push.dashboard();
 	};

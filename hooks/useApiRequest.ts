@@ -3,7 +3,6 @@ import axios from 'axios';
 import { ApiRequest, ApiResponse } from '../api';
 
 const useApiRequest = () => {
-	const [ data, setData ] = useState(null);
 	const [ errors, setErrors ] = useState([]);
 
 	const request = async ({
@@ -24,7 +23,6 @@ const useApiRequest = () => {
 				}
 			});
 
-			setData(response.data);
 			return response.data;
 		} catch (error) {
 			setErrors(error.response.data.errors);
@@ -34,7 +32,7 @@ const useApiRequest = () => {
 
 	return {
 		request,
-		data,
+
 		errors
 	};
 };

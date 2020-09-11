@@ -1,5 +1,5 @@
 import { useState, useEffect, SyntheticEvent } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../redux/user';
 
 import { useInputState } from '../useInputState';
@@ -12,8 +12,10 @@ import {
 } from '../../api/project';
 import { selectCreateModal } from '../../redux/createModal';
 import { handleClose, ProjectErrors, SubmitType } from './index';
+import { setAppDataSynced } from '../../redux/appData';
 
 const useProjectCreateForm = (handleClose: handleClose) => {
+	const dispatch = useDispatch();
 	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
 	const { userId, token } = useSelector(selectUser);
 
@@ -87,6 +89,7 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 
 		if (res.success) {
 			handleClose(e);
+			dispatch(setAppDataSynced(false));
 		}
 	};
 

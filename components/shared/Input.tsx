@@ -14,6 +14,7 @@ interface Props {
 	error?: string;
 	onChange: (props: any) => any;
 	autoComplete?: string;
+	disabled?: boolean;
 	children?: any;
 }
 
@@ -38,12 +39,17 @@ const Select = ({
 	value,
 	error,
 	children,
+	disabled,
 	...rest
 }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			{label ? <InputLabel id={id}>{label}</InputLabel> : null}
-			<select className={styles.select} value={value} {...rest}>
+			<select
+				className={styles.select}
+				value={value}
+				disabled={disabled}
+				{...rest}>
 				{children}
 			</select>
 			<InputError error={error} />
@@ -112,6 +118,7 @@ const Input = ({
 	value,
 	error,
 	children,
+	disabled,
 	...rest
 }: Props): JSX.Element => {
 	if (type === 'select') {
@@ -122,6 +129,7 @@ const Input = ({
 				type={type}
 				value={value}
 				error={error}
+				disabled={disabled}
 				{...rest}>
 				{children}
 			</Select>
@@ -136,6 +144,7 @@ const Input = ({
 				type={type}
 				value={value}
 				error={error}
+				disabled={disabled}
 				{...rest}
 			/>
 		);
@@ -149,6 +158,7 @@ const Input = ({
 				type={type}
 				value={value}
 				error={error}
+				disabled={disabled}
 				{...rest}
 			/>
 		);
@@ -162,6 +172,7 @@ const Input = ({
 			error={error}
 			{...rest}
 			value={value}
+			disabled={disabled}
 		/>
 	);
 };

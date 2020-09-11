@@ -16,8 +16,8 @@ interface Props {
 }
 
 const ListSection = ({ items, type }: Props): JSX.Element => {
-	const formattedItems = items.map(item => new ItemService(item).getItem());
 	const { userId } = useSelector(selectUser);
+	const formattedItems = items.map(item => new ItemService(item).getItem());
 	const { handleSort, filteredItems, currentFilter, sortDesc } = useListSort(
 		formattedItems
 	);

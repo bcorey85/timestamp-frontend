@@ -5,31 +5,23 @@ const useListSort = (items: any[]) => {
 	const [ sortDesc, setSortDesc ] = useState(true);
 	const [ filteredItems, setFilteredItems ] = useState(items);
 
-	useEffect(
-		() => {
-			const sorted = sortItems(items, currentFilter, sortDesc);
-
-			setFilteredItems(sorted);
-		},
-		[ currentFilter, sortDesc ]
-	);
-
 	const sortItems = (
 		array: any[],
 		filter: string,
 		sortDesc: boolean = false
 	) => {
 		const sorted = [ ...array ].sort((a, b) => {
-			const item1 = a[filter];
-			const item2 = b[filter];
+			const item1 = a[filter] || null;
+			const item2 = b[filter] || null;
 
-			if (item1 === undefined || item2 === undefined) {
+			if (item1 === null || item2 === null) {
 				return -1;
 			}
 
 			if (filter === 'startTime' || filter === 'endTime') {
 				const time1 = a[filter];
 				const time2 = b[filter];
+				console.log(time1, time2);
 
 				return (
 					Date.parse('01/01/1970 ' + time1).valueOf() -
@@ -52,12 +44,17 @@ const useListSort = (items: any[]) => {
 	};
 
 	const handleSort = (filter: string) => {
+		let filteredItems;
+
 		if (filter !== currentFilter) {
 			setCurrentFilter(filter);
 			setSortDesc(false);
+			filteredItems = sortItems(items, filter, false);
 		} else {
 			setSortDesc(!sortDesc);
+			filteredItems = sortItems(items, filter, !sortDesc);
 		}
+		setFilteredItems(filteredItems);
 	};
 
 	return { currentFilter, handleSort, filteredItems, sortDesc };

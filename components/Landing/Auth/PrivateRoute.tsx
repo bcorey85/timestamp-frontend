@@ -14,8 +14,8 @@ interface Props {
 }
 
 const PrivateRoute = ({ children }: Props) => {
-	const [ isLoading, setIsLoading ] = useState(true);
 	const { router } = useRouterService();
+	const [ isLoading, setIsLoading ] = useState(true);
 	const { isAuthenticated, tokenExpired, isAuthorized } = useAuthentication();
 
 	const dispatch = useDispatch();
@@ -43,8 +43,6 @@ const PrivateRoute = ({ children }: Props) => {
 
 PrivateRoute.getInitialProps = async (context: NextPageContext) => {
 	let query = context.query;
-	console.log(query);
-
 	return { query };
 };
 
