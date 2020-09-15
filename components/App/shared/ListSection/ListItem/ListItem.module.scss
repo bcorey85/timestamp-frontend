@@ -1,5 +1,5 @@
-@import '../../../../styles/mixins.scss';
-@import '../../../../styles/mediaQueries.scss';
+@import '../../../../../styles/mixins.scss';
+@import '../../../../../styles/mediaQueries.scss';
 
 .container {
 	display: grid;
@@ -8,6 +8,11 @@
 	padding: 1.2rem 1.6rem;
 	line-height: 2rem;
 	cursor: pointer;
+	transition: all .2s;
+
+	&:hover {
+		background-color: var(--hover-color-light);
+	}
 
 	&:not(:last-of-type) {
 		border-bottom: var(--border-primary);

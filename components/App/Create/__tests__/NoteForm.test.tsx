@@ -12,7 +12,7 @@ describe('NoteForm', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<NoteForm handleCancel={jest.fn} />
+				<NoteForm handleClose={jest.fn} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

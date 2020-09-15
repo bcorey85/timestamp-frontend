@@ -29,7 +29,7 @@ const Note = (): JSX.Element => {
 
 				<AppPageHeaderControls>
 					<Button
-						btnStyle='secondary'
+						btnStyle='outline'
 						onClick={() =>
 							toggleCreateModal('new', {
 								createModalPage: 'note'

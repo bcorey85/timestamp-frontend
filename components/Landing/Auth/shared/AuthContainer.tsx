@@ -7,12 +7,6 @@ interface Props {
 }
 
 const AuthContainer = ({ children }: Props): JSX.Element => {
-	const [ resetPasswordMode, setResetPasswordMode ] = useState(false);
-
-	const toggleForm = () => {
-		setResetPasswordMode(!resetPasswordMode);
-	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.form_container}>

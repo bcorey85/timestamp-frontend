@@ -16,6 +16,7 @@
 	--black100: hsl(167, 5%, 25%);
 	--white: hsl(167, 10%, 100%);
 
+	--primary50: hsl(167, 60%, 95%);
 	--primary100: hsl(167, 60%, 85%);
 	--primary200: hsl(167, 65%, 65%);
 	--primary300: hsl(167, 65%, 55%);
@@ -31,14 +32,19 @@
 	--red-error: hsl(0, 65%, 54%);
 	--green-success: hsl(121, 100%, 27%);
 
-	--box-shadow: 0px 2px 4px 0px hsla(167, 10%, 10%, 12%);
+	--box-shadow: 0px 1px 2px 0px hsla(167, 10%, 10%, 12%);
 	--box-shadow-wide: 0px 2px 10px hsla(167, 10%, 10%, 15%);
+
+	--border-primary: 1px solid var(--gray200);
 	--border-radius: 4px;
+
+	--hover-color-light: var(--background-tertiary);
+	--hover-color-dark: var(--primary300);
 
 	--background-primary: var(--white);
 	--background-secondary: var(--gray50);
 	--background-tertiary: var(--gray100);
-	--border-primary: 1px solid var(--gray200);
+
 	--text500: var(--black200);
 	--text400: var(--black100);
 	--text300: var(--gray500);
@@ -83,6 +89,11 @@ body.dark {
 	--text400: var(--white);
 	--text300: var(--gray50);
 	--text200: var(--gray100);
+
+	--hover-color-light: var(--gray400);
+	--hover-color-dark: var(--primary500);
+
+	--box-shadow: 0px 1px 2px 0px hsla(167, 5%, 45%, 45%);
 
 	color: var(--white);
 }

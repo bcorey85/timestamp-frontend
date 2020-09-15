@@ -14,7 +14,7 @@
 	position: relative;
 	display: flex;
 	flex: 1 1 auto;
-	background-color: var(--background-secondary);
+	background-color: var(--background-primary);
 
 	@include respondH(1024) {
 		min-height: 72rem;

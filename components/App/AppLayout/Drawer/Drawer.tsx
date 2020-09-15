@@ -19,11 +19,15 @@ import { logout } from '../../../../redux/user';
 import { selectInterface, toggleDrawer } from '../../../../redux/interface';
 import { selectUser } from '../../../../redux/user';
 import { useRouterService } from '../../../../hooks/useRouterService';
+import {
+	ModalConfig,
+	ModalMode
+} from '../../../../hooks/create/useCreateModal';
 
 import styles from './Drawer.module.scss';
 
 interface Props {
-	toggleCreateModal: (mode, config) => void;
+	toggleCreateModal: (mode: keyof ModalMode, config: ModalConfig) => void;
 	mobile?: boolean;
 }
 

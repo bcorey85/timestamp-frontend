@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 
-import { Input } from '../../shared/Input';
+import { Input, TextArea, Select } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
@@ -47,7 +47,7 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow half>
-					<Input
+					<Select
 						type='select'
 						id='project'
 						label='Project'
@@ -66,7 +66,7 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 								</option>
 							);
 						})}
-					</Input>
+					</Select>
 				</FormRow>
 				<FormRow>
 					<TagInput
@@ -76,8 +76,7 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow>
-					<Input
-						type='textarea'
+					<TextArea
 						id='description'
 						label='Description'
 						value={formState.description}

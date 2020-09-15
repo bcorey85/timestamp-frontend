@@ -8,7 +8,7 @@
 	font-size: inherit;
 	font-weight: 500;
 	font-size: 1.4rem;
-
+	transition: all .2s;
 	cursor: pointer;
 }
 
@@ -32,13 +32,12 @@
 	@extend .btn;
 	background-color: var(--background-primary);
 	border: var(--border-primary);
+	color: var(--text500);
 	box-shadow: var(--box-shadow);
-	color: var(--text400);
 
 	&:hover {
-		border: 1px solid var(--primary400);
-		background-color: var(--primary400);
-		color: var(--white);
+		background-color: var(--hover-color-light);
+		border: 1px solid var(--hover-color-light);
 	}
 }
 

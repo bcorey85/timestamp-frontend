@@ -1,8 +1,13 @@
 import moment from 'moment';
 
 import { Item, ItemType, ItemService } from './ItemService';
-import { initialCurrentItemId, initialCurrentItem } from '../redux/createModal';
+import {
+	initialCurrentItemId,
+	initialCurrentItem,
+	CreateModalState
+} from '../redux/createModal';
 import { TagService } from './TagService';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 interface ItemIdentifier {
 	noteId?: number | string;
@@ -10,8 +15,20 @@ interface ItemIdentifier {
 	projectId?: number | string;
 }
 
+interface ConfigPayload {
+	config?: {
+		currentItemId?: {};
+		currentItem?: {};
+		createModalPage: keyof ItemType;
+		createModalEditMode: boolean;
+	};
+}
+
 class CreateModalService {
-	static parseConfig = (state, action) => {
+	static parseConfig = (
+		state: CreateModalState,
+		action: PayloadAction<ConfigPayload>
+	) => {
 		if (action.payload.config.currentItemId) {
 			state.currentItemId = action.payload.config.currentItemId;
 		}
@@ -32,9 +49,10 @@ class CreateModalService {
 		}
 	};
 
-	static resetCurrentItem = state => {
+	static resetCurrentItem = (state: CreateModalState) => {
 		state.currentItemId = initialCurrentItemId;
 		state.currentItem = initialCurrentItem;
+		state.createModalEditMode = false;
 	};
 
 	public addChildItemConfig = (item: Item) => {
@@ -93,7 +111,7 @@ class CreateModalService {
 		return childType;
 	};
 
-	private splitDateTime = item => {
+	private splitDateTime = (item: Item) => {
 		let formattedTime = {
 			startTime: '',
 			endTime: '',

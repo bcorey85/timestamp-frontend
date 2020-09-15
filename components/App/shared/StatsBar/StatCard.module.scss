@@ -6,6 +6,11 @@
 	padding: 1.6rem;
 	@include panel;
 	cursor: pointer;
+	transition: all .2s;
+
+	&:hover {
+		background-color: var(--hover-color-light);
+	}
 
 	@include respondH(680) {
 		width: 100%;

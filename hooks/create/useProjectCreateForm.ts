@@ -65,7 +65,7 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		[ updateProjectErrors ]
 	);
 
-	const handleSubmit = async (e, type: keyof SubmitType) => {
+	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
 		const payload: ProjectPayload = { title, description, pinned };
 

@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 
-import { Input } from '../../shared/Input';
+import { Input, DateTimeInput, Select, TextArea } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
@@ -42,8 +42,7 @@ const ProjectForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow>
-					<Input
-						type='textarea'
+					<TextArea
 						id='description'
 						label='Description'
 						value={formState.description}

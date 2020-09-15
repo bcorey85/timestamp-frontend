@@ -12,7 +12,7 @@ describe('TaskForm', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<TaskForm handleCancel={jest.fn} />
+				<TaskForm handleClose={jest.fn} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

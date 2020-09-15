@@ -8,7 +8,7 @@ import {
 import { ItemType, Item } from '../../utils/ItemService';
 import { CreateModalService } from '../../utils/CreateModalService';
 
-interface ModalConfig {
+export interface ModalConfig {
 	createModalPage?: keyof ItemType;
 	currentItemId?: {
 		noteId?: number | string;
@@ -17,7 +17,7 @@ interface ModalConfig {
 	};
 }
 
-interface ModalMode {
+export interface ModalMode {
 	new: 'new';
 	addChild: 'addChild';
 	edit: 'edit';
@@ -30,7 +30,8 @@ const useCreateModal = (item?: Item) => {
 	const dispatch = useDispatch();
 	const createModalService = new CreateModalService();
 
-	let addChildItemConfig, editCurrentItemConfig;
+	let addChildItemConfig: {};
+	let editCurrentItemConfig: {};
 	if (item) {
 		addChildItemConfig = createModalService.addChildItemConfig(item);
 		editCurrentItemConfig = createModalService.editCurrentItemConfig(item);

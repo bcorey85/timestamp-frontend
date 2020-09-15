@@ -8,7 +8,12 @@ const usePaginationSlider = (itemWidth: number, cardAmount: number) => {
 
 	useEffect(
 		() => {
-			const maxWidth = cardAmount * itemWidth - itemWidth;
+			let maxWidth: number;
+			if (cardAmount === 0) {
+				maxWidth = 0;
+			} else {
+				maxWidth = cardAmount * itemWidth - itemWidth;
+			}
 
 			setMaxWidth(maxWidth);
 			setMaxRightBound(maxWidth * -1);

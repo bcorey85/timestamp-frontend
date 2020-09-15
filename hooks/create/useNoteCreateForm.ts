@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 
 import { useInputState } from '../useInputState';
 import { useTags } from '../useTags';
@@ -102,7 +102,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		[ updateNoteErrors ]
 	);
 
-	const handleSubmit = async (e, type: keyof SubmitType) => {
+	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
 		const start = new Date(startDate + ' ' + startTime);
 		const end = new Date(endDate + ' ' + endTime);

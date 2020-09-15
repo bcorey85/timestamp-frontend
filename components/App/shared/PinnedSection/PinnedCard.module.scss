@@ -8,6 +8,11 @@
 	display: flex;
 	flex-direction: column;
 	cursor: pointer;
+	transition: all .2s;
+
+	&:hover {
+		background-color: var(--hover-color-light);
+	}
 }
 
 .title {

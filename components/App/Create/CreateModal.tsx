@@ -6,9 +6,11 @@ import { TaskForm } from './TaskForm';
 import { NoteForm } from './NoteForm';
 
 import { ItemType } from '../../../utils/ItemService';
-import styles from './CreateModal.module.scss';
 import { useSelector } from 'react-redux';
 import { selectCreateModal } from '../../../redux/createModal';
+import { ModalConfig } from '../../../hooks/create/useCreateModal';
+
+import styles from './CreateModal.module.scss';
 
 export interface CreatePage {
 	project: 'project';
@@ -18,7 +20,7 @@ export interface CreatePage {
 
 interface Props {
 	isOpen: boolean;
-	toggleModal: (config) => void;
+	toggleModal: (config: ModalConfig) => void;
 	type: keyof ItemType;
 	initialTaskId?: string;
 	initialProjectId?: string;

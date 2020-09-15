@@ -1,16 +1,17 @@
 import React from 'react';
-import {
-	combineReducers,
-	configureStore,
-	getDefaultMiddleware
-} from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { userReducer } from '../../redux/user';
+import { appDataReducer } from '../../redux/appData';
+import { createModalReducer } from '../../redux/createModal';
+import { interfaceReducer } from '../../redux/interface';
 import { Provider } from 'react-redux';
 
 const mockRootReducer = combineReducers({
-	user: userReducer
+	user: userReducer,
+	interface: interfaceReducer,
+	appData: appDataReducer,
+	createModal: createModalReducer
 });
-
 export const mockStore = configureStore({
 	reducer: mockRootReducer,
 	devTools: true

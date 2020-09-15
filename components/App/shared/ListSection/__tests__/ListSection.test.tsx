@@ -12,7 +12,7 @@ describe('ListSection', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<ListSection items={[]} />
+				<ListSection type='project' items={[]} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

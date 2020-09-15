@@ -12,7 +12,7 @@ describe('ProjectForm', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<MockReduxProvider reduxStore={mockStore}>
-				<ProjectForm handleCancel={jest.fn} />
+				<ProjectForm handleClose={jest.fn} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

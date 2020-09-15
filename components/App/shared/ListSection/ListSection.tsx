@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { ListItem } from './ListItem';
+import { ListItem } from './ListItem/ListItem';
 import { ListFilter } from './ListFilter';
 
 import { selectUser } from '../../../../redux/user';
@@ -47,35 +47,13 @@ const ListSection = ({ items, type }: Props): JSX.Element => {
 			/>
 			<div className={styles.container}>
 				{filteredItems.map(item => {
-					const {
-						href,
-						as,
-						title,
-						createdAt,
-						pinned,
-						date,
-						hours,
-						startTime,
-						endTime,
-						type,
-						tasks,
-						notes
-					} = item;
+					const { createdAt } = item;
 
 					return (
 						<ListItem
-							href={`/app/[userId]/${href}`}
-							as={`/app/${userId}/${as}`}
-							type={type}
-							title={title}
-							date={date}
-							hours={hours}
-							startTime={startTime}
-							endTime={endTime}
+							item={item}
+							userId={userId}
 							key={createdAt.toString()}
-							pinned={pinned}
-							tasks={tasks}
-							notes={notes}
 						/>
 					);
 				})}

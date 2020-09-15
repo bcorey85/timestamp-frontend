@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useInputState } from '../useInputState';
@@ -72,7 +72,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		[ updateTaskErrors ]
 	);
 
-	const handleSubmit = async (e, type: keyof SubmitType) => {
+	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
 		const payload: TaskPayload = {
 			title,

@@ -81,7 +81,7 @@ const ProjectSingle = (): JSX.Element => {
 						</OverflowDelete>
 					</OverflowMenu>
 					<Button
-						btnStyle='secondary'
+						btnStyle='outline'
 						onClick={() => toggleCreateModal('addChild')}>
 						<TypeIcon type={IconType.task} />
 						Add Task

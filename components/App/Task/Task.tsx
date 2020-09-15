@@ -30,7 +30,7 @@ const Task = (): JSX.Element => {
 
 				<AppPageHeaderControls>
 					<Button
-						btnStyle='secondary'
+						btnStyle='outline'
 						onClick={() =>
 							toggleCreateModal('new', {
 								createModalPage: 'task'

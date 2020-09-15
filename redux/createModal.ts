@@ -21,17 +21,25 @@ export const initialCurrentItem = {
 		startDate: '',
 		endDate: ''
 	},
-	hours: null,
-	note_id: null,
+	hours: null as string,
+	user_id: null as string,
+	note_id: null as string,
+	project_id: null as string,
+	task_id: null as string,
 	pinned: false,
-	project_id: null,
 	tags: [] as string[],
-	task_id: null,
 	type: '',
 	created_at: '',
-	updated_at: '',
-	user_id: null
+	updated_at: ''
 };
+
+export interface CreateModalState {
+	createModalOpen: boolean;
+	createModalEditMode: boolean;
+	currentItemId: {};
+	currentItem: {};
+	createModalPage: keyof ItemType;
+}
 
 const createModalSlice = createSlice({
 	name: 'createModal',

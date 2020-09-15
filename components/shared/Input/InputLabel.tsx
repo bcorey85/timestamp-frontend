@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './InputLabel.module.scss';
+import styles from './Input.module.scss';
 
 interface Props {
 	id: string;

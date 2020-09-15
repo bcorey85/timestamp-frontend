@@ -1,7 +1,6 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
 
-import { Input } from '../../shared/Input';
-import { DateTimeInput } from '../../shared/DateTimeInput';
+import { DateTimeInput, Input, Select, TextArea } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
@@ -48,7 +47,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow half>
-					<Input
+					<Select
 						type='select'
 						id='project'
 						label='Project'
@@ -67,8 +66,8 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 								</option>
 							);
 						})}
-					</Input>
-					<Input
+					</Select>
+					<Select
 						type='select'
 						id='task'
 						label='Task'
@@ -92,7 +91,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 									</option>
 								);
 							})}
-					</Input>
+					</Select>
 				</FormRow>
 				<FormRow half>
 					<DateTimeInput
@@ -122,8 +121,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow>
-					<Input
-						type='textarea'
+					<TextArea
 						id='description'
 						label='Description'
 						value={formState.description}

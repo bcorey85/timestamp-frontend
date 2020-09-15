@@ -5,13 +5,13 @@ const appDataSlice = createSlice({
 	name: 'appData',
 	initialState: {
 		synced: false,
-		email: null,
+		email: null as string,
 		notes: [],
 		projects: [],
 		tasks: [],
-		hours: null,
-		createdAt: null,
-		lastLogin: null,
+		hours: null as string,
+		createdAt: null as string,
+		lastLogin: null as string,
 		recentItems: {
 			notes: [],
 			tasks: [],

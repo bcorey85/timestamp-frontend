@@ -9,13 +9,13 @@ export interface Item {
 	description: string;
 	hours: string;
 	pinned: boolean;
-	start_time?: Date;
-	end_time?: Date;
+	start_time?: string;
+	end_time?: string;
 	tags?: string;
 	notes?: number;
 	tasks?: number;
-	created_at: Date;
-	updated_at: Date;
+	created_at: string;
+	updated_at: string;
 }
 
 export interface ItemType {

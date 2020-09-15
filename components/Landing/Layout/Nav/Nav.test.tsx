@@ -15,5 +15,6 @@ describe('Nav', () => {
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();
+		expect(wrapper.find(Nav).length).toBe(1);
 	});
 });
