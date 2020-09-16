@@ -12,6 +12,7 @@ const mockRootReducer = combineReducers({
 	appData: appDataReducer,
 	createModal: createModalReducer
 });
+
 export const mockStore = configureStore({
 	reducer: mockRootReducer,
 	devTools: true

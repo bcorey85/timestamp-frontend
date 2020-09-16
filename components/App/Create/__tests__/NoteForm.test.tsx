@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { NoteForm } from '../NoteForm';
 
@@ -10,7 +10,7 @@ import {
 
 describe('NoteForm', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<NoteForm handleClose={jest.fn} />
 			</MockReduxProvider>

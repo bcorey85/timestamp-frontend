@@ -1,18 +1,24 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { Interface } from '../Interface';
+import { TaskSingle } from '../TaskSingle';
 
 import {
 	mockStore,
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
-describe('Interface', () => {
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
+describe('TaskSingle', () => {
 	it('renders', () => {
+		useRouter.mockImplementation(() => ({
+			query: { taskId: '1' }
+		}));
+
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
-				<Interface />
+				<TaskSingle />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

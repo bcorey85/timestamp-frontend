@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { ProjectForm } from '../ProjectForm';
 
@@ -10,7 +10,7 @@ import {
 
 describe('ProjectForm', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<ProjectForm handleClose={jest.fn} />
 			</MockReduxProvider>

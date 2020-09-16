@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { DrawerLink } from '../DrawerLink';
 import {
@@ -7,9 +7,15 @@ import {
 	MockReduxProvider
 } from '../../../../../test/__mocks__/mockRedux';
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
 describe('DrawerLink', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		useRouter.mockImplementationOnce(() => ({
+			route: '/'
+		}));
+
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<DrawerLink route='test'>Test</DrawerLink>
 			</MockReduxProvider>

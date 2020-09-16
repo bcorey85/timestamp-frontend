@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { CreateModal } from '../CreateModal';
 
@@ -10,7 +10,7 @@ import {
 
 describe('CreateModal', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<CreateModal
 					isOpen={true}

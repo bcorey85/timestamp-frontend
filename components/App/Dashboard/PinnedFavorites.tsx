@@ -1,61 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/user';
-import { BiFilter } from 'react-icons/bi';
 
 import { Button } from '../../shared/Button';
-import { PinnedCard } from '../shared/PinnedSection/PinnedCard';
+import { PinnedItems } from './PinnedItems';
 import { SliderFilter } from '../shared/Slider/SliderFilter';
 import { Slider } from '../shared/Slider/Slider';
 
-import { ItemService } from '../../../utils/ItemService';
+import { Item, ItemService } from '../../../utils/ItemService';
 import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
 
-interface PinnedItemsProps {
-	items: any[];
-	userId: string;
-}
-
-const PinnedItems = ({ items, userId }: PinnedItemsProps): JSX.Element => {
-	return (
-		<React.Fragment>
-			{items.map(item => {
-				const currentItem = new ItemService(item);
-				const { href, as } = currentItem.pathname;
-				const {
-					title,
-					created_at,
-					description,
-					notes,
-					tasks,
-					tags
-				} = currentItem.item;
-				const { date, time, hours } = currentItem.meta;
-				const { type } = currentItem;
-
-				return (
-					<PinnedCard
-						href={`/app/[userId]/${href}`}
-						as={`/app/${userId}/${as}`}
-						title={title}
-						type={type}
-						hours={hours}
-						date={date}
-						time={time}
-						notes={notes}
-						tasks={tasks}
-						description={description}
-						key={created_at.toString()}
-						tags={tags}
-					/>
-				);
-			})}
-		</React.Fragment>
-	);
-};
-
 interface Props {
-	items: any[];
+	items: Item[];
 }
 
 const PinnedFavorites = ({ items }: Props): JSX.Element => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { CreateNav } from '../CreateNav';
 
@@ -10,7 +10,7 @@ import {
 
 describe('CreateNav', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<CreateNav currentPage={'project'} />
 			</MockReduxProvider>

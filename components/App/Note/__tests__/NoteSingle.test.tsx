@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { NoteSingle } from '../NoteSingle';
 
@@ -8,9 +8,14 @@ import {
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
 describe('NoteSingle', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		useRouter.mockImplementation(() => ({
+			query: { noteId: '1' }
+		}));
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<NoteSingle />
 			</MockReduxProvider>

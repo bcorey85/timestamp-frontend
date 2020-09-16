@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { ResetPassword } from '../ResetPassword';
 import {
@@ -7,9 +7,16 @@ import {
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
 describe('ResetPassword', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		useRouter.mockImplementation(() => ({
+			query: { tokenid: '1' },
+			route: '/'
+		}));
+
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<ResetPassword />
 			</MockReduxProvider>

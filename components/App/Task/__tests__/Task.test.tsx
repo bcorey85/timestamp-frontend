@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { Task } from '../Task';
 
@@ -10,7 +10,7 @@ import {
 
 describe('Task', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<Task />
 			</MockReduxProvider>

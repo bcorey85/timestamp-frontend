@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { TaskForm } from '../TaskForm';
 
@@ -10,7 +10,7 @@ import {
 
 describe('TaskForm', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<TaskForm handleClose={jest.fn} />
 			</MockReduxProvider>

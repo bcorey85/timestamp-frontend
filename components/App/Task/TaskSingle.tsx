@@ -31,7 +31,15 @@ const TaskSingle = (): JSX.Element => {
 	const { router } = useRouterService();
 	const currentTask = appData.tasks.filter(task => {
 		return task.task_id === Number(router.query.taskId);
-	})[0];
+	})[0] || {
+		title: '',
+		description: '',
+		hours: '',
+		created_at: new Date(Date.now()).toISOString(),
+		project_id: '1',
+		task_id: '1'
+	};
+
 	const { toggleCreateModal } = useCreateModal(currentTask);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 

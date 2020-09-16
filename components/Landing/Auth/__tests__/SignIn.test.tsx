@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { SignIn } from '../SignIn';
 import {
@@ -11,7 +11,7 @@ const toggleForm = jest.fn();
 
 describe('SignIn', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<SignIn toggleForm={toggleForm} />
 			</MockReduxProvider>

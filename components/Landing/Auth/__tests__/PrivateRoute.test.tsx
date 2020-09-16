@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { PrivateRoute } from '../PrivateRoute';
 import {
@@ -7,9 +7,16 @@ import {
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
 describe('PrivateRoute', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		useRouter.mockImplementation(() => ({
+			query: { projectId: '1' },
+			route: '/',
+			push: async () => true
+		}));
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<PrivateRoute />
 			</MockReduxProvider>

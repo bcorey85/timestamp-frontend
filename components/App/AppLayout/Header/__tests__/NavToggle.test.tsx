@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { NavToggle } from '../NavToggle';
 import {
@@ -9,7 +9,7 @@ import {
 
 describe('NavToggle', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<NavToggle />
 			</MockReduxProvider>

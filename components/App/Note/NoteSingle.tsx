@@ -30,7 +30,15 @@ const NoteSingle = (): JSX.Element => {
 	const { router } = useRouterService();
 	const currentNote = appData.notes.filter(note => {
 		return note.note_id === Number(router.query.noteId);
-	})[0];
+	})[0] || {
+		title: '',
+		description: '',
+		hours: '',
+		created_at: new Date(Date.now()).toISOString(),
+		project_id: '1',
+		task_id: '1',
+		note_id: '1'
+	};
 
 	const { toggleCreateModal } = useCreateModal(currentNote);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { UpdateDetails } from '../UpdateDetails';
 
@@ -10,7 +10,7 @@ import {
 
 describe('UpdateDetails', () => {
 	it('renders', () => {
-		const wrapper = shallow(
+		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
 				<UpdateDetails mode='email' closeForm={jest.fn} />
 			</MockReduxProvider>

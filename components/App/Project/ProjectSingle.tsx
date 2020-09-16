@@ -31,7 +31,13 @@ const ProjectSingle = (): JSX.Element => {
 	const { router } = useRouterService();
 	const currentProject = appData.projects.filter(project => {
 		return project.project_id === Number(router.query.projectId);
-	})[0];
+	})[0] || {
+		title: '',
+		description: '',
+		hours: '',
+		created_at: new Date(Date.now()).toISOString(),
+		project_id: '1'
+	};
 
 	const { toggleCreateModal } = useCreateModal(currentProject);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
