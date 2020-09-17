@@ -70,7 +70,7 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 			generic: []
 		});
 		const res = await request(config);
-
+		console.log(res);
 		if (res.success === false) {
 			return;
 		}

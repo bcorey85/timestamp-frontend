@@ -25,7 +25,7 @@ const useAuthentication = () => {
 		tokenExpired = token.exp * 1000 < Date.now();
 	}
 
-	const isAuthorized = user.userId === userId;
+	const isAuthorized = user.userId && user.userId.toString() === userId;
 
 	return { isAuthenticated, tokenExpired, isAuthorized };
 };

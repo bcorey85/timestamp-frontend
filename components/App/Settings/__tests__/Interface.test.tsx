@@ -9,6 +9,8 @@ import {
 } from '../../../../test/__mocks__/mockRedux';
 
 describe('Interface', () => {
+	beforeEach(() => {});
+
 	it('renders', () => {
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
