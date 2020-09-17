@@ -30,7 +30,7 @@ const ProjectSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 	const currentProject = appData.projects.filter(project => {
-		return project.project_id.toString() === Number(router.query.projectid);
+		return project.project_id === Number(router.query.projectid);
 	})[0] || {
 		title: '',
 		description: '',
