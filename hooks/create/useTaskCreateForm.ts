@@ -103,6 +103,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		if (res.success) {
 			handleClose(e);
 			dispatch(setAppDataSynced(false));
+			console.log('dispatched');
 		}
 	};
 

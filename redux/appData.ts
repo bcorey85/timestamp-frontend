@@ -31,6 +31,8 @@ const appDataSlice = createSlice({
 			state.recentItems = action.payload.appData.recentItems;
 		},
 		setAppDataSynced: (state, action) => {
+			console.log('sync state', action.payload);
+
 			state.synced = action.payload;
 		}
 	}
