@@ -24,6 +24,8 @@ const useAuthentication = () => {
 		token = jwtDecode(user.token);
 		tokenExpired = token.exp * 1000 < Date.now();
 	}
+	console.log(user.userId && user.userId.toString() === userId);
+	console.log(typeof user.userId, typeof userId);
 
 	const isAuthorized = user.userId && user.userId.toString() === userId;
 
