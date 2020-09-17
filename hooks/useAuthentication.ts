@@ -14,7 +14,7 @@ interface Token {
 const useAuthentication = () => {
 	const user = useSelector(selectUser);
 	const { router } = useRouterService();
-	const { userid } = router.query;
+	const { userId } = router.query;
 
 	const isAuthenticated = !!(user && user.token);
 
@@ -25,7 +25,7 @@ const useAuthentication = () => {
 		tokenExpired = token.exp * 1000 < Date.now();
 	}
 
-	const isAuthorized = user.userId && user.userId.toString() === userid;
+	const isAuthorized = user.userId && user.userId.toString() === userId;
 
 	return { isAuthenticated, tokenExpired, isAuthorized };
 };

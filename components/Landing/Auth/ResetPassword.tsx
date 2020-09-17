@@ -35,7 +35,7 @@ const ResetPassword = (): JSX.Element => {
 	const { router } = useRouterService();
 
 	const dispatch = useDispatch();
-	const { tokenid } = router.query;
+	const { tokenId } = router.query;
 
 	useEffect(
 		() => {
@@ -55,7 +55,7 @@ const ResetPassword = (): JSX.Element => {
 		const config = resetPasswordApiConfig({
 			password,
 			passwordConfirm,
-			token: tokenid as string
+			token: tokenId as string
 		});
 		const res = await resetRequest(config);
 
