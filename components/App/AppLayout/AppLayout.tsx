@@ -36,6 +36,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	useEffect(
 		() => {
 			const getAppData = async () => {
+				console.log(appData);
 				if (appData.synced === false) {
 					await fetchAppData();
 					console.log('fetching data');
