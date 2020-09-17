@@ -7,7 +7,6 @@ import '../styles/index.scss';
 import { UiService } from '../utils/UiService';
 
 function MyApp({ Component, pageProps }) {
-	console.log(process.env.NEXT_PUBLIC_API_URL);
 	useEffect(() => {
 		const appState = JSON.parse(localStorage.getItem('persist:timestamp'));
 		const appInterface = JSON.parse(appState.interface);
