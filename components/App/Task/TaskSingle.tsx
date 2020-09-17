@@ -29,6 +29,8 @@ const TaskSingle = (): JSX.Element => {
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
+	console.log(router.query);
+
 	const currentTask = appData.tasks.filter(task => {
 		console.log(task.task_id, router.query.taskid);
 		console.log(typeof task.task_id, typeof router.query.taskid);
