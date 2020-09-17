@@ -30,7 +30,7 @@ const TaskSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 	const currentTask = appData.tasks.filter(task => {
-		return task.task_id === Number(router.query.taskId);
+		return task.task_id === Number(router.query.taskid);
 	})[0] || {
 		title: '',
 		description: '',

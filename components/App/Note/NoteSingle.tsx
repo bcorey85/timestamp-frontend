@@ -29,7 +29,7 @@ const NoteSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 	const currentNote = appData.notes.filter(note => {
-		return note.note_id === Number(router.query.noteId);
+		return note.note_id === Number(router.query.noteid);
 	})[0] || {
 		title: '',
 		description: '',
