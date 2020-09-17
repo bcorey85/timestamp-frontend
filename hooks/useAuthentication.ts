@@ -15,6 +15,8 @@ const useAuthentication = () => {
 	const user = useSelector(selectUser);
 	const { router } = useRouterService();
 	const { userId } = router.query;
+	console.log(router.query);
+	console.log(router);
 
 	const isAuthenticated = !!(user && user.token);
 
@@ -24,7 +26,7 @@ const useAuthentication = () => {
 		token = jwtDecode(user.token);
 		tokenExpired = token.exp * 1000 < Date.now();
 	}
-	console.log(user.userId && user.userId.toString() === userId);
+
 	console.log(typeof user.userId, typeof userId);
 
 	const isAuthorized = user.userId && user.userId.toString() === userId;
