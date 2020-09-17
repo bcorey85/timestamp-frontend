@@ -17,6 +17,7 @@ const PrivateRoute = ({ children }: Props) => {
 	const { router } = useRouterService();
 	const [ isLoading, setIsLoading ] = useState(true);
 	const { isAuthenticated, tokenExpired, isAuthorized } = useAuthentication();
+	console.log(isAuthenticated, tokenExpired, isAuthorized);
 
 	const dispatch = useDispatch();
 
