@@ -35,11 +35,11 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 
 	useEffect(
 		() => {
-			appData.synced;
+			console.log(appData.synced);
 			if (appData.synced === false) {
 				fetchAppData();
 			}
-
+			console.log(appDataErrors);
 			if (appDataErrors.length > 0) {
 				return;
 			}
