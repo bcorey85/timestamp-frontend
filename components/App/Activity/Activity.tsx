@@ -13,6 +13,7 @@ import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { selectUser } from '../../../redux/user';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { selectAppData } from '../../../redux/appData';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -64,7 +65,8 @@ const Activity = (): JSX.Element => {
 				</StatsBar>
 			</AppPageSection>
 
-			<AppPageSection title='Recent Items'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Recent Items' />
 				<ListSection type='note' items={appData.notes} />
 			</AppPageSection>
 		</React.Fragment>
