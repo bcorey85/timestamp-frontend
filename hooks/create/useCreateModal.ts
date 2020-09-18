@@ -6,7 +6,11 @@ import {
 	setCreateModalPage
 } from '../../redux/createModal';
 import { ItemType, Item } from '../../utils/ItemService';
-import { CreateModalService } from '../../utils/CreateModalService';
+import {
+	CreateModalService,
+	ChildItemConfig,
+	EditItemConfig
+} from '../../utils/CreateModalService';
 
 export interface ModalConfig {
 	createModalPage?: keyof ItemType;
@@ -30,8 +34,8 @@ const useCreateModal = (item?: Item) => {
 	const dispatch = useDispatch();
 	const createModalService = new CreateModalService();
 
-	let addChildItemConfig: {};
-	let editCurrentItemConfig: {};
+	let addChildItemConfig: ChildItemConfig;
+	let editCurrentItemConfig: EditItemConfig;
 	if (item) {
 		addChildItemConfig = createModalService.addChildItemConfig(item);
 		editCurrentItemConfig = createModalService.editCurrentItemConfig(item);
@@ -43,6 +47,9 @@ const useCreateModal = (item?: Item) => {
 	) => {
 		switch (mode) {
 			case 'addChild':
+				if (config && config.createModalPage) {
+					addChildItemConfig.createModalPage = config.createModalPage;
+				}
 				dispatch(toggleCreateModal({ config: addChildItemConfig }));
 				break;
 			case 'edit':

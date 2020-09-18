@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { StatsBar } from '../shared/StatsBar/StatsBar';
-import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageTitle } from '../AppPage/AppPageTitle';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
+import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 import { AppPageMeta } from '../AppPage/AppPageMeta';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
@@ -89,16 +88,18 @@ const TaskSingle = (): JSX.Element => {
 							Delete
 						</OverflowDelete>
 					</OverflowMenu>
+				</AppPageHeaderControls>
+			</AppPageHeader>
+
+			<AppPageSection>
+				<AppPageSectionHeading title='Notes'>
 					<Button
-						btnStyle='outline'
+						btnStyle='link_gray'
 						onClick={() => toggleCreateModal('addChild')}>
 						<TypeIcon type={IconType.note} />
 						Add Note
 					</Button>
-				</AppPageHeaderControls>
-			</AppPageHeader>
-
-			<AppPageSection title='Notes'>
+				</AppPageSectionHeading>
 				<ListSection
 					type='note'
 					items={appData.notes.filter(

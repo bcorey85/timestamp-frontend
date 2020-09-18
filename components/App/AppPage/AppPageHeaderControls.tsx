@@ -4,9 +4,10 @@ import styles from './AppPageHeaderControls.module.scss';
 
 interface Props {
 	children?: any;
+	title?: string;
 }
 
-const AppPageHeaderControls = ({ children }: Props): JSX.Element => {
+const AppPageHeaderControls = ({ title, children }: Props): JSX.Element => {
 	return <div className={styles.btn_container}>{children}</div>;
 };
 

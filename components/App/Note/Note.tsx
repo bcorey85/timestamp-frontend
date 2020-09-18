@@ -8,6 +8,7 @@ import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
 
@@ -26,10 +27,12 @@ const Note = (): JSX.Element => {
 					subheading='Note'
 					subheadingType={IconType.note}
 				/>
-
-				<AppPageHeaderControls>
+				<AppPageHeaderControls />
+			</AppPageHeader>
+			<AppPageSection>
+				<AppPageSectionHeading title='Notes'>
 					<Button
-						btnStyle='outline'
+						btnStyle='link_gray'
 						onClick={() =>
 							toggleCreateModal('new', {
 								createModalPage: 'note'
@@ -37,30 +40,7 @@ const Note = (): JSX.Element => {
 						<TypeIcon type={IconType.note} />
 						New Note
 					</Button>
-				</AppPageHeaderControls>
-			</AppPageHeader>
-			{/* <AppPageSection>
-				<StatsBar>
-					<StatCard
-						type={IconType.time}
-						title={'Hours'}
-						stat={appData.hours}
-						href={'/app/[userId/activity'}
-						as={`/app/${userId}/activity`}
-						linkText='View Activity'
-					/>
-					<StatCard
-						type={IconType.note}
-						title={'Notes'}
-						stat={appData.notes.length}
-						href={'/app/[userId/notes'}
-						as={`/app/${userId}/notes`}
-						linkText='View Notes'
-					/>
-				</StatsBar>
-			</AppPageSection> */}
-
-			<AppPageSection title='Notes'>
+				</AppPageSectionHeading>
 				<ListSection type='note' items={appData.notes} />
 			</AppPageSection>
 		</div>

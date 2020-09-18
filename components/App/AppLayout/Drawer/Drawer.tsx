@@ -66,7 +66,6 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 								createModalPage: 'project'
 							})}
 						btnStyle='primary'>
-						<BiPlus className={styles.create_icon} />
 						Create
 					</Button>
 				</div>

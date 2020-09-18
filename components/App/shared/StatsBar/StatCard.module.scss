@@ -28,7 +28,6 @@
 .header {
 	color: var(--text400);
 	font-weight: 600;
-	margin-bottom: .4rem;
 
 	@include respondH(680) {
 		margin-bottom: 0;
@@ -40,7 +39,6 @@
 	line-height: 1;
 	font-weight: 600;
 	text-align: right;
-	margin-bottom: .8rem;
 	font-feature-settings: inherit;
 	font-variant-numeric: inherit;
 	color: var(--text400);

@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { StatsBar } from '../shared/StatsBar/StatsBar';
-import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageMeta } from '../AppPage/AppPageMeta';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
@@ -86,16 +85,21 @@ const ProjectSingle = (): JSX.Element => {
 							Delete
 						</OverflowDelete>
 					</OverflowMenu>
-					<Button
-						btnStyle='outline'
-						onClick={() => toggleCreateModal('addChild')}>
-						<TypeIcon type={IconType.task} />
-						Add Task
-					</Button>
 				</AppPageHeaderControls>
 			</AppPageHeader>
 
-			<AppPageSection title='Tasks'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Tasks'>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal('addChild', {
+								createModalPage: 'task'
+							})}>
+						<TypeIcon type={IconType.task} />
+						Add Task
+					</Button>
+				</AppPageSectionHeading>
 				<ListSection
 					type='task'
 					items={appData.tasks.filter(
@@ -103,7 +107,18 @@ const ProjectSingle = (): JSX.Element => {
 					)}
 				/>
 			</AppPageSection>
-			<AppPageSection title='Recent Notes'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Recent Notes'>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal('addChild', {
+								createModalPage: 'note'
+							})}>
+						<TypeIcon type={IconType.note} />
+						Add Note
+					</Button>
+				</AppPageSectionHeading>
 				<ListSection
 					type='note'
 					items={appData.notes.filter(

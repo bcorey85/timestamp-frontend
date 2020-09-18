@@ -8,7 +8,7 @@ import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { Loading } from '../../shared/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
@@ -37,17 +37,6 @@ const Dashboard = (): JSX.Element => {
 					subheading='Dashboard'
 					subheadingType={IconType.generic}
 				/>
-				<AppPageHeaderControls>
-					<Button
-						btnStyle='outline'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'project'
-							})}>
-						<TypeIcon type={IconType.project} />
-						New Project
-					</Button>
-				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
 				<StatsBar>
@@ -85,16 +74,50 @@ const Dashboard = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</AppPageSection>
-			<AppPageSection title='Pinned Favorites'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Pinned Favorites' />
 				<PinnedFavorites items={pinnedItems} />
 			</AppPageSection>
-			<AppPageSection title='Recent Notes'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Recent Notes'>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal('new', {
+								createModalPage: 'note'
+							})}>
+						<TypeIcon type={IconType.note} />
+						New Note
+					</Button>
+				</AppPageSectionHeading>
 				<ListSection type='note' items={appData.recentItems.notes} />
 			</AppPageSection>
-			<AppPageSection title='Recent Tasks'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Recent Tasks'>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal('new', {
+								createModalPage: 'task'
+							})}>
+						<TypeIcon type={IconType.task} />
+						New Task
+					</Button>
+				</AppPageSectionHeading>
 				<ListSection type='task' items={appData.recentItems.tasks} />
 			</AppPageSection>
-			<AppPageSection title='Recent Projects'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Recent Projects'>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal('new', {
+								createModalPage: 'project'
+							})}>
+						<TypeIcon type={IconType.project} />
+						New Project
+					</Button>
+				</AppPageSectionHeading>
 				<ListSection
 					type='project'
 					items={appData.recentItems.projects}

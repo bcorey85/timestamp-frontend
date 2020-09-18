@@ -9,6 +9,7 @@ import { DeleteAccount } from './DeleteAccount';
 import styles from './Settings.module.scss';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageSection } from '../AppPage/AppPageSection';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 
 const Settings = (): JSX.Element => {
 	return (
@@ -20,13 +21,16 @@ const Settings = (): JSX.Element => {
 					subheadingType={IconType.generic}
 				/>
 			</AppPageHeader>
-			<AppPageSection title='User Details'>
+			<AppPageSection>
+				<AppPageSectionHeading title='User Details' />
 				<UserDetails />
 			</AppPageSection>
-			<AppPageSection title='Interface'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Interface' />
 				<Interface />
 			</AppPageSection>
-			<AppPageSection title='Delete Account'>
+			<AppPageSection>
+				<AppPageSectionHeading title='Delete Account' />
 				<DeleteAccount />
 			</AppPageSection>
 		</div>

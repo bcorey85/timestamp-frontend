@@ -24,6 +24,19 @@ interface ConfigPayload {
 	};
 }
 
+export interface ChildItemConfig {
+	currentItemId: ItemIdentifier;
+	createModalPage: keyof ItemType;
+	createModalEditMode: boolean;
+}
+
+export interface EditItemConfig {
+	currentItemId: ItemIdentifier;
+	currentItem: {};
+	createModalPage: keyof ItemType;
+	createModalEditMode: boolean;
+}
+
 class CreateModalService {
 	static parseConfig = (
 		state: CreateModalState,
@@ -55,7 +68,7 @@ class CreateModalService {
 		state.createModalEditMode = false;
 	};
 
-	public addChildItemConfig = (item: Item) => {
+	public addChildItemConfig = (item: Item): ChildItemConfig => {
 		const itemIds = this.prefillItemIds(item);
 		const itemType = new ItemService(item).type;
 		const childPage = this.assignChildType(itemType);
