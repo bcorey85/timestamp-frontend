@@ -5,10 +5,10 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { AppPageSection } from '../shared/AppPage/AppPageSection';
-import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
-import { AppPageHeaderControls } from '../shared/AppPage/AppPageHeaderControls';
-import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageSection } from '../AppPage/AppPageSection';
+import { AppPageTitle } from '../AppPage/AppPageTitle';
+import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
 
 import { selectAppData } from '../../../redux/appData';

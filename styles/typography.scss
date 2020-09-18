@@ -2,7 +2,7 @@
 
 body {
 	font-family: var(--font-sans);
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	line-height: 1.6;
 	// font-feature-settings: 'ss01' 1;
 	font-variant-numeric: tabular-nums;
@@ -46,8 +46,7 @@ h5 {
 
 .section_heading {
 	font-size: 1.2rem;
-	font-weight: 500;
-	color: var(--text200);
-	margin-bottom: 1.6rem;
-	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--text400);
+	margin-bottom: 1.2rem;
 }

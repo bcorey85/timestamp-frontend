@@ -6,6 +6,7 @@ interface ButtonStyle {
 	outline: 'outline';
 	link_primary: 'link_primary';
 	link_gray: 'link_gray';
+	link_gray_small: 'link_gray_small';
 	primary: 'primary';
 	secondary: 'secondary';
 	delete: 'delete';

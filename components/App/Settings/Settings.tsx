@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
+import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { IconType } from '../../App/shared/TypeIcon';
 import { UserDetails } from './UserDetails';
 import { Interface } from './Interface';
 import { DeleteAccount } from './DeleteAccount';
 
 import styles from './Settings.module.scss';
-import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
-import { AppPageSection } from '../shared/AppPage/AppPageSection';
+import { AppPageHeader } from '../AppPage/AppPageHeader';
+import { AppPageSection } from '../AppPage/AppPageSection';
 
 const Settings = (): JSX.Element => {
 	return (

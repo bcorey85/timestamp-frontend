@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './AppPageTitle.module.scss';
-import { IconType, TypeIcon } from '../TypeIcon';
+import { IconType, TypeIcon } from '../shared/TypeIcon';
 
 interface Props {
 	heading: string;

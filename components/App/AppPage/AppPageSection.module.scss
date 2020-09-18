@@ -1,0 +1,19 @@
+@import '../../../styles/mediaQueries.scss';
+
+.base {
+	margin-bottom: 4rem;
+
+	@include respondH(550) {
+		margin-bottom: 3.2rem;
+	}
+}
+
+.container {
+	@extend .base;
+	grid-column: 2/3;
+}
+
+.container_full {
+	@extend .base;
+	grid-column: 1/4;
+}

@@ -96,7 +96,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 				<FormRow half>
 					<DateTimeInput
 						id='start'
-						label='Start'
+						label='Start Time'
 						dateValue={formState.startDate}
 						timeValue={formState.startTime}
 						handleDate={formHandlers.setStartDate}
@@ -105,7 +105,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 					<DateTimeInput
 						id='end'
-						label='End'
+						label='End Time'
 						dateValue={formState.endDate}
 						timeValue={formState.endTime}
 						handleDate={formHandlers.setEndDate}

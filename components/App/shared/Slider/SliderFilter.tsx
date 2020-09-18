@@ -10,7 +10,6 @@ interface Props {
 const SliderFilter = ({ children }: Props): JSX.Element => {
 	return (
 		<nav className={styles.nav}>
-			{' '}
 			<BiFilter />
 			{children}
 		</nav>

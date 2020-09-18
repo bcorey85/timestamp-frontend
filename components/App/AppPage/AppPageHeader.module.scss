@@ -1,0 +1,15 @@
+@import '../../../styles/mediaQueries.scss';
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 8rem;
+
+	@include respondH(1024) {
+		margin-bottom: 4rem;
+	}
+
+	@include respondH(550) {
+		margin-bottom: 2.4rem;
+	}
+}

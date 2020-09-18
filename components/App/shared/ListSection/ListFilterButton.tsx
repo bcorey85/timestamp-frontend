@@ -25,18 +25,18 @@ const ListFilterButton = ({
 	return (
 		<div className={styles[`btn_container_${type}`]}>
 			<Button
-				btnStyle='link_gray'
+				btnStyle='link_gray_small'
 				onClick={() => {
 					sortFunction(triggerFilter);
 				}}>
 				{' '}
 				{title}
+				<span style={{ position: 'relative' }}>
+					{currentFilter === triggerFilter ? (
+						<ListFilterIcon sortDesc={sortDesc} />
+					) : null}
+				</span>
 			</Button>
-			<span style={{ position: 'relative' }}>
-				{currentFilter === triggerFilter ? (
-					<ListFilterIcon sortDesc={sortDesc} />
-				) : null}
-			</span>
 		</div>
 	);
 };

@@ -22,7 +22,7 @@ const Interface = (): JSX.Element => {
 						onChange={e => handleDarkModeToggle(null)}
 						checked={darkModeChecked}
 						offColor='#e4e7e6'
-						onColor='#3d4342'
+						onColor='#bcc2c1'
 						onHandleColor='#078368'
 						offHandleColor='#078368'
 						height={24}

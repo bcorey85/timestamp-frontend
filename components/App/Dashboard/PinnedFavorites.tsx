@@ -30,18 +30,24 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	return (
 		<PinnedSection>
 			<SliderFilter>
-				<Button btnStyle='link_gray' onClick={() => changePage('all')}>
+				<Button
+					btnStyle='link_gray_small'
+					onClick={() => changePage('all')}>
 					All
 				</Button>
 				<Button
-					btnStyle='link_gray'
+					btnStyle='link_gray_small'
 					onClick={() => changePage('project')}>
 					Projects
 				</Button>
-				<Button btnStyle='link_gray' onClick={() => changePage('task')}>
+				<Button
+					btnStyle='link_gray_small'
+					onClick={() => changePage('task')}>
 					Tasks
 				</Button>
-				<Button btnStyle='link_gray' onClick={() => changePage('note')}>
+				<Button
+					btnStyle='link_gray_small'
+					onClick={() => changePage('note')}>
 					Notes
 				</Button>
 			</SliderFilter>

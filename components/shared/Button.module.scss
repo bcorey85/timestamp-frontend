@@ -45,7 +45,7 @@
 	@extend .btn;
 	background-color: transparent;
 	border: var(--border-primary);
-	color: var(--text300);
+	color: var(--text400);
 
 	&:hover {
 		background-color: var(--gray200);
@@ -62,8 +62,18 @@
 
 .btn_link_gray {
 	@extend .btn_link;
-	color: var(--text300);
+	color: var(--text400);
 	font-size: 1.4rem;
+
+	&:hover {
+		color: var(--primary400);
+	}
+}
+
+.btn_link_gray_small {
+	@extend .btn_link;
+	color: var(--text400);
+	font-size: 1.2rem;
 
 	&:hover {
 		color: var(--primary400);

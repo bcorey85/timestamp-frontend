@@ -10,7 +10,7 @@
 	--gray200: hsl(167, 5%, 90%);
 	--gray300: hsl(167, 5%, 75%);
 	--gray400: hsl(167, 5%, 45%);
-	--gray500: hsl(167, 5%, 40%);
+	--gray500: hsl(167, 5%, 35%);
 
 	--black200: hsl(167, 5%, 20%);
 	--black100: hsl(167, 5%, 25%);
@@ -92,9 +92,9 @@ body.dark {
 	--border-primary: 1px solid var(--gray300);
 
 	--text500: var(--white);
-	--text400: var(--white);
-	--text300: var(--gray50);
-	--text200: var(--gray100);
+	--text400: var(--gray50);
+	--text300: var(--gray200);
+	--text200: var(--gray200);
 
 	--hover-color-light: var(--gray400);
 	--hover-color-dark: var(--primary500);

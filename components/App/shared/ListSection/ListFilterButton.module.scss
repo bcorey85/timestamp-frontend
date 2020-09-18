@@ -1,10 +1,11 @@
-.btn_container {
-	text-align: left;
-}
 @import '../../../../styles/mediaQueries.scss';
 
 .btn_container {
-	text-align: left;
+	& button {
+		width: 100%;
+		text-align: left;
+		outline: none;
+	}
 }
 
 .btn_container_show_mobile {

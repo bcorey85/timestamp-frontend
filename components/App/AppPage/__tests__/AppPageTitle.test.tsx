@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { AppPageTitle } from '../AppPageTitle';
-import { IconType } from '../../TypeIcon';
+import { IconType } from '../../shared/TypeIcon';
 
 describe('AppPageTitle', () => {
 	it('renders', () => {

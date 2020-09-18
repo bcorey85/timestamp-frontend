@@ -6,9 +6,9 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
-import { AppPageSection } from '../shared/AppPage/AppPageSection';
-import { AppPageTitle } from '../shared/AppPage/AppPageTitle';
-import { AppPageHeader } from '../shared/AppPage/AppPageHeader';
+import { AppPageSection } from '../AppPage/AppPageSection';
+import { AppPageTitle } from '../AppPage/AppPageTitle';
+import { AppPageHeader } from '../AppPage/AppPageHeader';
 
 import { selectUser } from '../../../redux/user';
 import { ListSection } from '../shared/ListSection/ListSection';
