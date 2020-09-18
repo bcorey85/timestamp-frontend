@@ -22,7 +22,7 @@
 
 .textarea {
 	@extend .input;
-	height: 24rem;
+	height: 20rem;
 }
 
 .input:focus,
@@ -37,7 +37,7 @@
 	display: block;
 	margin-bottom: .4rem;
 	font-size: 1.2rem;
-	line-height: 2rem;
+	line-height: 1.2rem;
 	font-weight: 500;
 	color: var(--text300);
 }
@@ -45,7 +45,8 @@
 .error_container {
 	margin-top: .4rem;
 	min-height: 1.4rem;
-	font-size: 1.4rem;
-	line-height: 1.4rem;
+	font-size: 1.2rem;
+	line-height: 1.2rem;
+	font-weight: 500;
 	color: var(--red-error);
 }

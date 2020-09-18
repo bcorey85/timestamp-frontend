@@ -79,6 +79,41 @@ const Dashboard = (): JSX.Element => {
 				<PinnedFavorites items={pinnedItems} />
 			</AppPageSection>
 			<AppPageSection>
+				<AppPageSection>
+					<AppPageSectionHeading title='Recent Projects'>
+						<Button
+							btnStyle='link_gray'
+							onClick={() =>
+								toggleCreateModal('new', {
+									createModalPage: 'project'
+								})}>
+							<TypeIcon type={IconType.project} />
+							New Project
+						</Button>
+					</AppPageSectionHeading>
+					<ListSection
+						type='project'
+						items={appData.recentItems.projects}
+					/>
+				</AppPageSection>
+
+				<AppPageSection>
+					<AppPageSectionHeading title='Recent Tasks'>
+						<Button
+							btnStyle='link_gray'
+							onClick={() =>
+								toggleCreateModal('new', {
+									createModalPage: 'task'
+								})}>
+							<TypeIcon type={IconType.task} />
+							New Task
+						</Button>
+					</AppPageSectionHeading>
+					<ListSection
+						type='task'
+						items={appData.recentItems.tasks}
+					/>
+				</AppPageSection>
 				<AppPageSectionHeading title='Recent Notes'>
 					<Button
 						btnStyle='link_gray'
@@ -91,37 +126,6 @@ const Dashboard = (): JSX.Element => {
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection type='note' items={appData.recentItems.notes} />
-			</AppPageSection>
-			<AppPageSection>
-				<AppPageSectionHeading title='Recent Tasks'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'task'
-							})}>
-						<TypeIcon type={IconType.task} />
-						New Task
-					</Button>
-				</AppPageSectionHeading>
-				<ListSection type='task' items={appData.recentItems.tasks} />
-			</AppPageSection>
-			<AppPageSection>
-				<AppPageSectionHeading title='Recent Projects'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'project'
-							})}>
-						<TypeIcon type={IconType.project} />
-						New Project
-					</Button>
-				</AppPageSectionHeading>
-				<ListSection
-					type='project'
-					items={appData.recentItems.projects}
-				/>
 			</AppPageSection>
 		</React.Fragment>
 	);
