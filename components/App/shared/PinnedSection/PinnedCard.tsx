@@ -6,6 +6,7 @@ import { ItemType } from '../../../../utils/ItemService';
 import { PinnedIcon } from './PinnedIcon';
 
 import styles from './PinnedCard.module.scss';
+import { TagService } from '../../../../utils/TagService';
 
 interface Props {
 	href: string;

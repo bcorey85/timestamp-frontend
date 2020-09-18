@@ -67,14 +67,15 @@ const TaskSingle = (): JSX.Element => {
 					subheading='Task'
 					subheadingType={IconType.task}>
 					<AppPageMeta>
-						<p>{currentTask.description}</p>
-						<p>Hours: {currentTask.hours}</p>
+						<p>{currentTask.tags || null} </p>
 						<p>
-							Started On:
+							Created: {' '}
 							{new Date(
 								Date.parse(currentTask.created_at)
 							).toLocaleDateString()}
 						</p>
+						<p>Hours: {currentTask.hours}</p>
+						<p>{currentTask.description}</p>
 					</AppPageMeta>
 				</AppPageTitle>
 

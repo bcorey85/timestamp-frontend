@@ -65,14 +65,15 @@ const ProjectSingle = (): JSX.Element => {
 					subheading='Project'
 					subheadingType={IconType.project}>
 					<AppPageMeta>
-						<p>{currentProject.description}</p>
-						<p>Hours: {currentProject.hours}</p>
 						<p>
-							Started On:{' '}
+							Created:{' '}
 							{new Date(
 								Date.parse(currentProject.created_at)
 							).toLocaleDateString()}
 						</p>
+						<p>Hours: {currentProject.hours}</p>
+
+						<p>{currentProject.description}</p>
 					</AppPageMeta>
 				</AppPageTitle>
 				<AppPageHeaderControls>

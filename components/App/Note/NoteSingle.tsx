@@ -67,14 +67,16 @@ const NoteSingle = (): JSX.Element => {
 					subheading='Note'
 					subheadingType={IconType.note}>
 					<AppPageMeta>
-						<p>{currentNote.description}</p>
-						<p>Hours: {currentNote.hours}</p>
+						<p>{currentNote.tags || null}</p>
 						<p>
-							Started On:
+							Created: {' '}
 							{new Date(
 								Date.parse(currentNote.created_at)
 							).toLocaleDateString()}
 						</p>
+						<p>Hours: {currentNote.hours}</p>
+
+						<p>{currentNote.description}</p>
 					</AppPageMeta>
 				</AppPageTitle>
 

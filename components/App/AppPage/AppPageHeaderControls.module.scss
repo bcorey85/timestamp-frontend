@@ -1,11 +1,10 @@
 .btn_container {
 	display: flex;
 	justify-content: flex-end;
-	width: 24rem;
+	width: 3.2rem;
 
 	& button {
 		max-width: 16rem;
 		margin-bottom: 0;
-		margin-left: 1.6rem;
 	}
 }

@@ -14,6 +14,7 @@
 
 	@include respondH(680) {
 		width: 100%;
+		padding: .8rem 1.6rem;
 	}
 
 	&:not(:last-of-type) {
@@ -48,7 +49,6 @@
 	}
 
 	@include respondH(680) {
-		font-size: 2.4rem;
 		margin-bottom: 0;
 	}
 }
