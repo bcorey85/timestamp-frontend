@@ -75,6 +75,9 @@
 body.dark {
 	--gray500: hsl(167, 5%, 30%);
 	--gray400: hsl(167, 5%, 28%);
+	--gray300: hsl(167, 5%, 35%);
+	--black200: hsl(167, 5%, 23%);
+	--black100: hsl(167, 5%, 25%);
 
 	--primary500: hsl(167, 85%, 37%);
 	--primary400: hsl(167, 65%, 45%);
@@ -85,7 +88,7 @@ body.dark {
 	--background-secondary: var(--black200);
 	--background-tertiary: var(--gray500);
 
-	--border-primary: 1px solid var(--gray400);
+	--border-primary: 1px solid var(--gray300);
 
 	--text500: var(--white);
 	--text400: var(--white);
@@ -95,7 +98,7 @@ body.dark {
 	--hover-color-light: var(--gray400);
 	--hover-color-dark: var(--primary500);
 
-	--box-shadow: 0px 1px 2px 0px hsla(167, 5%, 45%, 45%);
+	--box-shadow: 0px 1px 2px 0px hsla(167, 5%, 40%, 40%);
 
 	color: var(--white);
 }
