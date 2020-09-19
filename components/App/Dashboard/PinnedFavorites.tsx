@@ -24,7 +24,7 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	};
 
 	if (items.length === 0) {
-		return <div>( Empty )</div>;
+		return <div style={{ color: 'var(--text200)' }}>( Empty )</div>;
 	}
 
 	return (

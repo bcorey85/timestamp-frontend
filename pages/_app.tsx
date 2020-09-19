@@ -9,9 +9,12 @@ import { UiService } from '../utils/UiService';
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {
 		const appState = JSON.parse(localStorage.getItem('persist:timestamp'));
-		const appInterface = JSON.parse(appState.interface);
 
-		UiService.toggleDarkMode(appInterface.darkColorMode);
+		if (appState) {
+			const appInterface = JSON.parse(appState.interface);
+
+			UiService.toggleDarkMode(appInterface.darkColorMode);
+		}
 	}, []);
 
 	return (
