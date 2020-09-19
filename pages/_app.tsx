@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import '../styles/index.scss';
 
 import { UiService } from '../utils/UiService';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {
@@ -20,6 +21,13 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
+				<Head>
+					<meta
+						name='viewport'
+						content='width=device-width,minimum-scale=1,initial-scale=1'
+						className='next-head'
+					/>
+				</Head>
 				<Component {...pageProps} />
 			</PersistGate>
 		</Provider>
