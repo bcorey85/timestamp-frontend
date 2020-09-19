@@ -2,10 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { UiService } from '../utils/UiService';
 
+// Check initial state for drawerOpen
+// Should be open for desktop, but closed for mobile
+let screenWidth;
+if (typeof window !== 'undefined') {
+	screenWidth = window.innerWidth;
+}
+
 const interfaceSlice = createSlice({
 	name: 'interface',
 	initialState: {
-		drawerOpen: false,
+		drawerOpen: screenWidth > 1024 ? true : false,
 		searchOpen: false,
 		createModalOpen: false,
 		darkColorMode: false

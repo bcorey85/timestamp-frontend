@@ -13,7 +13,7 @@ const NavToggle = (): JSX.Element => {
 
 	return (
 		<button className={styles.nav_toggle} onClick={toggle}>
-			<div>
+			<div className={styles.container}>
 				<span />
 				<span />
 				<span />
