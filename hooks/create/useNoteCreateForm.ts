@@ -102,8 +102,11 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
 
-		const start = new Date(Date.parse(startDate));
-		const end = new Date(Date.parse(endDate));
+		let start, end;
+		if (typeof startDate !== 'string' && typeof endDate !== 'string') {
+			start = startDate.toISOString();
+			end = endDate.toISOString();
+		}
 
 		const payload: NotePayload = {
 			title,
