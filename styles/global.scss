@@ -153,3 +153,16 @@ button.btn-link:hover {
 select {
 	padding: 0 .4rem;
 }
+
+.rdt {
+	& input {
+		width: 100%;
+		height: 4rem;
+		border-radius: var(--border-radius);
+		padding: .8rem;
+		border: var(--border-primary);
+		background-color: var(--background-secondary);
+		font-size: inherit;
+		font-family: inherit;
+	}
+}

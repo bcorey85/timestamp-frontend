@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
+import DatePicker from 'react-datetime';
 
 import { DateTimeInput, Input, Select, TextArea } from '../../shared/Input';
 import { Button } from '../../shared/Button';
@@ -93,23 +94,21 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 							})}
 					</Select>
 				</FormRow>
-				<FormRow half>
+				<FormRow>
 					<DateTimeInput
 						id='start'
 						label='Start Time'
 						dateValue={formState.startDate}
-						timeValue={formState.startTime}
 						handleDate={formHandlers.setStartDate}
-						handleTime={formHandlers.setStartTime}
 						error={errors.startTime}
 					/>
+				</FormRow>
+				<FormRow>
 					<DateTimeInput
 						id='end'
 						label='End Time'
 						dateValue={formState.endDate}
-						timeValue={formState.endTime}
 						handleDate={formHandlers.setEndDate}
-						handleTime={formHandlers.setEndTime}
 						error={errors.endTime}
 					/>
 				</FormRow>

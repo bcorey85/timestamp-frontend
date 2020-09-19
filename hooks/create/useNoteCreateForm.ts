@@ -1,4 +1,5 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
+import moment from 'moment';
 
 import { useInputState } from '../useInputState';
 import { useTags } from '../useTags';
@@ -29,6 +30,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 	const { currentItemId, currentItem, createModalEditMode } = useSelector(
 		selectCreateModal
 	);
+
 	const { userId, token } = useSelector(selectUser);
 
 	const { tags, handleAddTag, handleRemoveTag } = useTags(
@@ -40,17 +42,12 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 	);
 	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
 	const [ taskId, setTaskId ] = useState(currentItemId.taskId || '');
-	const [ startTime, setStartTime ] = useInputState(
-		currentItem.formattedTime.startTime || ''
+
+	const [ startDate, setStartDate ] = useState(
+		moment(currentItem.start_time) || ''
 	);
-	const [ endTime, setEndTime ] = useInputState(
-		currentItem.formattedTime.endTime || ''
-	);
-	const [ startDate, setStartDate ] = useInputState(
-		currentItem.formattedTime.startDate || ''
-	);
-	const [ endDate, setEndDate ] = useInputState(
-		currentItem.formattedTime.endDate || ''
+	const [ endDate, setEndDate ] = useState(
+		moment(currentItem.end_time) || ''
 	);
 	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
 
@@ -104,8 +101,9 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 
 	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
-		const start = new Date(startDate + ' ' + startTime);
-		const end = new Date(endDate + ' ' + endTime);
+
+		const start = new Date(Date.parse(startDate));
+		const end = new Date(Date.parse(endDate));
 
 		const payload: NotePayload = {
 			title,
@@ -147,8 +145,6 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		description,
 		projectId,
 		taskId,
-		startTime,
-		endTime,
 		startDate,
 		endDate,
 		tags,
@@ -160,8 +156,6 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		setDescription,
 		setProjectId,
 		setTaskId,
-		setStartTime,
-		setEndTime,
 		setStartDate,
 		setEndDate,
 		handleAddTag,
