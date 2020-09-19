@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Div100vh from 'react-div-100vh';
 
 import { CreateNav } from './shared/CreateNav';
 import { ProjectForm } from './ProjectForm';
@@ -45,25 +46,27 @@ const CreateModal = ({
 
 	return (
 		<div className={styles.modal}>
-			<div className={styles.modal_container}>
-				<div className={styles.form}>
-					<CreateNav currentPage={createModalPage} />
-					<div className={styles.form_body}>
-						{createModalPage === 'project' ? (
-							<ProjectForm handleClose={handleClose} />
-						) : null}
-						{createModalPage === 'task' ? (
-							<TaskForm
-								handleClose={handleClose}
-								initialProjectId={initialProjectId}
-							/>
-						) : null}
-						{createModalPage === 'note' ? (
-							<NoteForm handleClose={handleClose} />
-						) : null}
+			<Div100vh>
+				<div className={styles.modal_container}>
+					<div className={styles.form}>
+						<CreateNav currentPage={createModalPage} />
+						<div className={styles.form_body}>
+							{createModalPage === 'project' ? (
+								<ProjectForm handleClose={handleClose} />
+							) : null}
+							{createModalPage === 'task' ? (
+								<TaskForm
+									handleClose={handleClose}
+									initialProjectId={initialProjectId}
+								/>
+							) : null}
+							{createModalPage === 'note' ? (
+								<NoteForm handleClose={handleClose} />
+							) : null}
+						</div>
 					</div>
 				</div>
-			</div>
+			</Div100vh>
 		</div>
 	);
 };

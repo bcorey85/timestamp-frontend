@@ -5,7 +5,7 @@ import { UiService } from '../utils/UiService';
 const interfaceSlice = createSlice({
 	name: 'interface',
 	initialState: {
-		drawerOpen: true,
+		drawerOpen: false,
 		searchOpen: false,
 		createModalOpen: false,
 		darkColorMode: false

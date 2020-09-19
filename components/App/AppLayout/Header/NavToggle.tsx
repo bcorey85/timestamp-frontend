@@ -13,9 +13,11 @@ const NavToggle = (): JSX.Element => {
 
 	return (
 		<button className={styles.nav_toggle} onClick={toggle}>
-			<span />
-			<span />
-			<span />
+			<div>
+				<span />
+				<span />
+				<span />
+			</div>
 		</button>
 	);
 };
