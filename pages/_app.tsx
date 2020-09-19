@@ -24,8 +24,7 @@ function MyApp({ Component, pageProps }) {
 				<Head>
 					<meta
 						name='viewport'
-						content='width=device-width,minimum-scale=1,initial-scale=1'
-						className='next-head'
+						content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
 					/>
 				</Head>
 				<Component {...pageProps} />
