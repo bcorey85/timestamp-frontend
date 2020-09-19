@@ -7,15 +7,6 @@ import '../styles/index.scss';
 import { UiService } from '../utils/UiService';
 import Head from 'next/head';
 
-if (typeof window !== 'undefined') {
-	window.onresize = function() {
-		// @ts-ignore
-		document.body.height = window.innerHeight;
-	};
-	// @ts-ignore
-	window.onresize();
-}
-
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {
 		const appState = JSON.parse(localStorage.getItem('persist:timestamp'));
