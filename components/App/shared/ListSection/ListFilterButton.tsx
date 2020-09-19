@@ -7,16 +7,18 @@ import styles from './ListFilterButton.module.scss';
 
 interface Props {
 	type: string;
-	triggerFilter: string;
+	columnFilter: string;
 	currentFilter: string;
 	title: string;
 	sortDesc: boolean;
-	sortFunction: (filter: string) => void;
+	sortFunction: (
+		{ filter, sortDesc }: { filter: string; sortDesc: boolean }
+	) => void;
 }
 
 const ListFilterButton = ({
 	type,
-	triggerFilter,
+	columnFilter,
 	currentFilter,
 	title,
 	sortDesc,
@@ -27,12 +29,11 @@ const ListFilterButton = ({
 			<Button
 				btnStyle='link_gray_small'
 				onClick={() => {
-					sortFunction(triggerFilter);
+					sortFunction({ filter: columnFilter, sortDesc: !sortDesc });
 				}}>
-				{' '}
 				{title}
 				<span style={{ position: 'relative' }}>
-					{currentFilter === triggerFilter ? (
+					{currentFilter === columnFilter ? (
 						<ListFilterIcon sortDesc={sortDesc} />
 					) : null}
 				</span>

@@ -24,7 +24,7 @@ const ListSection = ({ items, type }: Props): JSX.Element => {
 
 	useEffect(
 		() => {
-			handleSort(currentFilter);
+			handleSort({ filter: 'date', sortDesc: true });
 		},
 		[ items ]
 	);

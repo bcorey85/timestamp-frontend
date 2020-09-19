@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+interface SortProps {
+	filter: string;
+	sortDesc: boolean;
+}
+
 const useListSort = (items: any[]) => {
 	const [ currentFilter, setCurrentFilter ] = useState('date');
-	const [ sortDesc, setSortDesc ] = useState(true);
+	const [ sortDesc, setSortDesc ] = useState(false);
 	const [ filteredItems, setFilteredItems ] = useState(items);
 
 	const sortItems = (
@@ -43,7 +48,7 @@ const useListSort = (items: any[]) => {
 		return sorted;
 	};
 
-	const handleSort = (filter: string) => {
+	const handleSort = ({ filter, sortDesc }: SortProps): void => {
 		let filteredItems;
 
 		if (filter !== currentFilter) {
@@ -51,8 +56,8 @@ const useListSort = (items: any[]) => {
 			setSortDesc(false);
 			filteredItems = sortItems(items, filter, false);
 		} else {
-			setSortDesc(!sortDesc);
-			filteredItems = sortItems(items, filter, !sortDesc);
+			setSortDesc(sortDesc);
+			filteredItems = sortItems(items, filter, sortDesc);
 		}
 		setFilteredItems(filteredItems);
 	};

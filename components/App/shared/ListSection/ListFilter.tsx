@@ -6,7 +6,9 @@ import { ListFilterButton } from './ListFilterButton';
 import { ItemType } from '../../../../utils/ItemService';
 
 interface Props {
-	sortFunction: (filter: string) => void;
+	sortFunction: (
+		{ filter, sortDesc }: { filter: string; sortDesc: boolean }
+	) => void;
 	currentFilter: string;
 	sortDesc: boolean;
 	type: keyof ItemType;
@@ -25,7 +27,7 @@ const ListFilter = ({
 					return (
 						<ListFilterButton
 							type={note.btnType}
-							triggerFilter={note.filter}
+							columnFilter={note.filter}
 							title={note.title}
 							currentFilter={currentFilter}
 							sortDesc={sortDesc}
@@ -41,7 +43,7 @@ const ListFilter = ({
 					return (
 						<ListFilterButton
 							type={task.btnType}
-							triggerFilter={task.filter}
+							columnFilter={task.filter}
 							title={task.title}
 							currentFilter={currentFilter}
 							sortDesc={sortDesc}
@@ -57,7 +59,7 @@ const ListFilter = ({
 					return (
 						<ListFilterButton
 							type={project.btnType}
-							triggerFilter={project.filter}
+							columnFilter={project.filter}
 							title={project.title}
 							currentFilter={currentFilter}
 							sortDesc={sortDesc}
