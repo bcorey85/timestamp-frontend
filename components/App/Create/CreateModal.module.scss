@@ -42,8 +42,9 @@
 		overflow-y: auto;
 		padding: 1.6rem 0;
 
+		// add extra padding on bottom for mobile iOS/safari
 		@include respondH(550) {
-			padding: 1.6rem .8rem;
+			padding: 1.6rem .8rem 6.4rem .8rem;
 		}
 	}
 }
