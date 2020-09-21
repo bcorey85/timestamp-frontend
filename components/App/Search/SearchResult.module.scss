@@ -2,11 +2,33 @@
 
 .container {
 	@include panel;
-	padding: 1.6rem;
+	padding: .8rem 1.6rem;
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
 
 	&:not(:last-of-type) {
 		margin-bottom: 1.6rem;
 	}
+}
+
+.meta {
+	border-right: var(--border-primary1);
+}
+
+.title {
+	font-weight: 500;
+}
+
+.stats {
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+
+	& div:not(:last-of-type) {
+		margin-bottom: .4rem;
+	}
+}
+
+.pinned {
+	flex: 0 0 1.6rem;
 }

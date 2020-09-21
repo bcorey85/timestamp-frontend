@@ -8,7 +8,7 @@ const useTags = (initialState: string[]) => {
 		if (tags.includes(tagName)) {
 			return;
 		}
-		setTags([ ...tags, TagService.trim(tagName) ]);
+		setTags([ ...tags, TagService.trim(tagName).toLowerCase() ]);
 	};
 
 	const handleRemoveTag = (tagName: string) => {

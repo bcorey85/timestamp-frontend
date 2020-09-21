@@ -28,47 +28,7 @@ const Activity = (): JSX.Element => {
 					subheadingType={IconType.time}
 				/>
 			</AppPageHeader>
-			<AppPageSection>
-				<StatsBar>
-					<StatCard
-						type={IconType.time}
-						title={'Hours'}
-						stat={'10,000'}
-						href={'/app/[userId/activity'}
-						as={`/app/${userId}/activity`}
-						linkText='View Activity'
-					/>
-					<StatCard
-						type={IconType.project}
-						title={'Projects'}
-						stat={'4'}
-						href={'/app/[userId/projects'}
-						as={`/app/${userId}/projects`}
-						linkText='View Projects'
-					/>
-					<StatCard
-						type={IconType.task}
-						title={'Tasks'}
-						stat={'25'}
-						href={'/app/[userId/tasks'}
-						as={`/app/${userId}/tasks`}
-						linkText='View Tasks'
-					/>
-					<StatCard
-						type={IconType.note}
-						title={'Notes'}
-						stat={'482'}
-						href={'/app/[userId/notes'}
-						as={`/app/${userId}/notes`}
-						linkText='View Notes'
-					/>
-				</StatsBar>
-			</AppPageSection>
-
-			<AppPageSection>
-				<AppPageSectionHeading title='Recent Items' />
-				<ListSection type='note' items={appData.notes} />
-			</AppPageSection>
+			<AppPageSection>Not yet implemented...</AppPageSection>
 		</React.Fragment>
 	);
 };

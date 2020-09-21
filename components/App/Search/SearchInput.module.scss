@@ -3,11 +3,12 @@
 	flex: 1 1 auto;
 	border-radius: var(--border-radius);
 	overflow: hidden;
+	max-width: 64rem;
 
 	& input,
 	select {
 		height: 3.2rem;
-		background-color: var(--background-tertiary);
+		background-color: var(--background-secondary);
 	}
 
 	& select {

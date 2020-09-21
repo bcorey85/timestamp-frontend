@@ -10,6 +10,8 @@ import { SearchInput } from './SearchInput';
 
 import styles from './Search.module.scss';
 import { IconType } from '../shared/TypeIcon';
+import { AppPageSection } from '../AppPage/AppPageSection';
+import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 
 const Search = (): JSX.Element => {
 	const { router } = useRouterService();
@@ -33,6 +35,10 @@ const Search = (): JSX.Element => {
 	}, []);
 
 	const handleSearch = () => {
+		if (searchValue.trim() === '') {
+			return setResults([]);
+		}
+
 		const data = [
 			...appData.projects,
 			...appData.tasks,
@@ -57,12 +63,12 @@ const Search = (): JSX.Element => {
 		<React.Fragment>
 			<AppPageHeader>
 				<AppPageTitle
-					heading='Enter a Search Value Below'
+					heading='Enter a Search Value'
 					subheading='Search'
 					subheadingType={IconType.generic}
 				/>
 			</AppPageHeader>
-			<div>
+			<AppPageSection>
 				<div className={styles.input}>
 					<SearchInput
 						handleSearch={handleSearch}
@@ -72,19 +78,23 @@ const Search = (): JSX.Element => {
 						setSearchValue={handleSearchValue}
 					/>
 				</div>
-
-				{results.length > 0 &&
-					results.map((result, i) => {
-						return (
-							<SearchResult
-								result={result}
-								userId={userId}
-								key={i}
-							/>
-						);
-					})}
-				{results.length === 0 && <div>( Empty )</div>}
-			</div>
+			</AppPageSection>
+			<AppPageSection>
+				<AppPageSectionHeading title='Search Results:' />
+				<div className={styles.results_container}>
+					{results.length > 0 &&
+						results.map((result, i) => {
+							return (
+								<SearchResult
+									result={result}
+									userId={userId}
+									key={i}
+								/>
+							);
+						})}
+					{results.length === 0 && <div>( No results found )</div>}
+				</div>
+			</AppPageSection>
 		</React.Fragment>
 	);
 };

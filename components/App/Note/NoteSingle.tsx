@@ -69,12 +69,11 @@ const NoteSingle = (): JSX.Element => {
 					<AppPageMeta>
 						<p>{currentNote.tags || null}</p>
 						<p>
-							Created: {' '}
 							{new Date(
 								Date.parse(currentNote.createdAt)
-							).toLocaleDateString()}
+							).toLocaleDateString()}{' '}
+							- {currentNote.hours} hr
 						</p>
-						<p>Hours: {currentNote.hours}</p>
 
 						<p>{currentNote.description}</p>
 					</AppPageMeta>
