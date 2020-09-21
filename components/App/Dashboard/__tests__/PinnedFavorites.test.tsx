@@ -31,11 +31,11 @@ describe('PinnedFavorites', () => {
 			tasks: 5,
 			description: 'test',
 			tags: '#1',
-			user_id: 1,
-			project_id: 1,
+			userId: 1,
+			projectId: 1,
 			pinned: false,
-			created_at: new Date(Date.now()).toISOString(),
-			updated_at: new Date(Date.now()).toISOString()
+			createdAt: new Date(Date.now()).toISOString(),
+			updatedAt: new Date(Date.now()).toISOString()
 		};
 
 		const wrapper = mount(

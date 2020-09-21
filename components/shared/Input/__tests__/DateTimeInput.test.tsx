@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { shallow } from 'enzyme';
 
 import { DateTimeInput } from '../DateTimeInput';
@@ -10,10 +11,8 @@ describe('DateTimeInput', () => {
 			<DateTimeInput
 				id='date'
 				label='Date'
-				handleTime={jest.fn}
 				handleDate={jest.fn}
-				dateValue='12/12/2020'
-				timeValue='14:00'
+				dateValue={moment()}
 			/>
 		);
 		expect(wrapper).not.toBeNull();
@@ -24,10 +23,8 @@ describe('DateTimeInput', () => {
 			<DateTimeInput
 				id='date'
 				label='Date'
-				handleTime={jest.fn}
 				handleDate={jest.fn}
-				dateValue='12/12/2020'
-				timeValue='14:00'
+				dateValue={moment()}
 			/>
 		);
 
@@ -38,10 +35,8 @@ describe('DateTimeInput', () => {
 		const wrapper = shallow(
 			<DateTimeInput
 				id='date'
-				handleTime={jest.fn}
 				handleDate={jest.fn}
-				dateValue='12/12/2020'
-				timeValue='14:00'
+				dateValue={moment()}
 			/>
 		);
 

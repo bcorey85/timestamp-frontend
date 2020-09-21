@@ -1,21 +1,21 @@
 import moment from 'moment';
 
 export interface Item {
-	user_id: number;
-	project_id: number;
-	task_id?: number;
-	note_id?: number;
+	userId: number;
+	projectId: number;
+	taskId?: number;
+	noteId?: number;
 	title: string;
 	description: string;
 	hours: string;
 	pinned: boolean;
-	start_time?: string;
-	end_time?: string;
+	startTime?: string;
+	endTime?: string;
 	tags?: string;
 	notes?: number;
 	tasks?: number;
-	created_at: string;
-	updated_at: string;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface ItemType {
@@ -58,10 +58,10 @@ class ItemService {
 	};
 
 	private assignType = () => {
-		const isNote = !!this.item.note_id && 'note';
-		const isTask = !!this.item.task_id && !this.item.note_id && 'task';
+		const isNote = !!this.item.noteId && 'note';
+		const isTask = !!this.item.taskId && !this.item.noteId && 'task';
 		const isProject =
-			!!this.item.project_id && !this.item.task_id && 'project';
+			!!this.item.projectId && !this.item.taskId && 'project';
 
 		const type = [
 			isNote,
@@ -76,9 +76,9 @@ class ItemService {
 
 	private generateProperties = (type: keyof ItemType) => {
 		// @ts-ignore
-		const typeId: keyof Item = this.item[`${type}_id`];
+		const typeId: keyof Item = this.item[`${type}Id`];
 		const rootPath = `${type}s`;
-		const filePath = [ `${type}Id` ];
+		const filePath = `${type}Id`;
 
 		this.type = type;
 		this.pathname = {
@@ -87,9 +87,9 @@ class ItemService {
 		};
 
 		if (type === 'note') {
-			const date = moment(this.item.start_time).format('l');
-			const startTime = moment(this.item.start_time).format('LT');
-			const endTime = moment(this.item.end_time).format('LT');
+			const date = moment(this.item.startTime).format('l');
+			const startTime = moment(this.item.startTime).format('LT');
+			const endTime = moment(this.item.endTime).format('LT');
 
 			this.meta = {
 				date,
@@ -99,7 +99,7 @@ class ItemService {
 				hours: Number(this.item.hours).toFixed(1)
 			};
 		} else {
-			const date = moment(this.item.updated_at).format('l');
+			const date = moment(this.item.updatedAt).format('l');
 
 			this.meta = {
 				date,
@@ -119,7 +119,7 @@ class ItemService {
 			endTime: this.meta.endTime,
 			title: this.item.title,
 			pinned: this.item.pinned,
-			createdAt: this.item.created_at,
+			createdAt: this.item.createdAt,
 			notes: this.item.notes || null,
 			tasks: this.item.tasks || null,
 			href: this.pathname.href,

@@ -17,12 +17,14 @@ const PinnedItems = ({ items, userId }: Props): JSX.Element => {
 				const { href, as } = currentItem.pathname;
 				const {
 					title,
-					created_at,
+					createdAt,
 					description,
 					notes,
 					tasks,
 					tags
 				} = currentItem.item;
+				console.log(currentItem.item);
+
 				const { date, time, hours } = currentItem.meta;
 				const { type } = currentItem;
 
@@ -38,7 +40,7 @@ const PinnedItems = ({ items, userId }: Props): JSX.Element => {
 						notes={notes}
 						tasks={tasks}
 						description={description}
-						key={created_at.toString()}
+						key={createdAt.toString()}
 						tags={tags}
 					/>
 				);

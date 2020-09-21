@@ -29,15 +29,15 @@ const NoteSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 	const currentNote = appData.notes.filter(note => {
-		return note.note_id === Number(router.query.noteId);
+		return note.noteId === Number(router.query.noteId);
 	})[0] || {
 		title: '',
 		description: '',
 		hours: '',
-		created_at: new Date(Date.now()).toISOString(),
-		project_id: '1',
-		task_id: '1',
-		note_id: '1'
+		createdAt: new Date(Date.now()).toISOString(),
+		projectId: '1',
+		taskId: '1',
+		noteId: '1'
 	};
 
 	const { toggleCreateModal } = useCreateModal(currentNote);
@@ -47,7 +47,7 @@ const NoteSingle = (): JSX.Element => {
 
 	const handleDelete = async () => {
 		const config = deleteNoteApiConfig({
-			noteId: currentNote.note_id,
+			noteId: currentNote.noteId,
 			userId,
 			token
 		});
@@ -71,7 +71,7 @@ const NoteSingle = (): JSX.Element => {
 						<p>
 							Created: {' '}
 							{new Date(
-								Date.parse(currentNote.created_at)
+								Date.parse(currentNote.createdAt)
 							).toLocaleDateString()}
 						</p>
 						<p>Hours: {currentNote.hours}</p>

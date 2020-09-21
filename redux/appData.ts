@@ -26,8 +26,8 @@ const appDataSlice = createSlice({
 			state.tasks = action.payload.appData.tasks;
 			state.hours = action.payload.appData.hours;
 			state.notes = action.payload.appData.notes;
-			state.createdAt = action.payload.appData.created_at;
-			state.lastLogin = action.payload.appData.last_login;
+			state.createdAt = action.payload.appData.createdAt;
+			state.lastLogin = action.payload.appData.lastLogin;
 			state.recentItems = action.payload.appData.recentItems;
 		},
 		setAppDataSynced: (state, action) => {

@@ -8,7 +8,7 @@ describe('ListFilterButton', () => {
 		const wrapper = shallow(
 			<ListFilterButton
 				sortFunction={jest.fn}
-				triggerFilter='hours'
+				columnFilter='hours'
 				title='hours'
 				currentFilter='date'
 				sortDesc={true}

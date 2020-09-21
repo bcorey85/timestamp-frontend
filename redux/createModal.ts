@@ -13,8 +13,8 @@ export const initialCurrentItemId = {
 export const initialCurrentItem = {
 	title: '',
 	description: '',
-	start_time: '',
-	end_time: '',
+	startTime: '',
+	endTime: '',
 	formattedTime: {
 		startTime: '',
 		endTime: '',
@@ -22,15 +22,15 @@ export const initialCurrentItem = {
 		endDate: ''
 	},
 	hours: null as string,
-	user_id: null as string,
-	note_id: null as string,
-	project_id: null as string,
-	task_id: null as string,
+	userId: null as string,
+	noteId: null as string,
+	projectId: null as string,
+	taskId: null as string,
 	pinned: false,
 	tags: [] as string[],
 	type: '',
-	created_at: '',
-	updated_at: ''
+	createdAt: '',
+	updatedAt: ''
 };
 
 export interface CreateModalState {

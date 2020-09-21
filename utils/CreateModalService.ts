@@ -103,9 +103,9 @@ class CreateModalService {
 
 	private prefillItemIds = (item: Item) => {
 		let prefilledItemIds: ItemIdentifier = {
-			noteId: item.note_id || '',
-			taskId: item.task_id || '',
-			projectId: item.project_id || ''
+			noteId: item.noteId || '',
+			taskId: item.taskId || '',
+			projectId: item.projectId || ''
 		};
 
 		return prefilledItemIds;
@@ -132,14 +132,14 @@ class CreateModalService {
 			endDate: ''
 		};
 
-		if (item.start_time) {
-			const start = Date.parse(item.start_time);
+		if (item.startTime) {
+			const start = Date.parse(item.startTime);
 			formattedTime.startTime = moment(start).format('HH:mm');
 			formattedTime.startDate = moment(start).format('YYYY-MM-DD');
 		}
 
-		if (item.end_time) {
-			const end = Date.parse(item.end_time);
+		if (item.endTime) {
+			const end = Date.parse(item.endTime);
 			formattedTime.endTime = moment(end).format('HH:mm');
 			formattedTime.endDate = moment(end).format('YYYY-MM-DD');
 		}

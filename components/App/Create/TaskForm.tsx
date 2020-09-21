@@ -60,8 +60,8 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 						{appData.projects.map(project => {
 							return (
 								<option
-									value={project.project_id}
-									key={project.project_id}>
+									value={project.projectId}
+									key={project.projectId}>
 									{project.title}
 								</option>
 							);

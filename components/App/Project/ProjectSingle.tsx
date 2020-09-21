@@ -29,13 +29,13 @@ const ProjectSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 	const currentProject = appData.projects.filter(project => {
-		return project.project_id === Number(router.query.projectId);
+		return project.projectId === Number(router.query.projectId);
 	})[0] || {
 		title: '',
 		description: '',
 		hours: '',
-		created_at: new Date(Date.now()).toISOString(),
-		project_id: '1'
+		createdAt: new Date(Date.now()).toISOString(),
+		projectId: '1'
 	};
 
 	const { toggleCreateModal } = useCreateModal(currentProject);
@@ -45,7 +45,7 @@ const ProjectSingle = (): JSX.Element => {
 
 	const handleDelete = async () => {
 		const config = deleteProjectApiConfig({
-			projectId: currentProject.project_id,
+			projectId: currentProject.projectId,
 			userId,
 			token
 		});
@@ -68,7 +68,7 @@ const ProjectSingle = (): JSX.Element => {
 						<p>
 							Created:{' '}
 							{new Date(
-								Date.parse(currentProject.created_at)
+								Date.parse(currentProject.createdAt)
 							).toLocaleDateString()}
 						</p>
 						<p>Hours: {currentProject.hours}</p>
@@ -104,7 +104,7 @@ const ProjectSingle = (): JSX.Element => {
 				<ListSection
 					type='task'
 					items={appData.tasks.filter(
-						task => task.project_id === currentProject.project_id
+						task => task.projectId === currentProject.projectId
 					)}
 				/>
 			</AppPageSection>
@@ -123,7 +123,7 @@ const ProjectSingle = (): JSX.Element => {
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
-						note => note.project_id === currentProject.project_id
+						note => note.projectId === currentProject.projectId
 					)}
 				/>
 			</AppPageSection>

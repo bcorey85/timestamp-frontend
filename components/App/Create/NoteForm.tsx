@@ -61,8 +61,8 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						{appData.projects.map(project => {
 							return (
 								<option
-									value={project.project_id}
-									key={project.project_id}>
+									value={project.projectId}
+									key={project.projectId}>
 									{project.title}
 								</option>
 							);
@@ -80,14 +80,14 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						{appData.tasks
 							.filter(
 								task =>
-									task.project_id ===
+									task.projectId ===
 									parseInt(formState.projectId)
 							)
 							.map(task => {
 								return (
 									<option
-										value={task.task_id}
-										key={task.task_id}>
+										value={task.taskId}
+										key={task.taskId}>
 										{task.title}
 									</option>
 								);

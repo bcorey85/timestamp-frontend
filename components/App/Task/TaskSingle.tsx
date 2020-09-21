@@ -30,14 +30,14 @@ const TaskSingle = (): JSX.Element => {
 	const { router } = useRouterService();
 
 	const currentTask = appData.tasks.filter(task => {
-		return task.task_id === Number(router.query.taskId);
+		return task.taskId === Number(router.query.taskId);
 	})[0] || {
 		title: '',
 		description: '',
 		hours: '',
-		created_at: new Date(Date.now()).toISOString(),
-		project_id: '1',
-		task_id: '1'
+		createdAt: new Date(Date.now()).toISOString(),
+		projectId: '1',
+		taskId: '1'
 	};
 
 	const { toggleCreateModal } = useCreateModal(currentTask);
@@ -47,7 +47,7 @@ const TaskSingle = (): JSX.Element => {
 
 	const handleDelete = async () => {
 		const config = deleteTaskApiConfig({
-			taskId: currentTask.task_id,
+			taskId: currentTask.taskId,
 			userId,
 			token
 		});
@@ -71,7 +71,7 @@ const TaskSingle = (): JSX.Element => {
 						<p>
 							Created: {' '}
 							{new Date(
-								Date.parse(currentTask.created_at)
+								Date.parse(currentTask.createdAt)
 							).toLocaleDateString()}
 						</p>
 						<p>Hours: {currentTask.hours}</p>
@@ -104,7 +104,7 @@ const TaskSingle = (): JSX.Element => {
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
-						note => note.task_id === currentTask.task_id
+						note => note.taskId === currentTask.taskId
 					)}
 				/>
 			</AppPageSection>
