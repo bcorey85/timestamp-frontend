@@ -24,6 +24,7 @@ const SearchInput = ({
 				<option value='title'>Title</option>
 				<option value='description'>Description</option>
 				<option value='tags'>Tag</option>
+				<option value='date'>Date</option>
 			</select>
 			<input
 				id='search'

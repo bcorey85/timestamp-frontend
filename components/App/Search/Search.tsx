@@ -12,51 +12,49 @@ import styles from './Search.module.scss';
 import { IconType } from '../shared/TypeIcon';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
+import { ItemService } from '../../../utils/ItemService';
 
 const Search = (): JSX.Element => {
 	const { router } = useRouterService();
-
+	const { appData, userId } = useAppData();
 	const {
 		field,
 		searchValue,
 		handleField,
 		handleSearchValue,
 		setField,
-		setSearchValue
-	} = useSearchState();
-	const { appData, userId } = useAppData();
-	const [ results, setResults ] = useState<any[]>([]);
+		setSearchValue,
+		filterResults,
+		results
+	} = useSearchState([
+		...appData.notes,
+		...appData.projects,
+		...appData.tasks
+	]);
 
-	useEffect(() => {
-		if (router.query && router.query.field && router.query.searchValue) {
-			setField(router.query.field as string);
-			setSearchValue(router.query.searchValue as string);
-		}
-	}, []);
-
-	const handleSearch = () => {
-		if (searchValue.trim() === '') {
-			return setResults([]);
-		}
-
-		const data = [
-			...appData.projects,
-			...appData.tasks,
-			...appData.notes
-		];
-
-		const filteredData = data.filter(item => {
-			if (!item[field]) {
-				return false;
+	useEffect(
+		() => {
+			if (
+				!router.query ||
+				!router.query.field ||
+				!router.query.searchValue
+			) {
+				return;
 			}
 
-			return item[field]
-				.toLowerCase()
-				.includes(searchValue.toLowerCase());
-		});
+			const field = router.query.field as string;
+			const searchValue = router.query.searchValue as string;
 
-		setResults(filteredData);
-		router.pushUnique(`search?field=${field}&searchValue=${searchValue}`);
+			setField(field);
+			setSearchValue(searchValue);
+
+			filterResults(field, searchValue);
+		},
+		[ router.query.field, router.query.searchValue ]
+	);
+
+	const handleSearch = () => {
+		filterResults(field, searchValue);
 	};
 
 	return (

@@ -32,11 +32,7 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 					</div>
 					<div className={styles.stats}>
 						<div>
-							{item.tags ? (
-								TagService.addSpaces(item.tags)
-							) : (
-								'none'
-							)}
+							{item.tags ? TagService.addSpaces(item.tags) : null}
 						</div>
 						<div>
 							{item.date} - {item.hours} hr
