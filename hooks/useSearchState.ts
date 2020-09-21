@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { ItemService } from '../utils/ItemService';
 import { useRouterService } from './useRouterService';
 
-const useSearchState = (initialData: any[]) => {
+const useSearchState = (initialData?: any[]) => {
 	const [ field, setField ] = useState<string>('title');
 	const [ searchValue, setSearchValue ] = useState<string>('');
-	const [ data, setData ] = useState<any[]>(initialData);
+	const [ data, setData ] = useState<any[]>(initialData || []);
 	const [ results, setResults ] = useState<any[]>([]);
 	const { router } = useRouterService();
 
