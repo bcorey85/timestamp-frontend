@@ -1,0 +1,24 @@
+@import '../../../../../styles/mediaQueries.scss';
+
+.search {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 5.6rem;
+	right: 2.4rem;
+	height: 6.4rem;
+	box-shadow: var(--box-shadow-wide);
+	background-color: var(--background-primary);
+	border-radius: var(--border-radius);
+	border: var(--border-primary);
+	width: 100%;
+	max-width: 40rem;
+	padding: 1.6rem;
+
+	@include respondH(550) {
+		z-index: 10;
+		right: 0;
+		max-width: 100%;
+	}
+}

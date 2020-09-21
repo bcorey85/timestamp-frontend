@@ -1,0 +1,13 @@
+.search_toggle_btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3.2rem;
+	width: 3.2rem;
+	background: none;
+	border: none;
+	border-radius: var(--border-radius);
+	color: var(--text300);
+	box-sizing: content-box;
+	font-size: 2rem;
+}

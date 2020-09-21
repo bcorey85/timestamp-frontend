@@ -85,7 +85,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		let res, config;
 		if (type === 'edit') {
 			config = updateTaskApiConfig({
-				taskId: currentItem.task_id,
+				taskId: currentItem.taskId,
 				payload,
 				userId,
 				token

@@ -25,7 +25,7 @@ const useAppData = () => {
 		}
 	};
 
-	return { appData, fetchAppData, appDataErrors };
+	return { appData, userId, fetchAppData, appDataErrors };
 };
 
 export { useAppData };

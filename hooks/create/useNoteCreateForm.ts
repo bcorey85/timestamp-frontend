@@ -44,11 +44,9 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 	const [ taskId, setTaskId ] = useState(currentItemId.taskId || '');
 
 	const [ startDate, setStartDate ] = useState(
-		moment(currentItem.start_time) || ''
+		moment(currentItem.startTime) || ''
 	);
-	const [ endDate, setEndDate ] = useState(
-		moment(currentItem.end_time) || ''
-	);
+	const [ endDate, setEndDate ] = useState(moment(currentItem.endTime) || '');
 	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
 
 	const {
@@ -122,7 +120,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		let res, config;
 		if (type === 'edit') {
 			config = updateNoteApiConfig({
-				noteId: currentItem.note_id,
+				noteId: currentItem.noteId,
 				payload,
 				userId,
 				token

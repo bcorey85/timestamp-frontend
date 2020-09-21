@@ -118,6 +118,8 @@ class ItemService {
 			startTime: this.meta.startTime,
 			endTime: this.meta.endTime,
 			title: this.item.title,
+			description: this.item.description,
+			tags: this.item.tags || null,
 			pinned: this.item.pinned,
 			createdAt: this.item.createdAt,
 			notes: this.item.notes || null,

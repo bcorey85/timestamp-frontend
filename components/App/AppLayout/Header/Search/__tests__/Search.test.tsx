@@ -5,7 +5,7 @@ import { Search } from '../Search';
 import {
 	mockStore,
 	MockReduxProvider
-} from '../../../../../test/__mocks__/mockRedux';
+} from '../../../../../../test/__mocks__/mockRedux';
 
 describe('Search', () => {
 	it('renders', () => {

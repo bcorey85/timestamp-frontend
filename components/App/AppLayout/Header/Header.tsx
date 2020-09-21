@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
 import { NavToggle } from './NavToggle';
-import { Search } from './Search';
+import { Search } from './Search/Search';
 
 import { selectUser } from '../../../../redux/user';
 import styles from './Header.module.scss';

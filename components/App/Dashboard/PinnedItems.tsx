@@ -23,7 +23,6 @@ const PinnedItems = ({ items, userId }: Props): JSX.Element => {
 					tasks,
 					tags
 				} = currentItem.item;
-				console.log(currentItem.item);
 
 				const { date, time, hours } = currentItem.meta;
 				const { type } = currentItem;

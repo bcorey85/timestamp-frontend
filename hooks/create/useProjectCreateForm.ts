@@ -72,7 +72,7 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		let res, config;
 		if (type === 'edit') {
 			config = updateProjectApiConfig({
-				projectId: currentItem.project_id,
+				projectId: currentItem.projectId,
 				payload,
 				userId,
 				token

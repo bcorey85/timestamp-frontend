@@ -15,7 +15,9 @@ const useRouterService = () => {
 				`/app/${userId}/dashboard`
 			),
 		auth: () => nextRouter.push('/auth'),
-		root: () => nextRouter.push('/')
+		root: () => nextRouter.push('/'),
+		search: () =>
+			nextRouter.push('/app/[userId]/search', `/app/${userId}/search`)
 	};
 
 	const pushUnique = (path: string) => {
