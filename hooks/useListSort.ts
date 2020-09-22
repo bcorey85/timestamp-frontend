@@ -26,7 +26,6 @@ const useListSort = (items: any[]) => {
 			if (filter === 'startTime' || filter === 'endTime') {
 				const time1 = a[filter];
 				const time2 = b[filter];
-				console.log(time1, time2);
 
 				return (
 					Date.parse('01/01/1970 ' + time1).valueOf() -
