@@ -2,7 +2,7 @@ import { format } from 'path';
 import React, { useRef, useState, useEffect } from 'react';
 import { ItemService } from '../utils/ItemService';
 
-const useActivityStats = (items: any[]) => {
+const useActivityStats = (items: any[] = []) => {
 	const [ formattedItems, setFormattedItems ] = useState({});
 	const [ yearsArray, setYearsArray ] = useState([]);
 	const [ selectedYear, setSelectedYear ] = useState(
@@ -23,10 +23,10 @@ const useActivityStats = (items: any[]) => {
 			const formattedItems = formatItems(items);
 			const yearsArray = createYearsArray(formattedItems);
 			const sortedByDate = sortByDate(formattedItems);
-			const yearTotals = calcYearTotals(sortedByDate[selectedYear]);
-			const monthlyCreatedTotals = calcTotalCreatedByMonth(
-				sortedByDate[selectedYear]
-			);
+			const currentData = sortedByDate[selectedYear];
+
+			const yearTotals = calcYearTotals(currentData);
+			const monthlyCreatedTotals = calcTotalCreatedByMonth(currentData);
 
 			setFormattedItems(sortedByDate);
 			setYearsArray(yearsArray);
@@ -36,12 +36,12 @@ const useActivityStats = (items: any[]) => {
 		[ items, selectedYear ]
 	);
 
-	const formatItems = (items: any[]) => {
+	const formatItems = (items: any[] = []): any[] => {
 		return items.map(item => new ItemService(item).getItem());
 	};
 
-	const createYearsArray = (items: any[]) => {
-		const yearsArray = [];
+	const createYearsArray = (items: any[] = []): any[] => {
+		const yearsArray: any[] = [];
 
 		items.map(item => {
 			const year = new Date(Date.parse(item.date)).getFullYear();
@@ -55,12 +55,12 @@ const useActivityStats = (items: any[]) => {
 		return yearsArray;
 	};
 
-	const sortByDate = (items: any[]) => {
+	const sortByDate = (items: any[] = []): { [key: string]: any[] } => {
 		const sorted = items.sort((a, b) => {
 			return a.date.localeCompare(b.date);
 		});
 
-		const sortedByYear = {};
+		const sortedByYear: { [key: string]: any[] } = {};
 
 		sorted.map(item => {
 			const year = new Date(Date.parse(item.date)).getFullYear();
@@ -76,7 +76,7 @@ const useActivityStats = (items: any[]) => {
 		return sortedByYear;
 	};
 
-	const calcTotalCreatedByMonth = (items: any[]) => {
+	const calcTotalCreatedByMonth = (items: any[] = []): any[] => {
 		const monthArr = new Array(12).fill(0);
 
 		const totals = monthArr.map((monthTotal, i) => {
@@ -94,7 +94,7 @@ const useActivityStats = (items: any[]) => {
 		return totals;
 	};
 
-	const calcYearTotals = (items: any[]) => {
+	const calcYearTotals = (items: any[] = []) => {
 		const hours = items.reduce((acc, cur) => {
 			if (cur.type !== 'project') {
 				return acc + 0;

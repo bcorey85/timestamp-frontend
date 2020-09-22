@@ -6,8 +6,8 @@ export interface NotePayload {
 	description: string;
 	projectId: number;
 	taskId: number;
-	startTime: Date;
-	endTime: Date;
+	startTime: string;
+	endTime: string;
 	tags: string[];
 	pinned: boolean;
 }

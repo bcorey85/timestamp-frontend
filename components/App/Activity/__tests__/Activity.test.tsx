@@ -7,6 +7,7 @@ import {
 	mockStore,
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
+import { setAppData } from '../../../../redux/appData';
 
 describe('Activity', () => {
 	it('renders', () => {

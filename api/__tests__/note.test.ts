@@ -14,8 +14,8 @@ describe('Auth Api Configs', () => {
 			description: 'test description',
 			projectId: 1,
 			taskId: 1,
-			startTime: new Date('1/2/2020'),
-			endTime: new Date('1/2/2020'),
+			startTime: new Date('1/2/2020').toISOString(),
+			endTime: new Date('1/2/2020').toISOString(),
 			tags: [ 'one', 'two' ],
 			pinned: true
 		};
@@ -41,8 +41,8 @@ describe('Auth Api Configs', () => {
 			description: 'test description',
 			projectId: 1,
 			taskId: 1,
-			startTime: new Date('1/2/2020'),
-			endTime: new Date('1/2/2020'),
+			startTime: new Date('1/2/2020').toISOString(),
+			endTime: new Date('1/2/2020').toISOString(),
 			tags: [ 'one', 'two' ],
 			pinned: true
 		};
