@@ -18,6 +18,7 @@ import { setAppDataSynced } from '../../redux/appData';
 
 const useNoteCreateForm = (handleClose: handleClose) => {
 	const dispatch = useDispatch();
+	const [ isLoading, setIsLoading ] = useState(false);
 	const [ errors, setErrors ] = useState<NoteErrors>({
 		title: null,
 		description: null,
@@ -99,7 +100,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 
 	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
-
+		setIsLoading(true);
 		let start, end;
 		if (typeof startDate !== 'string' && typeof endDate !== 'string') {
 			start = startDate.toISOString();
@@ -130,6 +131,8 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 			config = createNoteApiConfig({ payload, userId, token });
 			res = await createNoteRequest(config);
 		}
+
+		setIsLoading(false);
 
 		if (res.success === false) {
 			return;
@@ -169,7 +172,8 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		handleSubmit,
 		errors,
 		formState,
-		formHandlers
+		formHandlers,
+		isLoading
 	};
 };
 

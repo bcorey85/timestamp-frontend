@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Activity } from '../../../components/App/Activity/Activity';
-import { PrivateRoute } from '../../../components/Landing/Auth/PrivateRoute';
+import { PrivateRoute } from '../../../components/App/shared/PrivateRoute';
 import { Meta } from '../../../components/Meta/Meta';
 
 const ActivityPage = () => {

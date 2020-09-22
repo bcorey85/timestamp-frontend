@@ -22,6 +22,7 @@ interface Errors {
 }
 
 const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
+	const [ isLoading, setIsLoading ] = useState(false);
 	const [ email, setEmail ] = useInputState('');
 	const [ formSent, setFormSent ] = useState(false);
 	const [ errors, setErrors ] = useState<Errors>({
@@ -47,9 +48,11 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 
 	const handlePasswordRequest = async (e: SyntheticEvent) => {
 		e.preventDefault();
+		setIsLoading(true);
 		const config = forgotPasswordApiConfig(email);
 
 		const res = await forgotPasswordRequest(config);
+		setIsLoading(false);
 
 		if (res.success === false) {
 			return;
@@ -100,7 +103,8 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 				<Button
 					id='submit'
 					onClick={handlePasswordRequest}
-					btnStyle='primary'>
+					btnStyle='primary'
+					isLoading={isLoading}>
 					Reset Password
 				</Button>
 			</ButtonContainer>

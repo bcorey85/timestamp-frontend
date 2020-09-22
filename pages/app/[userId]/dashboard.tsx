@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PrivateRoute } from '../../../components/Landing/Auth/PrivateRoute';
+import { PrivateRoute } from '../../../components/App/shared/PrivateRoute';
 import { Dashboard } from '../../../components/App/Dashboard/Dashboard';
 import { Meta } from '../../../components/Meta/Meta';
 

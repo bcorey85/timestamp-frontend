@@ -16,6 +16,7 @@ import { setAppDataSynced } from '../../redux/appData';
 
 const useProjectCreateForm = (handleClose: handleClose) => {
 	const dispatch = useDispatch();
+	const [ isLoading, setIsLoading ] = useState(false);
 	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
 	const { userId, token } = useSelector(selectUser);
 
@@ -67,6 +68,8 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 
 	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
+		setIsLoading(true);
+
 		const payload: ProjectPayload = { title, description, pinned };
 
 		let res, config;
@@ -82,6 +85,8 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 			config = createProjectApiConfig({ payload, userId, token });
 			res = await createProjectRequest(config);
 		}
+
+		setIsLoading(false);
 
 		if (res.success === false) {
 			return;
@@ -110,7 +115,8 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		handleSubmit,
 		errors,
 		formState,
-		formHandlers
+		formHandlers,
+		isLoading
 	};
 };
 

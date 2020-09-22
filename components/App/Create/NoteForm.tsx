@@ -24,7 +24,8 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 		handleSubmit,
 		errors,
 		formState,
-		formHandlers
+		formHandlers,
+		isLoading
 	} = useNoteCreateForm(handleClose);
 
 	return (
@@ -137,13 +138,15 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 				{!editMode ? (
 					<Button
 						btnStyle='primary'
-						onClick={e => handleSubmit(e, 'new')}>
+						onClick={e => handleSubmit(e, 'new')}
+						isLoading={isLoading}>
 						Create Note
 					</Button>
 				) : (
 					<Button
 						btnStyle='primary'
-						onClick={e => handleSubmit(e, 'edit')}>
+						onClick={e => handleSubmit(e, 'edit')}
+						isLoading={isLoading}>
 						Save
 					</Button>
 				)}

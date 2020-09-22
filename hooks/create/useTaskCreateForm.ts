@@ -17,6 +17,7 @@ import { setAppDataSynced } from '../../redux/appData';
 
 const useTaskCreateForm = (handleClose: handleClose) => {
 	const dispatch = useDispatch();
+	const [ isLoading, setIsLoading ] = useState(false);
 	const { currentItemId, currentItem, createModalEditMode } = useSelector(
 		selectCreateModal
 	);
@@ -74,6 +75,8 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 
 	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
+		setIsLoading(true);
+
 		const payload: TaskPayload = {
 			title,
 			projectId: parseInt(projectId),
@@ -95,6 +98,8 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 			config = createTaskApiConfig({ payload, userId, token });
 			res = await createTaskRequest(config);
 		}
+
+		setIsLoading(false);
 
 		if (res.success === false) {
 			return;
@@ -128,7 +133,8 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		handleSubmit,
 		errors,
 		formState,
-		formHandlers
+		formHandlers,
+		isLoading
 	};
 };
 

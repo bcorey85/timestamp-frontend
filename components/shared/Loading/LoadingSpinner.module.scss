@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	outline: none;
+	height: 2rem;
+	width: 2rem;
+}
+
+.spinner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	animation: rotate .8s linear infinite;
+	font-size: 2rem;
+	color: inherit;
+	outline: none;
+	transform-origin: center center;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

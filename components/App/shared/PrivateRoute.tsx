@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NextPageContext } from 'next';
 
-import { AppLayout } from '../../App/AppLayout/AppLayout';
+import { AppLayout } from '../AppLayout/AppLayout';
 
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/user';
-import { Loading } from '../../shared/Loading';
+import { Loading } from '../../shared/Loading/Loading';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { useAuthentication } from '../../../hooks/useAuthentication';
 

@@ -24,6 +24,7 @@ interface Errors {
 }
 
 const ResetPassword = (): JSX.Element => {
+	const [ isLoading, setIsLoading ] = useState(false);
 	const [ password, setPassword ] = useInputState('');
 	const [ passwordConfirm, setPasswordConfirm ] = useInputState('');
 	const [ errors, setErrors ] = useState<Errors>({
@@ -52,6 +53,7 @@ const ResetPassword = (): JSX.Element => {
 	const handlePasswordReset = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
+		setIsLoading(true);
 		const config = resetPasswordApiConfig({
 			password,
 			passwordConfirm,
@@ -59,6 +61,7 @@ const ResetPassword = (): JSX.Element => {
 		});
 		const res = await resetRequest(config);
 
+		setIsLoading(false);
 		if (res.success === false) {
 			return;
 		}
@@ -102,7 +105,10 @@ const ResetPassword = (): JSX.Element => {
 					/>
 				</div>
 
-				<Button onClick={handlePasswordReset} btnStyle='primary'>
+				<Button
+					onClick={handlePasswordReset}
+					btnStyle='primary'
+					isLoading={isLoading}>
 					Reset Password
 				</Button>
 				<ErrorDisplay errors={errors.generic} />

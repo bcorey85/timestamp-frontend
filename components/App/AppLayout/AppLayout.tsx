@@ -9,7 +9,7 @@ import { Breadcrumb } from './Breadcrumb';
 import { IconType, TypeIcon } from '../shared/TypeIcon';
 import { MobileCreateButton } from './MobileCreateButton';
 import { CreateModal } from '../Create/CreateModal';
-import { Loading } from '../../shared/Loading';
+import { Loading } from '../../shared/Loading/Loading';
 
 import { selectUser } from '../../../redux/user';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';

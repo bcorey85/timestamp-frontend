@@ -10,7 +10,7 @@ import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { Loading } from '../../shared/Loading';
+import { Loading } from '../../shared/Loading/Loading';
 import { PinnedFavorites } from './PinnedFavorites';
 
 import { selectUser } from '../../../redux/user';

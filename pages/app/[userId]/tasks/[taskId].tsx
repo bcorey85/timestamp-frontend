@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TaskSingle } from '../../../../components/App/Task/TaskSingle';
-import { PrivateRoute } from '../../../../components/Landing/Auth/PrivateRoute';
+import { PrivateRoute } from '../../../../components/App/shared/PrivateRoute';
 import { Meta } from '../../../../components/Meta/Meta';
 
 const TaskSinglePage = () => {

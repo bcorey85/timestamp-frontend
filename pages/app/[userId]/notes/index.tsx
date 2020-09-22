@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Note } from '../../../../components/App/Note/Note';
-import { PrivateRoute } from '../../../../components/Landing/Auth/PrivateRoute';
+import { PrivateRoute } from '../../../../components/App/shared/PrivateRoute';
 import { Meta } from '../../../../components/Meta/Meta';
 
 const NotesPage = () => {

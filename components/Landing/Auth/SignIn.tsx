@@ -30,6 +30,8 @@ interface Errors {
 }
 
 const SignIn = ({ toggleForm }: Props): JSX.Element => {
+	const [ isLoadingLogin, setIsLoadingLogin ] = useState(false);
+	const [ isLoadingSignup, setIsLoadingSignup ] = useState(false);
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
 	const [ errors, setErrors ] = useState<Errors>({
@@ -64,12 +66,22 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 		request: Request
 	) => {
 		e.preventDefault();
+
+		if (request === signupRequest) {
+			setIsLoadingSignup(true);
+		} else {
+			setIsLoadingLogin(true);
+		}
+
 		setErrors({
 			email: null,
 			password: null,
 			generic: []
 		});
 		const res = await request(config);
+
+		setIsLoadingSignup(false);
+		setIsLoadingLogin(false);
 
 		if (res.success === false) {
 			return;
@@ -122,12 +134,14 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 			<ButtonContainer>
 				<Button
 					btnStyle='outline'
-					onClick={e => handleAuth(e, signupConfig, signupRequest)}>
+					onClick={e => handleAuth(e, signupConfig, signupRequest)}
+					isLoading={isLoadingSignup}>
 					Sign Up
 				</Button>
 				<Button
 					btnStyle='primary'
-					onClick={e => handleAuth(e, loginConfig, loginRequest)}>
+					onClick={e => handleAuth(e, loginConfig, loginRequest)}
+					isLoading={isLoadingLogin}>
 					Login
 				</Button>
 			</ButtonContainer>
