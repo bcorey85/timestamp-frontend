@@ -30,7 +30,7 @@ const Button = ({
 }: Props): JSX.Element => {
 	return (
 		<button className={styles[`btn_${btnStyle}`]} onClick={onClick} id={id}>
-			{isLoading ? <LoadingSpinner isLoading={isLoading} /> : children}
+			{isLoading ? <LoadingSpinner /> : children}
 		</button>
 	);
 };
