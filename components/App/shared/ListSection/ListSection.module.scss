@@ -2,6 +2,8 @@
 
 .container {
 	@include panel;
+	// Attempt to fix flashing border bug when changing list sorting, need better solution
+	overflow: hidden;
 }
 
 .empty_list {

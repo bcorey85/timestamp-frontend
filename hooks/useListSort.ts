@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+
+import { SortingService } from '../utils/SortingService';
 
 interface SortProps {
 	filter: string;
@@ -16,28 +19,47 @@ const useListSort = (items: any[]) => {
 		sortDesc: boolean = false
 	) => {
 		const sorted = [ ...array ].sort((a, b) => {
-			const item1 = a[filter] || null;
-			const item2 = b[filter] || null;
-
-			if (item1 === null || item2 === null) {
-				return -1;
-			}
-
-			if (filter === 'startTime' || filter === 'endTime') {
-				const time1 = a[filter];
-				const time2 = b[filter];
-
-				return (
-					Date.parse('01/01/1970 ' + time1).valueOf() -
-					Date.parse('01/01/1970 ' + time2).valueOf()
-				);
+			if (a[filter] === null || b[filter] === null) {
+				return SortingService.handleNull();
 			}
 
 			if (filter === 'pinned') {
-				return item1 - item2;
+				return SortingService.sort({
+					value1: a[filter],
+					value2: b[filter]
+				});
 			}
 
-			return item1.localeCompare(item2);
+			if (filter === 'hours') {
+				const value1 = parseFloat(a[filter]);
+				const value2 = parseFloat(b[filter]);
+
+				return SortingService.sort({
+					value1,
+					value2
+				});
+			}
+
+			if (filter === 'startTime' || filter === 'endTime') {
+				return SortingService.sortByTime({
+					value1: a[filter],
+					value2: b[filter]
+				});
+			}
+
+			if (filter === 'date') {
+				return SortingService.sortByDate({
+					value1: a[filter],
+					value2: b[filter]
+				});
+			}
+
+			if (typeof a[filter] === 'string') {
+				return SortingService.sortString({
+					value1: a[filter],
+					value2: b[filter]
+				});
+			}
 		});
 
 		if (sortDesc === true) {

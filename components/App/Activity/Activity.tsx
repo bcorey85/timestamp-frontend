@@ -15,6 +15,7 @@ import { ListSection } from '../shared/ListSection/ListSection';
 import { selectAppData } from '../../../redux/appData';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { useActivityStats } from '../../../hooks/useActivityStats';
+import { StringService } from '../../../utils/StringService';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -29,7 +30,8 @@ const Activity = (): JSX.Element => {
 		yearsArray,
 		setSelectedYear,
 		yearTotals,
-		monthlyCreatedTotals
+		monthlyCreatedTotals,
+		longestStreak
 	} = useActivityStats(itemsRef.current);
 
 	return (
@@ -41,9 +43,9 @@ const Activity = (): JSX.Element => {
 					subheadingType={IconType.time}
 				/>
 			</AppPageHeader>
-			<AppPageSection>Not yet fully implemented...</AppPageSection>
 			<AppPageSection>
-				Years:
+				<AppPageSectionHeading title='Years' />
+
 				{yearsArray.map(year => {
 					return (
 						<div key={year}>
@@ -56,15 +58,38 @@ const Activity = (): JSX.Element => {
 					);
 				})}
 			</AppPageSection>
-			<AppPageSection>Total hours: {yearTotals.hours}</AppPageSection>
 			<AppPageSection>
-				Total projects: {yearTotals.projects}
+				<AppPageSectionHeading title='Year Totals' />
+
+				<div>
+					{StringService.pluralize(yearTotals.hours, {
+						singular: 'hour',
+						plural: 'hours'
+					})}
+				</div>
+				<div>
+					{StringService.pluralize(yearTotals.projects, {
+						singular: 'project',
+						plural: 'projects'
+					})}
+				</div>
+				<div>
+					{StringService.pluralize(yearTotals.tasks, {
+						singular: 'task',
+						plural: 'tasks'
+					})}
+				</div>
+				<div>
+					{StringService.pluralize(yearTotals.notes, {
+						singular: 'note',
+						plural: 'notes'
+					})}
+				</div>
 			</AppPageSection>
-			<AppPageSection>Total tasks: {yearTotals.tasks}</AppPageSection>
-			<AppPageSection>Total notes: {yearTotals.notes}</AppPageSection>
 
 			<AppPageSection>
-				By Month Totals:
+				<AppPageSectionHeading title='Activity Per Month' />
+
 				<div>Jan: {monthlyCreatedTotals[0]}</div>
 				<div>Feb: {monthlyCreatedTotals[1]}</div>
 				<div>Mar: {monthlyCreatedTotals[2]}</div>
@@ -77,6 +102,27 @@ const Activity = (): JSX.Element => {
 				<div>Oct: {monthlyCreatedTotals[9]}</div>
 				<div>Nov: {monthlyCreatedTotals[10]}</div>
 				<div>Dec: {monthlyCreatedTotals[11]}</div>
+			</AppPageSection>
+			<AppPageSection>
+				<AppPageSectionHeading title='Longest Active Streak' />
+
+				<div>
+					{StringService.pluralize(longestStreak.span, {
+						singular: 'day',
+						plural: 'days'
+					})}
+				</div>
+				<div>
+					{longestStreak.startDate && longestStreak.endDate ? (
+						`${longestStreak.startDate} - ${longestStreak.endDate}`
+					) : null}
+				</div>
+				<div>
+					{StringService.pluralize(longestStreak.amountOfItems, {
+						singular: 'item created',
+						plural: 'items created'
+					})}
+				</div>
 			</AppPageSection>
 		</React.Fragment>
 	);

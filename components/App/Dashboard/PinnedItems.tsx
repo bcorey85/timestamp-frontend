@@ -39,7 +39,7 @@ const PinnedItems = ({ items, userId }: Props): JSX.Element => {
 						notes={notes}
 						tasks={tasks}
 						description={description}
-						key={createdAt.toString()}
+						key={as}
 						tags={tags}
 					/>
 				);
