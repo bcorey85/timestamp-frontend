@@ -24,6 +24,8 @@ export interface ItemType {
 	note: 'note';
 }
 
+type ItemId = 'projectId' | 'taskId' | 'noteId';
+
 interface Pathname {
 	as: string;
 	href: string;
@@ -75,15 +77,15 @@ class ItemService {
 	};
 
 	private generateProperties = (type: keyof ItemType) => {
-		// @ts-ignore
-		const typeId: keyof Item = this.item[`${type}Id`];
+		const typeId = `${type}Id` as ItemId;
+		const typeIdNumber = this.item[typeId];
 		const rootPath = `${type}s`;
 		const filePath = `${type}Id`;
 
 		this.type = type;
 		this.pathname = {
 			href: `${rootPath}/[${filePath}]`,
-			as: `${rootPath}/${typeId}`
+			as: `${rootPath}/${typeIdNumber}`
 		};
 
 		if (type === 'note') {

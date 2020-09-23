@@ -134,7 +134,7 @@ class ActivityStatsService {
 	};
 
 	private calcLongestStreak = (items: any[] = []) => {
-		let datesArray = [];
+		let datesArray: any[] = [];
 
 		items.map(item => {
 			const alreadyParsed = datesArray.includes(item.date);

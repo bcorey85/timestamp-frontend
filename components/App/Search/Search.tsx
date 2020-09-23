@@ -31,6 +31,7 @@ const Search = (): JSX.Element => {
 		...appData.projects,
 		...appData.tasks
 	]);
+	const [ searchInitiated, setSearchInitiated ] = useState(false);
 
 	useEffect(
 		() => {
@@ -47,6 +48,7 @@ const Search = (): JSX.Element => {
 
 			setField(field);
 			setSearchValue(searchValue);
+			setSearchInitiated(true);
 
 			filterResults(field, searchValue);
 		},
@@ -55,6 +57,7 @@ const Search = (): JSX.Element => {
 
 	const handleSearch = () => {
 		filterResults(field, searchValue);
+		setSearchInitiated(true);
 	};
 
 	return (
@@ -80,7 +83,9 @@ const Search = (): JSX.Element => {
 			<AppPageSection>
 				<AppPageSectionHeading title='Search Results:' />
 				<div className={styles.results_container}>
-					{results.length > 0 &&
+					{!searchInitiated && <div>{null}</div>}
+					{searchInitiated &&
+						results.length > 0 &&
 						results.map((result, i) => {
 							return (
 								<SearchResult
@@ -90,7 +95,8 @@ const Search = (): JSX.Element => {
 								/>
 							);
 						})}
-					{results.length === 0 && <div>( No results found )</div>}
+					{searchInitiated &&
+					results.length === 0 && <div>( No results found )</div>}
 				</div>
 			</AppPageSection>
 		</React.Fragment>
