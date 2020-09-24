@@ -47,15 +47,9 @@ const ListSection = ({ items, type }: Props): JSX.Element => {
 			/>
 			<div className={styles.container}>
 				{filteredItems.map(item => {
-					const { createdAt } = item;
+					const { as } = item;
 
-					return (
-						<ListItem
-							item={item}
-							userId={userId}
-							key={createdAt.toString()}
-						/>
-					);
+					return <ListItem item={item} userId={userId} key={as} />;
 				})}
 			</div>
 		</React.Fragment>

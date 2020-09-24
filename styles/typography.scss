@@ -24,6 +24,10 @@ h5 {
 h1 {
 	font-size: 2.8rem;
 	margin-bottom: 1.6rem;
+
+	@include respondH(550) {
+		font-size: 2.4rem;
+	}
 }
 
 h2 {
