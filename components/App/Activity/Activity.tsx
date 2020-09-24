@@ -63,10 +63,13 @@ const Activity = (): JSX.Element => {
 				<AppPageSectionHeading title='Year Totals' />
 
 				<div>
-					{StringService.pluralize(yearTotals.hours, {
-						singular: 'hour',
-						plural: 'hours'
-					})}
+					{StringService.pluralize(
+						MathService.round(yearTotals.hours, 1),
+						{
+							singular: 'hour',
+							plural: 'hours'
+						}
+					)}
 				</div>
 				<div>
 					{StringService.pluralize(yearTotals.projects, {
