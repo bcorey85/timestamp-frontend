@@ -28,4 +28,14 @@
 	@include respondH(1024) {
 		margin-bottom: 4.8rem;
 	}
+
+	@include respondH(550) {
+		margin-bottom: 4rem;
+	}
+
+	& button {
+		@include respondH(550) {
+			font-size: 1.2rem;
+		}
+	}
 }

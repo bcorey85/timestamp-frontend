@@ -12,7 +12,7 @@
 
 	@include respondH(1024) {
 		flex-direction: column-reverse;
-		max-width: 56rem;
+		max-width: 52rem;
 	}
 
 	@include respondH(550) {
@@ -63,7 +63,7 @@
 
 	@include respondH(1024) {
 		flex: 0 0 auto;
-		height: 29.6rem;
+		height: 28rem;
 		background: url('/images/login-tablet.jpg');
 		background-size: cover;
 		background-position: top center;

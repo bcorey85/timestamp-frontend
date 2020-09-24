@@ -10,12 +10,13 @@
 		margin-bottom: 1.6rem;
 
 		@include respondH(1024) {
+			font-size: 3.2rem;
 			margin-bottom: 1.6rem;
 		}
 
 		@include respondH(550) {
 			font-size: 2.8rem;
-			margin-bottom: .8rem;
+			margin-bottom: 1.6rem;
 			text-align: center;
 		}
 
@@ -35,6 +36,7 @@
 
 		@include respondH(550) {
 			text-align: center;
+			margin-bottom: 3.6rem;
 		}
 	}
 }
