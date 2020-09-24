@@ -35,7 +35,7 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 							{item.tags ? TagService.addSpaces(item.tags) : null}
 						</div>
 						<div>
-							{item.meta.date} - {item.hours} hr
+							{item.meta.date} - {item.meta.hours} hr
 						</div>
 
 						{item.description ? (
