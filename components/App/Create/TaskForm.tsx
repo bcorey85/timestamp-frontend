@@ -13,7 +13,6 @@ import { useTaskCreateForm } from '../../../hooks/create/useTaskCreateForm';
 
 interface Props {
 	handleClose: (e: SyntheticEvent) => void;
-	initialProjectId?: string;
 }
 
 const TaskForm = ({ handleClose }: Props): JSX.Element => {

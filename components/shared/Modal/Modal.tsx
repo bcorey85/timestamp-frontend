@@ -17,11 +17,12 @@ const Modal = ({ toggleModal, isOpen, children }: Props): JSX.Element => {
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modal_container}>
-				<div className={styles.modal_close}>
-					<div onClick={() => toggleModal(false)}>
-						<BiX />
-					</div>
-				</div>
+				<button
+					onClick={() => toggleModal(false)}
+					className={styles.modal_close}>
+					<BiX />
+				</button>
+
 				{children}
 			</div>
 		</div>

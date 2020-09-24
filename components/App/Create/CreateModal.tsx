@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiX } from 'react-icons/bi';
 
 import { CreateNav } from './shared/CreateNav';
 import { ProjectForm } from './ProjectForm';
@@ -21,18 +22,9 @@ export interface CreatePage {
 interface Props {
 	isOpen: boolean;
 	toggleModal: (mode?: keyof ModalMode, config?: ModalConfig) => void;
-	type: keyof ItemType;
-	initialTaskId?: string;
-	initialProjectId?: string;
 }
 
-const CreateModal = ({
-	isOpen,
-	toggleModal,
-	type,
-	initialProjectId,
-	initialTaskId
-}: Props): JSX.Element => {
+const CreateModal = ({ isOpen, toggleModal }: Props): JSX.Element => {
 	const { createModalPage } = useSelector(selectCreateModal);
 
 	const handleClose = () => {
@@ -46,6 +38,12 @@ const CreateModal = ({
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modal_container}>
+				<div className={styles.modal_close}>
+					<button onClick={handleClose}>
+						<BiX />
+					</button>
+				</div>
+
 				<div className={styles.form}>
 					<CreateNav currentPage={createModalPage} />
 					<div className={styles.form_body}>
@@ -53,10 +51,7 @@ const CreateModal = ({
 							<ProjectForm handleClose={handleClose} />
 						) : null}
 						{createModalPage === 'task' ? (
-							<TaskForm
-								handleClose={handleClose}
-								initialProjectId={initialProjectId}
-							/>
+							<TaskForm handleClose={handleClose} />
 						) : null}
 						{createModalPage === 'note' ? (
 							<NoteForm handleClose={handleClose} />

@@ -24,13 +24,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const [ isLoading, setIsLoading ] = useState(true);
 	const { fetchAppData, appData, appDataErrors } = useAppData();
-	const {
-		createModalOpen,
-		createModalPage,
-		toggleCreateModal,
-		currentTaskId,
-		currentProjectId
-	} = useCreateModal();
+	const { createModalOpen, toggleCreateModal } = useCreateModal();
 	const dispatch = useDispatch();
 
 	useEffect(
@@ -86,9 +80,6 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 					<CreateModal
 						isOpen={createModalOpen}
 						toggleModal={toggleCreateModal}
-						type={createModalPage}
-						initialTaskId={currentTaskId}
-						initialProjectId={currentProjectId}
 					/>
 				</main>
 				<MobileCreateButton toggleCreateModal={toggleCreateModal} />
