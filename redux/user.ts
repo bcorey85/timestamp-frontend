@@ -4,8 +4,8 @@ import { RootState } from './store';
 const userSlice = createSlice({
 	name: 'user',
 	initialState: {
-		userId: null,
-		token: null
+		userId: null as string,
+		token: null as string
 	},
 	reducers: {
 		login: (state, action) => {

@@ -28,7 +28,7 @@ export interface ModalMode {
 }
 
 const useCreateModal = (item?: Item) => {
-	const { createModalOpen, createModalPage, currentItemId } = useSelector(
+	const { createModalOpen, createModalPage, currentItem } = useSelector(
 		selectCreateModal
 	);
 	const dispatch = useDispatch();
@@ -69,8 +69,8 @@ const useCreateModal = (item?: Item) => {
 		toggleCreateModal: setCreateModalOpen,
 		setCreateModalPage: setPage,
 		createModalPage,
-		currentProjectId: currentItemId.projectId,
-		currentTaskId: currentItemId.taskId,
+		currentProjectId: currentItem.itemId.projectId,
+		currentTaskId: currentItem.itemId.taskId,
 		addChildItemConfig,
 		editCurrentItemConfig
 	};

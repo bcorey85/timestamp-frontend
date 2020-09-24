@@ -1,23 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
+import { Item } from '../utils/ItemService';
+
+const initialState = {
+	synced: false,
+	email: null as string,
+	notes: [] as Item[],
+	projects: [] as Item[],
+	tasks: [] as Item[],
+	hours: null as string,
+	createdAt: null as string,
+	lastLogin: null as string,
+	recentItems: {
+		notes: [] as Item[],
+		tasks: [] as Item[],
+		projects: [] as Item[]
+	}
+};
+
 const appDataSlice = createSlice({
 	name: 'appData',
-	initialState: {
-		synced: false,
-		email: null as string,
-		notes: [],
-		projects: [],
-		tasks: [],
-		hours: null as string,
-		createdAt: null as string,
-		lastLogin: null as string,
-		recentItems: {
-			notes: [],
-			tasks: [],
-			projects: []
-		}
-	},
+	initialState: initialState,
 	reducers: {
 		setAppData: (state, action) => {
 			state.email = action.payload.appData.email;
@@ -32,6 +36,9 @@ const appDataSlice = createSlice({
 		},
 		setAppDataSynced: (state, action) => {
 			state.synced = action.payload;
+		},
+		clearAppData: () => {
+			return initialState;
 		}
 	}
 });
@@ -40,4 +47,8 @@ export const appDataReducer = appDataSlice.reducer;
 
 export const selectAppData = (state: RootState) => state.appData;
 
-export const { setAppData, setAppDataSynced } = appDataSlice.actions;
+export const {
+	setAppData,
+	setAppDataSynced,
+	clearAppData
+} = appDataSlice.actions;

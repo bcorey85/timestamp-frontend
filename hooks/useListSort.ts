@@ -31,8 +31,8 @@ const useListSort = (items: any[]) => {
 			}
 
 			if (filter === 'hours') {
-				const value1 = parseFloat(a[filter]);
-				const value2 = parseFloat(b[filter]);
+				const value1 = parseFloat(a.meta[filter]);
+				const value2 = parseFloat(b.meta[filter]);
 
 				return SortingService.sort({
 					value1,
@@ -42,15 +42,15 @@ const useListSort = (items: any[]) => {
 
 			if (filter === 'startTime' || filter === 'endTime') {
 				return SortingService.sortByTime({
-					value1: a[filter],
-					value2: b[filter]
+					value1: a.meta[filter],
+					value2: b.meta[filter]
 				});
 			}
 
 			if (filter === 'date') {
 				return SortingService.sortByDate({
-					value1: a[filter],
-					value2: b[filter]
+					value1: a.meta[filter],
+					value2: b.meta[filter]
 				});
 			}
 

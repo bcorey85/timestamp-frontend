@@ -99,7 +99,8 @@ const TaskSingle = (): JSX.Element => {
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
-						note => note.taskId === currentTask.itemId.taskId
+						(note: Item) =>
+							note.itemId.taskId === currentTask.itemId.taskId
 					)}
 				/>
 			</AppPageSection>

@@ -92,7 +92,7 @@ const Activity = (): JSX.Element => {
 				<div>
 					{MathService.round(
 						yearTotals.averageNoteLength * 60,
-						2
+						1
 					)}{' '}
 					minutes per note
 				</div>

@@ -15,6 +15,7 @@ import { selectUser } from '../../redux/user';
 import { selectCreateModal } from '../../redux/createModal';
 import { NoteErrors, handleClose, SubmitType } from './index';
 import { setAppDataSynced } from '../../redux/appData';
+import { TagService } from '../../utils/TagService';
 
 const useNoteCreateForm = (handleClose: handleClose) => {
 	const dispatch = useDispatch();
@@ -28,26 +29,31 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		endTime: null,
 		generic: []
 	});
-	const { currentItemId, currentItem, createModalEditMode } = useSelector(
-		selectCreateModal
-	);
+	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
 
 	const { userId, token } = useSelector(selectUser);
 
 	const { tags, handleAddTag, handleRemoveTag } = useTags(
-		currentItem.tags || []
+		(currentItem.tags &&
+			currentItem.tags.length > 0 &&
+			TagService.split(currentItem.tags)) ||
+			[]
 	);
 	const [ title, setTitle ] = useInputState(currentItem.title || '');
 	const [ description, setDescription ] = useInputState(
 		currentItem.description || ''
 	);
-	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
-	const [ taskId, setTaskId ] = useState(currentItemId.taskId || '');
+	const [ projectId, setProjectId ] = useState(
+		currentItem.itemId.projectId || ''
+	);
+	const [ taskId, setTaskId ] = useState(currentItem.itemId.taskId || '');
 
 	const [ startDate, setStartDate ] = useState(
-		moment(currentItem.startTime) || ''
+		moment(currentItem.meta.startTime) || ''
 	);
-	const [ endDate, setEndDate ] = useState(moment(currentItem.endTime) || '');
+	const [ endDate, setEndDate ] = useState(
+		moment(currentItem.meta.endTime) || ''
+	);
 	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
 
 	const {
@@ -109,8 +115,8 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 
 		const payload: NotePayload = {
 			title,
-			projectId: parseInt(projectId),
-			taskId: parseInt(taskId),
+			projectId: projectId as number,
+			taskId: taskId as number,
 			startTime: start,
 			endTime: end,
 			description,
@@ -121,7 +127,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		let res, config;
 		if (type === 'edit') {
 			config = updateNoteApiConfig({
-				noteId: currentItem.noteId,
+				noteId: currentItem.itemId.noteId,
 				payload,
 				userId,
 				token

@@ -1,38 +1,26 @@
 import moment from 'moment';
 
-import { Item, ItemType, ItemService } from './ItemService';
-import {
-	initialCurrentItemId,
-	initialCurrentItem,
-	CreateModalState
-} from '../redux/createModal';
+import { Item, ItemType } from './ItemService';
+import { initialCurrentItem, CreateModalState } from '../redux/createModal';
 import { TagService } from './TagService';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-interface ItemIdentifier {
-	noteId?: number | string;
-	taskId?: number | string;
-	projectId?: number | string;
-}
-
 interface ConfigPayload {
 	config?: {
-		currentItemId?: {};
-		currentItem?: {};
+		currentItem?: Item;
 		createModalPage: keyof ItemType;
 		createModalEditMode: boolean;
 	};
 }
 
 export interface ChildItemConfig {
-	currentItemId: ItemIdentifier;
+	currentItem: Item;
 	createModalPage: keyof ItemType;
 	createModalEditMode: boolean;
 }
 
 export interface EditItemConfig {
-	currentItemId: ItemIdentifier;
-	currentItem: {};
+	currentItem: Item;
 	createModalPage: keyof ItemType;
 	createModalEditMode: boolean;
 }
@@ -42,12 +30,8 @@ class CreateModalService {
 		state: CreateModalState,
 		action: PayloadAction<ConfigPayload>
 	) => {
-		if (action.payload.config.currentItemId) {
-			state.currentItemId = action.payload.config.currentItemId;
-		}
-
 		if (action.payload.config.currentItem) {
-			state.currentItem = action.payload.config.currentItem;
+			state.currentItem = action.payload.config.currentItem as Item;
 		}
 
 		if (action.payload.config.createModalPage) {
@@ -63,52 +47,38 @@ class CreateModalService {
 	};
 
 	static resetCurrentItem = (state: CreateModalState) => {
-		state.currentItemId = initialCurrentItemId;
 		state.currentItem = initialCurrentItem;
 		state.createModalEditMode = false;
 	};
 
 	public addChildItemConfig = (item: Item): ChildItemConfig => {
-		const itemIds = this.prefillItemIds(item);
 		const itemType = item.type;
 		const childPage = this.assignChildType(itemType);
+		const prefilledItem = {
+			...initialCurrentItem,
+			itemId: {
+				...initialCurrentItem.itemId,
+				projectId: item.itemId.projectId || null,
+				taskId: item.itemId.taskId || null,
+				noteId: item.itemId.noteId || null
+			}
+		};
 
 		return {
-			currentItemId: itemIds,
+			currentItem: prefilledItem,
 			createModalPage: childPage,
 			createModalEditMode: false
 		};
 	};
 
-	public editCurrentItemConfig = (item: Item) => {
-		const itemIds = this.prefillItemIds(item);
-		const itemType = item.type;
-		const currentTags = item.tags ? TagService.split(item.tags) : [];
-		const formattedTime = this.splitDateTime(item);
-
+	public editCurrentItemConfig = (item: Item): EditItemConfig => {
 		const config = {
-			currentItemId: itemIds,
-			currentItem: {
-				...item,
-				type: itemType,
-				tags: currentTags,
-				formattedTime
-			},
-			createModalPage: itemType,
+			currentItem: item,
+			createModalPage: item.type,
 			createModalEditMode: true
 		};
 
 		return config;
-	};
-
-	private prefillItemIds = (item: Item) => {
-		let prefilledItemIds: ItemIdentifier = {
-			noteId: item.itemId.noteId || '',
-			taskId: item.itemId.taskId || '',
-			projectId: item.itemId.projectId || ''
-		};
-
-		return prefilledItemIds;
 	};
 
 	private assignChildType = (type: keyof ItemType) => {
@@ -122,29 +92,6 @@ class CreateModalService {
 		}
 
 		return childType;
-	};
-
-	private splitDateTime = (item: Item) => {
-		let formattedTime = {
-			startTime: '',
-			endTime: '',
-			startDate: '',
-			endDate: ''
-		};
-
-		if (item.meta.startTime) {
-			const start = Date.parse(item.meta.startTime);
-			formattedTime.startTime = moment(start).format('HH:mm');
-			formattedTime.startDate = moment(start).format('YYYY-MM-DD');
-		}
-
-		if (item.meta.endTime) {
-			const end = Date.parse(item.meta.endTime);
-			formattedTime.endTime = moment(end).format('HH:mm');
-			formattedTime.endDate = moment(end).format('YYYY-MM-DD');
-		}
-
-		return formattedTime;
 	};
 }
 

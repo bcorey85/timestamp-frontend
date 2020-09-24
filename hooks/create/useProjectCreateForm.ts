@@ -73,9 +73,10 @@ const useProjectCreateForm = (handleClose: handleClose) => {
 		const payload: ProjectPayload = { title, description, pinned };
 
 		let res, config;
+
 		if (type === 'edit') {
 			config = updateProjectApiConfig({
-				projectId: currentItem.projectId,
+				projectId: currentItem.itemId.projectId,
 				payload,
 				userId,
 				token

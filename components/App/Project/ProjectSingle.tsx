@@ -98,8 +98,9 @@ const ProjectSingle = (): JSX.Element => {
 				<ListSection
 					type='task'
 					items={appData.tasks.filter(
-						task =>
-							task.projectId === currentProject.itemId.projectId
+						(task: Item) =>
+							task.itemId.projectId ===
+							currentProject.itemId.projectId
 					)}
 				/>
 			</AppPageSection>
@@ -118,8 +119,9 @@ const ProjectSingle = (): JSX.Element => {
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
-						note =>
-							note.projectId === currentProject.itemId.projectId
+						(note: Item) =>
+							note.itemId.projectId ===
+							currentProject.itemId.projectId
 					)}
 				/>
 			</AppPageSection>

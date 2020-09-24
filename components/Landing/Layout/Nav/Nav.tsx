@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../../../redux/user';
 
 import styles from './Nav.module.scss';
+import { useAuthentication } from '../../../../hooks/useAuthentication';
 
 const Nav = (): JSX.Element => {
-	const { userId, token } = useSelector(selectUser);
+	const { isAuthenticated, tokenExpired, userId } = useAuthentication();
 	return (
 		<nav className={styles.nav}>
 			<ul>
@@ -16,7 +17,7 @@ const Nav = (): JSX.Element => {
 						<a>Home</a>
 					</Link>
 				</li>
-				{!!userId && !!token ? (
+				{isAuthenticated && !tokenExpired ? (
 					<li>
 						<Link
 							href='/app/[userId]/projects'

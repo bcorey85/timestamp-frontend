@@ -1,3 +1,5 @@
+import { DateTimeService } from './DateTimeService';
+
 interface SortProps {
 	value1?: any;
 	value2?: any;
@@ -13,9 +15,12 @@ class SortingService {
 	};
 
 	static sortByTime = ({ value1, value2 }: SortProps) => {
+		const time1 = DateTimeService.formatTime(value1);
+		const time2 = DateTimeService.formatTime(value2);
+
 		return (
-			Date.parse('01/01/1970 ' + value1).valueOf() -
-			Date.parse('01/01/1970 ' + value2).valueOf()
+			Date.parse('01/01/1970 ' + time1).valueOf() -
+			Date.parse('01/01/1970 ' + time2).valueOf()
 		);
 	};
 

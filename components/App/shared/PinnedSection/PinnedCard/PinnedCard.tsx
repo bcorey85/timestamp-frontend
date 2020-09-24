@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 import { TypeIcon } from '../../TypeIcon';
 import { Item, ItemType } from '../../../../../utils/ItemService';
@@ -9,13 +10,19 @@ import { PinnedCardDate } from './PinnedCardDate';
 
 import styles from './PinnedCard.module.scss';
 
+import { selectUser } from '../../../../../redux/user';
+
 interface Props {
 	item: Item;
 }
 
 const PinnedCard = ({ item }: Props): JSX.Element => {
+	const { userId } = useSelector(selectUser);
+
 	return (
-		<Link href={item.pathname.href} as={item.pathname.as}>
+		<Link
+			href={`/app/[userId]/${item.pathname.href}`}
+			as={`/app/${userId}/${item.pathname.as}`}>
 			<article className={styles.card}>
 				<div className={styles.pinned}>
 					<PinnedIcon pinned={true} />
@@ -28,11 +35,7 @@ const PinnedCard = ({ item }: Props): JSX.Element => {
 				</div>
 
 				<div className={styles.time}>
-					<PinnedCardDate
-						date={item.meta.date}
-						time={item.meta.time}
-						hours={item.meta.hours}
-					/>
+					<PinnedCardDate meta={item.meta} />
 				</div>
 				<div className={styles.body}>{item.description}</div>
 				<PinnedCardStats

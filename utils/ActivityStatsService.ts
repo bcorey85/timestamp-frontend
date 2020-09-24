@@ -2,6 +2,7 @@ import moment from 'moment';
 import { Item } from './ItemService';
 
 import { SortingService } from './SortingService';
+import { DateTimeService } from './DateTimeService';
 
 interface YearTotals {
 	hours: number;
@@ -65,6 +66,7 @@ class ActivityStatsService {
 
 		sortedItems.map(item => {
 			const year = new Date(Date.parse(item.meta.date)).getFullYear();
+
 			const propExists = sortedByYear.hasOwnProperty(year);
 
 			if (!propExists) {

@@ -7,13 +7,7 @@ import { createTestItem } from '../../../../../../test/setup';
 describe('PinnedCardDate', () => {
 	const item = createTestItem();
 	it('renders', () => {
-		const wrapper = shallow(
-			<PinnedCardDate
-				date={item.meta.date}
-				time={item.meta.time}
-				hours={item.meta.hours}
-			/>
-		);
+		const wrapper = shallow(<PinnedCardDate meta={item.meta} />);
 		expect(wrapper).not.toBeNull();
 	});
 });

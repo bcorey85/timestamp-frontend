@@ -14,13 +14,12 @@ import {
 import { selectCreateModal } from '../../redux/createModal';
 import { TaskErrors, handleClose, SubmitType } from './index';
 import { setAppDataSynced } from '../../redux/appData';
+import { TagService } from '../../utils/TagService';
 
 const useTaskCreateForm = (handleClose: handleClose) => {
 	const dispatch = useDispatch();
 	const [ isLoading, setIsLoading ] = useState(false);
-	const { currentItemId, currentItem, createModalEditMode } = useSelector(
-		selectCreateModal
-	);
+	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
 	const [ errors, setErrors ] = useState<TaskErrors>({
 		title: null,
 		description: null,
@@ -33,9 +32,16 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 	const [ description, setDescription ] = useInputState(
 		currentItem.description || ''
 	);
-	const [ projectId, setProjectId ] = useState(currentItemId.projectId || '');
+
+	const [ projectId, setProjectId ] = useState(
+		currentItem.itemId.projectId || ''
+	);
+
 	const { tags, handleAddTag, handleRemoveTag } = useTags(
-		currentItem.tags || []
+		(currentItem.tags &&
+			currentItem.tags.length > 0 &&
+			TagService.split(currentItem.tags)) ||
+			[]
 	);
 	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
 
@@ -79,7 +85,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 
 		const payload: TaskPayload = {
 			title,
-			projectId: parseInt(projectId),
+			projectId: projectId as number,
 			description,
 			tags,
 			pinned
@@ -88,7 +94,7 @@ const useTaskCreateForm = (handleClose: handleClose) => {
 		let res, config;
 		if (type === 'edit') {
 			config = updateTaskApiConfig({
-				taskId: currentItem.taskId,
+				taskId: currentItem.itemId.taskId,
 				payload,
 				userId,
 				token

@@ -5,6 +5,7 @@ import { TypeIcon } from '../../../shared/TypeIcon';
 import { PinnedIcon } from '../../PinnedSection/PinnedIcon';
 
 import { ItemType } from '../../../../../utils/ItemService';
+import { DateTimeService } from '../../../../../utils/DateTimeService';
 import styles from './ListItem.module.scss';
 
 interface Props {
@@ -29,7 +30,9 @@ const ListItemContainer = ({
 	return (
 		<Link href={href} as={as}>
 			<article className={styles.container}>
-				<div className={styles.date}>{date}</div>
+				<div className={styles.date}>
+					{DateTimeService.formatDate(date)}
+				</div>
 				<div className={styles.title}>
 					<TypeIcon type={type} />
 					{title}

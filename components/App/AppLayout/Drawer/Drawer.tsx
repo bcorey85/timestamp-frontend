@@ -25,6 +25,7 @@ import {
 } from '../../../../hooks/create/useCreateModal';
 
 import styles from './Drawer.module.scss';
+import { clearAppData } from '../../../../redux/appData';
 
 interface Props {
 	toggleCreateModal: (mode: keyof ModalMode, config: ModalConfig) => void;
@@ -43,6 +44,7 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 
 	const handleLogout = () => {
 		dispatch(logout());
+		dispatch(clearAppData());
 		router.push.root();
 		return;
 	};

@@ -23,9 +23,8 @@ interface Pathname {
 	href: string;
 }
 
-interface Meta {
+export interface ItemMeta {
 	date: string;
-	time?: string;
 	startTime: string;
 	endTime: string;
 	hours: string;
@@ -50,7 +49,7 @@ export interface Item {
 	tasks?: number;
 	type: keyof ItemType;
 	pathname: Pathname;
-	meta: Meta;
+	meta: ItemMeta;
 }
 
 export interface ItemType {
@@ -62,9 +61,8 @@ export interface ItemType {
 type ItemId = 'projectId' | 'taskId' | 'noteId';
 
 class ItemService {
-	public meta: Meta = {
+	public meta: ItemMeta = {
 		date: null,
-		time: null,
 		startTime: null,
 		endTime: null,
 		hours: null,
@@ -112,33 +110,17 @@ class ItemService {
 			as: `${rootPath}/${typeIdNumber}`
 		};
 
-		if (type === 'note') {
-			const date = moment(this.item.startTime).format('l');
-			const startTime = moment(this.item.startTime).format('LT');
-			const endTime = moment(this.item.endTime).format('LT');
+		console.log(this.item.startTime, this.item.createdAt);
+		console.log(this.item.startTime || this.item.createdAt);
 
-			this.meta = {
-				date,
-				startTime,
-				endTime,
-				time: `${startTime} - ${endTime}`,
-				hours: this.item.hours,
-				createdAt: this.item.createdAt,
-				updatedAt: this.item.updatedAt
-			};
-		} else {
-			const date = moment(this.item.updatedAt).format('l');
-
-			this.meta = {
-				date,
-				startTime: null,
-				endTime: null,
-				time: null,
-				hours: this.item.hours,
-				createdAt: this.item.createdAt,
-				updatedAt: this.item.updatedAt
-			};
-		}
+		this.meta = {
+			date: this.item.startTime || this.item.createdAt,
+			startTime: this.item.startTime || null,
+			endTime: this.item.endTime || null,
+			hours: this.item.hours,
+			createdAt: this.item.createdAt,
+			updatedAt: this.item.updatedAt
+		};
 	};
 
 	public getFormattedItem = (): Item => {

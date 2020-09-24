@@ -3,10 +3,12 @@ import React from 'react';
 import { ListItemContainer } from './ListItemContainer';
 import { ListNote } from './ListNote';
 
-import { Item, ItemType } from '../../../../../utils/ItemService';
+import { Item } from '../../../../../utils/ItemService';
 
 import { ListTask } from './ListTask';
 import { ListProject } from './ListProject';
+import { DateTimeService } from '../../../../../utils/DateTimeService';
+import { logout } from '../../../../../redux/user';
 
 interface Props {
 	item: Item;

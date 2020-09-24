@@ -10,6 +10,7 @@ import { PinInput } from './PinInput';
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
 import { useTaskCreateForm } from '../../../hooks/create/useTaskCreateForm';
+import { Item } from '../../../utils/ItemService';
 
 interface Props {
 	handleClose: (e: SyntheticEvent) => void;
@@ -57,11 +58,11 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 						error={errors.projectId}
 						disabled={editMode}>
 						<option value={null} />
-						{appData.projects.map(project => {
+						{appData.projects.map((project: Item) => {
 							return (
 								<option
-									value={project.projectId}
-									key={project.projectId}>
+									value={project.itemId.projectId}
+									key={project.itemId.projectId}>
 									{project.title}
 								</option>
 							);

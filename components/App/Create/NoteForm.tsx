@@ -11,6 +11,7 @@ import { PinInput } from './PinInput';
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
 import { useNoteCreateForm } from '../../../hooks/create/useNoteCreateForm';
+import { Item } from '../../../utils/ItemService';
 
 interface Props {
 	handleClose: (e: SyntheticEvent) => void;
@@ -59,11 +60,11 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						error={errors.projectId}
 						disabled={editMode}>
 						<option value={null} />
-						{appData.projects.map(project => {
+						{appData.projects.map((project: Item) => {
 							return (
 								<option
-									value={project.projectId}
-									key={project.projectId}>
+									value={project.itemId.projectId}
+									key={project.itemId.projectId}>
 									{project.title}
 								</option>
 							);
@@ -80,15 +81,15 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						<option value={null} />
 						{appData.tasks
 							.filter(
-								task =>
-									task.projectId ===
-									parseInt(formState.projectId)
+								(task: Item) =>
+									task.itemId.projectId ===
+									parseInt(formState.projectId as string)
 							)
-							.map(task => {
+							.map((task: Item) => {
 								return (
 									<option
-										value={task.taskId}
-										key={task.taskId}>
+										value={task.itemId.taskId}
+										key={task.itemId.taskId}>
 										{task.title}
 									</option>
 								);
