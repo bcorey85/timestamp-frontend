@@ -1,5 +1,9 @@
 class TagService {
 	static trim = (tag: string) => {
+		if (!tag) {
+			return;
+		}
+
 		const trimmed = tag.trim();
 		const replaceSpaces = trimmed.split(' ').join('');
 
@@ -7,6 +11,10 @@ class TagService {
 	};
 
 	static split = (tags: string) => {
+		if (!tags) {
+			return;
+		}
+
 		const split = tags
 			.replace(/,/g, ' ')
 			.split(' ')
@@ -16,6 +24,10 @@ class TagService {
 	};
 
 	static addSpaces = (tags: string) => {
+		if (!tags) {
+			return;
+		}
+
 		const split = tags
 			.replace(/,/g, ' ')
 			.split(' ')

@@ -1,11 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IconType, TypeIcon } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
-import { StatsBar } from '../shared/StatsBar/StatsBar';
-import { StatCard } from '../shared/StatsBar/StatCard';
-import { AppPageSection } from '../AppPage/AppPageSection';
+import { IconType } from '../shared/TypeIcon';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageMeta } from '../AppPage/AppPageMeta';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
@@ -22,24 +18,17 @@ import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteNoteApiConfig } from '../../../api/note';
+import { Item } from '../../../utils/ItemService';
+import { MathService } from '../../../utils/MathService';
 
 const NoteSingle = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
-	const currentNote = appData.notes.filter(note => {
-		return note.noteId === Number(router.query.noteId);
-	})[0] || {
-		title: '',
-		description: '',
-		hours: '',
-		createdAt: new Date(Date.now()).toISOString(),
-		projectId: '1',
-		taskId: '1',
-		noteId: '1'
-	};
-
+	const currentNote: Item = appData.notes.filter(note => {
+		return note.itemId.noteId === Number(router.query.noteId);
+	})[0];
 	const { toggleCreateModal } = useCreateModal(currentNote);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 
@@ -47,7 +36,7 @@ const NoteSingle = (): JSX.Element => {
 
 	const handleDelete = async () => {
 		const config = deleteNoteApiConfig({
-			noteId: currentNote.noteId,
+			noteId: currentNote.itemId.noteId,
 			userId,
 			token
 		});
@@ -70,9 +59,9 @@ const NoteSingle = (): JSX.Element => {
 						<p>{currentNote.tags || null}</p>
 						<p>
 							{new Date(
-								Date.parse(currentNote.createdAt)
-							).toLocaleDateString()}{' '}
-							- {currentNote.hours} hr
+								Date.parse(currentNote.meta.createdAt)
+							).toLocaleDateString()}&nbsp; - &nbsp;{MathService.round(currentNote.meta.hours, 1)}{' '}
+							hr
 						</p>
 
 						<p>{currentNote.description}</p>

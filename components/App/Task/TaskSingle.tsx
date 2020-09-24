@@ -22,6 +22,8 @@ import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteTaskApiConfig } from '../../../api/task';
+import { Item } from '../../../utils/ItemService';
+import { MathService } from '../../../utils/MathService';
 
 const TaskSingle = (): JSX.Element => {
 	const dispatch = useDispatch();
@@ -29,16 +31,9 @@ const TaskSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 
-	const currentTask = appData.tasks.filter(task => {
-		return task.taskId === Number(router.query.taskId);
-	})[0] || {
-		title: '',
-		description: '',
-		hours: '',
-		createdAt: new Date(Date.now()).toISOString(),
-		projectId: '1',
-		taskId: '1'
-	};
+	const currentTask: Item = appData.tasks.filter(task => {
+		return task.itemId.taskId === Number(router.query.taskId);
+	})[0];
 
 	const { toggleCreateModal } = useCreateModal(currentTask);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
@@ -47,7 +42,7 @@ const TaskSingle = (): JSX.Element => {
 
 	const handleDelete = async () => {
 		const config = deleteTaskApiConfig({
-			taskId: currentTask.taskId,
+			taskId: currentTask.itemId.taskId,
 			userId,
 			token
 		});
@@ -69,12 +64,12 @@ const TaskSingle = (): JSX.Element => {
 					<AppPageMeta>
 						<p>{currentTask.tags || null} </p>
 						<p>
-							Created: {' '}
 							{new Date(
-								Date.parse(currentTask.createdAt)
-							).toLocaleDateString()}
+								Date.parse(currentTask.meta.createdAt)
+							).toLocaleDateString()}&nbsp; - &nbsp;
+							{MathService.round(currentTask.meta.hours, 1)} hr
 						</p>
-						<p>Hours: {currentTask.hours}</p>
+
 						<p>{currentTask.description}</p>
 					</AppPageMeta>
 				</AppPageTitle>
@@ -104,7 +99,7 @@ const TaskSingle = (): JSX.Element => {
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
-						note => note.taskId === currentTask.taskId
+						note => note.taskId === currentTask.itemId.taskId
 					)}
 				/>
 			</AppPageSection>

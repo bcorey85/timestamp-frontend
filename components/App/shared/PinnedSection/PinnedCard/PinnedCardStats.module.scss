@@ -1,0 +1,12 @@
+.stats {
+	margin-top: auto;
+}
+
+.stat_row {
+	display: flex;
+	justify-content: space-between;
+
+	color: var(--text400);
+	font-weight: 500;
+	font-size: 1.2rem;
+}

@@ -12,13 +12,7 @@ describe('CreateModal', () => {
 	it('renders', () => {
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
-				<CreateModal
-					isOpen={true}
-					toggleModal={jest.fn}
-					type={'project'}
-					initialProjectId={null}
-					initialTaskId={null}
-				/>
+				<CreateModal isOpen={true} toggleModal={jest.fn} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

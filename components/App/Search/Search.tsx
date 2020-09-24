@@ -12,7 +12,6 @@ import styles from './Search.module.scss';
 import { IconType } from '../shared/TypeIcon';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
-import { ItemService } from '../../../utils/ItemService';
 
 const Search = (): JSX.Element => {
 	const { router } = useRouterService();

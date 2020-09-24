@@ -1,4 +1,4 @@
-@import '../../../../styles/mixins.scss';
+@import '../../../../../styles/mixins.scss';
 
 .card {
 	position: relative;
@@ -46,19 +46,6 @@
 	display: -webkit-box;
 	-webkit-line-clamp: 5;
 	-webkit-box-orient: vertical;
-}
-
-.stats {
-	margin-top: auto;
-}
-
-.stat_row {
-	display: flex;
-	justify-content: space-between;
-
-	color: var(--text400);
-	font-weight: 500;
-	font-size: 1.2rem;
 }
 
 .pinned {

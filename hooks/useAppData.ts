@@ -5,6 +5,8 @@ import { selectAppData, setAppData } from '../redux/appData';
 import { useApiRequest } from './useApiRequest';
 import { getUserApiConfig } from '../api/user';
 import { selectUser } from '../redux/user';
+import { ItemService } from '../utils/ItemService';
+import { AppDataService } from '../utils/AppDataService';
 
 const useAppData = () => {
 	const appData = useSelector(selectAppData);
@@ -21,7 +23,9 @@ const useAppData = () => {
 		}
 
 		if (res.success === true) {
-			dispatch(setAppData({ appData: res.data.user }));
+			const appData = AppDataService.formatItems(res.data.user);
+
+			dispatch(setAppData({ appData }));
 		}
 	};
 

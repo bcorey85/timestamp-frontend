@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Item, ItemService } from '../../../utils/ItemService';
+import { Item } from '../../../utils/ItemService';
 import { TagService } from '../../../utils/TagService';
 
 import { TypeIcon } from '../shared/TypeIcon';
@@ -14,12 +14,12 @@ interface Props {
 }
 
 const SearchResult = ({ result, userId }: Props): JSX.Element => {
-	const item = new ItemService(result).getItem();
+	const item = result;
 
 	return (
 		<Link
-			href={`/app/[userId]/${item.href}`}
-			as={`/app/${userId}/${item.as}`}>
+			href={`/app/[userId]/${item.pathname.href}`}
+			as={`/app/${userId}/${item.pathname.as}`}>
 			<div className={styles.container}>
 				<div className={styles.meta}>
 					<div className={styles.title}>
@@ -35,7 +35,7 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 							{item.tags ? TagService.addSpaces(item.tags) : null}
 						</div>
 						<div>
-							{item.date} - {item.hours} hr
+							{item.meta.date} - {item.hours} hr
 						</div>
 
 						{item.description ? (

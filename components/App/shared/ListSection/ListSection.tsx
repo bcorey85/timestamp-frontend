@@ -5,7 +5,7 @@ import { ListItem } from './ListItem/ListItem';
 import { ListFilter } from './ListFilter';
 
 import { selectUser } from '../../../../redux/user';
-import { ItemService, ItemType } from '../../../../utils/ItemService';
+import { ItemType } from '../../../../utils/ItemService';
 import { useListSort } from '../../../../hooks/useListSort';
 
 import styles from './ListSection.module.scss';
@@ -17,9 +17,8 @@ interface Props {
 
 const ListSection = ({ items, type }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
-	const formattedItems = items.map(item => new ItemService(item).getItem());
 	const { handleSort, filteredItems, currentFilter, sortDesc } = useListSort(
-		formattedItems
+		items
 	);
 
 	useEffect(
@@ -47,7 +46,7 @@ const ListSection = ({ items, type }: Props): JSX.Element => {
 			/>
 			<div className={styles.container}>
 				{filteredItems.map(item => {
-					const { as } = item;
+					const { as } = item.pathname;
 
 					return <ListItem item={item} userId={userId} key={as} />;
 				})}

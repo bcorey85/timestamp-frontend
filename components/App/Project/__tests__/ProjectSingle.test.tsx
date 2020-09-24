@@ -8,6 +8,7 @@ import {
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 import { setAppData } from '../../../../redux/appData';
+import { createTestItem } from '../../../../test/setup';
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
@@ -21,9 +22,9 @@ describe('ProjectSingle', () => {
 				appData: {
 					synced: true,
 					email: 'test@gmail.com',
-					notes: [ { title: '1' } ],
-					projects: [ { title: '1' } ],
-					tasks: [ { title: '1' } ],
+					notes: [ createTestItem('note') ],
+					projects: [ createTestItem('project') ],
+					tasks: [ createTestItem('task') ],
 					hours: '5',
 					createdAt: new Date(Date.now()).toISOString(),
 					lastLogin: new Date(Date.now()).toISOString(),

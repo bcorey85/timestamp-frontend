@@ -22,22 +22,17 @@ import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteProjectApiConfig } from '../../../api/project';
+import { Item } from '../../../utils/ItemService';
+import { MathService } from '../../../utils/MathService';
 
 const ProjectSingle = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
-	const currentProject = appData.projects.filter(project => {
-		return project.projectId === Number(router.query.projectId);
-	})[0] || {
-		title: '',
-		description: '',
-		hours: '',
-		createdAt: new Date(Date.now()).toISOString(),
-		projectId: '1'
-	};
-
+	const currentProject: Item = appData.projects.filter(project => {
+		return project.itemId.projectId === Number(router.query.projectId);
+	})[0];
 	const { toggleCreateModal } = useCreateModal(currentProject);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 
@@ -45,7 +40,7 @@ const ProjectSingle = (): JSX.Element => {
 
 	const handleDelete = async () => {
 		const config = deleteProjectApiConfig({
-			projectId: currentProject.projectId,
+			projectId: currentProject.itemId.projectId,
 			userId,
 			token
 		});
@@ -66,12 +61,11 @@ const ProjectSingle = (): JSX.Element => {
 					subheadingType={IconType.project}>
 					<AppPageMeta>
 						<p>
-							Created:{' '}
 							{new Date(
-								Date.parse(currentProject.createdAt)
-							).toLocaleDateString()}
+								Date.parse(currentProject.meta.createdAt)
+							).toLocaleDateString()}&nbsp; - &nbsp;{MathService.round(currentProject.meta.hours, 1)}{' '}
+							hr
 						</p>
-						<p>Hours: {currentProject.hours}</p>
 
 						<p>{currentProject.description}</p>
 					</AppPageMeta>
@@ -104,7 +98,8 @@ const ProjectSingle = (): JSX.Element => {
 				<ListSection
 					type='task'
 					items={appData.tasks.filter(
-						task => task.projectId === currentProject.projectId
+						task =>
+							task.projectId === currentProject.itemId.projectId
 					)}
 				/>
 			</AppPageSection>
@@ -123,7 +118,8 @@ const ProjectSingle = (): JSX.Element => {
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
-						note => note.projectId === currentProject.projectId
+						note =>
+							note.projectId === currentProject.itemId.projectId
 					)}
 				/>
 			</AppPageSection>

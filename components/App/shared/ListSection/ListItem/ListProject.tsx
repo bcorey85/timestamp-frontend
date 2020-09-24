@@ -1,4 +1,5 @@
 import React from 'react';
+import { MathService } from '../../../../../utils/MathService';
 
 import styles from './ListItem.module.scss';
 
@@ -12,7 +13,7 @@ const ListProject = ({ tasks, notes, hours }: Props): JSX.Element => {
 		<React.Fragment>
 			<div className={styles.time}>{tasks}</div>
 			<div className={styles.number}>{notes}</div>
-			<div className={styles.number}>{hours}</div>
+			<div className={styles.number}>{MathService.round(hours, 1)}</div>
 		</React.Fragment>
 	);
 };

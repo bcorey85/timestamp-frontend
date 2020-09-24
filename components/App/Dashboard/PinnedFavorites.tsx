@@ -7,7 +7,7 @@ import { PinnedItems } from './PinnedItems';
 import { SliderFilter } from '../shared/Slider/SliderFilter';
 import { Slider } from '../shared/Slider/Slider';
 
-import { Item, ItemService } from '../../../utils/ItemService';
+import { Item } from '../../../utils/ItemService';
 import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
 
 interface Props {
@@ -60,9 +60,7 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 			{currentPage === 'project' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
-						items={items.filter(
-							item => new ItemService(item).type === 'project'
-						)}
+						items={items.filter(item => item.type === 'project')}
 						userId={userId}
 					/>
 				</Slider>
@@ -71,9 +69,7 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 			{currentPage === 'task' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
-						items={items.filter(
-							item => new ItemService(item).type === 'task'
-						)}
+						items={items.filter(item => item.type === 'task')}
 						userId={userId}
 					/>
 				</Slider>
@@ -82,9 +78,7 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 			{currentPage === 'note' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
-						items={items.filter(
-							item => new ItemService(item).type === 'note'
-						)}
+						items={items.filter(item => item.type === 'note')}
 						userId={userId}
 					/>
 				</Slider>

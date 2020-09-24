@@ -16,6 +16,7 @@ import { selectAppData } from '../../../redux/appData';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { useActivityStats } from '../../../hooks/useActivityStats';
 import { StringService } from '../../../utils/StringService';
+import { MathService } from '../../../utils/MathService';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -84,6 +85,13 @@ const Activity = (): JSX.Element => {
 						singular: 'note',
 						plural: 'notes'
 					})}
+				</div>
+				<div>
+					{MathService.round(
+						yearTotals.averageNoteLength * 60,
+						2
+					)}{' '}
+					minutes per note
 				</div>
 			</AppPageSection>
 

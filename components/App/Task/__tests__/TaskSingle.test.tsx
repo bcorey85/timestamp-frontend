@@ -8,6 +8,9 @@ import {
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
+import { setAppData } from '../../../../redux/appData';
+import { createTestItem } from '../../../../test/setup';
+
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
 describe('TaskSingle', () => {
@@ -15,6 +18,26 @@ describe('TaskSingle', () => {
 		useRouter.mockImplementation(() => ({
 			query: { taskId: '1' }
 		}));
+
+		mockStore.dispatch(
+			setAppData({
+				appData: {
+					synced: true,
+					email: 'test@gmail.com',
+					notes: [ createTestItem('note') ],
+					projects: [ createTestItem('project') ],
+					tasks: [ createTestItem('task') ],
+					hours: '5',
+					createdAt: new Date(Date.now()).toISOString(),
+					lastLogin: new Date(Date.now()).toISOString(),
+					recentItems: {
+						notes: [],
+						tasks: [],
+						projects: []
+					}
+				}
+			})
+		);
 
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>

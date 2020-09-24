@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { TypeIcon, IconType } from '../TypeIcon';
 
 import styles from './StatCard.module.scss';
+import { MathService } from '../../../../utils/MathService';
 
 interface Props {
 	title: string;
@@ -30,7 +31,7 @@ const StatCard = ({
 					{title}
 				</div>
 
-				<div className={styles.stat}>{stat}</div>
+				<div className={styles.stat}>{MathService.round(stat, 1)}</div>
 				<div className={styles.link}>
 					<a>{linkText}</a>
 				</div>

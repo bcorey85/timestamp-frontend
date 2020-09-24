@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { ItemService } from '../utils/ItemService';
+import { Item } from '../utils/ItemService';
 import { useRouterService } from './useRouterService';
 
 const useSearchState = (initialData?: any[]) => {
@@ -23,14 +22,18 @@ const useSearchState = (initialData?: any[]) => {
 			return setResults([]);
 		}
 
-		const filteredData = data.filter(item => {
-			const formattedItem = new ItemService(item).getItem();
+		const filteredData: Item[] = data.filter(item => {
+			if (field === 'date') {
+				return item.meta.date
+					.toLowerCase()
+					.includes(searchValue.toLowerCase());
+			}
 
-			if (!formattedItem[field]) {
+			if (!item[field]) {
 				return false;
 			}
 
-			return formattedItem[field]
+			return item[field]
 				.toLowerCase()
 				.includes(searchValue.toLowerCase());
 		});

@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export interface Item {
+export interface ApiItem {
 	userId: number;
 	projectId: number;
 	taskId?: number;
@@ -18,14 +18,6 @@ export interface Item {
 	updatedAt: string;
 }
 
-export interface ItemType {
-	project: 'project';
-	task: 'task';
-	note: 'note';
-}
-
-type ItemId = 'projectId' | 'taskId' | 'noteId';
-
 interface Pathname {
 	as: string;
 	href: string;
@@ -37,7 +29,37 @@ interface Meta {
 	startTime: string;
 	endTime: string;
 	hours: string;
+	createdAt: string;
+	updatedAt: string;
 }
+
+interface ItemIdentifier {
+	userId: number;
+	projectId: number;
+	taskId?: number;
+	noteId?: number;
+}
+
+export interface Item {
+	itemId: ItemIdentifier;
+	title: string;
+	description: string;
+	pinned: boolean;
+	tags?: string;
+	notes?: number;
+	tasks?: number;
+	type: keyof ItemType;
+	pathname: Pathname;
+	meta: Meta;
+}
+
+export interface ItemType {
+	project: 'project';
+	task: 'task';
+	note: 'note';
+}
+
+type ItemId = 'projectId' | 'taskId' | 'noteId';
 
 class ItemService {
 	public meta: Meta = {
@@ -45,12 +67,14 @@ class ItemService {
 		time: null,
 		startTime: null,
 		endTime: null,
-		hours: null
+		hours: null,
+		createdAt: null,
+		updatedAt: null
 	};
 	public pathname: Pathname = { href: null, as: null };
 	public type: keyof ItemType = null;
 
-	constructor(public item: Item) {
+	constructor(public item: ApiItem) {
 		this.assignTypeProperties();
 	}
 
@@ -98,7 +122,9 @@ class ItemService {
 				startTime,
 				endTime,
 				time: `${startTime} - ${endTime}`,
-				hours: Number(this.item.hours).toFixed(1)
+				hours: this.item.hours,
+				createdAt: this.item.createdAt,
+				updatedAt: this.item.updatedAt
 			};
 		} else {
 			const date = moment(this.item.updatedAt).format('l');
@@ -108,27 +134,30 @@ class ItemService {
 				startTime: null,
 				endTime: null,
 				time: null,
-				hours: Number(this.item.hours).toFixed(1).toString()
+				hours: this.item.hours,
+				createdAt: this.item.createdAt,
+				updatedAt: this.item.updatedAt
 			};
 		}
 	};
 
-	public getItem = () => {
+	public getFormattedItem = (): Item => {
 		return {
-			date: this.meta.date,
-			hours: this.meta.hours,
-			startTime: this.meta.startTime,
-			endTime: this.meta.endTime,
+			type: this.type,
+			itemId: {
+				userId: this.item.userId,
+				projectId: this.item.projectId,
+				taskId: this.item.taskId || null,
+				noteId: this.item.noteId || null
+			},
 			title: this.item.title,
 			description: this.item.description,
 			tags: this.item.tags || null,
 			pinned: this.item.pinned,
-			createdAt: this.item.createdAt,
 			notes: this.item.notes || null,
 			tasks: this.item.tasks || null,
-			href: this.pathname.href,
-			as: this.pathname.as,
-			type: this.type
+			pathname: this.pathname,
+			meta: this.meta
 		};
 	};
 }

@@ -6,7 +6,6 @@ import { ProjectForm } from './ProjectForm';
 import { TaskForm } from './TaskForm';
 import { NoteForm } from './NoteForm';
 
-import { ItemType } from '../../../utils/ItemService';
 import { useSelector } from 'react-redux';
 import { selectCreateModal } from '../../../redux/createModal';
 import { ModalConfig, ModalMode } from '../../../hooks/create/useCreateModal';
