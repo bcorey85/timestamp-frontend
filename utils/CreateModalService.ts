@@ -70,7 +70,7 @@ class CreateModalService {
 
 	public addChildItemConfig = (item: Item): ChildItemConfig => {
 		const itemIds = this.prefillItemIds(item);
-		const itemType = new ItemService(item).type;
+		const itemType = item.type;
 		const childPage = this.assignChildType(itemType);
 
 		return {
@@ -82,7 +82,7 @@ class CreateModalService {
 
 	public editCurrentItemConfig = (item: Item) => {
 		const itemIds = this.prefillItemIds(item);
-		const itemType = new ItemService(item).type;
+		const itemType = item.type;
 		const currentTags = item.tags ? TagService.split(item.tags) : [];
 		const formattedTime = this.splitDateTime(item);
 
@@ -103,9 +103,9 @@ class CreateModalService {
 
 	private prefillItemIds = (item: Item) => {
 		let prefilledItemIds: ItemIdentifier = {
-			noteId: item.noteId || '',
-			taskId: item.taskId || '',
-			projectId: item.projectId || ''
+			noteId: item.itemId.noteId || '',
+			taskId: item.itemId.taskId || '',
+			projectId: item.itemId.projectId || ''
 		};
 
 		return prefilledItemIds;
@@ -132,14 +132,14 @@ class CreateModalService {
 			endDate: ''
 		};
 
-		if (item.startTime) {
-			const start = Date.parse(item.startTime);
+		if (item.meta.startTime) {
+			const start = Date.parse(item.meta.startTime);
 			formattedTime.startTime = moment(start).format('HH:mm');
 			formattedTime.startDate = moment(start).format('YYYY-MM-DD');
 		}
 
-		if (item.endTime) {
-			const end = Date.parse(item.endTime);
+		if (item.meta.endTime) {
+			const end = Date.parse(item.meta.endTime);
 			formattedTime.endTime = moment(end).format('HH:mm');
 			formattedTime.endDate = moment(end).format('YYYY-MM-DD');
 		}
