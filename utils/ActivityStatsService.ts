@@ -98,7 +98,8 @@ class ActivityStatsService {
 
 		const totals = monthArr.map((monthTotal, i) => {
 			const totalCreatedInMonth = items.reduce((acc, cur) => {
-				const month = new Date(Date.parse(cur.date)).getMonth();
+				const month = new Date(Date.parse(cur.meta.date)).getMonth();
+
 				if (month !== i) {
 					return acc + 0;
 				}
