@@ -9,10 +9,9 @@ interface Props {
 	colorAlpha: number;
 }
 
-const changeHSLtoHSLA = (hsl: string, alpha: number) => {
-	const trim = hsl.trim();
-	const aFlagAdded = trim.replace('hsl', 'hsla');
-	const alphaAdded = aFlagAdded.replace(')', `, ${alpha})`);
+const changeHSLAlpha = (hsla: string, alpha: number) => {
+	const trim = hsla.trim();
+	const alphaAdded = trim.replace('1)', `${alpha})`);
 	console.log('alphaAdded', alphaAdded);
 
 	return alphaAdded;
@@ -33,9 +32,7 @@ const CalendarCell = ({ month, total, colorAlpha }: Props): JSX.Element => {
 
 	const bodyStyles = getComputedStyle(document.body);
 	const textColor = bodyStyles.getPropertyValue('--text500');
-	const hsla = changeHSLtoHSLA(textColor, adjustedAlpha);
-	console.log('textColor', textColor);
-	console.log('hsla', hsla);
+	const hsla = changeHSLAlpha(textColor, adjustedAlpha);
 
 	return (
 		<div className={styles.container}>

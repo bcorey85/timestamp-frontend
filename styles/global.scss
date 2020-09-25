@@ -12,9 +12,10 @@
 	--gray400: hsl(167, 5%, 45%);
 	--gray500: hsl(167, 5%, 35%);
 
-	--black200: hsl(167, 5%, 20%);
-	--black100: hsl(167, 5%, 25%);
-	--white: hsl(167, 10%, 100%);
+	// Leave as to prevent hex conversion during compile
+	--black200: hsla(167, 5%, 20%, 1);
+	--black100: hsla(167, 5%, 25%, 1);
+	--white: hsla(167, 10%, 100%, 1);
 
 	--primary50: hsl(167, 60%, 95%);
 	--primary100: hsl(167, 60%, 85%);
