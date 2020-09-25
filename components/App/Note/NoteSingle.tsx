@@ -10,6 +10,8 @@ import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
 import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
 import { DeleteModal } from '../shared/DeleteModal';
+import { AppPageSection } from '../AppPage/AppPageSection';
+import { NoteBody } from './NoteBody';
 
 import { selectAppData, setAppDataSynced } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
@@ -19,7 +21,6 @@ import { useToggle } from '../../../hooks/useToggle';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteNoteApiConfig } from '../../../api/note';
 import { Item } from '../../../utils/ItemService';
-import { MathService } from '../../../utils/MathService';
 
 const NoteSingle = (): JSX.Element => {
 	const dispatch = useDispatch();
@@ -57,14 +58,6 @@ const NoteSingle = (): JSX.Element => {
 					subheadingType={IconType.note}>
 					<AppPageMeta>
 						<p>{currentNote.tags || null}</p>
-						<p>
-							{new Date(
-								Date.parse(currentNote.meta.createdAt)
-							).toLocaleDateString()}&nbsp; - &nbsp;{MathService.round(currentNote.meta.hours, 1)}{' '}
-							hr
-						</p>
-
-						<p>{currentNote.description}</p>
 					</AppPageMeta>
 				</AppPageTitle>
 
@@ -80,6 +73,9 @@ const NoteSingle = (): JSX.Element => {
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
+			<AppPageSection>
+				<NoteBody currentNote={currentNote} />
+			</AppPageSection>
 
 			<DeleteModal
 				title='Delete Note'
