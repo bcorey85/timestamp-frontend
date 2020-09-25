@@ -8,8 +8,7 @@ interface Props {
 }
 
 const PinnedCardDate = ({ meta }: Props) => {
-	const date =
-		(meta.updatedAt && DateTimeService.formatDate(meta.updatedAt)) || null;
+	const date = (meta.date && DateTimeService.formatDate(meta.date)) || null;
 	const startTime =
 		(meta.startTime && DateTimeService.formatTime(meta.startTime)) || null;
 	const endTime =

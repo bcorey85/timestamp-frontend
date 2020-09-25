@@ -10,9 +10,9 @@ interface Props {
 	title: string;
 	type: IconType;
 	stat: string | number;
-	href: string;
-	as: string;
-	linkText: string;
+	href?: string;
+	as?: string;
+	linkText?: string;
 }
 
 const StatCard = ({
@@ -23,6 +23,19 @@ const StatCard = ({
 	as,
 	linkText
 }: Props): JSX.Element => {
+	if (!href || !as || !linkText) {
+		return (
+			<article className={styles.card_noclick}>
+				<div className={styles.header}>
+					<TypeIcon type={type} />
+					{title}
+				</div>
+
+				<div className={styles.stat}>{MathService.round(stat, 1)}</div>
+			</article>
+		);
+	}
+
 	return (
 		<Link href={href} as={as}>
 			<article className={styles.card}>

@@ -7,6 +7,7 @@ import { TypeIcon } from '../shared/TypeIcon';
 
 import styles from './SearchResult.module.scss';
 import { PinnedIcon } from '../shared/PinnedSection/PinnedIcon';
+import { DateTimeService } from '../../../utils/DateTimeService';
 
 interface Props {
 	result: Item;
@@ -35,7 +36,8 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 							{item.tags ? TagService.addSpaces(item.tags) : null}
 						</div>
 						<div>
-							{item.meta.date} - {item.meta.hours} hr
+							{DateTimeService.formatDate(item.meta.date)} -{' '}
+							{item.meta.hours} hr
 						</div>
 
 						{item.description ? (

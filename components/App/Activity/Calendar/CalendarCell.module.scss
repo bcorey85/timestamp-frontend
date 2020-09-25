@@ -1,0 +1,52 @@
+@import '../../../../styles/mixins.scss';
+@import '../../../../styles/mediaQueries.scss';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	@include panel;
+
+	width: 8rem;
+	height: 8rem;
+
+	@include respondH(550) {
+		width: 6.4rem;
+		height: 6.4rem;
+	}
+}
+
+.month {
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
+.total {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+	font-size: 1.8rem;
+
+	@include respondH(550) {
+		font-size: 1.4rem;
+	}
+}
+
+.color_1 {
+	color: var(--text500);
+}
+
+.color_2 {
+	color: var(--text400);
+}
+
+.color_3 {
+	color: var(--text300);
+}
+
+.color_4 {
+	color: var(--text200);
+}

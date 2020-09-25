@@ -26,6 +26,25 @@
 	}
 }
 
+.card_noclick {
+	width: 24rem;
+	padding: 1.6rem;
+	@include panel;
+
+	@include respondH(680) {
+		width: 100%;
+		padding: .8rem 1.6rem;
+	}
+
+	&:not(:last-of-type) {
+		margin-right: 1.6rem;
+
+		@include respondH(680) {
+			margin-right: 0;
+		}
+	}
+}
+
 .header {
 	color: var(--text400);
 	font-weight: 600;

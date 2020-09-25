@@ -9,8 +9,8 @@
 
 	@include respondH(550) {
 		padding: 1.6rem;
-		margin-left: -1.6rem;
-		margin-right: -1.6rem;
+		margin-left: calc(var(--app-horizontal-padding) * -1);
+		margin-right: calc(var(--app-horizontal-padding) * -1);
 	}
 }
 

@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.input {
+	width: 100%;
+	max-width: 10.4rem;
+	margin-bottom: -1.6rem;
+
+	& select {
+		margin-bottom: 0;
+	}
+}

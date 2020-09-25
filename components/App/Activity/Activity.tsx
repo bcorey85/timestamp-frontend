@@ -9,6 +9,7 @@ import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
+import { Calendar } from './Calendar/Calendar';
 
 import { selectUser } from '../../../redux/user';
 import { ListSection } from '../shared/ListSection/ListSection';
@@ -18,6 +19,7 @@ import { useActivityStats } from '../../../hooks/useActivityStats';
 import { StringService } from '../../../utils/StringService';
 import { MathService } from '../../../utils/MathService';
 import { DateTimeService } from '../../../utils/DateTimeService';
+import { YearToggle } from './YearToggle';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -30,11 +32,16 @@ const Activity = (): JSX.Element => {
 
 	const {
 		yearsArray,
+		selectedYear,
 		setSelectedYear,
 		yearTotals,
 		monthlyCreatedTotals,
 		longestStreak
 	} = useActivityStats(itemsRef.current);
+
+	const handleYearChange = (year: number | string) => {
+		setSelectedYear(year as number);
+	};
 
 	return (
 		<React.Fragment>
@@ -45,75 +52,50 @@ const Activity = (): JSX.Element => {
 					subheadingType={IconType.time}
 				/>
 			</AppPageHeader>
-			<AppPageSection>
-				<AppPageSectionHeading title='Years' />
 
-				{yearsArray.map(year => {
-					return (
-						<div key={year}>
-							<Button
-								btnStyle='link_primary'
-								onClick={() => setSelectedYear(year)}>
-								{year}
-							</Button>
-						</div>
-					);
-				})}
-			</AppPageSection>
+			<YearToggle
+				years={yearsArray}
+				toggleYear={handleYearChange}
+				selectedYear={selectedYear}
+			/>
+			<h2>{selectedYear} Totals</h2>
 			<AppPageSection>
-				<AppPageSectionHeading title='Year Totals' />
-
-				<div>
-					{StringService.pluralize(
-						MathService.round(yearTotals.hours, 1),
-						{
-							singular: 'hour',
-							plural: 'hours'
-						}
-					)}
-				</div>
-				<div>
-					{StringService.pluralize(yearTotals.projects, {
-						singular: 'project',
-						plural: 'projects'
-					})}
-				</div>
-				<div>
-					{StringService.pluralize(yearTotals.tasks, {
-						singular: 'task',
-						plural: 'tasks'
-					})}
-				</div>
-				<div>
-					{StringService.pluralize(yearTotals.notes, {
-						singular: 'note',
-						plural: 'notes'
-					})}
-				</div>
-				<div>
-					{MathService.round(
-						yearTotals.averageNoteLength * 60,
-						1
-					)}{' '}
-					minutes per note
-				</div>
+				<AppPageSectionHeading title={'Overall'} />
+				<StatsBar>
+					<StatCard
+						type={IconType.time}
+						title='Hours'
+						stat={MathService.round(yearTotals.hours, 1)}
+					/>
+					<StatCard
+						type={IconType.project}
+						title='Projects'
+						stat={MathService.round(yearTotals.projects, 1)}
+					/>
+					<StatCard
+						type={IconType.task}
+						title='Tasks'
+						stat={MathService.round(yearTotals.tasks, 1)}
+					/>
+					<StatCard
+						type={IconType.note}
+						title='Notes'
+						stat={MathService.round(yearTotals.notes, 1)}
+					/>
+					<StatCard
+						type={IconType.time}
+						title='Min / Note'
+						stat={MathService.round(
+							yearTotals.averageNoteLength,
+							1
+						)}
+					/>
+				</StatsBar>
 			</AppPageSection>
 
 			<AppPageSection>
 				<AppPageSectionHeading title='Activity Per Month' />
-
-				<div>Jan: {monthlyCreatedTotals[0]}</div>
-				<div>Feb: {monthlyCreatedTotals[1]}</div>
-				<div>Mar: {monthlyCreatedTotals[2]}</div>
-				<div>Apr: {monthlyCreatedTotals[3]}</div>
-				<div>May: {monthlyCreatedTotals[4]}</div>
-				<div>Jun: {monthlyCreatedTotals[5]}</div>
-				<div>Jul: {monthlyCreatedTotals[6]}</div>
-				<div>Aug: {monthlyCreatedTotals[7]}</div>
-				<div>Sep: {monthlyCreatedTotals[8]}</div>
-				<div>Oct: {monthlyCreatedTotals[9]}</div>
-				<div>Nov: {monthlyCreatedTotals[10]}</div>
-				<div>Dec: {monthlyCreatedTotals[11]}</div>
+				<Calendar monthlyCreatedTotals={monthlyCreatedTotals} />
 			</AppPageSection>
 			<AppPageSection>
 				<AppPageSectionHeading title='Longest Active Streak' />
