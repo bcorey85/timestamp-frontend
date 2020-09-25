@@ -80,8 +80,8 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 		});
 		const res = await request(config);
 
-		setIsLoadingSignup(false);
-		setIsLoadingLogin(false);
+		// setIsLoadingSignup(false);
+		// setIsLoadingLogin(false);
 
 		if (res.success === false) {
 			return;
@@ -145,7 +145,12 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 					Login
 				</Button>
 			</ButtonContainer>
-			<div className={styles.error_container} />
+
+			{isLoadingLogin || isLoadingSignup ? (
+				<div>Please wait while free server loads!</div>
+			) : (
+				<ErrorDisplay errors={errors.generic} />
+			)}
 		</form>
 	);
 };

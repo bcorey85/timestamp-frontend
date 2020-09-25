@@ -9,6 +9,7 @@ import { useAuthentication } from '../../../../hooks/useAuthentication';
 
 const Nav = (): JSX.Element => {
 	const { isAuthenticated, tokenExpired, userId } = useAuthentication();
+
 	return (
 		<nav className={styles.nav}>
 			<ul>

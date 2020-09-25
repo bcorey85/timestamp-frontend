@@ -14,20 +14,28 @@ interface Token {
 const useAuthentication = () => {
 	const user = useSelector(selectUser);
 	const { router } = useRouterService();
-	const { userId } = router.query;
 
-	const isAuthenticated = !!(user && user.token);
+	const auth = {
+		isAuthenticated: false,
+		tokenExpired: null,
+		isAuthorized: false,
+		userId: null,
+		token: null as Token
+	};
 
-	let token: Token;
-	let tokenExpired: boolean;
-	if (user.token) {
-		token = jwtDecode(user.token);
-		tokenExpired = token.exp * 1000 < Date.now();
+	if (!user || !user.token) {
+		return auth;
 	}
 
-	const isAuthorized = token.user && user.userId.toString() === userId;
+	auth.token = jwtDecode(user.token);
+	auth.userId = auth.token.user;
 
-	return { isAuthenticated, tokenExpired, isAuthorized, userId: token.user };
+	auth.isAuthenticated = !!user.token;
+	auth.tokenExpired = auth.token.exp * 1000 < Date.now();
+	auth.isAuthorized =
+		router.query && router.query.userId === auth.token.user.toString();
+
+	return auth;
 };
 
 export { useAuthentication };
