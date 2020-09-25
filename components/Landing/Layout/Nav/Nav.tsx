@@ -20,8 +20,8 @@ const Nav = (): JSX.Element => {
 				{isAuthenticated && !tokenExpired ? (
 					<li>
 						<Link
-							href='/app/[userId]/projects'
-							as={`/app/${userId}/projects`}>
+							href='/app/[userId]/dashboard'
+							as={`/app/${userId}/dashboard`}>
 							<a>Dashboard</a>
 						</Link>
 					</li>
