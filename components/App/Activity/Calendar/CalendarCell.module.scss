@@ -6,20 +6,42 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	@include panel;
+	// @include panel;
 
-	width: 8rem;
-	height: 8rem;
+	width: 10.4rem;
+	height: 10.4rem;
+
+	@include respondH(1680) {
+		width: 8rem;
+		height: 8rem;
+	}
+
+	@include respondH(1280) {
+		width: 9.6rem;
+		height: 9.6rem;
+	}
+
+	@include respondH(680) {
+		width: 8.8rem;
+		height: 8.8rem;
+	}
 
 	@include respondH(550) {
-		width: 6.4rem;
-		height: 6.4rem;
+		width: 8rem;
+		height: 8rem;
 	}
+}
+
+.container_max {
+	@extend .container;
+	border: 2px solid var(--primary400);
+	border-radius: var(--border-radius);
 }
 
 .month {
 	font-weight: 600;
-	font-size: 1.2rem;
+	font-size: 1.4rem;
+	margin-bottom: .8rem;
 }
 
 .total {
@@ -27,8 +49,8 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-weight: 500;
-	font-size: 1.8rem;
+	font-weight: 600;
+	font-size: 2.8rem;
 
 	@include respondH(550) {
 		font-size: 1.4rem;

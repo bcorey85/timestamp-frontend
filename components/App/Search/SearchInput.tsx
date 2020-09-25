@@ -31,6 +31,7 @@ const SearchInput = ({
 				type='text'
 				value={searchValue}
 				onChange={setSearchValue}
+				autoComplete='off'
 			/>
 			<button className={styles.search_btn} onClick={handleSearch}>
 				<BiSearchAlt2 />

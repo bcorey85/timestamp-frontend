@@ -48,6 +48,7 @@ const TagInput = ({
 					id='tag'
 					value={currentTag}
 					onChange={handleChange}
+					autoComplete='off'
 				/>
 				<button onClick={handleAdd}>
 					<BiPlus />

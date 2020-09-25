@@ -40,6 +40,7 @@ const ProjectForm = ({ handleClose }: Props): JSX.Element => {
 						value={formState.title}
 						onChange={formHandlers.setTitle}
 						error={errors.title}
+						autoComplete='off'
 					/>
 				</FormRow>
 				<FormRow>
@@ -49,6 +50,7 @@ const ProjectForm = ({ handleClose }: Props): JSX.Element => {
 						value={formState.description}
 						onChange={formHandlers.setDescription}
 						error={errors.description}
+						autoComplete='off'
 					/>
 				</FormRow>
 			</BaseForm>

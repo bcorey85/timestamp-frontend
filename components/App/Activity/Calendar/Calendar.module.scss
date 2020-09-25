@@ -1,27 +1,28 @@
+@import '../../../../styles/mixins.scss';
 @import '../../../../styles/mediaQueries.scss';
 
 .container {
 	display: flex;
-	justify-content: center;
-	background-color: var(--background-secondary);
-	padding: 1.6rem;
-
-	@include respondH(550) {
-		margin-left: calc(var(--app-horizontal-padding) * -1);
-		margin-right: calc(var(--app-horizontal-padding) * -1);
-	}
 }
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(12, 8rem);
-	grid-gap: .8rem;
+	grid-template-columns: repeat(12, 9.6rem);
+	@include panel;
 
 	@include respondH(1680) {
-		grid-template-columns: repeat(6, 8rem);
+		grid-template-columns: repeat(12, 8rem);
+	}
+
+	@include respondH(1280) {
+		grid-template-columns: repeat(4, 9.6rem);
+	}
+
+	@include respondH(680) {
+		grid-template-columns: repeat(4, 8.8rem);
 	}
 
 	@include respondH(550) {
-		grid-template-columns: repeat(4, 6.4rem);
+		grid-template-columns: repeat(4, 1fr);
 	}
 }
