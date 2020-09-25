@@ -10,18 +10,6 @@ interface Props {
 	colorAlpha: number;
 }
 
-// Chroma package workaround for webpack converting hsl values to hex on compile
-const changeHSLAlpha = (hsl: any[], alpha: number) => {
-	if (isNaN(hsl[0])) {
-		hsl[0] = 160;
-	}
-	const hue = hsl[0];
-	const saturation = parseInt(hsl[1]) * 100;
-	const lightness = hsl[2] * 100;
-
-	return `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`;
-};
-
 const CalendarCell = ({ month, total, colorAlpha }: Props): JSX.Element => {
 	let adjustedAlpha;
 
@@ -36,14 +24,14 @@ const CalendarCell = ({ month, total, colorAlpha }: Props): JSX.Element => {
 	}
 
 	const bodyStyles = getComputedStyle(document.body);
-	const textColor = bodyStyles.getPropertyValue('--text500');
-	const hsla = changeHSLAlpha(chroma(textColor.trim()).hsl(), adjustedAlpha);
+	const textColor = bodyStyles.getPropertyValue('--text500').trim();
+	const color = chroma(textColor).alpha(adjustedAlpha);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.month}>{month}</div>
 			<div className={styles.total}>
-				<span style={{ color: `${hsla}` }}>{total}</span>
+				<span style={{ color: `${color}` }}>{total}</span>
 			</div>
 		</div>
 	);
