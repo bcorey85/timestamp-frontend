@@ -21,7 +21,6 @@ interface Props {
 }
 
 const AppLayout = ({ children }: Props): JSX.Element => {
-	const { userId } = useSelector(selectUser);
 	const [ isLoading, setIsLoading ] = useState(true);
 	const { fetchAppData, appData, appDataErrors } = useAppData();
 	const { createModalOpen, toggleCreateModal } = useCreateModal();
@@ -54,6 +53,20 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 		</div>
 	);
 
+	if (isLoading) {
+		return (
+			<div className={styles.app_layout}>
+				<Header />
+				<div className={styles.content}>
+					<main className={styles.main}>
+						<Loading />
+					</main>
+				</div>
+				<Footer />
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.app_layout}>
 			<Header />
@@ -72,11 +85,12 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 				</div>
 
 				<main className={styles.main}>
-					{isLoading ? <Loading /> : null}
 					{!isLoading && appDataErrors.length > 0 ? (
 						errorMessage
-					) : null}
-					{children}
+					) : (
+						children
+					)}
+
 					<CreateModal
 						isOpen={createModalOpen}
 						toggleModal={toggleCreateModal}
@@ -90,26 +104,3 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 };
 
 export { AppLayout };
-
-// const [ breadcrumbLinks, setBreadcrumbLinks ] = useState([
-// 	{
-// 		iconType: IconType.none,
-// 		href: `/app/${userId}/dashboard`,
-// 		text: 'Dashboard'
-// 	},
-// 	{
-// 		iconType: IconType.project,
-// 		href: `/app/${userId}/dashboard`,
-// 		text: 'Project'
-// 	},
-// 	{
-// 		iconType: IconType.task,
-// 		href: `/app/${userId}/dashboard`,
-// 		text: 'Task'
-// 	},
-// 	{
-// 		iconType: IconType.note,
-// 		href: `/app/${userId}/dashboard`,
-// 		text: 'Note'
-// 	}
-// ]);

@@ -54,7 +54,7 @@ const persistConfig = {
 	key: 'timestamp',
 	version: 1,
 	storage,
-	whitelist: [ 'user', 'interface', 'appData' ]
+	whitelist: [ 'user', 'interface' ]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
