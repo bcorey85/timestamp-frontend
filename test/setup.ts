@@ -1,6 +1,8 @@
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Item, ItemType } from '../utils/ItemService';
+import { setAppData } from '../redux/appData';
+import { mockStore } from './__mocks__/mockRedux';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -21,8 +23,8 @@ export const createTestItem = (type?: keyof ItemType): Item => {
 		itemId: {
 			userId: 1,
 			projectId: 1,
-			taskId: null,
-			noteId: null
+			taskId: null as number,
+			noteId: null as number
 		},
 		pathname: {
 			href: `/app/[userId]/`,
@@ -30,8 +32,8 @@ export const createTestItem = (type?: keyof ItemType): Item => {
 		},
 		meta: {
 			date: '12/12/2020',
-			startTime: null,
-			endTime: null,
+			startTime: null as string,
+			endTime: null as string,
 			hours: '1',
 			time: '12:00pm',
 			createdAt: new Date(Date.now()).toISOString(),
@@ -41,7 +43,7 @@ export const createTestItem = (type?: keyof ItemType): Item => {
 		description: 'test',
 		notes: 5,
 		tasks: 5,
-		tags: null,
+		tags: null as string,
 		pinned: false
 	};
 
@@ -68,4 +70,26 @@ export const createTestItem = (type?: keyof ItemType): Item => {
 	}
 
 	return baseItem;
+};
+
+export const createTestState = () => {
+	mockStore.dispatch(
+		setAppData({
+			appData: {
+				synced: true,
+				email: 'test@gmail.com',
+				notes: [ createTestItem('note') ],
+				projects: [ createTestItem('project') ],
+				tasks: [ createTestItem('task') ],
+				hours: '5',
+				createdAt: new Date(Date.now()).toISOString(),
+				lastLogin: new Date(Date.now()).toISOString(),
+				recentItems: {
+					notes: [],
+					tasks: [],
+					projects: []
+				}
+			}
+		})
+	);
 };

@@ -34,6 +34,7 @@ const Calendar = ({ monthlyCreatedTotals }: Props): JSX.Element => {
 							month={months[i]}
 							total={total}
 							colorAlpha={total / max}
+							key={months[i]}
 						/>
 					);
 				})}
