@@ -26,6 +26,9 @@ const useAuthentication = () => {
 	}
 
 	const isAuthorized = user.userId && user.userId.toString() === userId;
+	console.log('debugging auto logout');
+	console.log('user.userid', user.userId);
+	console.log('userId from state', userId);
 
 	return { isAuthenticated, tokenExpired, isAuthorized, userId };
 };
