@@ -33,6 +33,7 @@ const CalendarCell = ({ month, total, colorAlpha }: Props): JSX.Element => {
 	const bodyStyles = getComputedStyle(document.body);
 	const textColor = bodyStyles.getPropertyValue('--text500');
 	const hsla = changeHSLtoHSLA(textColor, adjustedAlpha);
+	console.log(hsla);
 
 	return (
 		<div className={styles.container}>
