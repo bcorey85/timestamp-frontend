@@ -139,15 +139,13 @@ class ActivityStatsService {
 	private calcStreaks = (dates: string[] = []) => {
 		const streaks = dates.map((date, i) => {
 			const parsedDate = new Date(Date.parse(date));
-			const startDate = moment(parsedDate).format('M/D/YYYY');
+			const startDate = moment(parsedDate).toISOString();
 
 			let sequence = [ startDate ];
 			let currentDate = startDate;
 			let nextDate;
 			for (let j = 0; j < dates.length - i; j++) {
-				nextDate = moment(currentDate, 'M/D/YYYY')
-					.add(1, 'day')
-					.format('M/D/YYYY');
+				nextDate = moment(currentDate).add(1, 'day').toISOString();
 
 				const nextDayIsInSequence = dates[i + j + 1] === nextDate;
 
@@ -181,9 +179,9 @@ class ActivityStatsService {
 			.sort((a, b) => a.length - b.length)
 			.reverse()[0];
 
-		const amountOfItems = items.filter(item =>
-			longestStreak.includes(item.meta.date)
-		).length;
+		const amountOfItems = items.filter(item => {
+			return longestStreak.includes(item.meta.date);
+		}).length;
 
 		return {
 			startDate: longestStreak[0],

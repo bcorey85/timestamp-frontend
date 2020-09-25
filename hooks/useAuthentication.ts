@@ -19,7 +19,7 @@ const useAuthentication = () => {
 	const isAuthenticated = !!(user && user.token);
 
 	let token: Token;
-	let tokenExpired;
+	let tokenExpired: boolean;
 	if (user.token) {
 		token = jwtDecode(user.token);
 		tokenExpired = token.exp * 1000 < Date.now();

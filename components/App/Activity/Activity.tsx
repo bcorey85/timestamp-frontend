@@ -17,6 +17,7 @@ import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { useActivityStats } from '../../../hooks/useActivityStats';
 import { StringService } from '../../../utils/StringService';
 import { MathService } from '../../../utils/MathService';
+import { DateTimeService } from '../../../utils/DateTimeService';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -125,7 +126,11 @@ const Activity = (): JSX.Element => {
 				</div>
 				<div>
 					{longestStreak.startDate && longestStreak.endDate ? (
-						`${longestStreak.startDate} - ${longestStreak.endDate}`
+						`${DateTimeService.formatDate(
+							longestStreak.startDate
+						)} - ${DateTimeService.formatDate(
+							longestStreak.endDate
+						)}`
 					) : null}
 				</div>
 				<div>
