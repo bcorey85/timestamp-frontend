@@ -63,26 +63,24 @@
 	font-feature-settings: inherit;
 	font-variant-numeric: inherit;
 	color: var(--text400);
+	margin-bottom: .4rem;
 
 	@include respondH(960) {
 		font-size: 2.8rem;
-	}
-
-	@include respondH(680) {
-		margin-bottom: 0;
 	}
 }
 
 .link {
 	text-align: right;
 	font-size: 1.2rem;
+	line-height: 1.2rem;
 
 	& a {
 		color: var(--text300);
 		font-weight: 500;
 	}
 
-	@include respondH(680) {
-		font-size: 1.2rem;
+	@include respondH(960) {
+		margin-bottom: .4rem;
 	}
 }
