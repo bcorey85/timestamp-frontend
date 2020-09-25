@@ -1,4 +1,5 @@
 import React from 'react';
+import chroma from 'chroma-js';
 import { MathService } from '../../../../utils/MathService';
 
 import styles from './CalendarCell.module.scss';
@@ -9,12 +10,9 @@ interface Props {
 	colorAlpha: number;
 }
 
-const changeHSLAlpha = (hsla: string, alpha: number) => {
-	const trim = hsla.trim();
-	const alphaAdded = trim.replace('1)', `${alpha})`);
-	console.log('alphaAdded', alphaAdded);
-
-	return alphaAdded;
+// Chroma package workaround for webpack converting hsl values to hex on compile
+const changeHSLAlpha = (hsl: any[], alpha: number) => {
+	return `hsla(${hsl[0]}, ${hsl[1] * 100}%, ${hsl[2] * 100}%, ${alpha})`;
 };
 
 const CalendarCell = ({ month, total, colorAlpha }: Props): JSX.Element => {
@@ -32,7 +30,8 @@ const CalendarCell = ({ month, total, colorAlpha }: Props): JSX.Element => {
 
 	const bodyStyles = getComputedStyle(document.body);
 	const textColor = bodyStyles.getPropertyValue('--text500');
-	const hsla = changeHSLAlpha(textColor, adjustedAlpha);
+	const hsla = changeHSLAlpha(chroma(textColor.trim()).hsl(), adjustedAlpha);
+	console.log(hsla);
 
 	return (
 		<div className={styles.container}>
