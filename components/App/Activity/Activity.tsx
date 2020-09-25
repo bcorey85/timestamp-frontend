@@ -20,6 +20,7 @@ import { StringService } from '../../../utils/StringService';
 import { MathService } from '../../../utils/MathService';
 import { DateTimeService } from '../../../utils/DateTimeService';
 import { YearToggle } from './YearToggle';
+import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 
 const Activity = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -51,16 +52,17 @@ const Activity = (): JSX.Element => {
 					subheading='Activity'
 					subheadingType={IconType.time}
 				/>
+				<AppPageHeaderControls>
+					<YearToggle
+						years={yearsArray}
+						toggleYear={handleYearChange}
+						selectedYear={selectedYear}
+					/>
+				</AppPageHeaderControls>
 			</AppPageHeader>
 
-			<YearToggle
-				years={yearsArray}
-				toggleYear={handleYearChange}
-				selectedYear={selectedYear}
-			/>
 			<h2>{selectedYear} Totals</h2>
 			<AppPageSection>
-				<AppPageSectionHeading title={'Overall'} />
 				<StatsBar>
 					<StatCard
 						type={IconType.time}

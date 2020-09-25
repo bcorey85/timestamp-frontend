@@ -23,7 +23,7 @@
 	@extend .input;
 	background: url("/images/bx-caret-down.svg") no-repeat;
 	background-size: 12px;
-	background-position: calc(100% - 20px) center;
+	background-position: calc(100% - .8rem) center;
 	background-repeat: no-repeat;
 	background-color: var(--background-secondary);
 }
