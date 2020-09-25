@@ -25,12 +25,9 @@ const useAuthentication = () => {
 		tokenExpired = token.exp * 1000 < Date.now();
 	}
 
-	const isAuthorized = user.userId && user.userId.toString() === userId;
-	console.log('debugging auto logout');
-	console.log('user.userid', user.userId);
-	console.log('userId from state', userId);
+	const isAuthorized = token.user && user.userId.toString() === userId;
 
-	return { isAuthenticated, tokenExpired, isAuthorized, userId };
+	return { isAuthenticated, tokenExpired, isAuthorized, userId: token.user };
 };
 
 export { useAuthentication };
