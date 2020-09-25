@@ -110,9 +110,6 @@ class ItemService {
 			as: `${rootPath}/${typeIdNumber}`
 		};
 
-		console.log(this.item.startTime, this.item.createdAt);
-		console.log(this.item.startTime || this.item.createdAt);
-
 		this.meta = {
 			date: this.item.startTime || this.item.createdAt,
 			startTime: this.item.startTime || null,

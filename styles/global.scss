@@ -30,6 +30,8 @@
 	--box-shadow-wide: 0px 2px 10px hsla(167, 10%, 10%, 15%);
 
 	--border-primary: 1px solid var(--gray200);
+	--border-secondary: 1px solid var(--gray300);
+
 	--border-radius: 4px;
 
 	--hover-color-light: var(--background-tertiary);
@@ -90,6 +92,7 @@ body.dark {
 	--background-tertiary: var(--gray500);
 
 	--border-primary: 1px solid var(--gray300);
+	--border-secondary: 1px solid var(--gray200);
 
 	--text500: var(--white);
 	--text400: var(--gray50);
@@ -165,4 +168,11 @@ select {
 		font-size: inherit;
 		font-family: inherit;
 	}
+}
+
+.rdtPicker {
+	background-color: var(--background-primary);
+	box-shadow: var(--box-shadow);
+	border: var(--border-secondary);
+	border-radius: var(--border-radius);
 }

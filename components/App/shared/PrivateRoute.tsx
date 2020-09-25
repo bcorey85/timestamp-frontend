@@ -22,6 +22,11 @@ const PrivateRoute = ({ children }: Props) => {
 
 	useEffect(() => {
 		if (!isAuthenticated || tokenExpired || !isAuthorized) {
+			console.log('debug logout');
+			console.log('not authenticated:', !isAuthenticated);
+			console.log('token:', tokenExpired);
+			console.log('not authorized:', !isAuthorized);
+
 			dispatch(logout());
 			router.push.auth();
 			return;
