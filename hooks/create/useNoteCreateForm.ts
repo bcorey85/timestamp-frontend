@@ -107,18 +107,13 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 	const handleSubmit = async (e: SyntheticEvent, type: keyof SubmitType) => {
 		e.preventDefault();
 		setIsLoading(true);
-		let start, end;
-		if (typeof startDate !== 'string' && typeof endDate !== 'string') {
-			start = startDate.toISOString();
-			end = endDate.toISOString();
-		}
 
 		const payload: NotePayload = {
 			title,
 			projectId: projectId as number,
 			taskId: taskId as number,
-			startTime: start,
-			endTime: end,
+			startTime: moment(startDate).toISOString(),
+			endTime: moment(endDate).toISOString(),
 			description,
 			tags,
 			pinned

@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datetime';
-import { Moment } from 'moment';
+import moment, { Moment } from 'moment';
 
 import { InputLabel } from './InputLabel';
 import { InputError } from './InputError';
@@ -29,7 +29,11 @@ const DateTimeInput = ({
 		<div className={styles.container}>
 			{label ? <InputLabel id={`${id}-date`}>{label}</InputLabel> : null}
 
-			<DatePicker value={dateValue} onChange={handleDate} />
+			<DatePicker
+				value={dateValue}
+				onChange={handleDate}
+				dateFormat='M/D/YYYY'
+			/>
 
 			<InputError error={error} />
 		</div>
