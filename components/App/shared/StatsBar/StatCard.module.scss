@@ -12,9 +12,12 @@
 		background-color: var(--hover-color-light);
 	}
 
+	@include respondH(960) {
+		padding: .8rem 1.6rem;
+	}
+
 	@include respondH(680) {
 		width: 100%;
-		padding: .8rem 1.6rem;
 	}
 
 	&:not(:last-of-type) {
@@ -48,15 +51,16 @@
 .header {
 	color: var(--text400);
 	font-weight: 600;
+	font-size: 1.2rem;
+	margin-bottom: .4rem;
 
 	@include respondH(680) {
 		margin-bottom: 0;
-		font-size: 1.2rem;
 	}
 }
 
 .stat {
-	font-size: 3.6rem;
+	font-size: 3.2rem;
 	line-height: 1;
 	font-weight: 600;
 	text-align: right;
@@ -64,6 +68,10 @@
 	font-variant-numeric: inherit;
 	color: var(--text400);
 	margin-bottom: .4rem;
+
+	@include respondH(1280) {
+		font-size: 2.8rem;
+	}
 
 	@include respondH(960) {
 		font-size: 2.8rem;

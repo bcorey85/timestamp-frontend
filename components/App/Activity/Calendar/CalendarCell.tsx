@@ -29,7 +29,7 @@ const CalendarCell = ({
 		adjustedAlpha = 1;
 	}
 
-	const bodyStyles = getComputedStyle(document.documentElement);
+	const bodyStyles = getComputedStyle(document.body);
 	const textColor = bodyStyles.getPropertyValue('--text500').trim();
 
 	const color = chroma(textColor).alpha(adjustedAlpha);
