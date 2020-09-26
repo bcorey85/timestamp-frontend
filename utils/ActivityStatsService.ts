@@ -9,7 +9,7 @@ interface YearTotals {
 	projects: number;
 	tasks: number;
 	notes: number;
-	averageNoteLength: number;
+	averageNoteMinutes: number;
 }
 
 interface LongestStreak {
@@ -28,7 +28,7 @@ class ActivityStatsService {
 		projects: null,
 		tasks: null,
 		notes: null,
-		averageNoteLength: null
+		averageNoteMinutes: null
 	};
 	public monthTotals: any[] = [];
 	public longestStreak: LongestStreak = {
@@ -132,7 +132,7 @@ class ActivityStatsService {
 			projects,
 			tasks,
 			notes,
-			averageNoteLength: hours / notes
+			averageNoteMinutes: hours / notes * 60
 		};
 	};
 

@@ -29,8 +29,9 @@ const CalendarCell = ({
 		adjustedAlpha = 1;
 	}
 
-	const bodyStyles = getComputedStyle(document.body);
+	const bodyStyles = getComputedStyle(document.documentElement);
 	const textColor = bodyStyles.getPropertyValue('--text500').trim();
+
 	const color = chroma(textColor).alpha(adjustedAlpha);
 
 	return (

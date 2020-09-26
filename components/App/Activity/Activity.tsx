@@ -88,7 +88,7 @@ const Activity = (): JSX.Element => {
 						type={IconType.time}
 						title='Min / Note'
 						stat={MathService.round(
-							yearTotals.averageNoteLength,
+							yearTotals.averageNoteMinutes,
 							1
 						)}
 					/>

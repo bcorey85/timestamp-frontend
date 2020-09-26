@@ -13,7 +13,7 @@ const useActivityStats = (items: any[] = []) => {
 		projects: null,
 		tasks: null,
 		notes: null,
-		averageNoteLength: null
+		averageNoteMinutes: null
 	});
 	const [ monthlyCreatedTotals, setMonthlyCreatedTotals ] = useState(
 		new Array(12).fill(0)

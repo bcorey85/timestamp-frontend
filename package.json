@@ -27,6 +27,7 @@
 		"sass": "^1.26.11"
 	},
 	"devDependencies": {
+		"@types/chroma-js": "^2.1.0",
 		"@types/enzyme": "^3.10.7",
 		"@types/enzyme-adapter-react-16": "^1.0.6",
 		"@types/jest": "^26.0.14",
