@@ -147,7 +147,9 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 			</ButtonContainer>
 
 			{isLoadingLogin || isLoadingSignup ? (
-				<div>Please wait while free server loads!</div>
+				<div style={{ textAlign: 'center' }}>
+					Please wait while free server warms up.
+				</div>
 			) : (
 				<ErrorDisplay errors={errors.generic} />
 			)}
