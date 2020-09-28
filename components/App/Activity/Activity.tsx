@@ -103,12 +103,10 @@ const Activity = (): JSX.Element => {
 			<AppPageSection>
 				<AppPageSectionHeading title='Activity Per Day' />
 				<DailyItemCount dailyItemCounts={dailyCounts} />
-				<div>
-					{StringService.pluralize(longestStreak.span, {
-						singular: 'day',
-						plural: 'days'
-					})}
-				</div>
+			</AppPageSection>
+			<AppPageSection>
+				<AppPageSectionHeading title='Longest Activity Streak' />
+
 				<div>
 					{longestStreak.startDate && longestStreak.endDate ? (
 						`${DateTimeService.formatDate(
@@ -117,6 +115,12 @@ const Activity = (): JSX.Element => {
 							longestStreak.endDate
 						)}`
 					) : null}
+				</div>
+				<div>
+					{StringService.pluralize(longestStreak.span, {
+						singular: 'day',
+						plural: 'days'
+					})}
 				</div>
 				<div>
 					{StringService.pluralize(longestStreak.amountOfItems, {
