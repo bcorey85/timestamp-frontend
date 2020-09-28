@@ -80,8 +80,8 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 		});
 		const res = await request(config);
 
-		// setIsLoadingSignup(false);
-		// setIsLoadingLogin(false);
+		setIsLoadingSignup(false);
+		setIsLoadingLogin(false);
 
 		if (res.success === false) {
 			return;
