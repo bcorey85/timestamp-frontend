@@ -12,7 +12,6 @@ import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { Calendar } from './Calendar/Calendar';
 
 import { selectUser } from '../../../redux/user';
-import { ListSection } from '../shared/ListSection/ListSection';
 import { selectAppData } from '../../../redux/appData';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { useActivityStats } from '../../../hooks/useActivityStats';
@@ -21,9 +20,9 @@ import { MathService } from '../../../utils/MathService';
 import { DateTimeService } from '../../../utils/DateTimeService';
 import { YearToggle } from './YearToggle';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { ActivityStatsService } from '../../../utils/ActivityStatsService';
 
 const Activity = (): JSX.Element => {
-	const { userId } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const itemsRef = useRef([
 		...appData.projects,

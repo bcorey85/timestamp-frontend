@@ -37,6 +37,8 @@ class ActivityStatsService {
 		span: null,
 		amountOfItems: null
 	};
+	public countPerDay: any[] = [];
+	private uniqueDates: string[] = [];
 
 	constructor(private items: Item[], private year: number | string) {
 		this.sortedByDate = this.sortByDate(this.items);
@@ -44,10 +46,12 @@ class ActivityStatsService {
 		this.yearsArray = Object.keys(this.mappedToYear).sort(
 			(a, b) => parseInt(b) - parseInt(a)
 		);
+		this.uniqueDates = this.filterUniqueDates(this.items);
 		const selectedData = this.mappedToYear[this.year];
 		this.yearTotals = this.calcYearTotals(selectedData);
 		this.monthTotals = this.calcTotalCreatedByMonth(selectedData);
 		this.longestStreak = this.calcLongestStreak(selectedData);
+		this.countPerDay = this.calcCountPerDay(this.year);
 	}
 
 	private sortByDate = (items: Item[] = []): any[] => {
@@ -83,10 +87,11 @@ class ActivityStatsService {
 		let datesArray: any[] = [];
 
 		items.map(item => {
-			const alreadyParsed = datesArray.includes(item.meta.date);
+			const date = moment(item.meta.date).format('M/D/YYYY');
+			const alreadyParsed = datesArray.includes(date);
 
 			if (!alreadyParsed) {
-				datesArray.push(item.meta.date);
+				datesArray.push(date);
 			}
 		});
 
@@ -138,23 +143,22 @@ class ActivityStatsService {
 
 	private calcStreaks = (dates: string[] = []) => {
 		const streaks = dates.map((date, i) => {
-			const parsedDate = new Date(Date.parse(date));
-			const startDate = moment(parsedDate).toISOString();
+			const startDate = moment(date, 'M/D/YYYY');
 
-			let sequence = [ startDate ];
+			let sequence = [ startDate.format('M/D/YYYY') ];
 			let currentDate = startDate;
 			let nextDate;
 			for (let j = 0; j < dates.length - i; j++) {
-				nextDate = moment(currentDate).add(1, 'day').toISOString();
+				nextDate = moment(currentDate).add(1, 'day');
 
-				const nextDayIsInSequence = dates[i + j + 1] === nextDate;
+				const nextDayIsInSequence =
+					dates[i + j + 1] === nextDate.format('M/D/YYYY');
 
 				if (nextDayIsInSequence) {
-					sequence.push(nextDate);
+					sequence.push(nextDate.format('M/D/YYYY'));
 					currentDate = nextDate;
 				}
 			}
-
 			return sequence;
 		});
 
@@ -162,7 +166,7 @@ class ActivityStatsService {
 	};
 
 	private calcLongestStreak = (items: Item[] = []) => {
-		const datesArray = this.filterUniqueDates(items);
+		const datesArray = this.uniqueDates;
 
 		if (datesArray.length === 0) {
 			return {
@@ -180,7 +184,9 @@ class ActivityStatsService {
 			.reverse()[0];
 
 		const amountOfItems = items.filter(item => {
-			return longestStreak.includes(item.meta.date);
+			return longestStreak.includes(
+				moment(item.meta.date).format('M/D/YYYY')
+			);
 		}).length;
 
 		return {
@@ -189,6 +195,37 @@ class ActivityStatsService {
 			span: longestStreak.length,
 			amountOfItems
 		};
+	};
+
+	private calcCountPerDay = (year: string | number) => {
+		const daysOfYear = DateTimeService.createDaysOfYearObject(
+			year as number
+		);
+
+		const dates = this.uniqueDates;
+
+		const itemsPerDay = dates.map(date => {
+			const dateObj = {
+				date,
+				count: null
+			};
+
+			for (const item of this.items) {
+				const itemDate = moment(item.meta.date).format('M/D/YYYY');
+
+				if (itemDate === date) {
+					dateObj.count += 1;
+				}
+			}
+
+			return dateObj;
+		});
+
+		for (const date of itemsPerDay) {
+			daysOfYear[date.date] = date;
+		}
+
+		return daysOfYear;
 	};
 }
 

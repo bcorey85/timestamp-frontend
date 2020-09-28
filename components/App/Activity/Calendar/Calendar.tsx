@@ -1,29 +1,17 @@
 import React from 'react';
 
-import styles from './Calendar.module.scss';
 import { CalendarCell } from './CalendarCell';
+
+import { DateTimeService } from '../../../../utils/DateTimeService';
+import styles from './Calendar.module.scss';
 
 interface Props {
 	monthlyCreatedTotals: number[];
 }
 
-const months = [
-	'Jan',
-	'Feb',
-	'Mar',
-	'Apr',
-	'May',
-	'Jun',
-	'Jul',
-	'Aug',
-	'Sep',
-	'Oct',
-	'Nov',
-	'Dec'
-];
-
 const Calendar = ({ monthlyCreatedTotals }: Props): JSX.Element => {
 	const max = Math.max(...monthlyCreatedTotals);
+	const months = DateTimeService.createMonthsArray();
 
 	return (
 		<div className={styles.container}>
