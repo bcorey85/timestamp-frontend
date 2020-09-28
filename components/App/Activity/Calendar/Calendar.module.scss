@@ -7,15 +7,17 @@
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(12, 9.6rem);
-	@include panel;
+	grid-template-columns: repeat(12, 8.8rem);
+	// border: var(--border-primary);
 
 	@include respondH(1680) {
 		grid-template-columns: repeat(12, 8rem);
 	}
 
 	@include respondH(1280) {
-		grid-template-columns: repeat(4, 9.6rem);
+		grid-template-columns: repeat(4, 8.8rem);
+		border-bottom: var(--border-primary);
+		border-right: var(--border-primary);
 	}
 
 	@include respondH(680) {

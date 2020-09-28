@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+
 import { DailyItemCell } from './DailyItemCell';
 
 import styles from './DailyItemCount.module.scss';
@@ -19,11 +21,28 @@ const DailyItemCount = ({ dailyItemCounts }: Props): JSX.Element => {
 
 	const max = Math.max(...counts);
 
+	const dayLabels = [ '', 'Mon', '', 'Wed', '', 'Fri' ];
+	const monthLabels = [ ...moment.monthsShort() ];
+
 	return (
-		<div>
-			<div>month labels</div>
-			<div>day labels</div>
-			<div className={styles.grid_container}>
+		<div className={styles.grid_container}>
+			<div className={styles.month_labels}>
+				{monthLabels.map((label, i) => {
+					return (
+						<div
+							key={label}
+							className={styles[`month_label_${i + 1}`]}>
+							{label}
+						</div>
+					);
+				})}
+			</div>
+			<div className={styles.days}>
+				<div className={styles.day_labels}>
+					{dayLabels.map((label, i) => {
+						return <div key={i}>{label}</div>;
+					})}
+				</div>
 				<div className={styles.grid}>
 					{dailyItemCounts.map(day => {
 						return (

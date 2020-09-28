@@ -6,10 +6,10 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	// @include panel;
-
-	width: 10.4rem;
-	height: 10.4rem;
+	width: 8.8rem;
+	height: 8.8rem;
+	border: var(--border-primary);
+	border-right: none;
 
 	@include respondH(1680) {
 		width: 8rem;
@@ -17,8 +17,9 @@
 	}
 
 	@include respondH(1280) {
-		width: 9.6rem;
-		height: 9.6rem;
+		width: 8.8rem;
+		height: 8.8rem;
+		border-bottom: none;
 	}
 
 	@include respondH(680) {
@@ -30,12 +31,14 @@
 		width: 6.4rem;
 		height: 6.4rem;
 	}
-}
 
-.container_max {
-	@extend .container;
-	border: 2px solid var(--primary400);
-	border-radius: var(--border-radius);
+	&:last-of-type {
+		border-right: var(--border-primary);
+
+		@include respondH(1280) {
+			border-right: none;
+		}
+	}
 }
 
 .month {

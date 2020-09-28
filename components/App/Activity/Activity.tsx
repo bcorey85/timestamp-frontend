@@ -101,8 +101,8 @@ const Activity = (): JSX.Element => {
 				<Calendar monthlyCreatedTotals={monthlyCreatedTotals} />
 			</AppPageSection>
 			<AppPageSection>
-				<AppPageSectionHeading title='Longest Active Streak' />
-
+				<AppPageSectionHeading title='Activity Per Day' />
+				<DailyItemCount dailyItemCounts={dailyCounts} />
 				<div>
 					{StringService.pluralize(longestStreak.span, {
 						singular: 'day',
@@ -124,8 +124,6 @@ const Activity = (): JSX.Element => {
 						plural: 'items created'
 					})}
 				</div>
-
-				<DailyItemCount dailyItemCounts={dailyCounts} />
 			</AppPageSection>
 		</React.Fragment>
 	);

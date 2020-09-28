@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StringService } from '../../../../utils/StringService';
 import { UiService } from '../../../../utils/UiService';
 
 import styles from './DailyItemCell.module.scss';
@@ -35,7 +36,12 @@ const DailyItemCell = ({ date, count, colorAlpha }: Props): JSX.Element => {
 					tooltipShowing ? styles.tooltip : styles.tooltip_hidden
 				}>
 				<div>{date}</div>
-				<div>{count} items</div>
+				<div>
+					{StringService.pluralize(count, {
+						singular: 'item',
+						plural: 'items'
+					})}
+				</div>
 			</div>
 		</div>
 	);
