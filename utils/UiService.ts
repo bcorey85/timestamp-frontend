@@ -23,7 +23,7 @@ class UiService {
 		}
 	};
 
-	static calculateAlpha = (colorAlpha: number) => {
+	static calculateAlpha = (colorAlpha: number, colorVar: string) => {
 		let adjustedAlpha;
 
 		if (MathService.lte(colorAlpha, 0)) {
@@ -37,9 +37,9 @@ class UiService {
 		}
 
 		const bodyStyles = getComputedStyle(document.body);
-		const textColor = bodyStyles.getPropertyValue('--text500').trim();
+		const colorVarValue = bodyStyles.getPropertyValue(colorVar).trim();
 
-		const color = chroma(textColor).alpha(adjustedAlpha);
+		const color = chroma(colorVarValue).alpha(adjustedAlpha);
 
 		return color;
 	};

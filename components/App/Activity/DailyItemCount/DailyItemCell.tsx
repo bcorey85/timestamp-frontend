@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UiService } from '../../../../utils/UiService';
 
 import styles from './DailyItemCell.module.scss';
@@ -10,13 +10,32 @@ interface Props {
 }
 
 const DailyItemCell = ({ date, count, colorAlpha }: Props): JSX.Element => {
-	const color = UiService.calculateAlpha(colorAlpha);
+	const [ tooltipShowing, setTooltipShowing ] = useState(false);
+	const color =
+		colorAlpha === 0
+			? UiService.calculateAlpha(colorAlpha, '--text500')
+			: UiService.calculateAlpha(colorAlpha, '--primary400');
+
+	const showTooltip = () => {
+		setTooltipShowing(true);
+	};
+
+	const hideTooltip = () => {
+		setTooltipShowing(false);
+	};
 
 	return (
-		<div className={styles.day} style={{ backgroundColor: `${color}` }}>
-			<div className={styles.tooltip}>
-				{date}
-				{count}
+		<div
+			className={styles.day}
+			style={{ backgroundColor: `${color}` }}
+			onMouseEnter={showTooltip}
+			onMouseLeave={hideTooltip}>
+			<div
+				className={
+					tooltipShowing ? styles.tooltip : styles.tooltip_hidden
+				}>
+				<div>{date}</div>
+				<div>{count} items</div>
 			</div>
 		</div>
 	);

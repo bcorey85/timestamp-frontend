@@ -18,7 +18,10 @@ const CalendarCell = ({
 	colorAlpha,
 	isMax
 }: Props): JSX.Element => {
-	const color = UiService.calculateAlpha(colorAlpha);
+	const color =
+		colorAlpha === 0
+			? UiService.calculateAlpha(colorAlpha, '--text500')
+			: UiService.calculateAlpha(colorAlpha, '--primary500');
 
 	return (
 		<div className={isMax ? styles.container_max : styles.container}>

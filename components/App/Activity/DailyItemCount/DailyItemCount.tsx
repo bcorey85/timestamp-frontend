@@ -20,16 +20,23 @@ const DailyItemCount = ({ dailyItemCounts }: Props): JSX.Element => {
 	const max = Math.max(...counts);
 
 	return (
-		<div className={styles.grid}>
-			{dailyItemCounts.map(day => {
-				return (
-					<DailyItemCell
-						date={day.date}
-						count={day.count}
-						colorAlpha={day.count / max}
-					/>
-				);
-			})}
+		<div>
+			<div>month labels</div>
+			<div>day labels</div>
+			<div className={styles.grid_container}>
+				<div className={styles.grid}>
+					{dailyItemCounts.map(day => {
+						return (
+							<DailyItemCell
+								date={day.date}
+								count={day.count}
+								colorAlpha={day.count / max}
+								key={day.date}
+							/>
+						);
+					})}
+				</div>
+			</div>
 		</div>
 	);
 };
