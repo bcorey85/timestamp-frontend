@@ -24,6 +24,7 @@ const useActivityStats = (items: any[] = []) => {
 		span: null,
 		amountOfItems: null
 	});
+	const [ dailyCounts, setDailyCounts ] = useState([]);
 
 	useEffect(
 		() => {
@@ -36,11 +37,13 @@ const useActivityStats = (items: any[] = []) => {
 			const yearTotals = activityStatsService.yearTotals;
 			const monthlyCreatedTotals = activityStatsService.monthTotals;
 			const longestStreak = activityStatsService.longestStreak;
+			const dailyCounts = activityStatsService.countsPerDay;
 
 			setYearsArray(yearsArray);
 			setYearTotals(yearTotals);
 			setMonthlyCreatedTotals(monthlyCreatedTotals);
 			setLongestStreak(longestStreak);
+			setDailyCounts(dailyCounts);
 		},
 		[ items, selectedYear ]
 	);
@@ -51,7 +54,8 @@ const useActivityStats = (items: any[] = []) => {
 		setSelectedYear,
 		yearTotals,
 		monthlyCreatedTotals,
-		longestStreak
+		longestStreak,
+		dailyCounts
 	};
 };
 

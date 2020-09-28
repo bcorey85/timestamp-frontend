@@ -19,6 +19,11 @@ interface LongestStreak {
 	amountOfItems: number;
 }
 
+interface DayCount {
+	date: string;
+	count?: number;
+}
+
 class ActivityStatsService {
 	public yearsArray: any[] = [];
 	public sortedByDate: any[] = [];
@@ -37,8 +42,7 @@ class ActivityStatsService {
 		span: null,
 		amountOfItems: null
 	};
-	public countPerDay: any[] = [];
-	private uniqueDates: string[] = [];
+	public countsPerDay: DayCount[] = [];
 
 	constructor(private items: Item[], private year: number | string) {
 		this.sortedByDate = this.sortByDate(this.items);
@@ -46,12 +50,12 @@ class ActivityStatsService {
 		this.yearsArray = Object.keys(this.mappedToYear).sort(
 			(a, b) => parseInt(b) - parseInt(a)
 		);
-		this.uniqueDates = this.filterUniqueDates(this.items);
 		const selectedData = this.mappedToYear[this.year];
 		this.yearTotals = this.calcYearTotals(selectedData);
 		this.monthTotals = this.calcTotalCreatedByMonth(selectedData);
-		this.longestStreak = this.calcLongestStreak(selectedData);
-		this.countPerDay = this.calcCountPerDay(this.year);
+		this.longestStreak = this.calcLongestStreak(selectedData, this
+			.year as number);
+		this.countsPerDay = this.calcCountPerDay(this.year);
 	}
 
 	private sortByDate = (items: Item[] = []): any[] => {
@@ -96,6 +100,13 @@ class ActivityStatsService {
 		});
 
 		return datesArray.sort((a, b) => a - b);
+	};
+
+	private filterUniqueDatesByYear = (dates: string[], year: number) => {
+		return dates.filter(date => {
+			const dateYear = moment(date, 'M/D/YYYY').year();
+			return dateYear === year;
+		});
 	};
 
 	private calcTotalCreatedByMonth = (items: any[] = []): any[] => {
@@ -165,8 +176,9 @@ class ActivityStatsService {
 		return streaks;
 	};
 
-	private calcLongestStreak = (items: Item[] = []) => {
-		const datesArray = this.uniqueDates;
+	private calcLongestStreak = (items: Item[] = [], year: number) => {
+		const yearItems = this.mappedToYear[year];
+		const datesArray = this.filterUniqueDates(yearItems);
 
 		if (datesArray.length === 0) {
 			return {
@@ -198,13 +210,16 @@ class ActivityStatsService {
 	};
 
 	private calcCountPerDay = (year: string | number) => {
-		const daysOfYear = DateTimeService.createDaysOfYearObject(
+		const daysOfYearArray = DateTimeService.createDaysOfYearArray(
 			year as number
 		);
 
-		const dates = this.uniqueDates;
+		const yearItems = this.mappedToYear[year];
+		const datesArray = this.filterUniqueDates(yearItems);
 
-		const itemsPerDay = dates.map(date => {
+		const itemsPerDayObj: {} = {};
+
+		datesArray.map(date => {
 			const dateObj = {
 				date,
 				count: null
@@ -218,14 +233,26 @@ class ActivityStatsService {
 				}
 			}
 
-			return dateObj;
+			return (itemsPerDayObj[date] = dateObj);
 		});
 
-		for (const date of itemsPerDay) {
-			daysOfYear[date.date] = date;
-		}
+		const daysOfYearArrayWithCounts = daysOfYearArray.map(day => {
+			const dayHasCount = itemsPerDayObj.hasOwnProperty(day);
 
-		return daysOfYear;
+			if (!dayHasCount) {
+				return {
+					date: day,
+					count: 0
+				};
+			}
+
+			return {
+				date: day,
+				count: itemsPerDayObj[day].count
+			};
+		});
+
+		return daysOfYearArrayWithCounts;
 	};
 }
 

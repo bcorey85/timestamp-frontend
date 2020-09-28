@@ -21,6 +21,7 @@ import { DateTimeService } from '../../../utils/DateTimeService';
 import { YearToggle } from './YearToggle';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 import { ActivityStatsService } from '../../../utils/ActivityStatsService';
+import { DailyItemCount } from './DailyItemCount/DailyItemCount';
 
 const Activity = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -36,7 +37,8 @@ const Activity = (): JSX.Element => {
 		setSelectedYear,
 		yearTotals,
 		monthlyCreatedTotals,
-		longestStreak
+		longestStreak,
+		dailyCounts
 	} = useActivityStats(itemsRef.current);
 
 	const handleYearChange = (year: number | string) => {
@@ -122,6 +124,8 @@ const Activity = (): JSX.Element => {
 						plural: 'items created'
 					})}
 				</div>
+
+				<DailyItemCount dailyItemCounts={dailyCounts} />
 			</AppPageSection>
 		</React.Fragment>
 	);

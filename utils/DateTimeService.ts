@@ -13,7 +13,7 @@ class DateTimeService {
 		return moment(date).format('LT');
 	};
 
-	static createDaysOfYearObject = (year: number) => {
+	static createDaysOfYearArray = (year: number) => {
 		const momentYear = moment({ year });
 
 		let daysInYear = 365;
@@ -21,16 +21,13 @@ class DateTimeService {
 			daysInYear += 1;
 		}
 
-		let daysOfYearArr = {};
+		let daysOfYearArray = [];
 		for (let i = 0; i < daysInYear; i++) {
 			const date = momentYear.dayOfYear(i + 1).format('M/D/YYYY');
-
-			daysOfYearArr[date] = {
-				date
-			};
+			daysOfYearArray.push(date);
 		}
 
-		return daysOfYearArr;
+		return daysOfYearArray;
 	};
 
 	static createMonthsArray = () => {

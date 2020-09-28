@@ -3,6 +3,7 @@ import chroma from 'chroma-js';
 import { MathService } from '../../../../utils/MathService';
 
 import styles from './CalendarCell.module.scss';
+import { UiService } from '../../../../utils/UiService';
 
 interface Props {
 	month: string;
@@ -17,22 +18,7 @@ const CalendarCell = ({
 	colorAlpha,
 	isMax
 }: Props): JSX.Element => {
-	let adjustedAlpha;
-
-	if (MathService.lte(colorAlpha, 0)) {
-		adjustedAlpha = 0.2;
-	} else if (MathService.between(colorAlpha, 0, 0.5)) {
-		adjustedAlpha = 0.5;
-	} else if (MathService.between(colorAlpha, 0.6, 0.8)) {
-		adjustedAlpha = 0.7;
-	} else {
-		adjustedAlpha = 1;
-	}
-
-	const bodyStyles = getComputedStyle(document.body);
-	const textColor = bodyStyles.getPropertyValue('--text500').trim();
-
-	const color = chroma(textColor).alpha(adjustedAlpha);
+	const color = UiService.calculateAlpha(colorAlpha);
 
 	return (
 		<div className={isMax ? styles.container_max : styles.container}>
