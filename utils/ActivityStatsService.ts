@@ -91,7 +91,7 @@ class ActivityStatsService {
 		let datesArray: any[] = [];
 
 		items.map(item => {
-			const date = moment(item.meta.date).format('M/D/YYYY');
+			const date = moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY');
 			const alreadyParsed = datesArray.includes(date);
 
 			if (!alreadyParsed) {
@@ -197,7 +197,7 @@ class ActivityStatsService {
 
 		const amountOfItems = items.filter(item => {
 			return longestStreak.includes(
-				moment(item.meta.date).format('M/D/YYYY')
+				moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY')
 			);
 		}).length;
 
@@ -217,16 +217,20 @@ class ActivityStatsService {
 		const yearItems = this.mappedToYear[year];
 		const datesArray = this.filterUniqueDates(yearItems);
 
-		const itemsPerDayObj: {} = {};
+		const itemsPerDayObj: {
+			[key: string]: DayCount;
+		} = {};
 
 		datesArray.map(date => {
 			const dateObj = {
 				date,
-				count: null
+				count: null as number
 			};
 
 			for (const item of this.items) {
-				const itemDate = moment(item.meta.date).format('M/D/YYYY');
+				const itemDate = moment(item.meta.date, 'M/D/YYYY').format(
+					'M/D/YYYY'
+				);
 
 				if (itemDate === date) {
 					dateObj.count += 1;

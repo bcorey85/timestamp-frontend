@@ -1,8 +1,5 @@
-import moment from 'moment';
-
 import { Item, ItemType } from './ItemService';
 import { initialCurrentItem, CreateModalState } from '../redux/createModal';
-import { TagService } from './TagService';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 interface ConfigPayload {
@@ -91,7 +88,7 @@ class CreateModalService {
 			childType = null;
 		}
 
-		return childType;
+		return childType as keyof ItemType;
 	};
 }
 

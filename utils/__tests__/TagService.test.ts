@@ -10,4 +10,9 @@ describe('TagService', () => {
 		const tagString = '#1,#2,#3';
 		expect(TagService.split(tagString)).toEqual([ '#1', '#2', '#3' ]);
 	});
+
+	it('adds spaces to an unformatted tag string', () => {
+		const tagString = '#1,#2,#3';
+		expect(TagService.addSpaces(tagString)).toEqual('#1, #2, #3');
+	});
 });

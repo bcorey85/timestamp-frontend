@@ -1,6 +1,6 @@
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Item, ItemType } from '../utils/ItemService';
+import { ApiItem, Item, ItemType } from '../utils/ItemService';
 import { setAppData } from '../redux/appData';
 import { mockStore } from './__mocks__/mockRedux';
 
@@ -16,6 +16,48 @@ jest.mock('react', () => ({
 beforeEach(() => {
 	jest.clearAllMocks();
 });
+
+export const createTestApiItem = (type?: keyof ItemType): ApiItem => {
+	const baseItem = {
+		userId: 1,
+		projectId: 1,
+		taskId: null as number,
+		noteId: null as number,
+		title: 'test',
+		description: 'test',
+		hours: '1.32',
+		pinned: true,
+		startTime: null as string,
+		endTime: null as string,
+		tags: null as string,
+		notes: 1,
+		tasks: 1,
+		createdAt: new Date().toISOString(),
+		updatedAt: new Date().toISOString()
+	};
+
+	if (type === 'task') {
+		baseItem.taskId = 1;
+		baseItem.tasks = null;
+		baseItem.tags = '#1,#2';
+
+		return baseItem;
+	}
+
+	if (type === 'note') {
+		baseItem.taskId = 1;
+		baseItem.noteId = 1;
+		(baseItem.startTime = new Date().toISOString()),
+			(baseItem.endTime = new Date().toISOString()),
+			(baseItem.tasks = null);
+		baseItem.notes = null;
+		baseItem.tags = '#1,#2';
+
+		return baseItem;
+	}
+
+	return baseItem;
+};
 
 export const createTestItem = (type?: keyof ItemType): Item => {
 	const baseItem = {
@@ -36,8 +78,8 @@ export const createTestItem = (type?: keyof ItemType): Item => {
 			endTime: null as string,
 			hours: '1',
 			time: '12:00pm',
-			createdAt: new Date(Date.now()).toISOString(),
-			updatedAt: new Date(Date.now()).toISOString()
+			createdAt: new Date().toISOString(),
+			updatedAt: new Date().toISOString()
 		},
 		title: 'test',
 		description: 'test',
@@ -60,8 +102,8 @@ export const createTestItem = (type?: keyof ItemType): Item => {
 		(baseItem.type = 'note' as keyof ItemType),
 			(baseItem.itemId.taskId = 1);
 		baseItem.itemId.noteId = 1;
-		(baseItem.meta.startTime = new Date(Date.now()).toISOString()),
-			(baseItem.meta.endTime = new Date(Date.now()).toISOString()),
+		(baseItem.meta.startTime = new Date().toISOString()),
+			(baseItem.meta.endTime = new Date().toISOString()),
 			(baseItem.tasks = null);
 		baseItem.notes = null;
 		baseItem.tags = '#1,#2';
@@ -82,8 +124,8 @@ export const createTestState = () => {
 				projects: [ createTestItem('project') ],
 				tasks: [ createTestItem('task') ],
 				hours: '5',
-				createdAt: new Date(Date.now()).toISOString(),
-				lastLogin: new Date(Date.now()).toISOString(),
+				createdAt: new Date().toISOString(),
+				lastLogin: new Date().toISOString(),
 				recentItems: {
 					notes: [],
 					tasks: [],

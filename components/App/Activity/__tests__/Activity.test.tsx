@@ -14,8 +14,9 @@ describe('Activity', () => {
 	it('renders', () => {
 		createTestState();
 
-		const root = document.documentElement;
+		const root = document.body;
 		root.style.setProperty('--text500', 'hsl(167, 5%, 20%)');
+		root.style.setProperty('--primary400', 'hsl(167, 85%, 37%)');
 
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>

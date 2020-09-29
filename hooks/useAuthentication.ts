@@ -17,9 +17,9 @@ const useAuthentication = () => {
 
 	const auth = {
 		isAuthenticated: false,
-		tokenExpired: null,
+		tokenExpired: null as boolean,
 		isAuthorized: false,
-		userId: null,
+		userId: null as string,
 		token: null as Token
 	};
 
