@@ -21,7 +21,6 @@ const DailyItemCount = ({ dailyItemCounts }: Props): JSX.Element => {
 
 	const max = Math.max(...counts);
 
-	const dayLabels = [ '', 'Mon', '', 'Wed', '', 'Fri' ];
 	const monthLabels = [ ...moment.monthsShort() ];
 
 	return (
@@ -38,11 +37,6 @@ const DailyItemCount = ({ dailyItemCounts }: Props): JSX.Element => {
 				})}
 			</div>
 			<div className={styles.days}>
-				<div className={styles.day_labels}>
-					{dayLabels.map((label, i) => {
-						return <div key={i}>{label}</div>;
-					})}
-				</div>
 				<div className={styles.grid}>
 					{dailyItemCounts.map(day => {
 						return (

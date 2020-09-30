@@ -13,7 +13,6 @@
 .month_labels {
 	position: relative;
 	margin-bottom: .8rem;
-	margin-left: 3.2rem;
 	height: 1rem;
 }
 
@@ -55,55 +54,55 @@
 
 .month_label_2 {
 	@extend .month_label;
-	transform: translateX(5 * 14px);
+	transform: translateX(4 * 1.4rem);
 }
 
 .month_label_3 {
 	@extend .month_label;
-	transform: translateX(9 * 14px);
+	transform: translateX(8 * 1.4rem);
 }
 
 .month_label_4 {
 	@extend .month_label;
-	transform: translateX(13 * 14px);
+	transform: translateX(13 * 1.4rem);
 }
 
 .month_label_5 {
 	@extend .month_label;
-	transform: translateX(18 * 14px);
+	transform: translateX(17 * 1.4rem);
 }
 
 .month_label_6 {
 	@extend .month_label;
-	transform: translateX(22 * 14px);
+	transform: translateX(21 * 1.4rem);
 }
 
 .month_label_7 {
 	@extend .month_label;
-	transform: translateX(26 * 14px);
+	transform: translateX(26 * 1.4rem);
 }
 
 .month_label_8 {
 	@extend .month_label;
-	transform: translateX(31 * 14px);
+	transform: translateX(30 * 1.4rem);
 }
 
 .month_label_9 {
 	@extend .month_label;
-	transform: translateX(35 * 14px);
+	transform: translateX(34 * 1.4rem);
 }
 
 .month_label_10 {
 	@extend .month_label;
-	transform: translateX(40 * 14px);
+	transform: translateX(39 * 1.4rem);
 }
 
 .month_label_11 {
 	@extend .month_label;
-	transform: translateX(44 * 14px);
+	transform: translateX(43 * 1.4rem);
 }
 
 .month_label_12 {
 	@extend .month_label;
-	transform: translateX(48 * 14px);
+	transform: translateX(47 * 1.4rem);
 }

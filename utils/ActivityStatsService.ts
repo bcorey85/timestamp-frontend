@@ -94,7 +94,6 @@ class ActivityStatsService {
 			const date = moment(item.meta.date, moment.ISO_8601).format(
 				'M/D/YYYY'
 			);
-			console.log(date);
 
 			const alreadyParsed = datesArray.includes(date);
 
