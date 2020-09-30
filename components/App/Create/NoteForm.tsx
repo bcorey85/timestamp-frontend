@@ -58,8 +58,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						value={formState.projectId}
 						onChange={e =>
 							formHandlers.setProjectId(e.target.value)}
-						error={errors.projectId}
-						disabled={editMode}>
+						error={errors.projectId}>
 						<option value={null} />
 						{appData.projects.map((project: Item) => {
 							return (
@@ -77,8 +76,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						label='Task'
 						value={formState.taskId}
 						onChange={e => formHandlers.setTaskId(e.target.value)}
-						error={errors.taskId}
-						disabled={editMode}>
+						error={errors.taskId}>
 						<option value={null} />
 						{appData.tasks
 							.filter(

@@ -56,8 +56,7 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 						value={formState.projectId}
 						onChange={e =>
 							formHandlers.setProjectId(e.target.value)}
-						error={errors.projectId}
-						disabled={editMode}>
+						error={errors.projectId}>
 						<option value={null} />
 						{appData.projects.map((project: Item) => {
 							return (

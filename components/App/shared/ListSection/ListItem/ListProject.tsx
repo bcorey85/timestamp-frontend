@@ -11,8 +11,8 @@ interface Props {
 const ListProject = ({ tasks, notes, hours }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
-			<div className={styles.time}>{tasks}</div>
-			<div className={styles.number}>{notes}</div>
+			<div className={styles.time}>{tasks || 0}</div>
+			<div className={styles.number}>{notes || 0}</div>
 			<div className={styles.number}>{MathService.round(hours, 1)}</div>
 		</React.Fragment>
 	);
