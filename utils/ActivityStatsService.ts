@@ -200,6 +200,11 @@ class ActivityStatsService {
 				moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY')
 			);
 		}).length;
+		console.log('service-streak-start', longestStreak[0]);
+		console.log(
+			'service-streak-end',
+			longestStreak[longestStreak.length - 1]
+		);
 
 		return {
 			startDate: longestStreak[0],
@@ -249,12 +254,18 @@ class ActivityStatsService {
 					count: 0
 				};
 			}
+			console.log('service-day', day);
+			console.log('service-count', itemsPerDayObj[day].count);
 
 			return {
 				date: day,
 				count: itemsPerDayObj[day].count
 			};
 		});
+		console.log(
+			'service-days-of-year-with-counts',
+			daysOfYearArrayWithCounts
+		);
 
 		return daysOfYearArrayWithCounts;
 	};
