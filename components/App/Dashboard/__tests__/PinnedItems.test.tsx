@@ -8,9 +8,7 @@ describe('PinnedItems', () => {
 	it('renders', () => {
 		const item = createTestItem();
 
-		const wrapper = shallow(
-			<PinnedItems items={[ item, item ]} userId='1' />
-		);
+		const wrapper = shallow(<PinnedItems items={[ item, item ]} />);
 		expect(wrapper).not.toBeNull();
 	});
 });

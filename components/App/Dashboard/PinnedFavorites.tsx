@@ -9,13 +9,13 @@ import { Slider } from '../shared/Slider/Slider';
 
 import { Item } from '../../../utils/ItemService';
 import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
+import { SortingService } from '../../../utils/SortingService';
 
 interface Props {
 	items: Item[];
 }
 
 const PinnedFavorites = ({ items }: Props): JSX.Element => {
-	const { userId } = useSelector(selectUser);
 	const [ currentPage, setCurrentPage ] = useState('all');
 	const itemPixelWidth = 256;
 
@@ -26,6 +26,10 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	if (items.length === 0) {
 		return <div style={{ color: 'var(--text200)' }}>( Empty )</div>;
 	}
+
+	const sortedItemsByDate = items.sort((a, b) =>
+		SortingService.sortByDate({ value1: a.meta.date, value2: b.meta.date })
+	);
 
 	return (
 		<PinnedSection>
@@ -53,15 +57,16 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 			</SliderFilter>
 			{currentPage === 'all' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
-					<PinnedItems items={items} userId={userId} />
+					<PinnedItems items={sortedItemsByDate} />
 				</Slider>
 			) : null}
 
 			{currentPage === 'project' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
-						items={items.filter(item => item.type === 'project')}
-						userId={userId}
+						items={sortedItemsByDate.filter(
+							item => item.type === 'project'
+						)}
 					/>
 				</Slider>
 			) : null}
@@ -69,8 +74,9 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 			{currentPage === 'task' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
-						items={items.filter(item => item.type === 'task')}
-						userId={userId}
+						items={sortedItemsByDate.filter(
+							item => item.type === 'task'
+						)}
 					/>
 				</Slider>
 			) : null}
@@ -78,8 +84,9 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 			{currentPage === 'note' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
-						items={items.filter(item => item.type === 'note')}
-						userId={userId}
+						items={sortedItemsByDate.filter(
+							item => item.type === 'note'
+						)}
 					/>
 				</Slider>
 			) : null}

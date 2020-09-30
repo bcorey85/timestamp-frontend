@@ -6,10 +6,9 @@ import { Item } from '../../../utils/ItemService';
 
 interface Props {
 	items: Item[];
-	userId: string;
 }
 
-const PinnedItems = ({ items, userId }: Props): JSX.Element => {
+const PinnedItems = ({ items }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
 			{items.map(item => {

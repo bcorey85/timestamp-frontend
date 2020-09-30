@@ -11,6 +11,7 @@ import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 
 import { selectAppData } from '../../../redux/appData';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
@@ -37,8 +38,7 @@ const Note = (): JSX.Element => {
 							toggleCreateModal('new', {
 								createModalPage: 'note'
 							})}>
-						<TypeIcon type={IconType.note} />
-						New Note
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection type='note' items={appData.notes} />

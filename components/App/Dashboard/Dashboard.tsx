@@ -10,7 +10,7 @@ import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { Loading } from '../../shared/Loading/Loading';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { PinnedFavorites } from './PinnedFavorites';
 
 import { selectUser } from '../../../redux/user';
@@ -87,8 +87,7 @@ const Dashboard = (): JSX.Element => {
 								toggleCreateModal('new', {
 									createModalPage: 'project'
 								})}>
-							<TypeIcon type={IconType.project} />
-							New Project
+							<ListAddIcon />
 						</Button>
 					</AppPageSectionHeading>
 					<ListSection
@@ -105,8 +104,7 @@ const Dashboard = (): JSX.Element => {
 								toggleCreateModal('new', {
 									createModalPage: 'task'
 								})}>
-							<TypeIcon type={IconType.task} />
-							New Task
+							<ListAddIcon />
 						</Button>
 					</AppPageSectionHeading>
 					<ListSection
@@ -121,8 +119,7 @@ const Dashboard = (): JSX.Element => {
 							toggleCreateModal('new', {
 								createModalPage: 'note'
 							})}>
-						<TypeIcon type={IconType.note} />
-						New Note
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection type='note' items={appData.recentItems.notes} />

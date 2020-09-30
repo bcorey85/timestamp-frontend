@@ -8,6 +8,7 @@ import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 
 import { selectAppData } from '../../../redux/appData';
 
@@ -34,8 +35,7 @@ const Task = (): JSX.Element => {
 							toggleCreateModal('new', {
 								createModalPage: 'task'
 							})}>
-						<TypeIcon type={IconType.task} />
-						New Task
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection type='task' items={appData.tasks} />

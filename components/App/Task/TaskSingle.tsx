@@ -14,6 +14,7 @@ import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
 import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
 import { DeleteModal } from '../shared/DeleteModal';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 
 import { selectAppData, setAppDataSynced } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
@@ -92,8 +93,7 @@ const TaskSingle = (): JSX.Element => {
 					<Button
 						btnStyle='link_gray'
 						onClick={() => toggleCreateModal('addChild')}>
-						<TypeIcon type={IconType.note} />
-						Add Note
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection

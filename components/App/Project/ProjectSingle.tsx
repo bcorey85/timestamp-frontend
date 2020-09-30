@@ -14,6 +14,7 @@ import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
 import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
 import { DeleteModal } from '../shared/DeleteModal';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 
 import { selectAppData, setAppDataSynced } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
@@ -91,8 +92,7 @@ const ProjectSingle = (): JSX.Element => {
 							toggleCreateModal('addChild', {
 								createModalPage: 'task'
 							})}>
-						<TypeIcon type={IconType.task} />
-						Add Task
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection
@@ -112,8 +112,7 @@ const ProjectSingle = (): JSX.Element => {
 							toggleCreateModal('addChild', {
 								createModalPage: 'note'
 							})}>
-						<TypeIcon type={IconType.note} />
-						Add Note
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection

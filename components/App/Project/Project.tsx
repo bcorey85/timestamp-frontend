@@ -8,6 +8,7 @@ import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 
 import { selectAppData } from '../../../redux/appData';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
@@ -34,8 +35,7 @@ const Project = (): JSX.Element => {
 							toggleCreateModal('new', {
 								createModalPage: 'project'
 							})}>
-						<TypeIcon type={IconType.project} />
-						New Project
+						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
 				<ListSection type='project' items={appData.projects} />
