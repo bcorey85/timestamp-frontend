@@ -6,6 +6,7 @@ import { UpdateDetails } from './UpdateDetails';
 import styles from './UserDetails.module.scss';
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
+import { DateTimeService } from '../../../utils/DateTimeService';
 
 const UserDetails = (): JSX.Element => {
 	const [ updatePasswordOpen, setUpdatePasswordOpen ] = useState(false);
@@ -31,8 +32,14 @@ const UserDetails = (): JSX.Element => {
 				</Button>{' '}
 				)
 			</div>
-			<div>Account Created: {new Date(createdAt).toLocaleString()}</div>
-			<div>Last Login: {new Date(lastLogin).toLocaleString()}</div>
+			<div>
+				Account Created: {DateTimeService.formatDate(createdAt)} -{' '}
+				{DateTimeService.formatTime(createdAt)}
+			</div>
+			<div>
+				Last Login: {DateTimeService.formatDate(lastLogin)} -{' '}
+				{DateTimeService.formatTime(lastLogin)}
+			</div>
 			<div className={styles.edit_form}>
 				<Button btnStyle='link_primary' onClick={handleUpdatePassword}>
 					Change Password
