@@ -92,6 +92,9 @@ class ActivityStatsService {
 
 		items.map(item => {
 			const date = moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY');
+			console.log('meta-date-unique-dates', item.meta.date);
+			console.log('unique-dates-date', date);
+
 			const alreadyParsed = datesArray.includes(date);
 
 			if (!alreadyParsed) {
@@ -182,6 +185,7 @@ class ActivityStatsService {
 	private calcLongestStreak = (items: Item[] = [], year: number) => {
 		const yearItems = this.mappedToYear[year];
 		const datesArray = this.filterUniqueDates(yearItems);
+		console.log('datesArray-longest-streak', datesArray);
 
 		if (datesArray.length === 0) {
 			return {
@@ -193,7 +197,6 @@ class ActivityStatsService {
 		}
 
 		const streaks = this.calcStreaks(datesArray);
-		console.log('streaks', streaks);
 
 		const longestStreak = streaks
 			.sort((a, b) => a.length - b.length)
@@ -204,11 +207,6 @@ class ActivityStatsService {
 				moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY')
 			);
 		}).length;
-		console.log('service-streak-start', longestStreak[0]);
-		console.log(
-			'service-streak-end',
-			longestStreak[longestStreak.length - 1]
-		);
 
 		return {
 			startDate: longestStreak[0],
@@ -252,6 +250,8 @@ class ActivityStatsService {
 
 		const daysOfYearArrayWithCounts = daysOfYearArray.map(day => {
 			const dayHasCount = itemsPerDayObj.hasOwnProperty(day);
+			console.log('service-day', day);
+			console.log('service-count', itemsPerDayObj[day].count);
 
 			if (!dayHasCount) {
 				return {
@@ -259,8 +259,6 @@ class ActivityStatsService {
 					count: 0
 				};
 			}
-			console.log('service-day', day);
-			console.log('service-count', itemsPerDayObj[day].count);
 
 			return {
 				date: day,
