@@ -14,14 +14,16 @@ interface ButtonStyle {
 }
 
 interface Props {
+	type?: 'button' | 'submit' | 'reset';
 	children?: any;
 	btnStyle: keyof ButtonStyle;
-	onClick: (props: any) => any;
+	onClick?: (props: any) => any;
 	id?: string;
 	isLoading?: boolean;
 }
 
 const Button = ({
+	type,
 	children,
 	btnStyle,
 	onClick,
@@ -29,7 +31,11 @@ const Button = ({
 	isLoading
 }: Props): JSX.Element => {
 	return (
-		<button className={styles[`btn_${btnStyle}`]} onClick={onClick} id={id}>
+		<button
+			type={type || 'button'}
+			className={styles[`btn_${btnStyle}`]}
+			onClick={onClick}
+			id={id}>
 			{isLoading ? <LoadingSpinner /> : children}
 		</button>
 	);

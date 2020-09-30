@@ -71,7 +71,11 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 						request
 					</h5>
 				</AuthHeader>
-				<Button id='back' onClick={toggleForm} btnStyle='primary'>
+				<Button
+					type='button'
+					id='back'
+					onClick={toggleForm}
+					btnStyle='primary'>
 					Back
 				</Button>
 			</React.Fragment>
@@ -82,7 +86,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 		<form className={styles.form}>
 			<AuthHeader>
 				<h1>Forgot Password</h1>
-				<h5>Please enter your email to initiate a request</h5>
+				<h5>Please enter your email to reset your password</h5>
 			</AuthHeader>
 			<div className={styles.input_container}>
 				<Input
@@ -97,10 +101,15 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 			</div>
 
 			<ButtonContainer>
-				<Button id='cancel' onClick={toggleForm} btnStyle='outline'>
+				<Button
+					type='button'
+					id='cancel'
+					onClick={toggleForm}
+					btnStyle='outline'>
 					Cancel
 				</Button>
 				<Button
+					type='button'
 					id='submit'
 					onClick={handlePasswordRequest}
 					btnStyle='primary'
