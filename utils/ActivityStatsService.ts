@@ -155,6 +155,9 @@ class ActivityStatsService {
 	private calcStreaks = (dates: string[] = []) => {
 		const streaks = dates.map((date, i) => {
 			const startDate = moment(date, 'M/D/YYYY');
+			console.log('calcStreaks', date);
+
+			console.log('calcStreaks', startDate);
 
 			let sequence = [ startDate.format('M/D/YYYY') ];
 			let currentDate = startDate;
@@ -190,6 +193,7 @@ class ActivityStatsService {
 		}
 
 		const streaks = this.calcStreaks(datesArray);
+		console.log('streaks', streaks);
 
 		const longestStreak = streaks
 			.sort((a, b) => a.length - b.length)
@@ -244,6 +248,7 @@ class ActivityStatsService {
 
 			return (itemsPerDayObj[date] = dateObj);
 		});
+		console.log(itemsPerDayObj);
 
 		const daysOfYearArrayWithCounts = daysOfYearArray.map(day => {
 			const dayHasCount = itemsPerDayObj.hasOwnProperty(day);
@@ -262,10 +267,6 @@ class ActivityStatsService {
 				count: itemsPerDayObj[day].count
 			};
 		});
-		console.log(
-			'service-days-of-year-with-counts',
-			daysOfYearArrayWithCounts
-		);
 
 		return daysOfYearArrayWithCounts;
 	};
