@@ -91,9 +91,10 @@ class ActivityStatsService {
 		let datesArray: any[] = [];
 
 		items.map(item => {
-			const date = moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY');
-			console.log('meta-date-unique-dates', item.meta.date);
-			console.log('unique-dates-date', date);
+			const date = moment(item.meta.date, moment.ISO_8601).format(
+				'M/D/YYYY'
+			);
+			console.log(date);
 
 			const alreadyParsed = datesArray.includes(date);
 
@@ -158,9 +159,6 @@ class ActivityStatsService {
 	private calcStreaks = (dates: string[] = []) => {
 		const streaks = dates.map((date, i) => {
 			const startDate = moment(date, 'M/D/YYYY');
-			console.log('calcStreaks', date);
-
-			console.log('calcStreaks', startDate);
 
 			let sequence = [ startDate.format('M/D/YYYY') ];
 			let currentDate = startDate;
@@ -185,7 +183,6 @@ class ActivityStatsService {
 	private calcLongestStreak = (items: Item[] = [], year: number) => {
 		const yearItems = this.mappedToYear[year];
 		const datesArray = this.filterUniqueDates(yearItems);
-		console.log('datesArray-longest-streak', datesArray);
 
 		if (datesArray.length === 0) {
 			return {
@@ -204,7 +201,7 @@ class ActivityStatsService {
 
 		const amountOfItems = items.filter(item => {
 			return longestStreak.includes(
-				moment(item.meta.date, 'M/D/YYYY').format('M/D/YYYY')
+				moment(item.meta.date, moment.ISO_8601).format('M/D/YYYY')
 			);
 		}).length;
 
@@ -235,7 +232,7 @@ class ActivityStatsService {
 			};
 
 			for (const item of this.items) {
-				const itemDate = moment(item.meta.date, 'M/D/YYYY').format(
+				const itemDate = moment(item.meta.date, moment.ISO_8601).format(
 					'M/D/YYYY'
 				);
 
@@ -246,12 +243,9 @@ class ActivityStatsService {
 
 			return (itemsPerDayObj[date] = dateObj);
 		});
-		console.log(itemsPerDayObj);
 
 		const daysOfYearArrayWithCounts = daysOfYearArray.map(day => {
 			const dayHasCount = itemsPerDayObj.hasOwnProperty(day);
-			console.log('service-day', day);
-			console.log('service-count', itemsPerDayObj[day].count);
 
 			if (!dayHasCount) {
 				return {
