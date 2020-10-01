@@ -83,3 +83,14 @@
 	margin-right: .8rem;
 	color: var(--text300);
 }
+
+.drawer_type_icon {
+	& span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		margin-left: .3rem;
+		margin-right: 1.2rem;
+	}
+}

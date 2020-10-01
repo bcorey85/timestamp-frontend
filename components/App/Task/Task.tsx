@@ -9,15 +9,18 @@ import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
+import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
+import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
 
 import { selectAppData } from '../../../redux/appData';
-
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
+import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 
 const Task = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
-
+	const { selected, handleSelect } = useVisibilityFilter();
 	return (
 		<div>
 			<AppPageHeader>
@@ -26,6 +29,14 @@ const Task = (): JSX.Element => {
 					subheading='Task'
 					subheadingType={IconType.task}
 				/>
+				<AppPageHeaderControls>
+					<OverflowMenu>
+						<OverflowToggleVisible
+							selected={selected}
+							handleClick={handleSelect}
+						/>
+					</OverflowMenu>
+				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
 				<AppPageSectionHeading title='Tasks'>

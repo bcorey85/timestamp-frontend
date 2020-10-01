@@ -13,6 +13,8 @@ import { DeleteModal } from '../shared/DeleteModal';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { NoteBody } from './NoteBody';
 
+import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+
 import { selectAppData, setAppDataSynced } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
 import { useRouterService } from '../../../hooks/useRouterService';
@@ -32,7 +34,6 @@ const NoteSingle = (): JSX.Element => {
 	})[0];
 	const { toggleCreateModal } = useCreateModal(currentNote);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
-
 	const { request: deleteNoteRequest } = useApiRequest();
 
 	const handleDelete = async () => {
@@ -63,6 +64,7 @@ const NoteSingle = (): JSX.Element => {
 
 				<AppPageHeaderControls>
 					<OverflowMenu>
+						<OverflowHeader>Actions</OverflowHeader>
 						<OverflowEdit
 							handleClick={() => toggleCreateModal('edit')}>
 							Edit

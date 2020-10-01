@@ -151,7 +151,7 @@ class ActivityStatsService {
 			projects,
 			tasks,
 			notes,
-			averageNoteMinutes: hours / notes * 60
+			averageNoteMinutes: hours / notes * 60 || 0
 		};
 	};
 

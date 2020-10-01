@@ -15,6 +15,8 @@ import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdi
 import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
 import { DeleteModal } from '../shared/DeleteModal';
 import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
+import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
 
 import { selectAppData, setAppDataSynced } from '../../../redux/appData';
 import { selectUser } from '../../../redux/user';
@@ -25,21 +27,22 @@ import { useApiRequest } from '../../../hooks/useApiRequest';
 import { deleteTaskApiConfig } from '../../../api/task';
 import { Item } from '../../../utils/ItemService';
 import { MathService } from '../../../utils/MathService';
+import { StringService } from '../../../utils/StringService';
+import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 
 const TaskSingle = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
-
 	const currentTask: Item = appData.tasks.filter(task => {
 		return task.itemId.taskId === Number(router.query.taskId);
 	})[0];
 
 	const { toggleCreateModal } = useCreateModal(currentTask);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
-
 	const { request: deleteTaskRequest } = useApiRequest();
+	const { selected, handleSelect } = useVisibilityFilter();
 
 	const handleDelete = async () => {
 		const config = deleteTaskApiConfig({
@@ -70,13 +73,19 @@ const TaskSingle = (): JSX.Element => {
 							).toLocaleDateString()}&nbsp; - &nbsp;
 							{MathService.round(currentTask.meta.hours, 1)} hr
 						</p>
-
 						<p>{currentTask.description}</p>
+						<p>
+							{StringService.pluralize(currentTask.notes || 0, {
+								singular: 'note',
+								plural: 'notes'
+							})}
+						</p>
 					</AppPageMeta>
 				</AppPageTitle>
 
 				<AppPageHeaderControls>
 					<OverflowMenu>
+						<OverflowHeader>Actions</OverflowHeader>
 						<OverflowEdit
 							handleClick={() => toggleCreateModal('edit')}>
 							Edit
@@ -84,6 +93,10 @@ const TaskSingle = (): JSX.Element => {
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
+						<OverflowToggleVisible
+							selected={selected}
+							handleClick={handleSelect}
+						/>
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>

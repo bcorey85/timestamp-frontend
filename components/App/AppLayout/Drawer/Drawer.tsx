@@ -26,6 +26,7 @@ import {
 
 import styles from './Drawer.module.scss';
 import { clearAppData } from '../../../../redux/appData';
+import { TypeIcon } from '../../shared/TypeIcon';
 
 interface Props {
 	toggleCreateModal: (mode: keyof ModalMode, config: ModalConfig) => void;
@@ -77,19 +78,6 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 							<BiGridAlt className={styles.drawer_icon} />
 							Dashboard
 						</DrawerLink>
-						<DrawerLink route={`projects`}>
-							<BiClipboard
-								className={styles.drawer_icon}
-							/>Projects
-						</DrawerLink>
-						<DrawerLink route={`tasks`}>
-							<BiCheckSquare
-								className={styles.drawer_icon}
-							/>Tasks
-						</DrawerLink>
-						<DrawerLink route={`notes`}>
-							<BiNote className={styles.drawer_icon} />Notes
-						</DrawerLink>
 						<DrawerLink route={`activity`}>
 							<BiTime className={styles.drawer_icon} />Activity
 						</DrawerLink>
@@ -97,6 +85,23 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 							<BiSearchAlt2
 								className={styles.drawer_icon}
 							/>Search
+						</DrawerLink>
+
+						<DrawerLink route={`projects`}>
+							<span className={styles.drawer_type_icon}>
+								<TypeIcon type='project' />
+							</span>Projects
+						</DrawerLink>
+						<DrawerLink route={`tasks`}>
+							<span className={styles.drawer_type_icon}>
+								<TypeIcon type='task' />
+							</span>
+							Tasks
+						</DrawerLink>
+						<DrawerLink route={`notes`}>
+							<span className={styles.drawer_type_icon}>
+								<TypeIcon type='note' />
+							</span>Notes
 						</DrawerLink>
 					</ul>
 					<ul className={styles.nav_links}>

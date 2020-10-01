@@ -12,16 +12,21 @@ import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { PinnedFavorites } from './PinnedFavorites';
+import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
+import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
 
 import { selectUser } from '../../../redux/user';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useAppData } from '../../../hooks/useAppData';
+import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 
 const Dashboard = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 
 	const { appData } = useAppData();
 	const { toggleCreateModal } = useCreateModal();
+	const { selected, handleSelect } = useVisibilityFilter();
 
 	const pinnedItems = [
 		...appData.notes,
@@ -37,6 +42,14 @@ const Dashboard = (): JSX.Element => {
 					subheading='Dashboard'
 					subheadingType={IconType.generic}
 				/>
+				<AppPageHeaderControls>
+					<OverflowMenu>
+						<OverflowToggleVisible
+							selected={selected}
+							handleClick={handleSelect}
+						/>
+					</OverflowMenu>
+				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
 				<StatsBar>
