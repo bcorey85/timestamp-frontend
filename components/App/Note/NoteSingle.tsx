@@ -11,6 +11,7 @@ import {
 } from '../AppPage';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
 import {
 	OverflowEdit,
 	OverflowDelete,
@@ -61,6 +62,8 @@ const NoteSingle = (): JSX.Element => {
 						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
+						<OverflowDivider />
+						<OverflowHeader>Danger Zone</OverflowHeader>
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>

@@ -30,9 +30,9 @@ const CompleteModal = ({
 				</h1>
 				<div className={styles.message}>
 					<div className={styles.warning}>
-						Are you sure you want to complete the following? :
+						Do you want to complete the following? :
 					</div>
-					<div className={styles.delete_item}>
+					<div className={styles.complete_item}>
 						<strong>{completeItem}</strong>
 					</div>
 				</div>

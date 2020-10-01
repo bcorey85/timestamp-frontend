@@ -1,7 +1,7 @@
 import React from 'react';
 import { OverflowLink } from '../OverflowLink';
 import { OverflowHeader } from '../OverflowHeader';
-import { BiCheck } from 'react-icons/bi';
+import { BiCheck, BiCaretRight } from 'react-icons/bi';
 
 interface Props {
 	handleClick: (selected: string) => void;
@@ -14,20 +14,20 @@ const OverflowToggleVisible = ({
 }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
-			<OverflowHeader>Toggle Visible Items</OverflowHeader>
+			<OverflowHeader>Visible Items</OverflowHeader>
 			<OverflowLink handleClick={() => handleClick('active')}>
 				{selected === 'active' ? (
-					<BiCheck style={{ color: 'var(--text500)' }} />
+					<BiCaretRight style={{ color: 'var(--text500)' }} />
 				) : (
-					<BiCheck style={{ color: 'var(--background-primary)' }} />
+					<BiCaretRight style={{ color: 'transparent' }} />
 				)}
 				Active
 			</OverflowLink>
 			<OverflowLink handleClick={() => handleClick('complete')}>
 				{selected === 'complete' ? (
-					<BiCheck style={{ color: 'var(--text500)' }} />
+					<BiCaretRight style={{ color: 'var(--text500)' }} />
 				) : (
-					<BiCheck style={{ color: 'var(--background-primary)' }} />
+					<BiCaretRight style={{ color: 'transparent' }} />
 				)}
 				Completed
 			</OverflowLink>

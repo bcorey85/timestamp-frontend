@@ -15,6 +15,7 @@ import { ListSection } from '../shared/ListSection/ListSection';
 import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
 import {
 	OverflowEdit,
 	OverflowDelete,
@@ -85,9 +86,12 @@ const TaskSingle = (): JSX.Element => {
 						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
+						<OverflowDivider />
+						<OverflowHeader>Danger Zone</OverflowHeader>
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
+						<OverflowDivider />
 						<OverflowToggleVisible
 							selected={selected}
 							handleClick={handleSelect}

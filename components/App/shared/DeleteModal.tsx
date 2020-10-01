@@ -30,7 +30,7 @@ const DeleteModal = ({
 				</h1>
 				<div className={styles.message}>
 					<div className={styles.warning}>
-						Are you sure you want to delete the following? :
+						Do you want to delete the following? :
 					</div>
 					<div className={styles.delete_item}>
 						<strong>{deleteItem}</strong>
