@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
@@ -10,45 +10,33 @@ import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
 import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
 import { DeleteModal } from '../shared/DeleteModal';
+import { CompleteModal } from '../shared/CompleteModal';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { NoteBody } from './NoteBody';
-
 import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import { OverflowComplete } from '../shared/OverflowMenu/OverflowActions/OverflowComplete';
 
-import { selectAppData, setAppDataSynced } from '../../../redux/appData';
-import { selectUser } from '../../../redux/user';
+import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { useCreateModal } from '../../../hooks/create/useCreateModal';
-import { useToggle } from '../../../hooks/useToggle';
-import { useApiRequest } from '../../../hooks/useApiRequest';
-import { deleteNoteApiConfig } from '../../../api/note';
 import { Item } from '../../../utils/ItemService';
+import { useNoteActions } from '../../../hooks/itemActions/useNoteActions';
 
 const NoteSingle = (): JSX.Element => {
-	const dispatch = useDispatch();
-	const { userId, token } = useSelector(selectUser);
 	const appData = useSelector(selectAppData);
 	const { router } = useRouterService();
 	const currentNote: Item = appData.notes.filter(note => {
 		return note.itemId.noteId === Number(router.query.noteId);
 	})[0];
-	const { toggleCreateModal } = useCreateModal(currentNote);
-	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
-	const { request: deleteNoteRequest } = useApiRequest();
 
-	const handleDelete = async () => {
-		const config = deleteNoteApiConfig({
-			noteId: currentNote.itemId.noteId,
-			userId,
-			token
-		});
-
-		await deleteNoteRequest(config);
-
-		dispatch(setAppDataSynced(false));
-		toggleDeleteModal();
-		router.push.dashboard();
-	};
+	const {
+		handleComplete,
+		handleEdit,
+		handleDelete,
+		deleteModalOpen,
+		toggleDeleteModal,
+		completeModalOpen,
+		toggleCompleteModal
+	} = useNoteActions(currentNote);
 
 	return (
 		<div>
@@ -65,8 +53,8 @@ const NoteSingle = (): JSX.Element => {
 				<AppPageHeaderControls>
 					<OverflowMenu>
 						<OverflowHeader>Actions</OverflowHeader>
-						<OverflowEdit
-							handleClick={() => toggleCreateModal('edit')}>
+						<OverflowComplete handleClick={toggleCompleteModal} />
+						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
 						<OverflowDelete handleClick={toggleDeleteModal}>
@@ -85,6 +73,13 @@ const NoteSingle = (): JSX.Element => {
 				isOpen={deleteModalOpen}
 				toggleModal={toggleDeleteModal}
 				handleDelete={handleDelete}
+			/>
+			<CompleteModal
+				title='Complete Note'
+				completeItem={currentNote.title}
+				isOpen={completeModalOpen}
+				toggleModal={toggleCompleteModal}
+				handleComplete={handleComplete}
 			/>
 		</div>
 	);
