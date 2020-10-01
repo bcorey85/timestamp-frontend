@@ -16,8 +16,8 @@ const Header = (): JSX.Element => {
 			<div className={styles.nav_container}>
 				<NavToggle />
 				<Link
-					href='/app/[userId]/projects'
-					as={`/app/${userId}/projects`}>
+					href='/app/[userId]/dashboard'
+					as={`/app/${userId}/dashboard`}>
 					<img src='/images/logo-temp.svg' />
 				</Link>
 			</div>
