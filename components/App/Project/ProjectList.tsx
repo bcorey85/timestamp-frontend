@@ -3,28 +3,30 @@ import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { AppPageSection } from '../AppPage/AppPageSection';
-import { AppPageTitle } from '../AppPage/AppPageTitle';
-import { AppPageHeader } from '../AppPage/AppPageHeader';
-import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
+import {
+	AppPageSection,
+	AppPageTitle,
+	AppPageHeader,
+	AppPageSectionHeading
+} from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
+import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions';
 
 import { selectAppData } from '../../../redux/appData';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 
-const Project = (): JSX.Element => {
+const ProjectList = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
 
 	const { selected, handleSelect } = useVisibilityFilter();
 
 	return (
-		<div>
+		<React.Fragment>
 			<AppPageHeader>
 				<AppPageTitle
 					heading='All Projects'
@@ -52,10 +54,15 @@ const Project = (): JSX.Element => {
 						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
-				<ListSection type='project' items={appData.projects} />
+				<ListSection
+					type='project'
+					items={appData.projects}
+					pagination={true}
+					limit={10}
+				/>
 			</AppPageSection>
-		</div>
+		</React.Fragment>
 	);
 };
 
-export { Project };
+export { ProjectList };

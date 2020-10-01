@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Task } from '../../../../components/App/Task/Task';
+import { TaskList } from '../../../../components/App/Task/TaskList';
 import { PrivateRoute } from '../../../../components/App/shared/PrivateRoute';
 import { Meta } from '../../../../components/Meta/Meta';
 
@@ -8,7 +8,7 @@ const TasksPage = () => {
 	return (
 		<PrivateRoute>
 			<Meta pageTitle='Tasks' />
-			<Task />
+			<TaskList />
 		</PrivateRoute>
 	);
 };

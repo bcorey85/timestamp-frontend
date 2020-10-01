@@ -2,13 +2,20 @@
 
 .container {
 	@include panel;
-	// Attempt to fix flashing border bug when changing list sorting, need better solution
-	overflow: hidden;
+	position: relative;
 }
 
 .empty_list {
 	display: inline-block;
 	padding: 1.2rem 1.6rem;
 	line-height: 2rem;
-	color: var(--text200);
+}
+
+.pagination_container {
+	min-height: 4rem;
+	margin-bottom: -4rem;
+
+	@include respondH(550) {
+		margin-bottom: -3.2rem;
+	}
 }

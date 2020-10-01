@@ -60,6 +60,11 @@ const useListSort = (items: any[]) => {
 					value2: b[filter]
 				});
 			}
+
+			return SortingService.sort({
+				value1: a[filter],
+				value2: b[filter]
+			});
 		});
 
 		if (sortDesc === true) {

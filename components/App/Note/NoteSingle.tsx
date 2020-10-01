@@ -2,19 +2,23 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
-import { AppPageHeader } from '../AppPage/AppPageHeader';
-import { AppPageMeta } from '../AppPage/AppPageMeta';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { AppPageTitle } from '../AppPage/AppPageTitle';
+import {
+	AppPageHeader,
+	AppPageMeta,
+	AppPageHeaderControls,
+	AppPageTitle,
+	AppPageSection
+} from '../AppPage';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
-import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
+import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import {
+	OverflowEdit,
+	OverflowDelete,
+	OverflowComplete
+} from '../shared/OverflowMenu/OverflowActions';
 import { DeleteModal } from '../shared/DeleteModal';
 import { CompleteModal } from '../shared/CompleteModal';
-import { AppPageSection } from '../AppPage/AppPageSection';
 import { NoteBody } from './NoteBody';
-import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
-import { OverflowComplete } from '../shared/OverflowMenu/OverflowActions/OverflowComplete';
 
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
@@ -39,7 +43,7 @@ const NoteSingle = (): JSX.Element => {
 	} = useNoteActions(currentNote);
 
 	return (
-		<div>
+		<React.Fragment>
 			<AppPageHeader>
 				<AppPageTitle
 					heading={currentNote.title}
@@ -81,7 +85,7 @@ const NoteSingle = (): JSX.Element => {
 				toggleModal={toggleCompleteModal}
 				handleComplete={handleComplete}
 			/>
-		</div>
+		</React.Fragment>
 	);
 };
 

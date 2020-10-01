@@ -1,18 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { Project } from '../Project';
+import { NoteList } from '../NoteList';
 
 import {
 	mockStore,
 	MockReduxProvider
 } from '../../../../test/__mocks__/mockRedux';
 
-describe('Project', () => {
+describe('NoteList', () => {
 	it('renders', () => {
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
-				<Project />
+				<NoteList />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

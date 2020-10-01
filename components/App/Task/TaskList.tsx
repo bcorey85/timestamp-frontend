@@ -1,35 +1,35 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { IconType, TypeIcon } from '../shared/TypeIcon';
+import { IconType } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-
-import { AppPageSection } from '../AppPage/AppPageSection';
-import { AppPageTitle } from '../AppPage/AppPageTitle';
-import { AppPageHeader } from '../AppPage/AppPageHeader';
-import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
+import {
+	AppPageSection,
+	AppPageTitle,
+	AppPageSectionHeading,
+	AppPageHeader
+} from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
+import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
+import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions';
 
 import { selectAppData } from '../../../redux/appData';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 
-const Note = (): JSX.Element => {
+const TaskList = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
 	const { selected, handleSelect } = useVisibilityFilter();
-
 	return (
-		<div>
+		<React.Fragment>
 			<AppPageHeader>
 				<AppPageTitle
-					heading='All Notes'
-					subheading='Note'
-					subheadingType={IconType.note}
+					heading='All Tasks'
+					subheading='Task'
+					subheadingType={IconType.task}
 				/>
 				<AppPageHeaderControls>
 					<OverflowMenu>
@@ -41,20 +41,25 @@ const Note = (): JSX.Element => {
 				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
-				<AppPageSectionHeading title='Notes'>
+				<AppPageSectionHeading title='Tasks'>
 					<Button
 						btnStyle='link_gray'
 						onClick={() =>
 							toggleCreateModal('new', {
-								createModalPage: 'note'
+								createModalPage: 'task'
 							})}>
 						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
-				<ListSection type='note' items={appData.notes} />
+				<ListSection
+					type='task'
+					items={appData.tasks}
+					pagination={true}
+					limit={10}
+				/>
 			</AppPageSection>
-		</div>
+		</React.Fragment>
 	);
 };
 
-export { Note };
+export { TaskList };

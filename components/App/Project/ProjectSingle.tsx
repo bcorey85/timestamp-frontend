@@ -3,22 +3,26 @@ import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { AppPageSection } from '../AppPage/AppPageSection';
-import { AppPageTitle } from '../AppPage/AppPageTitle';
-import { AppPageMeta } from '../AppPage/AppPageMeta';
-import { AppPageHeader } from '../AppPage/AppPageHeader';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
+import {
+	AppPageSection,
+	AppPageTitle,
+	AppPageMeta,
+	AppPageHeader,
+	AppPageHeaderControls,
+	AppPageSectionHeading
+} from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
-import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
+import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import {
+	OverflowEdit,
+	OverflowDelete,
+	OverflowToggleVisible,
+	OverflowComplete
+} from '../shared/OverflowMenu/OverflowActions';
 import { DeleteModal } from '../shared/DeleteModal';
 import { CompleteModal } from '../shared/CompleteModal';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
-import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
-import { OverflowComplete } from '../shared/OverflowMenu/OverflowActions/OverflowComplete';
 
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
@@ -49,7 +53,7 @@ const ProjectSingle = (): JSX.Element => {
 	} = useProjectActions(currentProject);
 
 	return (
-		<div>
+		<React.Fragment>
 			<AppPageHeader>
 				<AppPageTitle
 					heading={currentProject.title}
@@ -70,8 +74,7 @@ const ProjectSingle = (): JSX.Element => {
 									singular: 'task',
 									plural: 'tasks'
 								}
-							)}{' '}
-							- {' '}
+							)}&nbsp; - &nbsp;
 							{StringService.pluralize(
 								currentProject.notes || 0,
 								{
@@ -119,6 +122,8 @@ const ProjectSingle = (): JSX.Element => {
 							task.itemId.projectId ===
 							currentProject.itemId.projectId
 					)}
+					pagination={true}
+					limit={6}
 				/>
 			</AppPageSection>
 			<AppPageSection>
@@ -139,6 +144,8 @@ const ProjectSingle = (): JSX.Element => {
 							note.itemId.projectId ===
 							currentProject.itemId.projectId
 					)}
+					pagination={true}
+					limit={6}
 				/>
 			</AppPageSection>
 			<DeleteModal
@@ -155,7 +162,7 @@ const ProjectSingle = (): JSX.Element => {
 				toggleModal={toggleCompleteModal}
 				handleComplete={handleComplete}
 			/>
-		</div>
+		</React.Fragment>
 	);
 };
 

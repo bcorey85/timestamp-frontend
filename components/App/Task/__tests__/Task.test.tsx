@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { Task } from '../Task';
+import { TaskList } from '../TaskList';
 
 import {
 	mockStore,
@@ -12,7 +12,7 @@ describe('Task', () => {
 	it('renders', () => {
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
-				<Task />
+				<TaskList />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

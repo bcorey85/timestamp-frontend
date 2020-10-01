@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const usePagination = (array: any[], limit: number) => {
+	const [ items, setItems ] = useState(array);
 	const startIndex = 0;
-	const endIndex = array.length - 1;
+	const endIndex = items.length - 1;
 	const [ currentIndex, setCurrentIndex ] = useState(0);
-	const [ page, setPage ] = useState(array.slice(startIndex));
+	const [ page, setPage ] = useState(items.slice(startIndex, limit));
+	const [ pageNumber, setPageNumber ] = useState(1);
+	const totalPages = Math.ceil(array.length / limit);
+
+	useEffect(
+		() => {
+			setPage(items.slice(currentIndex, currentIndex + limit));
+		},
+		[ items ]
+	);
 
 	const next = () => {
 		const nextIndex = currentIndex + limit;
-		if (nextIndex > endIndex) {
+		const limitPastEnd = nextIndex > endIndex;
+
+		if (limitPastEnd) {
 			setCurrentIndex(endIndex);
-			setPage(array.slice(endIndex));
+			setPage(items.slice(endIndex, endIndex + limit));
+			setPageNumber(1);
 		} else {
 			setCurrentIndex(nextIndex);
-			setPage(array.slice(nextIndex));
+			setPage(items.slice(nextIndex, nextIndex + limit));
+			setPageNumber(pageNumber + 1);
 		}
 	};
 
@@ -21,15 +35,32 @@ const usePagination = (array: any[], limit: number) => {
 		const nextIndex = currentIndex - limit;
 		if (nextIndex < 0) {
 			setCurrentIndex(0);
-			setPage(array.slice(0));
-			return;
+			setPage(items.slice(startIndex, limit));
+			setPageNumber(1);
 		} else {
 			setCurrentIndex(nextIndex);
-			setPage(array.slice(nextIndex));
+			setPage(items.slice(nextIndex, nextIndex + limit));
+			setPageNumber(pageNumber - 1);
 		}
 	};
 
-	return { next, back, page, currentIndex, startIndex, endIndex };
+	const updatePaginationItems = (newItems: any[]) => {
+		setItems(newItems);
+	};
+
+	const showNextButton = currentIndex + limit <= endIndex;
+	const showBackButton = currentIndex !== startIndex;
+
+	return {
+		next,
+		back,
+		page,
+		showNextButton,
+		showBackButton,
+		pageNumber,
+		totalPages,
+		updatePaginationItems
+	};
 };
 
 export { usePagination };

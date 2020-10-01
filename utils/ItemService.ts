@@ -133,8 +133,8 @@ class ItemService {
 			description: this.item.description,
 			tags: this.item.tags || null,
 			pinned: this.item.pinned,
-			notes: this.item.notes || null,
-			tasks: this.item.tasks || null,
+			notes: this.item.notes || 0,
+			tasks: this.item.tasks || 0,
 			pathname: this.pathname,
 			meta: this.meta
 		};

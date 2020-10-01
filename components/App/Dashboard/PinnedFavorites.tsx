@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../redux/user';
 
 import { Button } from '../../shared/Button';
 import { PinnedItems } from './PinnedItems';
 import { SliderFilter } from '../shared/Slider/SliderFilter';
 import { Slider } from '../shared/Slider/Slider';
+import { NoItemsMessage } from '../shared/NoItemsMessage';
 
 import { Item } from '../../../utils/ItemService';
 import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
@@ -24,7 +23,11 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	};
 
 	if (items.length === 0) {
-		return <div style={{ color: 'var(--text200)' }}>( Empty )</div>;
+		return (
+			<div>
+				<NoItemsMessage />
+			</div>
+		);
 	}
 
 	const sortedItemsByDate = items.sort((a, b) =>
@@ -61,31 +64,11 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 				</Slider>
 			) : null}
 
-			{currentPage === 'project' ? (
+			{currentPage !== 'all' ? (
 				<Slider itemPixelWidth={itemPixelWidth}>
 					<PinnedItems
 						items={sortedItemsByDate.filter(
-							item => item.type === 'project'
-						)}
-					/>
-				</Slider>
-			) : null}
-
-			{currentPage === 'task' ? (
-				<Slider itemPixelWidth={itemPixelWidth}>
-					<PinnedItems
-						items={sortedItemsByDate.filter(
-							item => item.type === 'task'
-						)}
-					/>
-				</Slider>
-			) : null}
-
-			{currentPage === 'note' ? (
-				<Slider itemPixelWidth={itemPixelWidth}>
-					<PinnedItems
-						items={sortedItemsByDate.filter(
-							item => item.type === 'note'
+							item => item.type === currentPage
 						)}
 					/>
 				</Slider>

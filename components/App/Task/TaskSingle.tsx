@@ -3,22 +3,27 @@ import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
 import { Button } from '../../shared/Button';
-import { AppPageSection } from '../AppPage/AppPageSection';
-import { AppPageTitle } from '../AppPage/AppPageTitle';
-import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
-import { AppPageHeader } from '../AppPage/AppPageHeader';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { AppPageMeta } from '../AppPage/AppPageMeta';
+import {
+	AppPageSection,
+	AppPageTitle,
+	AppPageSectionHeading,
+	AppPageHeader,
+	AppPageHeaderControls,
+	AppPageMeta
+} from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
+import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowEdit } from '../shared/OverflowMenu/OverflowActions/OverflowEdit';
-import { OverflowDelete } from '../shared/OverflowMenu/OverflowActions/OverflowDelete';
+import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
+import {
+	OverflowEdit,
+	OverflowDelete,
+	OverflowToggleVisible,
+	OverflowComplete
+} from '../shared/OverflowMenu/OverflowActions';
+
 import { DeleteModal } from '../shared/DeleteModal';
 import { CompleteModal } from '../shared/CompleteModal';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
-import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
-import { OverflowComplete } from '../shared/OverflowMenu/OverflowActions/OverflowComplete';
 
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
@@ -50,7 +55,7 @@ const TaskSingle = (): JSX.Element => {
 	} = useTaskActions(currentTask);
 
 	return (
-		<div>
+		<React.Fragment>
 			<AppPageHeader>
 				<AppPageTitle
 					heading={currentTask.title}
@@ -73,7 +78,6 @@ const TaskSingle = (): JSX.Element => {
 						</p>
 					</AppPageMeta>
 				</AppPageTitle>
-
 				<AppPageHeaderControls>
 					<OverflowMenu>
 						<OverflowHeader>Actions</OverflowHeader>
@@ -106,6 +110,8 @@ const TaskSingle = (): JSX.Element => {
 						(note: Item) =>
 							note.itemId.taskId === currentTask.itemId.taskId
 					)}
+					pagination={true}
+					limit={6}
 				/>
 			</AppPageSection>
 			<DeleteModal
@@ -122,7 +128,7 @@ const TaskSingle = (): JSX.Element => {
 				toggleModal={toggleCompleteModal}
 				handleComplete={handleComplete}
 			/>
-		</div>
+		</React.Fragment>
 	);
 };
 
