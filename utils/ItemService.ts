@@ -16,6 +16,8 @@ export interface ApiItem {
 	tasks?: number;
 	createdAt: string;
 	updatedAt: string;
+	completedOn?: string;
+	completedBy?: string;
 }
 
 interface Pathname {
@@ -30,6 +32,8 @@ export interface ItemMeta {
 	hours: string;
 	createdAt: string;
 	updatedAt: string;
+	completedOn?: string;
+	completedBy?: string;
 }
 
 interface ItemIdentifier {
@@ -67,7 +71,9 @@ class ItemService {
 		endTime: null,
 		hours: null,
 		createdAt: null,
-		updatedAt: null
+		updatedAt: null,
+		completedOn: null,
+		completedBy: null
 	};
 	public pathname: Pathname = { href: null, as: null };
 	public type: keyof ItemType = null;
@@ -116,7 +122,9 @@ class ItemService {
 			endTime: this.item.endTime || null,
 			hours: this.item.hours,
 			createdAt: this.item.createdAt,
-			updatedAt: this.item.updatedAt
+			updatedAt: this.item.updatedAt,
+			completedOn: this.item.completedOn || null,
+			completedBy: this.item.completedBy || null
 		};
 	};
 

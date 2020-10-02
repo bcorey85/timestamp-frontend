@@ -34,6 +34,8 @@ import { Item } from '../../../utils/ItemService';
 import { MathService } from '../../../utils/MathService';
 import { StringService } from '../../../utils/StringService';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
+import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
+import { DateTimeService } from '../../../utils/DateTimeService';
 
 const TaskSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -43,7 +45,6 @@ const TaskSingle = (): JSX.Element => {
 	})[0];
 
 	const { toggleCreateModal } = useCreateModal(currentTask);
-	const { selected, handleSelect } = useVisibilityFilter();
 
 	const {
 		handleComplete,
@@ -54,6 +55,10 @@ const TaskSingle = (): JSX.Element => {
 		completeModalOpen,
 		toggleCompleteModal
 	} = useTaskActions(currentTask);
+	const taskIsComplete = currentTask.meta.completedOn !== null;
+	const taskCompleteDate = DateTimeService.formatDate(
+		currentTask.meta.completedOn
+	);
 
 	return (
 		<React.Fragment>
@@ -77,12 +82,20 @@ const TaskSingle = (): JSX.Element => {
 								plural: 'notes'
 							})}
 						</p>
+						<p>
+							{taskIsComplete ? (
+								<strong>Completed on {taskCompleteDate}</strong>
+							) : null}
+						</p>
 					</AppPageMeta>
 				</AppPageTitle>
 				<AppPageHeaderControls>
 					<OverflowMenu>
 						<OverflowHeader>Actions</OverflowHeader>
-						<OverflowComplete handleClick={toggleCompleteModal} />
+						<OverflowComplete
+							handleClick={toggleCompleteModal}
+							completed={currentTask.meta.completedOn !== null}
+						/>
 						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
@@ -92,14 +105,9 @@ const TaskSingle = (): JSX.Element => {
 							Delete
 						</OverflowDelete>
 						<OverflowDivider />
-						<OverflowToggleVisible
-							selected={selected}
-							handleClick={handleSelect}
-						/>
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
-
 			<AppPageSection>
 				<AppPageSectionHeading title='Notes'>
 					<Button

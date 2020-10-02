@@ -12,9 +12,9 @@ import { useRouterService } from '../useRouterService';
 const useNoteActions = (currentNote: Item) => {
 	const { userId, token } = useSelector(selectUser);
 	const { request: deleteNoteRequest } = useApiRequest();
+
 	const { toggleCreateModal } = useCreateModal(currentNote);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
-	const [ completeModalOpen, toggleCompleteModal ] = useToggle(false);
 	const { router } = useRouterService();
 	const dispatch = useDispatch();
 
@@ -32,23 +32,15 @@ const useNoteActions = (currentNote: Item) => {
 		router.push.dashboard();
 	};
 
-	const handleComplete = async () => {
-		console.log('completed');
-		toggleCompleteModal();
-	};
-
 	const handleEdit = () => {
 		toggleCreateModal('edit');
 	};
 
 	return {
-		handleComplete,
 		handleEdit,
 		handleDelete,
 		deleteModalOpen,
-		toggleDeleteModal,
-		completeModalOpen,
-		toggleCompleteModal
+		toggleDeleteModal
 	};
 };
 

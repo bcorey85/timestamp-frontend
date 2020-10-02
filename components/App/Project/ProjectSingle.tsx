@@ -33,6 +33,9 @@ import { MathService } from '../../../utils/MathService';
 import { StringService } from '../../../utils/StringService';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 import { useProjectActions } from '../../../hooks/itemActions/useProjectActions';
+import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
+import { current } from '@reduxjs/toolkit';
+import { DateTimeService } from '../../../utils/DateTimeService';
 
 const ProjectSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -41,7 +44,7 @@ const ProjectSingle = (): JSX.Element => {
 		return project.itemId.projectId === Number(router.query.projectId);
 	})[0];
 	const { toggleCreateModal } = useCreateModal(currentProject);
-	const { selected, handleSelect } = useVisibilityFilter();
+	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 
 	const {
 		handleComplete,
@@ -52,6 +55,11 @@ const ProjectSingle = (): JSX.Element => {
 		completeModalOpen,
 		toggleCompleteModal
 	} = useProjectActions(currentProject);
+	const projectIsComplete = currentProject.meta.completedOn !== null;
+	const projectCompleteDate = DateTimeService.formatDate(
+		currentProject.meta.completedOn
+	);
+	let projectItemSource = projectIsComplete ? appData : visibleItems;
 
 	return (
 		<React.Fragment>
@@ -84,13 +92,22 @@ const ProjectSingle = (): JSX.Element => {
 								}
 							)}
 						</p>
-						<p />
+						<p>
+							{projectIsComplete ? (
+								<strong>
+									Completed on {projectCompleteDate}
+								</strong>
+							) : null}
+						</p>
 					</AppPageMeta>
 				</AppPageTitle>
 				<AppPageHeaderControls>
 					<OverflowMenu>
 						<OverflowHeader>Actions</OverflowHeader>
-						<OverflowComplete handleClick={toggleCompleteModal} />
+						<OverflowComplete
+							handleClick={toggleCompleteModal}
+							completed={currentProject.meta.completedOn !== null}
+						/>
 						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
@@ -99,15 +116,22 @@ const ProjectSingle = (): JSX.Element => {
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
-						<OverflowDivider />
-						<OverflowToggleVisible
-							selected={selected}
-							handleClick={handleSelect}
-						/>
+
+						{projectIsComplete ? null : (
+							<React.Fragment>
+								<OverflowDivider />
+								<OverflowToggleVisible
+									selected={selected}
+									handleClick={handleSelect}
+								/>
+							</React.Fragment>
+						)}
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
-
+			{projectIsComplete ? null : (
+				<VisibleItemsHeader visible={selected} />
+			)}
 			<AppPageSection>
 				<AppPageSectionHeading title='Tasks'>
 					<Button
@@ -121,7 +145,7 @@ const ProjectSingle = (): JSX.Element => {
 				</AppPageSectionHeading>
 				<ListSection
 					type='task'
-					items={appData.tasks.filter(
+					items={projectItemSource.tasks.filter(
 						(task: Item) =>
 							task.itemId.projectId ===
 							currentProject.itemId.projectId
@@ -143,7 +167,7 @@ const ProjectSingle = (): JSX.Element => {
 				</AppPageSectionHeading>
 				<ListSection
 					type='note'
-					items={appData.notes.filter(
+					items={projectItemSource.notes.filter(
 						(note: Item) =>
 							note.itemId.projectId ===
 							currentProject.itemId.projectId

@@ -20,18 +20,19 @@ import { selectUser } from '../../../redux/user';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useAppData } from '../../../hooks/useAppData';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
+import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
 
 const Dashboard = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
-
 	const { appData } = useAppData();
+	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
+
 	const { toggleCreateModal } = useCreateModal();
-	const { selected, handleSelect } = useVisibilityFilter();
 
 	const pinnedItems = [
-		...appData.notes,
-		...appData.projects,
-		...appData.tasks
+		...visibleItems.projects,
+		...visibleItems.tasks,
+		...visibleItems.notes
 	].filter(item => item.pinned === true);
 
 	return (
@@ -87,6 +88,7 @@ const Dashboard = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</AppPageSection>
+			<VisibleItemsHeader visible={selected} />
 			<AppPageSection>
 				<AppPageSectionHeading title='Pinned Favorites' />
 				<PinnedFavorites items={pinnedItems} />
@@ -105,7 +107,7 @@ const Dashboard = (): JSX.Element => {
 					</AppPageSectionHeading>
 					<ListSection
 						type='project'
-						items={appData.recentItems.projects}
+						items={visibleItems.recentProjects}
 					/>
 				</AppPageSection>
 
@@ -120,10 +122,7 @@ const Dashboard = (): JSX.Element => {
 							<ListAddIcon />
 						</Button>
 					</AppPageSectionHeading>
-					<ListSection
-						type='task'
-						items={appData.recentItems.tasks}
-					/>
+					<ListSection type='task' items={visibleItems.recentTasks} />
 				</AppPageSection>
 				<AppPageSectionHeading title='Recent Notes'>
 					<Button
@@ -135,7 +134,7 @@ const Dashboard = (): JSX.Element => {
 						<ListAddIcon />
 					</Button>
 				</AppPageSectionHeading>
-				<ListSection type='note' items={appData.recentItems.notes} />
+				<ListSection type='note' items={visibleItems.recentNotes} />
 			</AppPageSection>
 		</React.Fragment>
 	);

@@ -16,6 +16,10 @@ interface UpdateProject extends UserCredentials {
 	projectId: string | number;
 }
 
+interface CompleteProject extends UserCredentials {
+	projectId: string | number;
+}
+
 interface DeleteProject extends UserCredentials {
 	projectId: string | number;
 }
@@ -43,6 +47,19 @@ export const updateProjectApiConfig = ({
 		url: `${apiBaseUrl}/projects/${userId}/${projectId}`,
 		method: 'put',
 		payload: payload,
+		token: token
+	};
+};
+
+export const completeProjectApiConfig = ({
+	projectId,
+	userId,
+	token
+}: CompleteProject): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/projects/${userId}/${projectId}/actions?completed=true`,
+		method: 'put',
+		payload: null,
 		token: token
 	};
 };

@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectUser } from '../../redux/user';
 import { useApiRequest } from '../useApiRequest';
-import { deleteProjectApiConfig } from '../../api/project';
+import {
+	deleteProjectApiConfig,
+	completeProjectApiConfig
+} from '../../api/project';
 import { Item } from '../../utils/ItemService';
 import { setAppDataSynced } from '../../redux/appData';
 import { useCreateModal } from '../create/useCreateModal';
@@ -12,6 +15,7 @@ import { useRouterService } from '../useRouterService';
 const useProjectActions = (currentProject: Item) => {
 	const { userId, token } = useSelector(selectUser);
 	const { request: deleteProjectRequest } = useApiRequest();
+	const { request: completeProjectRequest } = useApiRequest();
 	const { toggleCreateModal } = useCreateModal(currentProject);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const [ completeModalOpen, toggleCompleteModal ] = useToggle(false);
@@ -33,7 +37,14 @@ const useProjectActions = (currentProject: Item) => {
 	};
 
 	const handleComplete = async () => {
-		console.log('completed');
+		const config = completeProjectApiConfig({
+			projectId: currentProject.itemId.projectId,
+			userId,
+			token
+		});
+
+		await completeProjectRequest(config);
+		dispatch(setAppDataSynced(false));
 		toggleCompleteModal();
 	};
 

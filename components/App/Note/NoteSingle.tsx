@@ -14,11 +14,10 @@ import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
 import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
 import {
 	OverflowEdit,
-	OverflowDelete,
-	OverflowComplete
+	OverflowDelete
 } from '../shared/OverflowMenu/OverflowActions';
 import { DeleteModal } from '../shared/DeleteModal';
-import { CompleteModal } from '../shared/CompleteModal';
+
 import { NoteBody } from './NoteBody';
 
 import { selectAppData } from '../../../redux/appData';
@@ -34,13 +33,10 @@ const NoteSingle = (): JSX.Element => {
 	})[0];
 
 	const {
-		handleComplete,
 		handleEdit,
 		handleDelete,
 		deleteModalOpen,
-		toggleDeleteModal,
-		completeModalOpen,
-		toggleCompleteModal
+		toggleDeleteModal
 	} = useNoteActions(currentNote);
 
 	return (
@@ -58,7 +54,7 @@ const NoteSingle = (): JSX.Element => {
 				<AppPageHeaderControls>
 					<OverflowMenu>
 						<OverflowHeader>Actions</OverflowHeader>
-						<OverflowComplete handleClick={toggleCompleteModal} />
+
 						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
@@ -80,13 +76,6 @@ const NoteSingle = (): JSX.Element => {
 				isOpen={deleteModalOpen}
 				toggleModal={toggleDeleteModal}
 				handleDelete={handleDelete}
-			/>
-			<CompleteModal
-				title='Complete Note'
-				completeItem={currentNote.title}
-				isOpen={completeModalOpen}
-				toggleModal={toggleCompleteModal}
-				handleComplete={handleComplete}
 			/>
 		</React.Fragment>
 	);

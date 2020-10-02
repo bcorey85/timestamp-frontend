@@ -19,12 +19,12 @@ const AppPageTitle = ({
 	return (
 		<div className={styles.container}>
 			<hgroup>
-				<h4>
+				<h2>
 					{subheadingType ? (
 						<TypeIcon type={IconType[subheadingType]} />
 					) : null}
 					{subheading}
-				</h4>
+				</h2>
 			</hgroup>
 
 			<h1>{heading}</h1>

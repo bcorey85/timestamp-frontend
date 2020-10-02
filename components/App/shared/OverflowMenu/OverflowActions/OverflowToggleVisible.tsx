@@ -23,8 +23,8 @@ const OverflowToggleVisible = ({
 				)}
 				Active
 			</OverflowLink>
-			<OverflowLink handleClick={() => handleClick('complete')}>
-				{selected === 'complete' ? (
+			<OverflowLink handleClick={() => handleClick('completed')}>
+				{selected === 'completed' ? (
 					<BiCaretRight style={{ color: 'var(--text500)' }} />
 				) : (
 					<BiCaretRight style={{ color: 'transparent' }} />

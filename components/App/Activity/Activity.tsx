@@ -95,14 +95,13 @@ const Activity = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</AppPageSection>
-
 			<AppPageSection>
-				<AppPageSectionHeading title='Activity Per Month' />
-				<Calendar monthlyCreatedTotals={monthlyCreatedTotals} />
+				<AppPageSectionHeading title='Daily Activity' />
+				<DailyItemCount dailyItemCounts={dailyCounts} />
 			</AppPageSection>
 			<AppPageSection>
-				<AppPageSectionHeading title='Activity Per Day' />
-				<DailyItemCount dailyItemCounts={dailyCounts} />
+				<AppPageSectionHeading title='Monthly Activity' />
+				<Calendar monthlyCreatedTotals={monthlyCreatedTotals} />
 			</AppPageSection>
 			<AppPageSection>
 				<AppPageSectionHeading title='Longest Activity Streak' />

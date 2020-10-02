@@ -18,11 +18,12 @@ import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions';
 import { selectAppData } from '../../../redux/appData';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
+import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
 
 const TaskList = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
-	const { selected, handleSelect } = useVisibilityFilter();
+	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 	return (
 		<React.Fragment>
 			<AppPageHeader>
@@ -40,6 +41,7 @@ const TaskList = (): JSX.Element => {
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
+			<VisibleItemsHeader visible={selected} />
 			<AppPageSection>
 				<AppPageSectionHeading title='Tasks'>
 					<Button
@@ -53,7 +55,7 @@ const TaskList = (): JSX.Element => {
 				</AppPageSectionHeading>
 				<ListSection
 					type='task'
-					items={appData.tasks}
+					items={visibleItems.tasks}
 					pagination={true}
 					limit={10}
 				/>

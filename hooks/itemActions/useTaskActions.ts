@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectUser } from '../../redux/user';
 import { useApiRequest } from '../useApiRequest';
-import { deleteTaskApiConfig } from '../../api/task';
+import { deleteTaskApiConfig, completeTaskApiConfig } from '../../api/task';
 import { Item } from '../../utils/ItemService';
 import { setAppDataSynced } from '../../redux/appData';
 import { useCreateModal } from '../create/useCreateModal';
@@ -12,6 +12,7 @@ import { useRouterService } from '../useRouterService';
 const useTaskActions = (currentTask: Item) => {
 	const { userId, token } = useSelector(selectUser);
 	const { request: deleteTaskRequest } = useApiRequest();
+	const { request: completeTaskRequest } = useApiRequest();
 	const { toggleCreateModal } = useCreateModal(currentTask);
 	const [ deleteModalOpen, toggleDeleteModal ] = useToggle(false);
 	const [ completeModalOpen, toggleCompleteModal ] = useToggle(false);
@@ -33,7 +34,14 @@ const useTaskActions = (currentTask: Item) => {
 	};
 
 	const handleComplete = async () => {
-		console.log('completed');
+		const config = completeTaskApiConfig({
+			taskId: currentTask.itemId.taskId,
+			userId,
+			token
+		});
+
+		await completeTaskRequest(config);
+		dispatch(setAppDataSynced(false));
 		toggleCompleteModal();
 	};
 

@@ -25,6 +25,10 @@ interface DeleteNote extends UserCredentials {
 	noteId: string | number;
 }
 
+interface CompleteNote extends UserCredentials {
+	noteId: string | number;
+}
+
 export const createNoteApiConfig = ({
 	payload,
 	userId,
@@ -51,6 +55,19 @@ export const updateNoteApiConfig = ({
 		token: token
 	};
 };
+
+// export const moveNoteApiConfig = ({
+// 	noteId,
+// 	userId,
+// 	token
+// }: CompleteNote): ApiRequest => {
+// 	return {
+// 		url: `${apiBaseUrl}/notes/${userId}/${noteId}/actions?move=true`,
+// 		method: 'put',
+// 		payload: null,
+// 		token: token
+// 	};
+// };
 
 export const deleteNoteApiConfig = ({
 	noteId,

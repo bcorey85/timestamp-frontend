@@ -18,6 +18,10 @@ interface UpdateTask extends UserCredentials {
 	taskId: string | number;
 }
 
+interface CompleteTask extends UserCredentials {
+	taskId: string | number;
+}
+
 interface DeleteTask extends UserCredentials {
 	taskId: string | number;
 }
@@ -45,6 +49,19 @@ export const updateTaskApiConfig = ({
 		url: `${apiBaseUrl}/tasks/${userId}/${taskId}`,
 		method: 'put',
 		payload: payload,
+		token: token
+	};
+};
+
+export const completeTaskApiConfig = ({
+	taskId,
+	userId,
+	token
+}: CompleteTask): ApiRequest => {
+	return {
+		url: `${apiBaseUrl}/tasks/${userId}/${taskId}/actions?completed=true`,
+		method: 'put',
+		payload: null,
 		token: token
 	};
 };
