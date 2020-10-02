@@ -20,6 +20,7 @@ interface Props {
 	onClick?: (props: any) => any;
 	id?: string;
 	isLoading?: boolean;
+	style?: { [key: string]: string };
 }
 
 const Button = ({
@@ -28,14 +29,16 @@ const Button = ({
 	btnStyle,
 	onClick,
 	id,
-	isLoading
+	isLoading,
+	style
 }: Props): JSX.Element => {
 	return (
 		<button
 			type={type || 'button'}
 			className={styles[`btn_${btnStyle}`]}
 			onClick={onClick}
-			id={id}>
+			id={id}
+			style={style}>
 			{isLoading ? <LoadingSpinner /> : children}
 		</button>
 	);

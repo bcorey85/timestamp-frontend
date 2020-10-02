@@ -10,6 +10,7 @@ describe('ListFilterButton', () => {
 				sortFunction={jest.fn}
 				columnFilter='hours'
 				title='hours'
+				align='right'
 				currentFilter='date'
 				sortDesc={true}
 				type='project'

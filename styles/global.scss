@@ -57,7 +57,7 @@
 	--app-horizontal-padding: 8rem;
 	--footer-height: 12rem;
 
-	--list-grid: 8rem auto 6.4rem 6.4rem 7.2rem 2.4rem;
+	--list-grid: 8rem auto 6.4rem 6.4rem 7.2rem 4.8rem;
 
 	@include respondH(1280) {
 		--app-vertical-padding: 4rem;
@@ -65,7 +65,7 @@
 	}
 
 	@include respondH(680) {
-		--list-grid: 8rem auto 2.4rem;
+		--list-grid: 8rem auto 4.8rem;
 	}
 
 	@include respondH(550) {

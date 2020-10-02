@@ -16,6 +16,8 @@ describe('ListSection', () => {
 				<ListSection
 					type='project'
 					items={[ createTestItem(), createTestItem() ]}
+					title='Projects'
+					addType='new'
 				/>
 			</MockReduxProvider>
 		);
