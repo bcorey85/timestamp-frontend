@@ -22,9 +22,11 @@ const useVisibilityFilter = () => {
 			const projects = filterVisibleItems(appData.projects);
 			const tasks = filterVisibleItems(appData.tasks);
 			const notes = filterVisibleItems(appData.notes);
-			const recentProjects = filterVisibleItems(appData.projects);
-			const recentTasks = filterVisibleItems(appData.tasks);
-			const recentNotes = filterVisibleItems(appData.notes);
+			const recentProjects = filterVisibleItems(
+				appData.recentItems.projects
+			);
+			const recentTasks = filterVisibleItems(appData.recentItems.tasks);
+			const recentNotes = filterVisibleItems(appData.recentItems.notes);
 
 			setVisibleItems({
 				projects,

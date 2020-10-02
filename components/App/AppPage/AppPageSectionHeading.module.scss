@@ -1,16 +1,14 @@
 .container {
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-end;
 	margin-bottom: 1.2rem;
-
-	& button {
-		font-size: 1.2rem;
-		font-weight: 500;
-	}
+	height: 2.4rem;
 }
 
 .section_heading {
 	font-size: 1.2rem;
+	line-height: 1.8rem;
 	font-weight: 600;
 	color: var(--text400);
 	margin-bottom: 0;

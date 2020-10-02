@@ -1,14 +1,14 @@
 @import '../../../../styles/mediaQueries.scss';
 
 .container {
-	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 4rem;
-	width: 100%;
-	max-width: 32rem;
+	margin-left: auto;
 	font-size: 1.2rem;
+	line-height: 1.8rem;
+	font-weight: 500;
+	color: var(--text300);
 }
 
 .btn {
@@ -17,8 +17,7 @@
 	align-items: center;
 	background: none;
 	border: none;
-	height: 3.2rem;
 	width: 3.2rem;
-	font-size: 1.6rem;
-	line-height: 1.6rem;
+	font-size: 1.8rem;
+	line-height: 1.8rem;
 }

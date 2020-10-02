@@ -43,21 +43,13 @@ const TaskList = (): JSX.Element => {
 			</AppPageHeader>
 			<VisibleItemsHeader visible={selected} />
 			<AppPageSection>
-				<AppPageSectionHeading title='Tasks'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'task'
-							})}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
 				<ListSection
 					type='task'
 					items={visibleItems.tasks}
 					pagination={true}
 					limit={10}
+					title='Tasks'
+					addType='new'
 				/>
 			</AppPageSection>
 		</React.Fragment>

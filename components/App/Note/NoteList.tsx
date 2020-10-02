@@ -23,7 +23,7 @@ import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 const NoteList = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();
 	const appData = useSelector(selectAppData);
-	const { selected, handleSelect } = useVisibilityFilter();
+	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 
 	return (
 		<React.Fragment>
@@ -43,21 +43,13 @@ const NoteList = (): JSX.Element => {
 				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
-				<AppPageSectionHeading title='Notes'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'note'
-							})}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
 				<ListSection
 					type='note'
-					items={appData.notes}
+					items={visibleItems.notes}
 					pagination={true}
 					limit={10}
+					title='Notes'
+					addType='new'
 				/>
 			</AppPageSection>
 		</React.Fragment>

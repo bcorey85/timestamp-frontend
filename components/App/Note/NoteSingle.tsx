@@ -70,8 +70,7 @@ const NoteSingle = (): JSX.Element => {
 			</AppPageSection>
 
 			<DeleteModal
-				title='Delete Note'
-				deleteItem={currentNote.title}
+				item={currentNote}
 				isOpen={deleteModalOpen}
 				toggleModal={toggleDeleteModal}
 				handleDelete={handleDelete}

@@ -3,32 +3,43 @@ import { useSelector } from 'react-redux';
 
 import { ListItem } from './ListItem/ListItem';
 import { ListFilter } from './ListFilter';
+import { ListAddIcon } from './ListAddIcon';
 import { NoItemsMessage } from '../NoItemsMessage';
 import { ListPagination } from './ListPagination';
+import { AppPageSectionHeading } from '../../AppPage';
+import { Button } from '../../../shared/Button';
 
 import { selectUser } from '../../../../redux/user';
-import { ItemType } from '../../../../utils/ItemService';
+import { Item, ItemType } from '../../../../utils/ItemService';
 import { useListSort } from '../../../../hooks/useListSort';
 import { usePagination } from '../../../../hooks/usePagination';
 import styles from './ListSection.module.scss';
+import { useCreateModal } from '../../../../hooks/create/useCreateModal';
 
 interface Props {
 	items: any[];
 	type: keyof ItemType;
 	pagination?: boolean;
 	limit?: number;
+	title: string;
+	addType: 'addChild' | 'new';
+	item?: Item;
 }
 
 const ListSection = ({
 	items,
 	type,
 	pagination,
-	limit
+	limit,
+	title,
+	addType,
+	item
 }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 	const { handleSort, filteredItems, currentFilter, sortDesc } = useListSort(
 		items
 	);
+	const { toggleCreateModal } = useCreateModal(item || null);
 
 	const {
 		next,
@@ -57,30 +68,31 @@ const ListSection = ({
 
 	if (!items || items.length === 0) {
 		return (
-			<div className={styles.container}>
-				<span className={styles.empty_list}>
-					<NoItemsMessage />
-				</span>
-			</div>
+			<React.Fragment>
+				<AppPageSectionHeading title={title} />
+				<div className={styles.container}>
+					<span className={styles.empty_list}>
+						<NoItemsMessage />
+					</span>
+				</div>
+				<div className={styles.add_container}>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal(addType, {
+								createModalPage: type
+							})}>
+						<ListAddIcon />
+					</Button>
+				</div>
+			</React.Fragment>
 		);
 	}
 
 	let listItems = pagination ? page : filteredItems;
 	return (
-		<div className={styles.list_section}>
-			<ListFilter
-				type={type}
-				sortFunction={handleSort}
-				currentFilter={currentFilter}
-				sortDesc={sortDesc}
-			/>
-			<div className={styles.container}>
-				{listItems.map(item => {
-					const { as } = item.pathname;
-					return <ListItem item={item} userId={userId} key={as} />;
-				})}
-			</div>
-			<div className={styles.pagination_container}>
+		<React.Fragment>
+			<AppPageSectionHeading title={title}>
 				{pagination && limit < items.length ? (
 					<ListPagination
 						next={next}
@@ -91,8 +103,35 @@ const ListSection = ({
 						totalPages={totalPages}
 					/>
 				) : null}
+			</AppPageSectionHeading>
+
+			<div className={styles.list_section}>
+				<ListFilter
+					type={type}
+					sortFunction={handleSort}
+					currentFilter={currentFilter}
+					sortDesc={sortDesc}
+				/>
+				<div className={styles.container}>
+					{listItems.map(item => {
+						const { as } = item.pathname;
+						return (
+							<ListItem item={item} userId={userId} key={as} />
+						);
+					})}
+				</div>
+				<div className={styles.add_container}>
+					<Button
+						btnStyle='link_gray'
+						onClick={() =>
+							toggleCreateModal(addType, {
+								createModalPage: type
+							})}>
+						<ListAddIcon />
+					</Button>
+				</div>
 			</div>
-		</div>
+		</React.Fragment>
 	);
 };
 

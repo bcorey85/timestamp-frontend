@@ -43,7 +43,6 @@ const ProjectSingle = (): JSX.Element => {
 	const currentProject: Item = appData.projects.filter(project => {
 		return project.itemId.projectId === Number(router.query.projectId);
 	})[0];
-	const { toggleCreateModal } = useCreateModal(currentProject);
 	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 
 	const {
@@ -133,16 +132,6 @@ const ProjectSingle = (): JSX.Element => {
 				<VisibleItemsHeader visible={selected} />
 			)}
 			<AppPageSection>
-				<AppPageSectionHeading title='Tasks'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('addChild', {
-								createModalPage: 'task'
-							})}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
 				<ListSection
 					type='task'
 					items={projectItemSource.tasks.filter(
@@ -152,19 +141,12 @@ const ProjectSingle = (): JSX.Element => {
 					)}
 					pagination={true}
 					limit={6}
+					title='Tasks'
+					addType='addChild'
+					item={currentProject}
 				/>
 			</AppPageSection>
 			<AppPageSection>
-				<AppPageSectionHeading title='Notes'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('addChild', {
-								createModalPage: 'note'
-							})}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
 				<ListSection
 					type='note'
 					items={projectItemSource.notes.filter(
@@ -174,18 +156,19 @@ const ProjectSingle = (): JSX.Element => {
 					)}
 					pagination={true}
 					limit={6}
+					title='Notes'
+					addType='addChild'
+					item={currentProject}
 				/>
 			</AppPageSection>
 			<DeleteModal
-				title='Delete Project'
-				deleteItem={currentProject.title}
+				item={currentProject}
 				isOpen={deleteModalOpen}
 				toggleModal={toggleDeleteModal}
 				handleDelete={handleDelete}
 			/>
 			<CompleteModal
-				title='Complete Project'
-				completeItem={currentProject.title}
+				item={currentProject}
 				isOpen={completeModalOpen}
 				toggleModal={toggleCompleteModal}
 				handleComplete={handleComplete}

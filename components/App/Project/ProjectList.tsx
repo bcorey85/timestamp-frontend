@@ -43,21 +43,13 @@ const ProjectList = (): JSX.Element => {
 			</AppPageHeader>
 			<VisibleItemsHeader visible={selected} />
 			<AppPageSection>
-				<AppPageSectionHeading title='Projects'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'project'
-							})}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
 				<ListSection
 					type='project'
 					items={visibleItems.projects}
 					pagination={true}
 					limit={10}
+					title='Projects'
+					addType='new'
 				/>
 			</AppPageSection>
 		</React.Fragment>

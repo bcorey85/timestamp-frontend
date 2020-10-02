@@ -27,8 +27,6 @@ const Dashboard = (): JSX.Element => {
 	const { appData } = useAppData();
 	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 
-	const { toggleCreateModal } = useCreateModal();
-
 	const pinnedItems = [
 		...visibleItems.projects,
 		...visibleItems.tasks,
@@ -93,48 +91,31 @@ const Dashboard = (): JSX.Element => {
 				<AppPageSectionHeading title='Pinned Favorites' />
 				<PinnedFavorites items={pinnedItems} />
 			</AppPageSection>
-			<AppPageSection>
-				<AppPageSection>
-					<AppPageSectionHeading title='Recent Projects'>
-						<Button
-							btnStyle='link_gray'
-							onClick={() =>
-								toggleCreateModal('new', {
-									createModalPage: 'project'
-								})}>
-							<ListAddIcon />
-						</Button>
-					</AppPageSectionHeading>
-					<ListSection
-						type='project'
-						items={visibleItems.recentProjects}
-					/>
-				</AppPageSection>
 
-				<AppPageSection>
-					<AppPageSectionHeading title='Recent Tasks'>
-						<Button
-							btnStyle='link_gray'
-							onClick={() =>
-								toggleCreateModal('new', {
-									createModalPage: 'task'
-								})}>
-							<ListAddIcon />
-						</Button>
-					</AppPageSectionHeading>
-					<ListSection type='task' items={visibleItems.recentTasks} />
-				</AppPageSection>
-				<AppPageSectionHeading title='Recent Notes'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() =>
-							toggleCreateModal('new', {
-								createModalPage: 'note'
-							})}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
-				<ListSection type='note' items={visibleItems.recentNotes} />
+			<AppPageSection>
+				<ListSection
+					type='project'
+					items={visibleItems.recentProjects}
+					title='Recent Projects'
+					addType='new'
+				/>
+			</AppPageSection>
+
+			<AppPageSection>
+				<ListSection
+					type='task'
+					items={visibleItems.recentTasks}
+					title='Recent Tasks'
+					addType='new'
+				/>
+			</AppPageSection>
+			<AppPageSection>
+				<ListSection
+					type='note'
+					items={visibleItems.recentNotes}
+					title='Recent Notes'
+					addType='new'
+				/>
 			</AppPageSection>
 		</React.Fragment>
 	);

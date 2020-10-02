@@ -14,6 +14,12 @@ class StringService {
 
 		return `${number} ${singular}`;
 	};
+
+	static capitalize = (string: string) => {
+		const firstLetter = string[0].toUpperCase();
+		const rest = string.slice(1);
+		return firstLetter + rest;
+	};
 }
 
 export { StringService };

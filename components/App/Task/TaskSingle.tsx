@@ -109,13 +109,6 @@ const TaskSingle = (): JSX.Element => {
 				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
-				<AppPageSectionHeading title='Notes'>
-					<Button
-						btnStyle='link_gray'
-						onClick={() => toggleCreateModal('addChild')}>
-						<ListAddIcon />
-					</Button>
-				</AppPageSectionHeading>
 				<ListSection
 					type='note'
 					items={appData.notes.filter(
@@ -124,18 +117,19 @@ const TaskSingle = (): JSX.Element => {
 					)}
 					pagination={true}
 					limit={6}
+					title='Notes'
+					addType='addChild'
+					item={currentTask}
 				/>
 			</AppPageSection>
 			<DeleteModal
-				title='Delete Task'
-				deleteItem={currentTask.title}
+				item={currentTask}
 				isOpen={deleteModalOpen}
 				toggleModal={toggleDeleteModal}
 				handleDelete={handleDelete}
 			/>
 			<CompleteModal
-				title='Complete Task'
-				completeItem={currentTask.title}
+				item={currentTask}
 				isOpen={completeModalOpen}
 				toggleModal={toggleCompleteModal}
 				handleComplete={handleComplete}

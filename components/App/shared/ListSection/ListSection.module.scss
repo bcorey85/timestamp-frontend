@@ -11,7 +11,9 @@
 	line-height: 2rem;
 }
 
-.pagination_container {
+.add_container {
+	display: flex;
+	justify-content: flex-end;
 	min-height: 4rem;
 	margin-bottom: -4rem;
 
