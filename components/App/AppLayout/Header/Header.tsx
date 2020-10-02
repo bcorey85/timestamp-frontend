@@ -18,7 +18,7 @@ const Header = (): JSX.Element => {
 				<Link
 					href='/app/[userId]/dashboard'
 					as={`/app/${userId}/dashboard`}>
-					<img src='/images/logo-temp.svg' />
+					<img src='/images/timestamp-logo.svg' />
 				</Link>
 			</div>
 			<Search />
