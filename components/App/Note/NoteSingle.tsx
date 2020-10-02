@@ -54,7 +54,6 @@ const NoteSingle = (): JSX.Element => {
 				<AppPageHeaderControls>
 					<OverflowMenu>
 						<OverflowHeader>Actions</OverflowHeader>
-
 						<OverflowEdit handleClick={handleEdit}>
 							Edit
 						</OverflowEdit>
