@@ -35,7 +35,8 @@ const DeleteModal = ({
 						Do you want to delete the following? :
 					</div>
 					<div className={styles.delete_item}>
-						<TypeIcon type={item.type} /> {item.title}
+						<TypeIcon type={item.type} />
+						{item.title}
 					</div>
 					<div className={styles.warning}>
 						(This action is permanent)

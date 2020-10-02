@@ -104,7 +104,6 @@ const TaskSingle = (): JSX.Element => {
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
-						<OverflowDivider />
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
