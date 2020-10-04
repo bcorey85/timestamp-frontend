@@ -19,13 +19,11 @@ import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
 import {
 	OverflowEdit,
 	OverflowDelete,
-	OverflowToggleVisible,
 	OverflowComplete
 } from '../shared/OverflowMenu/OverflowActions';
 
-import { DeleteModal } from '../shared/DeleteModal';
-import { CompleteModal } from '../shared/CompleteModal';
-
+import { DeleteModal } from '../shared/Modals/DeleteModal';
+import { CompleteModal } from '../shared/Modals/CompleteModal';
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
@@ -33,9 +31,7 @@ import { useTaskActions } from '../../../hooks/itemActions/useTaskActions';
 import { Item } from '../../../utils/ItemService';
 import { MathService } from '../../../utils/MathService';
 import { StringService } from '../../../utils/StringService';
-import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
-import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
-import { DateTimeService } from '../../../utils/DateTimeService';
+import { CompleteBadge } from '../shared/CompletedBadge';
 
 const TaskSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -56,9 +52,6 @@ const TaskSingle = (): JSX.Element => {
 		toggleCompleteModal
 	} = useTaskActions(currentTask);
 	const taskIsComplete = currentTask.meta.completedOn !== null;
-	const taskCompleteDate = DateTimeService.formatDate(
-		currentTask.meta.completedOn
-	);
 
 	return (
 		<React.Fragment>
@@ -82,11 +75,11 @@ const TaskSingle = (): JSX.Element => {
 								plural: 'notes'
 							})}
 						</p>
-						<p>
-							{taskIsComplete ? (
-								<strong>Completed on {taskCompleteDate}</strong>
-							) : null}
-						</p>
+						{taskIsComplete ? (
+							<CompleteBadge
+								date={currentTask.meta.completedOn}
+							/>
+						) : null}
 					</AppPageMeta>
 				</AppPageTitle>
 				<AppPageHeaderControls>

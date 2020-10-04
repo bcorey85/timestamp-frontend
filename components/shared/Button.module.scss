@@ -21,8 +21,8 @@
 
 .btn_primary {
 	@extend .btn;
-	background-color: var(--primary500);
-	border: 1px solid var(--primary500);
+	background-color: var(--primary-btn);
+	border: 1px solid var(--primary-btn);
 	color: var(--white);
 
 	&:hover {
@@ -85,7 +85,7 @@
 
 .btn_link_primary {
 	@extend .btn_link;
-	color: var(--primary500);
+	color: var(--primary-text);
 
 	&:hover {
 		color: var(--primary400);

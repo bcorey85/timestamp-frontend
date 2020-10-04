@@ -1,6 +1,14 @@
 .header {
-	font-size: 1.8rem;
+	display: flex;
+	align-items: center;
+	font-size: 1.4rem;
 	color: var(--text400);
 	margin-bottom: 1.6rem;
-	font-weight: 600;
+	font-weight: 500;
+
+	& svg {
+		margin-right: .4rem;
+		color: var(--text300);
+		font-size: 1.6rem;
+	}
 }

@@ -12,9 +12,10 @@
 	background-color: var(--background-primary);
 	z-index: 150;
 
-	& img {
+	& svg {
 		display: block;
 		height: 2.2rem;
+		cursor: pointer;
 	}
 }
 

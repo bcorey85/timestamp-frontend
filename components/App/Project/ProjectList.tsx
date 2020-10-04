@@ -1,27 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
-import {
-	AppPageSection,
-	AppPageTitle,
-	AppPageHeader,
-	AppPageSectionHeading
-} from '../AppPage';
+import { AppPageSection, AppPageTitle, AppPageHeader } from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions';
 
-import { selectAppData } from '../../../redux/appData';
-import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
-import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
+import { VisibilityFilterToggle } from '../shared/VisibilityFilterToggle';
 
 const ProjectList = (): JSX.Element => {
-	const { toggleCreateModal } = useCreateModal();
 	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 
 	return (
@@ -32,16 +18,11 @@ const ProjectList = (): JSX.Element => {
 					subheading='Project'
 					subheadingType={IconType.project}
 				/>
-				<AppPageHeaderControls>
-					<OverflowMenu>
-						<OverflowToggleVisible
-							selected={selected}
-							handleClick={handleSelect}
-						/>
-					</OverflowMenu>
-				</AppPageHeaderControls>
 			</AppPageHeader>
-			<VisibleItemsHeader visible={selected} />
+			<VisibilityFilterToggle
+				selected={selected}
+				handleClick={handleSelect}
+			/>
 			<AppPageSection>
 				<ListSection
 					type='project'

@@ -1,28 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
-import {
-	AppPageSection,
-	AppPageTitle,
-	AppPageSectionHeading,
-	AppPageHeader
-} from '../AppPage';
+import { AppPageSection, AppPageTitle, AppPageHeader } from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions';
+import { VisibilityFilterToggle } from '../shared/VisibilityFilterToggle';
 
-import { selectAppData } from '../../../redux/appData';
-import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
-import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
 
 const TaskList = (): JSX.Element => {
-	const { toggleCreateModal } = useCreateModal();
-	const appData = useSelector(selectAppData);
 	const { selected, handleSelect, visibleItems } = useVisibilityFilter();
 	return (
 		<React.Fragment>
@@ -32,16 +17,11 @@ const TaskList = (): JSX.Element => {
 					subheading='Task'
 					subheadingType={IconType.task}
 				/>
-				<AppPageHeaderControls>
-					<OverflowMenu>
-						<OverflowToggleVisible
-							selected={selected}
-							handleClick={handleSelect}
-						/>
-					</OverflowMenu>
-				</AppPageHeaderControls>
 			</AppPageHeader>
-			<VisibleItemsHeader visible={selected} />
+			<VisibilityFilterToggle
+				selected={selected}
+				handleClick={handleSelect}
+			/>
 			<AppPageSection>
 				<ListSection
 					type='task'

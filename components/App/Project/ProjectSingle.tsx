@@ -2,40 +2,34 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
 import {
 	AppPageSection,
 	AppPageTitle,
 	AppPageMeta,
 	AppPageHeader,
-	AppPageHeaderControls,
-	AppPageSectionHeading
+	AppPageHeaderControls
 } from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
 import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
 import {
 	OverflowEdit,
 	OverflowDelete,
-	OverflowToggleVisible,
 	OverflowComplete
 } from '../shared/OverflowMenu/OverflowActions';
-import { DeleteModal } from '../shared/DeleteModal';
-import { CompleteModal } from '../shared/CompleteModal';
+import { DeleteModal } from '../shared/Modals/DeleteModal';
+import { CompleteModal } from '../shared/Modals/CompleteModal';
+import { VisibilityFilterToggle } from '../shared/VisibilityFilterToggle';
+import { CompleteBadge } from '../shared/CompletedBadge';
 
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { Item } from '../../../utils/ItemService';
 import { MathService } from '../../../utils/MathService';
 import { StringService } from '../../../utils/StringService';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
 import { useProjectActions } from '../../../hooks/itemActions/useProjectActions';
-import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
-import { current } from '@reduxjs/toolkit';
-import { DateTimeService } from '../../../utils/DateTimeService';
 
 const ProjectSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -55,9 +49,7 @@ const ProjectSingle = (): JSX.Element => {
 		toggleCompleteModal
 	} = useProjectActions(currentProject);
 	const projectIsComplete = currentProject.meta.completedOn !== null;
-	const projectCompleteDate = DateTimeService.formatDate(
-		currentProject.meta.completedOn
-	);
+
 	let projectItemSource = projectIsComplete ? appData : visibleItems;
 
 	return (
@@ -91,13 +83,11 @@ const ProjectSingle = (): JSX.Element => {
 								}
 							)}
 						</p>
-						<p>
-							{projectIsComplete ? (
-								<strong>
-									Completed on {projectCompleteDate}
-								</strong>
-							) : null}
-						</p>
+						{projectIsComplete ? (
+							<CompleteBadge
+								date={currentProject.meta.completedOn}
+							/>
+						) : null}
 					</AppPageMeta>
 				</AppPageTitle>
 				<AppPageHeaderControls>
@@ -115,21 +105,14 @@ const ProjectSingle = (): JSX.Element => {
 						<OverflowDelete handleClick={toggleDeleteModal}>
 							Delete
 						</OverflowDelete>
-
-						{projectIsComplete ? null : (
-							<React.Fragment>
-								<OverflowDivider />
-								<OverflowToggleVisible
-									selected={selected}
-									handleClick={handleSelect}
-								/>
-							</React.Fragment>
-						)}
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
 			{projectIsComplete ? null : (
-				<VisibleItemsHeader visible={selected} />
+				<VisibilityFilterToggle
+					selected={selected}
+					handleClick={handleSelect}
+				/>
 			)}
 			<AppPageSection>
 				<ListSection

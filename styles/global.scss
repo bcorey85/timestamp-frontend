@@ -20,8 +20,11 @@
 	--primary100: hsl(167, 60%, 85%);
 	--primary200: hsl(167, 65%, 65%);
 	--primary300: hsl(167, 65%, 50%);
-	--primary400: hsl(167, 85%, 37%);
+	--primary400: hsl(167, 85%, 40%);
 	--primary500: hsl(167, 90%, 27%);
+
+	--primary-btn: var(--primary500);
+	--primary-text: var(--primary500);
 
 	--red-error: hsl(0, 65%, 54%);
 	--green-success: hsl(121, 100%, 27%);
@@ -47,9 +50,9 @@
 	--text200: var(--gray400);
 
 	--project: hsl(340, 70%, 55%);
-	--task: hsl(250, 65%, 55%);
-	--note: hsl(50, 95%, 50%);
-	--time: var(--primary500);
+	--task: hsl(250, 75%, 65%);
+	--note: hsl(50, 100%, 50%);
+	--time: var(--primary-text);
 
 	--app-drawer-width: 24rem;
 	--app-header-height: 6.4rem;
@@ -78,14 +81,10 @@ body.dark {
 	--gray500: hsl(167, 5%, 30%);
 	--gray400: hsl(167, 5%, 28%);
 	--gray300: hsl(167, 5%, 35%);
-	--black200: hsl(167, 5%, 23%);
-	--black100: hsl(167, 5%, 25%);
+	--black200: hsl(167, 5%, 20%);
+	--black100: hsl(167, 5%, 23%);
 
-	--primary500: hsl(167, 85%, 37%);
-	--primary400: hsl(167, 65%, 45%);
-	--primary300: hsl(167, 65%, 50%);
-
-	--time: hsl(167, 85%, 37%);
+	--primary-text: var(--primary400);
 
 	--background-primary: var(--black100);
 	--background-secondary: var(--black200);
@@ -114,7 +113,7 @@ body {
 }
 
 a {
-	color: var(--primary500);
+	color: var(--primary-link);
 	font-weight: 500;
 }
 

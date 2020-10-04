@@ -26,8 +26,6 @@ const ListFilterButton = ({
 	sortDesc,
 	sortFunction
 }: Props): JSX.Element => {
-	console.log(align);
-
 	return (
 		<div className={styles[`btn_container_${type}`]}>
 			<Button

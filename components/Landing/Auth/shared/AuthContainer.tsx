@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LogoIcon } from '../../../shared/Svg/LogoIcon';
 
 import styles from './AuthContainer.module.scss';
 
@@ -10,7 +11,7 @@ const AuthContainer = ({ children }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.form_container}>
-				<img src='/images/timestamp-icon.svg' className={styles.logo} />
+				<LogoIcon className={styles.logo} />
 				{children}
 			</div>
 

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+
 import { OverflowButton } from './OverflowButton';
 
-import styles from './OverflowMenu.module.scss';
 import { useToggle } from '../../../../hooks/useToggle';
+import { useClickOutside } from '../../../../hooks/useClickOutside';
+
+import styles from './OverflowMenu.module.scss';
 
 interface Props {
 	children?: any;
@@ -11,15 +14,19 @@ interface Props {
 const OverflowMenu = ({ children }: Props): JSX.Element => {
 	const [ menuOpen, toggleMenu ] = useToggle(false);
 
+	const menuRef = useRef<HTMLUListElement>();
+
+	useClickOutside(menuRef, toggleMenu);
+
 	return (
-		<nav className={styles.container}>
+		<div className={styles.container}>
 			<OverflowButton toggleMenu={toggleMenu} />
-			<ul
-				className={menuOpen ? styles.menu_open : styles.menu_closed}
-				onClick={toggleMenu}>
-				{children}
-			</ul>
-		</nav>
+			{menuOpen ? (
+				<ul className={styles.menu} ref={menuRef}>
+					{children}
+				</ul>
+			) : null}
+		</div>
 	);
 };
 

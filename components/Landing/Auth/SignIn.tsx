@@ -106,7 +106,6 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 				</h1>
 				<h5>Please sign up or login to your account</h5>
 			</AuthHeader>
-			<ErrorDisplay errors={errors.generic} />
 			<Input
 				type='email'
 				id='email'

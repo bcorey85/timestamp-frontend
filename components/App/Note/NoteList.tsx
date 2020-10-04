@@ -19,6 +19,7 @@ import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions';
 import { selectAppData } from '../../../redux/appData';
 import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
+import { VisibilityFilterToggle } from '../shared/VisibilityFilterToggle';
 
 const NoteList = (): JSX.Element => {
 	const { toggleCreateModal } = useCreateModal();
@@ -33,15 +34,11 @@ const NoteList = (): JSX.Element => {
 					subheading='Note'
 					subheadingType={IconType.note}
 				/>
-				<AppPageHeaderControls>
-					<OverflowMenu>
-						<OverflowToggleVisible
-							selected={selected}
-							handleClick={handleSelect}
-						/>
-					</OverflowMenu>
-				</AppPageHeaderControls>
 			</AppPageHeader>
+			<VisibilityFilterToggle
+				selected={selected}
+				handleClick={handleSelect}
+			/>
 			<AppPageSection>
 				<ListSection
 					type='note'

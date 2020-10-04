@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { CompleteModal } from '../CompleteModal';
-import { createTestItem } from '../../../../test/setup';
+import { createTestItem } from '../../../../../test/setup';
 
 describe('CompleteModal', () => {
 	it('renders', () => {

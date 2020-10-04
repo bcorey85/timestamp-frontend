@@ -1,13 +1,17 @@
 import React from 'react';
 import { BiInfoCircle } from 'react-icons/bi';
 
-import { Modal, ModalControls, ModalContent } from '../../shared/Modal/Modal';
-import { Button } from '../../shared/Button';
+import {
+	Modal,
+	ModalControls,
+	ModalContent
+} from '../../../shared/Modal/Modal';
+import { Button } from '../../../shared/Button';
 
 import styles from './CompleteModal.module.scss';
-import { Item } from '../../../utils/ItemService';
-import { TypeIcon } from './TypeIcon';
-import { StringService } from '../../../utils/StringService';
+import { Item } from '../../../../utils/ItemService';
+import { TypeIcon } from '../TypeIcon';
+import { StringService } from '../../../../utils/StringService';
 
 interface Props {
 	item: Item;

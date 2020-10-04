@@ -7,6 +7,7 @@ import { Search } from './Search/Search';
 
 import { selectUser } from '../../../../redux/user';
 import styles from './Header.module.scss';
+import { Logo } from '../../../shared/Svg/Logo';
 
 const Header = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -18,7 +19,9 @@ const Header = (): JSX.Element => {
 				<Link
 					href='/app/[userId]/dashboard'
 					as={`/app/${userId}/dashboard`}>
-					<img src='/images/timestamp-logo.svg' />
+					<a>
+						<Logo />
+					</a>
 				</Link>
 			</div>
 			<Search />

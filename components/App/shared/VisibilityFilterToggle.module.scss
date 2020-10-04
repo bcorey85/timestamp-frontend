@@ -1,0 +1,36 @@
+@import '../../../styles/mediaQueries.scss';
+
+.container {
+	display: flex;
+	justify-content: flex-end;
+	max-height: 2.4rem;
+}
+
+.btn_container {
+	display: flex;
+}
+
+.btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--background-primary);
+	background: none;
+	padding: .8rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: var(--text200);
+
+	&:hover {
+		background-color: var(--primary-text);
+		border: 1px solid var(--primary-text);
+		color: var(--white);
+	}
+}
+
+.btn_selected {
+	@extend .btn;
+	color: var(--primary-text);
+	border: var(--border-primary);
+}

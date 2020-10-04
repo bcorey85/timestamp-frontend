@@ -10,6 +10,7 @@
 	border: none;
 	background: transparent;
 	font-weight: 500;
+	border-radius: var(--border-radius);
 
 	&:hover {
 		background-color: var(--background-tertiary);
@@ -22,17 +23,16 @@
 	@extend .link;
 	position: relative;
 	background-color: var(--background-tertiary);
-	color: var(--primary500);
-	border-radius: var(--border-radius);
+	color: var(--primary-text);
 
 	&:hover {
 		background-color: var(--background-tertiary);
-		color: var(--primary500);
+		color: var(--primary-text);
 		font-weight: 500;
 	}
 
 	& svg {
-		color: var(--primary500);
+		color: var(--primary-text);
 	}
 }
 

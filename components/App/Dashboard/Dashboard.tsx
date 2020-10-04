@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { IconType, TypeIcon } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
+import { IconType } from '../shared/TypeIcon';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
@@ -10,17 +9,12 @@ import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { PinnedFavorites } from './PinnedFavorites';
-import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowToggleVisible } from '../shared/OverflowMenu/OverflowActions/OverflowToggleVisible';
 
 import { selectUser } from '../../../redux/user';
-import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useAppData } from '../../../hooks/useAppData';
 import { useVisibilityFilter } from '../../../hooks/useVisibilityFilter';
-import { VisibleItemsHeader } from '../shared/VisibleItemsHeader';
+import { VisibilityFilterToggle } from '../shared/VisibilityFilterToggle';
 
 const Dashboard = (): JSX.Element => {
 	const { userId } = useSelector(selectUser);
@@ -41,14 +35,6 @@ const Dashboard = (): JSX.Element => {
 					subheading='Dashboard'
 					subheadingType={IconType.generic}
 				/>
-				<AppPageHeaderControls>
-					<OverflowMenu>
-						<OverflowToggleVisible
-							selected={selected}
-							handleClick={handleSelect}
-						/>
-					</OverflowMenu>
-				</AppPageHeaderControls>
 			</AppPageHeader>
 			<AppPageSection>
 				<StatsBar>
@@ -86,7 +72,10 @@ const Dashboard = (): JSX.Element => {
 					/>
 				</StatsBar>
 			</AppPageSection>
-			<VisibleItemsHeader visible={selected} />
+			<VisibilityFilterToggle
+				selected={selected}
+				handleClick={handleSelect}
+			/>
 			<AppPageSection>
 				<AppPageSectionHeading title='Pinned Favorites' />
 				<PinnedFavorites items={pinnedItems} />

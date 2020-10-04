@@ -16,8 +16,7 @@ import {
 	OverflowEdit,
 	OverflowDelete
 } from '../shared/OverflowMenu/OverflowActions';
-import { DeleteModal } from '../shared/DeleteModal';
-
+import { DeleteModal } from '../shared/Modals/DeleteModal';
 import { NoteBody } from './NoteBody';
 
 import { selectAppData } from '../../../redux/appData';

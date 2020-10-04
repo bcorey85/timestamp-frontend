@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiChevronUp, BiChevronDown } from 'react-icons/bi';
+import { BiCaretUp, BiCaretDown } from 'react-icons/bi';
 
 import styles from './ListFilterIcon.module.scss';
 
@@ -11,13 +11,13 @@ const ListFilterIcon = ({ sortDesc }: Props): JSX.Element => {
 	if (sortDesc) {
 		return (
 			<span className={styles.direction_icon}>
-				<BiChevronDown />
+				<BiCaretUp />
 			</span>
 		);
 	}
 	return (
 		<span className={styles.direction_icon}>
-			<BiChevronUp />
+			<BiCaretDown />
 		</span>
 	);
 };
