@@ -26,7 +26,7 @@ const LogoIcon = ({ className }: Props): JSX.Element => {
 			/>
 			<path
 				fill='#fff'
-				d='M559.836 101.189h-3.6v-2.203h9.752v2.203h-3.601v6.943h-2.551v-6.943z'
+				d='M559.932 101.189h-3.696v-2.011h9.752v2.011h-3.697v6.943h-2.359v-6.943z'
 				transform='translate(-505.697 -178.455) translate(519.531 42.237) matrix(.9931 0 0 .9931 -40.6 90.883) translate(-547.473 -47.344) scale(1.0497)'
 			/>
 		</svg>

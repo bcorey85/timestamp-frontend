@@ -22,14 +22,14 @@ interface Props {
 
 const AppLayout = ({ children }: Props): JSX.Element => {
 	const [ isLoading, setIsLoading ] = useState(true);
-	const { fetchAppData, appData, appDataErrors } = useAppData();
+	const { fetchAppData, appData, appDataErrors, userId } = useAppData();
 	const { createModalOpen, toggleCreateModal } = useCreateModal();
 	const dispatch = useDispatch();
 
 	useEffect(
 		() => {
 			const getAppData = async () => {
-				if (appData.synced === false) {
+				if (userId && appData.synced === false) {
 					await fetchAppData();
 				}
 

@@ -1,32 +1,27 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	BiNote,
-	BiCheckSquare,
 	BiCog,
 	BiTime,
 	BiLogOut,
 	BiGridAlt,
-	BiSearchAlt2,
-	BiClipboard,
-	BiPlus
+	BiSearchAlt2
 } from 'react-icons/bi';
 
 import { DrawerLink } from './DrawerLink';
 import { Button } from '../../../shared/Button';
+import { TypeIcon } from '../../shared/TypeIcon';
 
 import { logout } from '../../../../redux/user';
 import { selectInterface, toggleDrawer } from '../../../../redux/interface';
-import { selectUser } from '../../../../redux/user';
 import { useRouterService } from '../../../../hooks/useRouterService';
 import {
 	ModalConfig,
 	ModalMode
 } from '../../../../hooks/create/useCreateModal';
+import { clearAppData } from '../../../../redux/appData';
 
 import styles from './Drawer.module.scss';
-import { clearAppData } from '../../../../redux/appData';
-import { TypeIcon } from '../../shared/TypeIcon';
 
 interface Props {
 	toggleCreateModal: (mode: keyof ModalMode, config: ModalConfig) => void;
@@ -36,7 +31,6 @@ interface Props {
 const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 	const dispatch = useDispatch();
 	const { router } = useRouterService();
-	const { userId } = useSelector(selectUser);
 	const { drawerOpen } = useSelector(selectInterface);
 
 	const handleMobileClose = () => {

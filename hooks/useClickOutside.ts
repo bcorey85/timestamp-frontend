@@ -1,9 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 const useClickOutside = (ref: any, handler: any) => {
-	const handlerRef = useRef(handler);
-
-	const listener = e => {
+	const listener = (e: any) => {
 		if (ref.current && !ref.current.contains(e.target)) {
 			handler();
 		}
