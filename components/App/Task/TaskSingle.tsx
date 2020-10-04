@@ -2,17 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { IconType } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
+
 import {
 	AppPageSection,
 	AppPageTitle,
-	AppPageSectionHeading,
 	AppPageHeader,
 	AppPageHeaderControls,
 	AppPageMeta
 } from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
-import { ListAddIcon } from '../shared/ListSection/ListAddIcon';
 import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
 import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
 import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
@@ -21,17 +19,18 @@ import {
 	OverflowDelete,
 	OverflowComplete
 } from '../shared/OverflowMenu/OverflowActions';
+import { CompleteBadge } from '../shared/CompletedBadge';
 
 import { DeleteModal } from '../shared/Modals/DeleteModal';
 import { CompleteModal } from '../shared/Modals/CompleteModal';
 import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
-import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { useTaskActions } from '../../../hooks/itemActions/useTaskActions';
 import { Item } from '../../../utils/ItemService';
 import { MathService } from '../../../utils/MathService';
 import { StringService } from '../../../utils/StringService';
-import { CompleteBadge } from '../shared/CompletedBadge';
+
+import { TagService } from '../../../utils/TagService';
 
 const TaskSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -39,8 +38,6 @@ const TaskSingle = (): JSX.Element => {
 	const currentTask: Item = appData.tasks.filter(task => {
 		return task.itemId.taskId === Number(router.query.taskId);
 	})[0];
-
-	const { toggleCreateModal } = useCreateModal(currentTask);
 
 	const {
 		handleComplete,
@@ -61,7 +58,7 @@ const TaskSingle = (): JSX.Element => {
 					subheading='Task'
 					subheadingType={IconType.task}>
 					<AppPageMeta>
-						<p>{currentTask.tags || null} </p>
+						<p>{TagService.addSpaces(currentTask.tags) || null} </p>
 						<p>
 							{new Date(
 								Date.parse(currentTask.meta.createdAt)

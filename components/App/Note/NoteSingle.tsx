@@ -23,6 +23,7 @@ import { selectAppData } from '../../../redux/appData';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { Item } from '../../../utils/ItemService';
 import { useNoteActions } from '../../../hooks/itemActions/useNoteActions';
+import { TagService } from '../../../utils/TagService';
 
 const NoteSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -46,7 +47,7 @@ const NoteSingle = (): JSX.Element => {
 					subheading='Note'
 					subheadingType={IconType.note}>
 					<AppPageMeta>
-						<p>{currentNote.tags || null}</p>
+						<p>{TagService.addSpaces(currentNote.tags) || null}</p>
 					</AppPageMeta>
 				</AppPageTitle>
 
