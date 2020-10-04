@@ -1,8 +1,7 @@
 import React, { SyntheticEvent } from 'react';
-import { MdStar, MdStarBorder } from 'react-icons/md';
 
 import styles from './PinInput.module.scss';
-import { PinnedIcon } from '../shared/PinnedSection/PinnedIcon';
+import { PinnedIcon } from '../../shared/PinnedSection/PinnedIcon';
 
 interface Props {
 	pinned: boolean;

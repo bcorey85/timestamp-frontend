@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { MathService } from '../../../utils/MathService';
-import { DateTimeService } from '../../../utils/DateTimeService';
-import { Item } from '../../../utils/ItemService';
+import { MathService } from '../../../../utils/MathService';
+import { DateTimeService } from '../../../../utils/DateTimeService';
+import { Item } from '../../../../utils/ItemService';
 import styles from './NoteBody.module.scss';
 
 interface Props {

@@ -4,8 +4,8 @@ import { Input, TextArea, Select } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
-import { TagInput } from './TagInput';
-import { PinInput } from './PinInput';
+import { TagInput } from './shared/TagInput';
+import { PinInput } from './shared/PinInput';
 
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';

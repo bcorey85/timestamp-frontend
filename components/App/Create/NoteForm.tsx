@@ -1,12 +1,11 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react';
-import DatePicker from 'react-datetime';
+import React, { SyntheticEvent } from 'react';
 
 import { DateTimeInput, Input, Select, TextArea } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
-import { TagInput } from './TagInput';
-import { PinInput } from './PinInput';
+import { TagInput } from './shared/TagInput';
+import { PinInput } from './shared/PinInput';
 
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';

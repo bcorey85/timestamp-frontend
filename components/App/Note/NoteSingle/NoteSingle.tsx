@@ -1,29 +1,28 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { IconType } from '../shared/TypeIcon';
 import {
 	AppPageHeader,
 	AppPageMeta,
 	AppPageHeaderControls,
 	AppPageTitle,
 	AppPageSection
-} from '../AppPage';
-import { OverflowMenu } from '../shared/OverflowMenu/OverflowMenu';
-import { OverflowHeader } from '../shared/OverflowMenu/OverflowHeader';
-import { OverflowDivider } from '../shared/OverflowMenu/OverflowDivider';
+} from '../../AppPage';
+import { OverflowMenu } from '../../shared/OverflowMenu/OverflowMenu';
+import { OverflowHeader } from '../../shared/OverflowMenu/OverflowHeader';
+import { OverflowDivider } from '../../shared/OverflowMenu/OverflowDivider';
 import {
 	OverflowEdit,
 	OverflowDelete
-} from '../shared/OverflowMenu/OverflowActions';
-import { DeleteModal } from '../shared/Modals/DeleteModal';
+} from '../../shared/OverflowMenu/OverflowActions';
+import { DeleteModal } from '../../shared/Modals/DeleteModal';
 import { NoteBody } from './NoteBody';
 
-import { selectAppData } from '../../../redux/appData';
-import { useRouterService } from '../../../hooks/useRouterService';
-import { Item } from '../../../utils/ItemService';
-import { useNoteActions } from '../../../hooks/itemActions/useNoteActions';
-import { TagService } from '../../../utils/TagService';
+import { selectAppData } from '../../../../redux/appData';
+import { useRouterService } from '../../../../hooks/useRouterService';
+import { Item } from '../../../../utils/ItemService';
+import { useNoteActions } from '../../../../hooks/itemActions/useNoteActions';
+import { TagService } from '../../../../utils/TagService';
 
 const NoteSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -45,7 +44,7 @@ const NoteSingle = (): JSX.Element => {
 				<AppPageTitle
 					heading={currentNote.title}
 					subheading='Note'
-					subheadingType={IconType.note}>
+					subheadingType='note'>
 					<AppPageMeta>
 						<p>{TagService.addSpaces(currentNote.tags) || null}</p>
 					</AppPageMeta>

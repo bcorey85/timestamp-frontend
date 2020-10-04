@@ -11,7 +11,7 @@ interface Props {
 
 interface BtnProps {
 	active: boolean;
-	type: IconType;
+	type: keyof IconType;
 	text: string;
 	handleClick: (e: SyntheticEvent) => void;
 }
@@ -34,19 +34,19 @@ const CreateNav = ({ currentPage }: Props) => {
 		<div className={styles.container}>
 			<CreateBtn
 				active={currentPage === 'project'}
-				type={IconType.project}
+				type='project'
 				text='Project'
 				handleClick={() => setCreateModalPage('project')}
 			/>
 			<CreateBtn
 				active={currentPage === 'task'}
-				type={IconType.task}
+				type='task'
 				text='Task'
 				handleClick={() => setCreateModalPage('task')}
 			/>
 			<CreateBtn
 				active={currentPage === 'note'}
-				type={IconType.note}
+				type='note'
 				text='Note'
 				handleClick={() => setCreateModalPage('note')}
 			/>

@@ -1,9 +1,6 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import Link from 'next/link';
 
-import { IconType, TypeIcon } from '../shared/TypeIcon';
-import { Button } from '../../shared/Button';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
@@ -11,7 +8,6 @@ import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { Calendar } from './Calendar/Calendar';
 
-import { selectUser } from '../../../redux/user';
 import { selectAppData } from '../../../redux/appData';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
 import { useActivityStats } from '../../../hooks/useActivityStats';
@@ -20,7 +16,6 @@ import { MathService } from '../../../utils/MathService';
 import { DateTimeService } from '../../../utils/DateTimeService';
 import { YearToggle } from './YearToggle';
 import { AppPageHeaderControls } from '../AppPage/AppPageHeaderControls';
-import { ActivityStatsService } from '../../../utils/ActivityStatsService';
 import { DailyItemCount } from './DailyItemCount/DailyItemCount';
 
 const Activity = (): JSX.Element => {
@@ -51,7 +46,7 @@ const Activity = (): JSX.Element => {
 				<AppPageTitle
 					heading='User Stats'
 					subheading='Activity'
-					subheadingType={IconType.time}
+					subheadingType='time'
 				/>
 				<AppPageHeaderControls>
 					<YearToggle
@@ -66,27 +61,27 @@ const Activity = (): JSX.Element => {
 			<AppPageSection>
 				<StatsBar>
 					<StatCard
-						type={IconType.time}
+						type='time'
 						title='Hours'
 						stat={MathService.round(yearTotals.hours, 1)}
 					/>
 					<StatCard
-						type={IconType.project}
+						type='project'
 						title='Projects'
 						stat={MathService.round(yearTotals.projects, 1)}
 					/>
 					<StatCard
-						type={IconType.task}
+						type='task'
 						title='Tasks'
 						stat={MathService.round(yearTotals.tasks, 1)}
 					/>
 					<StatCard
-						type={IconType.note}
+						type='note'
 						title='Notes'
 						stat={MathService.round(yearTotals.notes, 1)}
 					/>
 					<StatCard
-						type={IconType.time}
+						type='time'
 						title='Min / Note'
 						stat={MathService.round(
 							yearTotals.averageNoteMinutes,

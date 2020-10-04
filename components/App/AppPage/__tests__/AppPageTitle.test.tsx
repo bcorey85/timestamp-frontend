@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { AppPageTitle } from '../AppPageTitle';
-import { IconType } from '../../shared/TypeIcon';
 
 describe('AppPageTitle', () => {
 	it('renders', () => {
@@ -10,7 +9,7 @@ describe('AppPageTitle', () => {
 			<AppPageTitle
 				heading='test'
 				subheading='test2'
-				subheadingType={IconType.project}
+				subheadingType='project'
 			/>
 		);
 		expect(wrapper).not.toBeNull();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NoteSingle } from '../../../../components/App/Note/NoteSingle';
+import { NoteSingle } from '../../../../components/App/Note/NoteSingle/NoteSingle';
 import { PrivateRoute } from '../../../../components/App/shared/PrivateRoute';
 import { Meta } from '../../../../components/Meta/Meta';
 

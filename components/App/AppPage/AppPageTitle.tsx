@@ -6,7 +6,7 @@ import { IconType, TypeIcon } from '../shared/TypeIcon';
 interface Props {
 	heading: string;
 	subheading: string;
-	subheadingType?: IconType;
+	subheadingType?: keyof IconType;
 	children?: any;
 }
 
@@ -20,9 +20,7 @@ const AppPageTitle = ({
 		<div className={styles.container}>
 			<hgroup>
 				<h2>
-					{subheadingType ? (
-						<TypeIcon type={IconType[subheadingType]} />
-					) : null}
+					{subheadingType ? <TypeIcon type={subheadingType} /> : null}
 					{subheading}
 				</h2>
 			</hgroup>

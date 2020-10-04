@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { IconType } from '../shared/TypeIcon';
 import { AppPageSection, AppPageTitle, AppPageHeader } from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
 import { VisibilityFilterToggle } from '../shared/VisibilityFilterToggle';
@@ -15,7 +14,7 @@ const TaskList = (): JSX.Element => {
 				<AppPageTitle
 					heading='All Tasks'
 					subheading='Task'
-					subheadingType={IconType.task}
+					subheadingType='task'
 				/>
 			</AppPageHeader>
 			<VisibilityFilterToggle

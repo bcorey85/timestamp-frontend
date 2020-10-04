@@ -6,7 +6,7 @@ import { TypeIcon, IconType } from '../shared/TypeIcon';
 import styles from './Breadcrumb.module.scss';
 
 export interface BreadcrumbLink {
-	iconType: IconType;
+	iconType: keyof IconType;
 	href: string;
 	text: string;
 }

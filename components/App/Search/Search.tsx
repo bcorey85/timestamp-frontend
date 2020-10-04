@@ -7,11 +7,10 @@ import { AppPageHeader } from '../AppPage/AppPageHeader';
 import { AppPageTitle } from '../AppPage/AppPageTitle';
 import { SearchResult } from './SearchResult';
 import { SearchInput } from './SearchInput';
-
-import styles from './Search.module.scss';
-import { IconType } from '../shared/TypeIcon';
 import { AppPageSection } from '../AppPage/AppPageSection';
 import { AppPageSectionHeading } from '../AppPage/AppPageSectionHeading';
+
+import styles from './Search.module.scss';
 
 const Search = (): JSX.Element => {
 	const { router } = useRouterService();
@@ -65,7 +64,7 @@ const Search = (): JSX.Element => {
 				<AppPageTitle
 					heading='Enter a Search Value'
 					subheading='Search'
-					subheadingType={IconType.generic}
+					subheadingType='generic'
 				/>
 			</AppPageHeader>
 			<AppPageSection>

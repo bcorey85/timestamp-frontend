@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TaskSingle } from '../../../../components/App/Task/TaskSingle';
+import { TaskSingle } from '../../../../components/App/Task/TaskSingle/TaskSingle';
 import { PrivateRoute } from '../../../../components/App/shared/PrivateRoute';
 import { Meta } from '../../../../components/Meta/Meta';
 

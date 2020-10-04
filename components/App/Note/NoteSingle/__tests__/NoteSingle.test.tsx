@@ -6,9 +6,9 @@ import { NoteSingle } from '../NoteSingle';
 import {
 	mockStore,
 	MockReduxProvider
-} from '../../../../test/__mocks__/mockRedux';
+} from '../../../../../test/__mocks__/mockRedux';
 
-import { createTestState } from '../../../../test/setup';
+import { createTestState } from '../../../../../test/setup';
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 

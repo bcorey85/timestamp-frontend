@@ -8,7 +8,7 @@ import { MathService } from '../../../../utils/MathService';
 
 interface Props {
 	title: string;
-	type: IconType;
+	type: keyof IconType;
 	stat: string | number;
 	href?: string;
 	as?: string;

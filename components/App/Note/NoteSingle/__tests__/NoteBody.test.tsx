@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import { NoteBody } from '../NoteBody';
 
-import { createTestItem } from '../../../../test/setup';
+import { createTestItem } from '../../../../../test/setup';
 
 describe('NoteBody', () => {
 	it('renders', () => {

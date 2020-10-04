@@ -8,7 +8,7 @@ describe('StatCard', () => {
 	it('renders', () => {
 		const wrapper = shallow(
 			<StatCard
-				type={IconType.note}
+				type='note'
 				title='test'
 				stat='4'
 				linkText='test'

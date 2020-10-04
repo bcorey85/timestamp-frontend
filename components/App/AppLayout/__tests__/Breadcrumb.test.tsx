@@ -3,21 +3,22 @@ import { shallow } from 'enzyme';
 
 import { Breadcrumb } from '../Breadcrumb';
 import { IconType } from '../../shared/TypeIcon';
+import { ItemType } from '../../../../utils/ItemService';
 
 const mockLinks = [
 	{
 		href: '#',
-		iconType: IconType.project,
+		iconType: 'project' as keyof ItemType,
 		text: 'Project Title'
 	},
 	{
 		href: '#',
-		iconType: IconType.task,
+		iconType: 'task' as keyof ItemType,
 		text: 'Task Title'
 	},
 	{
 		href: '#',
-		iconType: IconType.note,
+		iconType: 'note' as keyof ItemType,
 		text: 'Note Title'
 	}
 ];

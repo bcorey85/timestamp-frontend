@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { IconType } from '../shared/TypeIcon';
 import { AppPageSection, AppPageTitle, AppPageHeader } from '../AppPage';
 import { ListSection } from '../shared/ListSection/ListSection';
 
@@ -16,7 +15,7 @@ const ProjectList = (): JSX.Element => {
 				<AppPageTitle
 					heading='All Projects'
 					subheading='Project'
-					subheadingType={IconType.project}
+					subheadingType='project'
 				/>
 			</AppPageHeader>
 			<VisibilityFilterToggle

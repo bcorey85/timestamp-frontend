@@ -3,13 +3,13 @@ import { ItemType } from '../../../utils/ItemService';
 
 import styles from './TypeIcon.module.scss';
 
-export enum IconType {
-	project = 'project',
-	task = 'task',
-	note = 'note',
-	time = 'time',
-	generic = 'generic',
-	none = 'none'
+export interface IconType {
+	project: 'project';
+	task: 'task';
+	note: 'note';
+	time: 'time';
+	generic: 'generic';
+	none: 'none';
 }
 
 interface Icon extends ItemType {

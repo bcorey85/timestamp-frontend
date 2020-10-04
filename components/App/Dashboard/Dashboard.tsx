@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { IconType } from '../shared/TypeIcon';
 import { StatsBar } from '../shared/StatsBar/StatsBar';
 import { StatCard } from '../shared/StatsBar/StatCard';
 import { AppPageSection } from '../AppPage/AppPageSection';
@@ -33,13 +32,13 @@ const Dashboard = (): JSX.Element => {
 				<AppPageTitle
 					heading='Welcome to Timestamp'
 					subheading='Dashboard'
-					subheadingType={IconType.generic}
+					subheadingType='generic'
 				/>
 			</AppPageHeader>
 			<AppPageSection>
 				<StatsBar>
 					<StatCard
-						type={IconType.time}
+						type='time'
 						title={'Hours'}
 						stat={appData.hours}
 						href={'/app/[userId]/activity'}
@@ -47,7 +46,7 @@ const Dashboard = (): JSX.Element => {
 						linkText='View Activity'
 					/>
 					<StatCard
-						type={IconType.project}
+						type='project'
 						title={'Projects'}
 						stat={appData.projects.length}
 						href={'/app/[userId]/projects'}
@@ -55,7 +54,7 @@ const Dashboard = (): JSX.Element => {
 						linkText='View Projects'
 					/>
 					<StatCard
-						type={IconType.task}
+						type='task'
 						title={'Tasks'}
 						stat={appData.tasks.length}
 						href={'/app/[userId]/tasks'}
@@ -63,7 +62,7 @@ const Dashboard = (): JSX.Element => {
 						linkText='View Tasks'
 					/>
 					<StatCard
-						type={IconType.note}
+						type='note'
 						title={'Notes'}
 						stat={appData.notes.length}
 						href={'/app/[userId]/notes'}
