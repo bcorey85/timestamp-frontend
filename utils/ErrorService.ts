@@ -12,12 +12,15 @@ class ErrorService {
 		};
 
 		errorArray.map(err => {
-			if (
+			const inFilterArray =
 				err.field &&
-				filterArray.findIndex(filter => filter === err.field) > -1
-			) {
+				filterArray.findIndex(filter => filter === err.field) > -1;
+			const uniqueGeneric =
+				errors.generic.findIndex(e => e.message === err.message) === -1;
+
+			if (inFilterArray) {
 				return (errors[err.field] = err.message);
-			} else {
+			} else if (uniqueGeneric) {
 				errors.generic.push(err);
 			}
 		});
