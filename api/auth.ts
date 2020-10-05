@@ -4,6 +4,7 @@ import { ApiRequest } from './index';
 interface UserCredentials {
 	email: string;
 	password: string;
+	passwordConfirm?: string;
 }
 
 interface ResetRequest {

@@ -9,79 +9,72 @@ import { AuthHeader } from './shared/AuthHeader';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
-import { signupApiConfig, loginApiConfig } from '../../../api/auth';
+import { signupApiConfig } from '../../../api/auth';
 import { login } from '../../../redux/user';
-import { ApiRequest, ApiResponse, ApiError } from '../../../api/index';
+import { ApiError } from '../../../api/index';
 import { ErrorDisplay } from '../../shared/ErrorDisplay';
 import { ErrorService } from '../../../utils/ErrorService';
-import styles from './SignIn.module.scss';
 import { setAppDataSynced } from '../../../redux/appData';
 
-type Request = (config: ApiRequest) => Promise<ApiResponse>;
-
 interface Props {
-	toggleForm: () => void;
+	toggleForm: (mode: string) => void;
 }
 
 interface Errors {
 	email?: string;
 	password?: string;
+	passwordConfirm?: string;
 	generic?: ApiError[];
 }
 
-const SignIn = ({ toggleForm }: Props): JSX.Element => {
-	const [ isLoadingLogin, setIsLoadingLogin ] = useState(false);
+const Register = ({ toggleForm }: Props): JSX.Element => {
 	const [ isLoadingSignup, setIsLoadingSignup ] = useState(false);
 	const [ email, setEmail ] = useInputState('');
 	const [ password, setPassword ] = useInputState('');
+	const [ passwordConfirm, setPasswordConfirm ] = useInputState('');
 	const [ errors, setErrors ] = useState<Errors>({
 		email: null,
 		password: null,
+		passwordConfirm: null,
 		generic: []
 	});
 	const { request: signupRequest, errors: signupErrors } = useApiRequest();
-	const { request: loginRequest, errors: loginErrors } = useApiRequest();
 	const dispatch = useDispatch();
 	const router = useRouter();
 
 	useEffect(
 		() => {
-			const errorArray = [ ...signupErrors, ...loginErrors ];
 			const errors = ErrorService.formatErrors(
-				[ 'email', 'password' ],
-				errorArray
+				[ 'email', 'password', 'passwordConfirm' ],
+				signupErrors
 			);
+			console.log(signupErrors);
 
 			setErrors(errors);
 		},
-		[ signupErrors, loginErrors ]
+		[ signupErrors ]
 	);
 
-	const signupConfig = signupApiConfig({ email, password });
-	const loginConfig = loginApiConfig({ email, password });
-
-	const handleAuth = async (
-		e: SyntheticEvent,
-		config: ApiRequest,
-		request: Request
-	) => {
+	const handleAuth = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		if (request === signupRequest) {
-			setIsLoadingSignup(true);
-		} else {
-			setIsLoadingLogin(true);
-		}
+		setIsLoadingSignup(true);
 
 		setErrors({
 			email: null,
 			password: null,
+			passwordConfirm: null,
 			generic: []
 		});
-		const res = await request(config);
+
+		const signupConfig = signupApiConfig({
+			email,
+			password,
+			passwordConfirm
+		});
+		const res = await signupRequest(signupConfig);
 
 		setIsLoadingSignup(false);
-		setIsLoadingLogin(false);
 
 		if (res.success === false) {
 			return;
@@ -101,10 +94,8 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 	return (
 		<form>
 			<AuthHeader>
-				<h1>
-					Capture your learning<br /> progress in time.
-				</h1>
-				<h5>Please sign up or login to your account</h5>
+				<h1>Create a New Account</h1>
+				<h5>Please enter the following information.</h5>
 			</AuthHeader>
 			<Input
 				type='email'
@@ -122,30 +113,34 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 				error={errors.password}
 				onChange={setPassword}
 				value={password}
-				autoComplete='current-password'
+				autoComplete='off'
 			/>
-			<div className={styles.reset_password}>
-				<Button btnStyle='link_gray' onClick={toggleForm}>
-					Forgot Password?
-				</Button>
-			</div>
-
+			<Input
+				type='password'
+				id='confirm-password'
+				label='Confirm Password'
+				error={errors.passwordConfirm}
+				onChange={setPasswordConfirm}
+				value={passwordConfirm}
+				autoComplete='off'
+			/>
 			<ButtonContainer>
 				<Button
-					btnStyle='outline'
-					onClick={e => handleAuth(e, signupConfig, signupRequest)}
-					isLoading={isLoadingSignup}>
-					Sign Up
+					btnStyle='link_gray'
+					onClick={() => {
+						toggleForm('sigin');
+					}}>
+					Back to Login
 				</Button>
 				<Button
 					btnStyle='primary'
-					onClick={e => handleAuth(e, loginConfig, loginRequest)}
-					isLoading={isLoadingLogin}>
-					Login
+					onClick={handleAuth}
+					isLoading={isLoadingSignup}>
+					Sign Up
 				</Button>
 			</ButtonContainer>
 
-			{isLoadingLogin || isLoadingSignup ? (
+			{isLoadingSignup ? (
 				<div style={{ textAlign: 'center' }}>
 					Please wait while free server warms up.
 				</div>
@@ -156,4 +151,4 @@ const SignIn = ({ toggleForm }: Props): JSX.Element => {
 	);
 };
 
-export { SignIn };
+export { Register };

@@ -10,10 +10,9 @@ import { useApiRequest } from '../../../hooks/useApiRequest';
 import { forgotPasswordApiConfig } from '../../../api/auth';
 import { ApiError } from '../../../api/index';
 import { ErrorService } from '../../../utils/ErrorService';
-import styles from './ForgotPassword.module.scss';
 
 interface Props {
-	toggleForm: () => void;
+	toggleForm: (mode: string) => void;
 }
 
 interface Errors {
@@ -83,12 +82,12 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 	}
 
 	return (
-		<form className={styles.form}>
+		<form>
 			<AuthHeader>
 				<h1>Forgot Password</h1>
 				<h5>Please enter your email to reset your password</h5>
 			</AuthHeader>
-			<div className={styles.input_container}>
+			<div>
 				<Input
 					type='email'
 					id='email'
@@ -105,7 +104,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 					type='button'
 					id='cancel'
 					onClick={toggleForm}
-					btnStyle='outline'>
+					btnStyle='link_gray'>
 					Cancel
 				</Button>
 				<Button

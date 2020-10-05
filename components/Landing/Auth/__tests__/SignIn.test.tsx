@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { SignIn } from '../SignIn';
+import { Login } from '../Login';
 import {
 	mockStore,
 	MockReduxProvider
@@ -9,11 +9,11 @@ import {
 
 const toggleForm = jest.fn();
 
-describe('SignIn', () => {
+describe('Login', () => {
 	it('renders', () => {
 		const wrapper = mount(
 			<MockReduxProvider reduxStore={mockStore}>
-				<SignIn toggleForm={toggleForm} />
+				<Login toggleForm={toggleForm} />
 			</MockReduxProvider>
 		);
 		expect(wrapper).not.toBeNull();

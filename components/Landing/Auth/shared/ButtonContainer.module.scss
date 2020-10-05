@@ -1,9 +1,21 @@
-.btn_container {
-	width: 100%;
-	display: flex;
+@import '../../../../styles/mediaQueries.scss';
 
-	& button:first-of-type {
-		margin-right: 1.6rem;
-		width: 45%;
+.btn_container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1.6rem;
+	width: 100%;
+	margin-bottom: 1.6rem;
+	margin-top: 4rem;
+
+	@include respondH(550) {
+		margin-top: 3.2rem;
+	}
+
+	& button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 0;
 	}
 }

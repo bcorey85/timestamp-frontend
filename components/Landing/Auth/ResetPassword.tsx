@@ -13,7 +13,6 @@ import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
 import { ApiError } from '../../../api/index';
 import { ErrorService } from '../../../utils/ErrorService';
-import styles from './ResetPassword.module.scss';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { setAppDataSynced } from '../../../redux/appData';
 
@@ -84,7 +83,7 @@ const ResetPassword = (): JSX.Element => {
 				<h5>Please submit a new password below</h5>
 			</AuthHeader>
 			<form>
-				<div className={styles.input_container}>
+				<div>
 					<Input
 						id='password'
 						label='New Password'

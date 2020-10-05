@@ -1,0 +1,11 @@
+@import '../../../styles/mediaQueries.scss';
+
+.reset_password {
+	text-align: right;
+
+	& button {
+		@include respondH(550) {
+			font-size: 1.2rem;
+		}
+	}
+}
