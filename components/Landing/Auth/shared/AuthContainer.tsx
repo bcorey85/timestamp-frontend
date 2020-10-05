@@ -14,7 +14,6 @@ const AuthContainer = ({ children }: Props): JSX.Element => {
 				<LogoIcon className={styles.logo} />
 				{children}
 			</div>
-
 			<div className={styles.image} />
 		</div>
 	);

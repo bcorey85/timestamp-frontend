@@ -23,6 +23,7 @@ import { useRouterService } from '../../../../hooks/useRouterService';
 import { Item } from '../../../../utils/ItemService';
 import { useNoteActions } from '../../../../hooks/itemActions/useNoteActions';
 import { TagService } from '../../../../utils/TagService';
+import { ItemMeta } from '../../shared/ItemMeta';
 
 const NoteSingle = (): JSX.Element => {
 	const appData = useSelector(selectAppData);
@@ -45,9 +46,7 @@ const NoteSingle = (): JSX.Element => {
 					heading={currentNote.title}
 					subheading='Note'
 					subheadingType='note'>
-					<AppPageMeta>
-						<p>{TagService.addSpaces(currentNote.tags) || null}</p>
-					</AppPageMeta>
+					<ItemMeta item={currentNote} />
 				</AppPageTitle>
 
 				<AppPageHeaderControls>

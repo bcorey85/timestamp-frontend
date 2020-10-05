@@ -5,7 +5,8 @@ import {
 	AppPageSection,
 	AppPageTitle,
 	AppPageHeader,
-	AppPageHeaderControls
+	AppPageHeaderControls,
+	AppPageMeta
 } from '../../AppPage';
 import { ListSection } from '../../shared/ListSection/ListSection';
 import { OverflowMenu } from '../../shared/OverflowMenu/OverflowMenu';
@@ -16,7 +17,9 @@ import {
 	OverflowDelete,
 	OverflowComplete
 } from '../../shared/OverflowMenu/OverflowActions';
-import { TaskSingleMeta } from './TaskSingleMeta';
+import { StatsBar } from '../../shared/StatsBar/StatsBar';
+import { StatCard } from '../../shared/StatsBar/StatCard';
+import { ItemMeta } from '../../shared/ItemMeta';
 
 import { DeleteModal } from '../../shared/Modals/DeleteModal';
 import { CompleteModal } from '../../shared/Modals/CompleteModal';
@@ -49,7 +52,7 @@ const TaskSingle = (): JSX.Element => {
 					heading={currentTask.title}
 					subheading='Task'
 					subheadingType='task'>
-					<TaskSingleMeta task={currentTask} />
+					<ItemMeta item={currentTask} />
 				</AppPageTitle>
 				<AppPageHeaderControls>
 					<OverflowMenu>
@@ -69,6 +72,20 @@ const TaskSingle = (): JSX.Element => {
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
+			<AppPageSection>
+				<StatsBar>
+					<StatCard
+						type='time'
+						title={'Hours'}
+						stat={currentTask.meta.hours}
+					/>
+					<StatCard
+						type='note'
+						title={'Notes'}
+						stat={currentTask.notes}
+					/>
+				</StatsBar>
+			</AppPageSection>
 			<AppPageSection>
 				<ListSection
 					type='note'

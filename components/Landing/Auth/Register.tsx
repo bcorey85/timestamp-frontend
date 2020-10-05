@@ -6,6 +6,7 @@ import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { ButtonContainer } from './shared/ButtonContainer';
 import { AuthHeader } from './shared/AuthHeader';
+import { MessageContainer } from './shared/MessageContainer';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -139,14 +140,15 @@ const Register = ({ toggleForm }: Props): JSX.Element => {
 					Sign Up
 				</Button>
 			</ButtonContainer>
-
-			{isLoadingSignup ? (
-				<div style={{ textAlign: 'center' }}>
-					Please wait while free server warms up.
-				</div>
-			) : (
-				<ErrorDisplay errors={errors.generic} />
-			)}
+			<MessageContainer>
+				{isLoadingSignup ? (
+					<div style={{ textAlign: 'center' }}>
+						Please wait while free server warms up.
+					</div>
+				) : (
+					<ErrorDisplay errors={errors.generic} />
+				)}
+			</MessageContainer>
 		</form>
 	);
 };

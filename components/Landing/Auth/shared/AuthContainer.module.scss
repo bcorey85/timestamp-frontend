@@ -6,7 +6,7 @@
 	display: flex;
 	width: 100%;
 	max-width: 102.4rem;
-	min-height: 72rem;
+	min-height: 68rem;
 	@include panel;
 	padding: 2.4rem;
 
@@ -21,7 +21,9 @@
 		border: none;
 		box-shadow: none;
 		padding: 2.4rem;
+		margin-top: 2.4rem;
 		margin-bottom: 8rem;
+		min-height: 56rem;
 	}
 }
 
@@ -40,7 +42,7 @@
 
 .logo {
 	height: 4rem;
-	margin-bottom: 6.4rem;
+	margin-bottom: 4rem;
 	align-self: flex-start;
 
 	@include respondH(1024) {

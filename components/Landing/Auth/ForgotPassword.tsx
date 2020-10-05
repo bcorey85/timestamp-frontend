@@ -4,6 +4,8 @@ import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { ButtonContainer } from './shared/ButtonContainer';
 import { AuthHeader } from './shared/AuthHeader';
+import { ErrorDisplay } from '../../shared/ErrorDisplay';
+import { MessageContainer } from './shared/MessageContainer';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -116,6 +118,15 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 					Reset Password
 				</Button>
 			</ButtonContainer>
+			<MessageContainer>
+				{isLoading ? (
+					<div style={{ textAlign: 'center' }}>
+						Please wait while free server warms up.
+					</div>
+				) : (
+					<ErrorDisplay errors={errors.generic} />
+				)}
+			</MessageContainer>
 		</form>
 	);
 };

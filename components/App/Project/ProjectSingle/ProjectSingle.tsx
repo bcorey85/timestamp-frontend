@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import {
 	AppPageTitle,
 	AppPageHeader,
-	AppPageHeaderControls
+	AppPageHeaderControls,
+	AppPageSection
 } from '../../AppPage';
 
 import { OverflowMenu } from '../../shared/OverflowMenu/OverflowMenu';
@@ -18,13 +19,15 @@ import {
 import { DeleteModal } from '../../shared/Modals/DeleteModal';
 import { CompleteModal } from '../../shared/Modals/CompleteModal';
 import { VisibilityFilterToggle } from '../../shared/VisibilityFilterToggle';
+import { StatsBar } from '../../shared/StatsBar/StatsBar';
+import { StatCard } from '../../shared/StatsBar/StatCard';
+import { ItemMeta } from '../../shared/ItemMeta';
 
 import { selectAppData } from '../../../../redux/appData';
 import { useRouterService } from '../../../../hooks/useRouterService';
 import { Item } from '../../../../utils/ItemService';
 import { useVisibilityFilter } from '../../../../hooks/useVisibilityFilter';
 import { useProjectActions } from '../../../../hooks/itemActions/useProjectActions';
-import { ProjectSingleMeta } from './ProjectSingleMeta';
 import { ProjectSingleItemList } from './ProjectSingleItemList';
 
 const ProjectSingle = (): JSX.Element => {
@@ -55,7 +58,7 @@ const ProjectSingle = (): JSX.Element => {
 					heading={currentProject.title}
 					subheading='Project'
 					subheadingType='project'>
-					<ProjectSingleMeta project={currentProject} />
+					<ItemMeta item={currentProject} />
 				</AppPageTitle>
 				<AppPageHeaderControls>
 					<OverflowMenu>
@@ -75,6 +78,25 @@ const ProjectSingle = (): JSX.Element => {
 					</OverflowMenu>
 				</AppPageHeaderControls>
 			</AppPageHeader>
+			<AppPageSection>
+				<StatsBar>
+					<StatCard
+						type='time'
+						title={'Hours'}
+						stat={currentProject.meta.hours}
+					/>
+					<StatCard
+						type='task'
+						title={'Tasks'}
+						stat={currentProject.tasks}
+					/>
+					<StatCard
+						type='note'
+						title={'Notes'}
+						stat={currentProject.notes}
+					/>
+				</StatsBar>
+			</AppPageSection>
 			{projectIsComplete ? null : (
 				<VisibilityFilterToggle
 					selected={selected}

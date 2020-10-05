@@ -6,6 +6,7 @@ import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { ButtonContainer } from './shared/ButtonContainer';
 import { AuthHeader } from './shared/AuthHeader';
+import { MessageContainer } from './shared/MessageContainer';
 
 import { useInputState } from '../../../hooks/useInputState';
 import { useApiRequest } from '../../../hooks/useApiRequest';
@@ -86,9 +87,7 @@ const Login = ({ toggleForm }: Props): JSX.Element => {
 	return (
 		<form>
 			<AuthHeader>
-				<h1>
-					Capture your learning<br /> progress in time.
-				</h1>
+				<h1>Welcome to Timestamp</h1>
 				<h5>Please sign up or login to your account</h5>
 			</AuthHeader>
 			<Input
@@ -134,14 +133,15 @@ const Login = ({ toggleForm }: Props): JSX.Element => {
 					Login
 				</Button>
 			</ButtonContainer>
-
-			{isLoadingLogin ? (
-				<div style={{ textAlign: 'center' }}>
-					Please wait while free server warms up.
-				</div>
-			) : (
-				<ErrorDisplay errors={errors.generic} />
-			)}
+			<MessageContainer>
+				{isLoadingLogin ? (
+					<div style={{ textAlign: 'center' }}>
+						Please wait while free server warms up.
+					</div>
+				) : (
+					<ErrorDisplay errors={errors.generic} />
+				)}
+			</MessageContainer>
 		</form>
 	);
 };

@@ -16,6 +16,7 @@ import { ApiError } from '../../../api/index';
 import { ErrorService } from '../../../utils/ErrorService';
 import { useRouterService } from '../../../hooks/useRouterService';
 import { setAppDataSynced } from '../../../redux/appData';
+import { MessageContainer } from './shared/MessageContainer';
 
 interface Errors {
 	password?: string;
@@ -112,7 +113,15 @@ const ResetPassword = (): JSX.Element => {
 						Reset Password
 					</Button>
 				</ButtonContainer>
-				<ErrorDisplay errors={errors.generic} />
+				<MessageContainer>
+					{isLoading ? (
+						<div style={{ textAlign: 'center' }}>
+							Please wait while free server warms up.
+						</div>
+					) : (
+						<ErrorDisplay errors={errors.generic} />
+					)}
+				</MessageContainer>
 			</form>
 		</AuthContainer>
 	);
