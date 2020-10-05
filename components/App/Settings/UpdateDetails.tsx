@@ -20,6 +20,7 @@ interface Props {
 interface Errors {
 	email?: string;
 	password?: string;
+	passwordConfirm?: string;
 	generic: ApiError[];
 }
 
@@ -30,6 +31,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 	const [ errors, setErrors ] = useState<Errors>({
 		email: null,
 		password: null,
+		passwordConfirm: null,
 		generic: []
 	});
 	const [ success, setSuccess ] = useState('');
@@ -42,9 +44,10 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 	useEffect(
 		() => {
 			const errors = ErrorService.formatErrors(
-				[ 'email', 'password' ],
+				[ 'email', 'password', 'passwordConfirm' ],
 				updateUserErrors
 			);
+			console.log(updateUserErrors);
 
 			setErrors(errors);
 		},
@@ -122,6 +125,7 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 				label='Confirm Password'
 				id='confirm-password'
 				value={passwordConfirm}
+				error={errors.passwordConfirm}
 				onChange={setPasswordConfirm}
 			/>
 			<Button
