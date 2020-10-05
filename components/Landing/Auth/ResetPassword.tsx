@@ -6,6 +6,7 @@ import { AuthHeader } from './shared/AuthHeader';
 import { Input } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { ErrorDisplay } from '../../shared/ErrorDisplay';
+import { ButtonContainer } from './shared/ButtonContainer';
 
 import { login } from '../../../redux/user';
 import { resetPasswordApiConfig } from '../../../api/auth';
@@ -103,13 +104,14 @@ const ResetPassword = (): JSX.Element => {
 						error={errors.passwordConfirm}
 					/>
 				</div>
-
-				<Button
-					onClick={handlePasswordReset}
-					btnStyle='primary'
-					isLoading={isLoading}>
-					Reset Password
-				</Button>
+				<ButtonContainer>
+					<Button
+						onClick={handlePasswordReset}
+						btnStyle='primary'
+						isLoading={isLoading}>
+						Reset Password
+					</Button>
+				</ButtonContainer>
 				<ErrorDisplay errors={errors.generic} />
 			</form>
 		</AuthContainer>
