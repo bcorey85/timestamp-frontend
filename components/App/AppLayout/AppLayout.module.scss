@@ -16,6 +16,7 @@
 	display: flex;
 	flex: 1 1 auto;
 	background-color: var(--background-primary);
+	min-height: calc(100vh - var(--app-header-height));
 
 	@include respondH(1024) {
 		min-height: 72rem;

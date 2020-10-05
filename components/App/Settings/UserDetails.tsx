@@ -33,12 +33,18 @@ const UserDetails = (): JSX.Element => {
 				)
 			</div>
 			<div>
-				Account Created: {DateTimeService.formatDate(createdAt)} -{' '}
-				{DateTimeService.formatTime(createdAt)}
+				Account Created:{' '}
+				<span className={styles.date}>
+					{DateTimeService.formatDate(createdAt)} -{' '}
+					{DateTimeService.formatTime(createdAt)}
+				</span>
 			</div>
 			<div>
-				Last Login: {DateTimeService.formatDate(lastLogin)} -{' '}
-				{DateTimeService.formatTime(lastLogin)}
+				Last Login:{' '}
+				<span className={styles.date}>
+					{DateTimeService.formatDate(lastLogin)} -{' '}
+					{DateTimeService.formatTime(lastLogin)}
+				</span>
 			</div>
 			<div className={styles.edit_form}>
 				<Button btnStyle='link_primary' onClick={handleUpdatePassword}>
