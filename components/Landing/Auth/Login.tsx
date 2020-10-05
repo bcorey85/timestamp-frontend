@@ -115,7 +115,7 @@ const Login = ({ toggleForm }: Props): JSX.Element => {
 					onClick={() => {
 						toggleForm('forgot-password');
 					}}>
-					Forgot Password
+					Forgot Password?
 				</Button>
 			</div>
 

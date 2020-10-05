@@ -4,8 +4,7 @@
 	text-align: right;
 
 	& button {
-		@include respondH(550) {
-			font-size: 1.2rem;
-		}
+		font-size: 1.2rem;
+		font-weight: 500;
 	}
 }

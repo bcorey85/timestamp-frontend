@@ -3,7 +3,7 @@
 .container {
 	display: flex;
 	justify-content: flex-end;
-	max-height: 2.4rem;
+	align-items: center;
 }
 
 .btn_container {
@@ -17,7 +17,8 @@
 	border-radius: var(--border-radius);
 	border: 1px solid var(--background-primary);
 	background: none;
-	padding: .8rem;
+	padding: 0 .8rem;
+	height: 2.4rem;
 	font-size: 1.2rem;
 	font-weight: 600;
 	color: var(--text200);
