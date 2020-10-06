@@ -106,7 +106,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 					type='button'
 					id='cancel'
 					onClick={toggleForm}
-					btnStyle='link_gray'>
+					btnStyle='outline'>
 					Cancel
 				</Button>
 				<Button

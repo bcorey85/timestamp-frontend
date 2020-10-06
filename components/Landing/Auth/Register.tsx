@@ -127,7 +127,7 @@ const Register = ({ toggleForm }: Props): JSX.Element => {
 			/>
 			<ButtonContainer>
 				<Button
-					btnStyle='link_gray'
+					btnStyle='outline'
 					onClick={() => {
 						toggleForm('sigin');
 					}}>

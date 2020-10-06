@@ -120,11 +120,11 @@ const Login = ({ toggleForm }: Props): JSX.Element => {
 
 			<ButtonContainer>
 				<Button
-					btnStyle='link_gray'
+					btnStyle='outline'
 					onClick={() => {
 						toggleForm('register');
 					}}>
-					Need an Account?
+					Need an account?
 				</Button>
 				<Button
 					btnStyle='primary'
