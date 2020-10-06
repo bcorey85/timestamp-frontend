@@ -22,7 +22,9 @@
 		margin-bottom: 0;
 	}
 
-	& button:not(:last-of-type) {
-		margin-bottom: 1.6rem;
+	& button:not(:first-of-type) {
+		@include respondH(550) {
+			margin-bottom: 1.6rem;
+		}
 	}
 }
