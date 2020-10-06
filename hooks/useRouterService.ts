@@ -8,6 +8,13 @@ const useRouterService = () => {
 	const nextRouter = useRouter();
 	const query = nextRouter.query;
 
+	// Fix issue with route changes using .push() not scrolling to top
+	if (typeof window !== 'undefined' && nextRouter.events) {
+		nextRouter.events.on('routeChangeComplete', () => {
+			window.scrollTo(0, 0);
+		});
+	}
+
 	const push = {
 		dashboard: () =>
 			nextRouter.push(

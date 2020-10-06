@@ -47,7 +47,6 @@ const UpdateDetails = ({ mode, closeForm }: Props): JSX.Element => {
 				[ 'email', 'password', 'passwordConfirm' ],
 				updateUserErrors
 			);
-			console.log(updateUserErrors);
 
 			setErrors(errors);
 		},

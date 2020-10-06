@@ -49,7 +49,6 @@ const Register = ({ toggleForm }: Props): JSX.Element => {
 				[ 'email', 'password', 'passwordConfirm' ],
 				signupErrors
 			);
-			console.log(signupErrors);
 
 			setErrors(errors);
 		},

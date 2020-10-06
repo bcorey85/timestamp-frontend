@@ -22,6 +22,7 @@
 		margin-bottom: 0;
 	}
 
+	// button order reversed on mobile, use first instead of last of type
 	& button:not(:first-of-type) {
 		@include respondH(550) {
 			margin-bottom: 1.6rem;

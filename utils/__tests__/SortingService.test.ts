@@ -16,9 +16,9 @@ describe('SortingService', () => {
 	});
 
 	it('handles sorting an array of time value alone, without factoring date', () => {
-		const time1 = moment().toISOString();
-		const time2 = moment().add(5, 'hours').toISOString();
-		const time3 = moment().subtract(1, 'hour').toISOString();
+		const time1 = moment('9:00 am', 'hh mm a').toISOString();
+		const time2 = moment('10:00 am', 'hh mm a').toISOString();
+		const time3 = moment('8:00 am', 'hh mm a').toISOString();
 
 		const array = [ time1, time2, time3 ];
 		const sorted = array.sort((a, b) => {
