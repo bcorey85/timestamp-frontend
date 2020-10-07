@@ -15,6 +15,15 @@
 	}
 }
 
+.card_noclick {
+	@extend .card;
+	cursor: default;
+
+	&:hover {
+		background-color: transparent;
+	}
+}
+
 .title {
 	font-weight: 600;
 	color: var(--text400);

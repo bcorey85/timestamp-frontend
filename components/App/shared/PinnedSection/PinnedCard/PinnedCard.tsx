@@ -19,6 +19,34 @@ interface Props {
 const PinnedCard = ({ item }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
 
+	if (!item.pathname.as || !item.pathname.href) {
+		return (
+			<article className={styles.card_noclick}>
+				<div className={styles.pinned}>
+					<PinnedIcon pinned={true} />
+				</div>
+				<div className={styles.title}>
+					<div className={styles.title_container}>
+						<TypeIcon type={item.type} />
+						{item.title}
+					</div>
+				</div>
+
+				<div className={styles.time}>
+					<PinnedCardDate meta={item.meta} />
+				</div>
+				<div className={styles.body}>{item.description}</div>
+				<PinnedCardStats
+					type={item.type}
+					tags={item.tags}
+					notes={item.notes}
+					tasks={item.tasks}
+					hours={item.meta.hours}
+				/>
+			</article>
+		);
+	}
+
 	return (
 		<Link
 			href={`/app/[userId]/${item.pathname.href}`}
