@@ -11,7 +11,9 @@
 	@include respondH(768) {
 		flex-direction: column-reverse;
 		align-items: center;
-		margin-bottom: 8rem;
+		margin-top: 6.4rem;
+		padding-top: 6.4rem;
+		padding-bottom: 6.4rem;
 	}
 }
 
