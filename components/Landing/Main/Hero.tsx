@@ -12,7 +12,7 @@ const Hero = () => {
 					<h1>Capture Your Learning Progress In Time</h1>
 					<p>
 						Timestamp gives you the tools to make learning new
-						skills easier and to always know just how far you’ve
+						skills easier and to always remember just how far you’ve
 						come.
 					</p>
 					<Link href='/auth'>

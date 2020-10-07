@@ -17,6 +17,10 @@
 	margin-bottom: 6.4rem;
 	margin-top: 2.4rem;
 
+	@include respondH(768) {
+		margin-bottom: 5.6rem;
+	}
+
 	& p {
 		max-width: 48rem;
 		margin: 0 auto;
