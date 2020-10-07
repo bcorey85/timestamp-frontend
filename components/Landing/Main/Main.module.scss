@@ -1,0 +1,31 @@
+.container {
+	width: 100%;
+	max-width: 112rem;
+	margin: 0 auto;
+	font-size: 1.8rem;
+	line-height: 1.5;
+	padding: 0 2.4rem;
+
+	& h1,
+	& h2 {
+		line-height: 1.1;
+		font-family: var(--font-serif);
+	}
+
+	& h1 {
+		font-size: 4.6rem;
+	}
+
+	& h2 {
+		font-size: 3.4rem;
+	}
+
+	& button {
+		max-width: 16rem;
+		margin-top: 4.8rem;
+	}
+
+	& p {
+		color: var(--black100);
+	}
+}

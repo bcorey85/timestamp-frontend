@@ -1,0 +1,22 @@
+.signup {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid var(--gray300);
+	margin-top: 8rem;
+	padding-top: 8rem;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 40rem;
+}
+
+.arrow {
+	display: inline-block;
+	position: absolute;
+	left: -.8rem;
+	bottom: 18.8rem;
+}

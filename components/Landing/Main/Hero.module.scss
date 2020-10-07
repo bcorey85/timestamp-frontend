@@ -1,0 +1,24 @@
+.hero {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 8rem;
+}
+
+.hero_text {
+	max-width: 44rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.arrow_container {
+	position: relative;
+	height: 24rem;
+}
+
+.arrow {
+	position: absolute;
+	right: 16rem;
+	top: 50%;
+	transform: translateY(-50%);
+}

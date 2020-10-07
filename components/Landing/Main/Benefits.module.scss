@@ -1,0 +1,27 @@
+.benefit {
+	display: flex;
+	justify-content: space-between;
+
+	& article {
+		max-width: 40rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin-left: 4rem;
+	}
+}
+
+.benefit_reverse {
+	@extend .benefit;
+	flex-direction: row-reverse;
+
+	& article {
+		margin-left: 0;
+		margin-right: 4rem;
+	}
+}
+
+.arrow_center {
+	display: flex;
+	justify-content: center;
+}
