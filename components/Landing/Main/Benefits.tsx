@@ -15,10 +15,11 @@ const Benefits = () => {
 					</figure>
 					<div />
 					<article>
-						<h2>Learning new skills is hard work.</h2>
+						<h2>Learning new skills can be hard work.</h2>
 						<p>
-							Timestamp shows you meaningful progress statistics
-							to motivate you to keep reaching for the next step.
+							Timestamp is a simple ecosystem of tools that’s
+							geared towards helping you learn as fast as
+							possible.
 						</p>
 					</article>
 				</div>
@@ -38,8 +39,9 @@ const Benefits = () => {
 					<article>
 						<h2>You need a system to help you focus.</h2>
 						<p>
-							Timestamp is a simple ecosystem of tools that’s
-							geared towards helping you grow as fast as possible.
+							Timestamp gives you an unlimited note history and
+							easy search features to keep all your thoughts
+							organized.
 						</p>
 					</article>
 				</div>
@@ -60,9 +62,8 @@ const Benefits = () => {
 					<article>
 						<h2>And to keep you moving forward.</h2>
 						<p>
-							Timestamp gives you an unlimited note history and
-							easy search features so you always know where to go
-							next.
+							Timestamp shows you meaningful progress statistics
+							to motivate you to keep reaching for the next step.
 						</p>
 					</article>
 				</div>
