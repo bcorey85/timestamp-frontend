@@ -15,7 +15,7 @@ const Benefits = () => {
 					</figure>
 					<div />
 					<article>
-						<h2>Learning new skills can be hard work.</h2>
+						<h2>Learning new skills can be hard work</h2>
 						<p>
 							Timestamp is a simple ecosystem of tools that’s
 							geared towards helping you learn as fast as
@@ -37,7 +37,7 @@ const Benefits = () => {
 						/>
 					</figure>
 					<article>
-						<h2>You need a system to help you focus.</h2>
+						<h2>You need a system to help you focus</h2>
 						<p>
 							Timestamp gives you an unlimited note history and
 							easy search features to keep all your thoughts
@@ -60,7 +60,7 @@ const Benefits = () => {
 					</figure>
 
 					<article>
-						<h2>And to keep you moving forward.</h2>
+						<h2>And to keep you moving forward</h2>
 						<p>
 							Timestamp shows you meaningful progress statistics
 							to motivate you to keep reaching for the next step.
