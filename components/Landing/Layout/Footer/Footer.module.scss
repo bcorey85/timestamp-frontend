@@ -1,15 +1,18 @@
 .footer {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-end;
+	align-items: flex-start;
 	height: var(--footer-height);
-	padding: 2.4rem;
+	padding: 1.6rem 2.4rem;
 	background-color: var(--background-tertiary);
-	color: var(--text400);
+	color: var(--text200);
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+	font-weight: 500;
 
-	& svg {
-		height: 1.6rem;
-		width: 1.6rem;
+	& img {
+		width: 16rem;
+		margin: .8rem 0;
 	}
 }

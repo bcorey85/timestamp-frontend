@@ -5,13 +5,14 @@ import styles from './Footer.module.scss';
 const Footer = (): JSX.Element => {
 	return (
 		<footer className={styles.footer}>
-			<div>Copyright &copy; {new Date().getFullYear()}</div>
-			<div>
+			<p>Copyright &copy; {new Date().getFullYear()}</p>
+			<p>Built & Designed in KCMO</p>
+			<a href='https://www.bcdev.co'>
 				<img
 					src='/images/bc-logo.svg'
 					alt='Brandon Corey Web Development logo'
 				/>
-			</div>
+			</a>
 		</footer>
 	);
 };
