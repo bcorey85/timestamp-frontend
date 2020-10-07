@@ -1,3 +1,5 @@
+@import '../../../styles/mediaQueries.scss';
+
 .signup {
 	position: relative;
 	display: flex;
@@ -5,6 +7,12 @@
 	border-top: 1px solid var(--gray300);
 	margin-top: 8rem;
 	padding-top: 8rem;
+
+	@include respondH(768) {
+		flex-direction: column-reverse;
+		align-items: center;
+		margin-bottom: 8rem;
+	}
 }
 
 .text {
@@ -12,11 +20,20 @@
 	flex-direction: column;
 	justify-content: center;
 	max-width: 40rem;
+	flex: 0 0 auto;
+
+	@include respondH(960) {
+		max-width: 36rem;
+	}
 }
 
-.arrow {
-	display: inline-block;
-	position: absolute;
-	left: -.8rem;
-	bottom: 18.8rem;
+.signup_img {
+	@include respondH(768) {
+		margin-bottom: 2.4rem;
+	}
+
+	& img {
+		width: 100%;
+		max-width: 57.6rem;
+	}
 }

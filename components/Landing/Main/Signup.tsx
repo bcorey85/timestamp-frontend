@@ -20,10 +20,12 @@ const Signup = () => {
 					</a>
 				</Link>
 			</article>
-			<img
-				src='/images/landing/signup.jpg'
-				alt='Man working on computer'
-			/>
+			<figure className={styles.signup_img}>
+				<img
+					src='/images/landing/signup.jpg'
+					alt='Man working on computer'
+				/>
+			</figure>
 		</section>
 	);
 };

@@ -7,10 +7,12 @@ const Benefits = () => {
 		<React.Fragment>
 			<section>
 				<div className={styles.benefit}>
-					<img
-						src='/images/landing/benefits1.jpg'
-						alt='Man with concerned look on his face'
-					/>
+					<figure className={styles.benefit_img}>
+						<img
+							src='/images/landing/benefits1.jpg'
+							alt='Man with concerned look on his face'
+						/>
+					</figure>
 					<div />
 					<article>
 						<h2>Learning new skills is hard work.</h2>
@@ -27,10 +29,12 @@ const Benefits = () => {
 					/>
 				</figure>
 				<div className={styles.benefit_reverse}>
-					<img
-						src='/images/landing/benefits2.jpg'
-						alt='Man reading a stack of books'
-					/>
+					<figure className={styles.benefit_img}>
+						<img
+							src='/images/landing/benefits2.jpg'
+							alt='Man reading a stack of books'
+						/>
+					</figure>
 					<article>
 						<h2>You need a system to help you focus.</h2>
 						<p>
@@ -46,10 +50,13 @@ const Benefits = () => {
 					/>
 				</figure>
 				<div className={styles.benefit}>
-					<img
-						src='/images/landing/benefits3.jpg'
-						alt='Girl smiling at computer'
-					/>
+					<figure className={styles.benefit_img}>
+						<img
+							src='/images/landing/benefits3.jpg'
+							alt='Girl smiling at computer'
+						/>
+					</figure>
+
 					<article>
 						<h2>And to keep you moving forward.</h2>
 						<p>

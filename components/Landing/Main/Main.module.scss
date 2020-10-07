@@ -1,3 +1,5 @@
+@import '../../../styles/mediaQueries.scss';
+
 .container {
 	width: 100%;
 	max-width: 112rem;
@@ -5,6 +7,10 @@
 	font-size: 1.8rem;
 	line-height: 1.5;
 	padding: 0 2.4rem;
+
+	@include respondH(960) {
+		font-size: 1.6rem;
+	}
 
 	& h1,
 	& h2 {
@@ -14,15 +20,31 @@
 
 	& h1 {
 		font-size: 4.6rem;
+
+		@include respondH(1024) {
+			font-size: 4rem;
+		}
+
+		@include respondH(960) {
+			font-size: 3.4rem;
+		}
 	}
 
 	& h2 {
 		font-size: 3.4rem;
+
+		@include respondH(960) {
+			font-size: 3rem;
+		}
 	}
 
 	& button {
 		max-width: 16rem;
 		margin-top: 4.8rem;
+
+		@include respondH(768) {
+			max-width: 100%;
+		}
 	}
 
 	& p {

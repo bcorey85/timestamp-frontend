@@ -21,11 +21,12 @@ const Hero = () => {
 						</a>
 					</Link>
 				</article>
-
-				<img
-					src='/images/landing/hero.jpg'
-					alt='Girl drinking coffee and working on computer'
-				/>
+				<figure className={styles.hero_img}>
+					<img
+						src='/images/landing/hero.jpg'
+						alt='Girl drinking coffee and working on computer'
+					/>
+				</figure>
 			</section>
 			<figure className={styles.arrow_container}>
 				<img
