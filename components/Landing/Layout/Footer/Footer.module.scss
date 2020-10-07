@@ -7,4 +7,9 @@
 	padding: 2.4rem;
 	background-color: var(--background-tertiary);
 	color: var(--text400);
+
+	& svg {
+		height: 1.6rem;
+		width: 1.6rem;
+	}
 }

@@ -4,22 +4,10 @@ import Head from 'next/head';
 import { PersistGate } from 'redux-persist/integration/react';
 import 'react-datetime/css/react-datetime.css';
 
-import { UiService } from '../utils/UiService';
-
 import { store, persistor } from '../redux/store';
 import '../styles/index.scss';
 
 function MyApp({ Component, pageProps }) {
-	useEffect(() => {
-		const appState = JSON.parse(localStorage.getItem('persist:timestamp'));
-
-		if (appState) {
-			const appInterface = JSON.parse(appState.interface);
-
-			UiService.toggleDarkMode(appInterface.darkColorMode);
-		}
-	}, []);
-
 	return (
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>

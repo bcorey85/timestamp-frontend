@@ -16,10 +16,16 @@ class UiService {
 	};
 
 	static toggleDarkMode = (darkMode: boolean) => {
+		const app = document.getElementById('app');
+
+		if (!app) {
+			return;
+		}
+
 		if (darkMode === true) {
-			document.body.classList.add('dark');
+			app.classList.add('dark');
 		} else {
-			document.body.classList.remove('dark');
+			app.classList.remove('dark');
 		}
 	};
 

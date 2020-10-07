@@ -6,7 +6,12 @@ const Footer = (): JSX.Element => {
 	return (
 		<footer className={styles.footer}>
 			<div>Copyright &copy; {new Date().getFullYear()}</div>
-			<div>Brandon Corey Web Development</div>
+			<div>
+				<img
+					src='/images/bc-logo.svg'
+					alt='Brandon Corey Web Development logo'
+				/>
+			</div>
 		</footer>
 	);
 };
