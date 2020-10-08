@@ -60,6 +60,18 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 				<div className={styles.app_layout}>
 					<Header />
 					<div className={styles.content}>
+						<div className={styles.mobile_drawer}>
+							<Drawer
+								toggleCreateModal={toggleCreateModal}
+								mobile={true}
+							/>
+						</div>
+						<div className={styles.desktop_drawer}>
+							<Drawer
+								toggleCreateModal={toggleCreateModal}
+								mobile={false}
+							/>
+						</div>
 						<main className={styles.main}>
 							<Loading />
 						</main>
