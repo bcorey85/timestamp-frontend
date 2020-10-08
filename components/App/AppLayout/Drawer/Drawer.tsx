@@ -38,9 +38,14 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 	};
 
 	const handleLogout = () => {
-		dispatch(logout());
-		dispatch(clearAppData());
 		router.push.root();
+		dispatch(logout());
+
+		// wait for route change to clear app data to avoid rendering bugs
+		setTimeout(() => {
+			dispatch(clearAppData());
+		}, 500);
+
 		return;
 	};
 

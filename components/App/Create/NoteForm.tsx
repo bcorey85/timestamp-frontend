@@ -44,7 +44,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 
 	const quillModules = {
 		toolbar: [
-			[ 'bold', 'italic', 'underline', 'strike', 'blockquote' ],
+			[ 'bold', 'italic', 'underline', 'strike' ],
 			[ { list: 'ordered' }, { list: 'bullet' } ]
 		]
 	};
