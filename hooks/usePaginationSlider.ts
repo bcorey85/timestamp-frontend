@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-const usePaginationSlider = (itemWidth: number, cardAmount: number) => {
+const usePaginationSlider = (itemWidth: number, initialCardAmount: number) => {
 	const [ currentOffset, setCurrentOffset ] = useState(0);
 	const [ maxWidth, setMaxWidth ] = useState(0);
 	const [ maxRightBound, setMaxRightBound ] = useState(0);
 	const [ maxLeftBound, setMaxLeftBound ] = useState(0);
+	const [ cardAmount, setCardAmount ] = useState(initialCardAmount);
 
 	useEffect(
 		() => {
@@ -49,7 +50,8 @@ const usePaginationSlider = (itemWidth: number, cardAmount: number) => {
 		currentOffset,
 		maxWidth,
 		maxRightBound,
-		transformDistance
+		transformDistance,
+		updateCardAmount: setCardAmount
 	};
 };
 

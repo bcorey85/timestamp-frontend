@@ -58,25 +58,30 @@ const RightButton = ({
 interface SliderProps {
 	children?: any;
 	itemPixelWidth: number;
+	cardAmount: number;
 }
 
-const Slider = ({ children, itemPixelWidth }: SliderProps): JSX.Element => {
+const Slider = ({
+	children,
+	itemPixelWidth,
+	cardAmount
+}: SliderProps): JSX.Element => {
 	const sliderRef = useRef<HTMLDivElement>(null);
-	const [ cardAmount, setCardAmount ] = useState(null);
 
 	const {
 		slideLeft,
 		slideRight,
 		currentOffset,
 		maxRightBound,
-		transformDistance
+		transformDistance,
+		updateCardAmount
 	} = usePaginationSlider(itemPixelWidth, cardAmount);
 
 	useEffect(
 		() => {
-			setCardAmount(sliderRef.current.children.length);
+			updateCardAmount(cardAmount);
 		},
-		[ sliderRef.current ]
+		[ cardAmount ]
 	);
 
 	return (

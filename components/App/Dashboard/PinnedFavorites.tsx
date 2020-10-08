@@ -34,6 +34,17 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 		SortingService.sortByDate({ value1: a.meta.date, value2: b.meta.date })
 	);
 
+	let selectedItems;
+	if (currentPage === 'all') {
+		selectedItems = sortedItemsByDate;
+	} else {
+		selectedItems = sortedItemsByDate.filter(
+			item => item.type === currentPage
+		);
+	}
+
+	let cardAmount = selectedItems.length;
+
 	return (
 		<PinnedSection>
 			<SliderFilter>
@@ -58,21 +69,9 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 					Notes
 				</Button>
 			</SliderFilter>
-			{currentPage === 'all' ? (
-				<Slider itemPixelWidth={itemPixelWidth}>
-					<PinnedItems items={sortedItemsByDate} />
-				</Slider>
-			) : null}
-
-			{currentPage !== 'all' ? (
-				<Slider itemPixelWidth={itemPixelWidth}>
-					<PinnedItems
-						items={sortedItemsByDate.filter(
-							item => item.type === currentPage
-						)}
-					/>
-				</Slider>
-			) : null}
+			<Slider itemPixelWidth={itemPixelWidth} cardAmount={cardAmount}>
+				<PinnedItems items={selectedItems} />
+			</Slider>
 		</PinnedSection>
 	);
 };

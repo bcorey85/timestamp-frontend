@@ -61,6 +61,7 @@
 	width: 100%;
 	transition: all .3s ease-out;
 	display: grid;
+	// handles initial spacing for first card
 	grid-template-columns: 6.4rem;
 	grid-auto-flow: column;
 	grid-auto-columns: 24rem;
@@ -75,6 +76,7 @@
 		grid-template-columns: 0rem;
 	}
 
+	// handles initial spacing for first card
 	&::before {
 		content: '';
 	}
