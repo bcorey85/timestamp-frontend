@@ -16,6 +16,10 @@ const Modal = ({ toggleModal, isOpen, children }: Props): JSX.Element => {
 
 	return (
 		<div className={styles.modal}>
+			<div
+				className={styles.modal_bg}
+				onClick={() => toggleModal(false)}
+			/>
 			<div className={styles.modal_container}>
 				<button
 					onClick={() => toggleModal(false)}
