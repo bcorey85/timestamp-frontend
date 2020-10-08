@@ -49,6 +49,14 @@ class UiService {
 
 		return color;
 	};
+
+	static getScreenWidth = () => {
+		if (typeof window === 'undefined') {
+			return 0;
+		}
+
+		return window.innerWidth;
+	};
 }
 
 export { UiService };

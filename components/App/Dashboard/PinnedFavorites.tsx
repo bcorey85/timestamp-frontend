@@ -44,6 +44,7 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	}
 
 	let cardAmount = selectedItems.length;
+	console.log(cardAmount);
 
 	return (
 		<PinnedSection>
