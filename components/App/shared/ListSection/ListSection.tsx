@@ -70,9 +70,9 @@ const ListSection = ({
 		return (
 			<React.Fragment>
 				<AppPageSectionHeading title={title} />
-				<div className={styles.container}>
+				<div className={styles.noitems_container}>
 					<span className={styles.empty_list}>
-						<NoItemsMessage />
+						<NoItemsMessage type={type} />
 					</span>
 				</div>
 				<div className={styles.add_container}>

@@ -4,11 +4,13 @@ import { Button } from '../../shared/Button';
 import { PinnedItems } from './PinnedItems';
 import { SliderFilter } from '../shared/Slider/SliderFilter';
 import { Slider } from '../shared/Slider/Slider';
-import { NoItemsMessage } from '../shared/NoItemsMessage';
 
 import { Item } from '../../../utils/ItemService';
 import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
 import { SortingService } from '../../../utils/SortingService';
+import { NoItemsMessage } from '../shared/NoItemsMessage';
+
+import styles from './PinnedFavorites.module.scss';
 
 interface Props {
 	items: Item[];
@@ -21,14 +23,6 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	const changePage = (page: string) => {
 		setCurrentPage(page);
 	};
-
-	if (items.length === 0) {
-		return (
-			<div>
-				<NoItemsMessage />
-			</div>
-		);
-	}
 
 	const sortedItemsByDate = items.sort((a, b) =>
 		SortingService.sortByDate({ value1: a.meta.date, value2: b.meta.date })
@@ -44,7 +38,6 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	}
 
 	let cardAmount = selectedItems.length;
-	console.log(cardAmount);
 
 	return (
 		<PinnedSection>
@@ -71,7 +64,15 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 				</Button>
 			</SliderFilter>
 			<Slider itemPixelWidth={itemPixelWidth} cardAmount={cardAmount}>
-				<PinnedItems items={selectedItems} />
+				{selectedItems.length > 0 ? (
+					<PinnedItems items={selectedItems} />
+				) : (
+					<div className={styles.noitems_message}>
+						<NoItemsMessage
+							type={currentPage === 'all' ? 'item' : currentPage}
+						/>
+					</div>
+				)}
 			</Slider>
 		</PinnedSection>
 	);

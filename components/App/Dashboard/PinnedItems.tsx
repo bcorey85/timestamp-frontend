@@ -11,11 +11,13 @@ interface Props {
 const PinnedItems = ({ items }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
-			{items.map(item => {
-				const { as } = item.pathname;
+			{items.length > 0 ? (
+				items.map(item => {
+					const { as } = item.pathname;
 
-				return <PinnedCard item={item} key={as} />;
-			})}
+					return <PinnedCard item={item} key={as} />;
+				})
+			) : null}
 		</React.Fragment>
 	);
 };

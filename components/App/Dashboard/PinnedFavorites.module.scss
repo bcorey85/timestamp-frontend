@@ -1,0 +1,10 @@
+.noitems_message {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--background-secondary);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+	border: var(--border-primary);
+	height: 26.4rem;
+}
