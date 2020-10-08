@@ -34,9 +34,12 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 	const { userId, token } = useSelector(selectUser);
 
 	let parsedDescription;
-	try {
-		parsedDescription = JSON.parse(currentItem.description);
-	} catch (error) {
+	if (typeof currentItem.description === 'object') {
+		const htmlString = new QuillDeltaToHtmlConverter(
+			currentItem.description
+		).convert();
+		parsedDescription = htmlString;
+	} else {
 		parsedDescription = currentItem.description;
 	}
 
@@ -47,9 +50,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 			[]
 	);
 	const [ title, setTitle ] = useInputState(currentItem.title || '');
-	const [ description, setDescription ] = useState(
-		parsedDescription || currentItem.description || ''
-	);
+	const [ description, setDescription ] = useState(parsedDescription);
 	const [ projectId, setProjectId ] = useState(
 		currentItem.itemId.projectId || ''
 	);
