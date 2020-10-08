@@ -82,7 +82,6 @@ const TaskForm = ({ handleClose }: Props): JSX.Element => {
 						label='Description'
 						value={formState.description}
 						onChange={formHandlers.setDescription}
-						error={errors.description}
 						autoComplete='off'
 					/>
 				</FormRow>

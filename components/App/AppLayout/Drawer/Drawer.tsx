@@ -41,10 +41,10 @@ const Drawer = ({ toggleCreateModal, mobile }: Props): JSX.Element => {
 		router.push.root();
 		dispatch(logout());
 
-		// wait for route change to clear app data to avoid rendering bugs
+		// wait for route change to clear app data to avoid rendering bugs from race condition
 		setTimeout(() => {
 			dispatch(clearAppData());
-		}, 500);
+		}, 2000);
 
 		return;
 	};

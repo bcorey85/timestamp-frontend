@@ -48,6 +48,7 @@ const ProjectSingle = (): JSX.Element => {
 		toggleCompleteModal
 	} = useProjectActions(currentProject);
 	const projectIsComplete = currentProject.meta.completedOn !== null;
+	console.log('re-render');
 
 	let projectItemSource = projectIsComplete ? appData : visibleItems;
 

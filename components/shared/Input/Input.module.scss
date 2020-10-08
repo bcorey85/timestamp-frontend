@@ -30,7 +30,8 @@
 
 .textarea {
 	@extend .input;
-	height: 16rem;
+	height: 12rem;
+	padding: .8rem;
 }
 
 .input:focus,

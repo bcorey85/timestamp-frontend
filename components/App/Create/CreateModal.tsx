@@ -36,13 +36,8 @@ const CreateModal = ({ isOpen, toggleModal }: Props): JSX.Element => {
 
 	return (
 		<div className={styles.modal}>
+			<div className={styles.modal_bg} onClick={handleClose} />
 			<div className={styles.modal_container}>
-				<div className={styles.modal_close}>
-					<button onClick={handleClose}>
-						<BiX />
-					</button>
-				</div>
-
 				<div className={styles.form}>
 					<CreateNav currentPage={createModalPage} />
 					<div className={styles.form_body}>

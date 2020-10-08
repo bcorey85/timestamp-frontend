@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
 import { useNoteCreateForm } from '../../../hooks/create/useNoteCreateForm';
 import { Item } from '../../../utils/ItemService';
+import { InputError } from '../../shared/Input/InputError';
 
 interface Props {
 	handleClose: (e: SyntheticEvent) => void;
@@ -149,6 +150,7 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 						onChange={formHandlers.setDescription}
 						modules={quillModules}
 					/>
+					<InputError error={null} />
 				</FormRow>
 			</BaseForm>
 			<CreateBtnContainer>
