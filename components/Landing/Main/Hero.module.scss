@@ -3,7 +3,7 @@
 .hero {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 16rem;
+	margin-top: 12rem;
 
 	@include respondH(1440) {
 		margin-top: 12rem;
