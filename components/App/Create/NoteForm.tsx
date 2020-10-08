@@ -1,11 +1,14 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useRef, useEffect } from 'react';
+const ReactQuill =
+	typeof window !== 'undefined' ? require('react-quill') : () => false;
 
-import { DateTimeInput, Input, Select, TextArea } from '../../shared/Input';
+import { DateTimeInput, Input, Select } from '../../shared/Input';
 import { Button } from '../../shared/Button';
 import { CreateBtnContainer } from './shared/CreateBtnContainer';
 import { BaseForm, FormRow } from './shared/BaseForm';
 import { TagInput } from './shared/TagInput';
 import { PinInput } from './shared/PinInput';
+import { InputLabel } from '../../shared/Input/InputLabel';
 
 import { useSelector } from 'react-redux';
 import { selectAppData } from '../../../redux/appData';
@@ -18,7 +21,7 @@ interface Props {
 
 const NoteForm = ({ handleClose }: Props): JSX.Element => {
 	const appData = useSelector(selectAppData);
-
+	const editorRef = useRef();
 	const {
 		editMode,
 		handleSubmit,
@@ -27,6 +30,24 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 		formHandlers,
 		isLoading
 	} = useNoteCreateForm(handleClose);
+
+	useEffect(
+		() => {
+			if (editorRef.current) {
+				// @ts-ignore
+				const quillDelta = editorRef.current.editor.getContents();
+				formHandlers.setEditorDelta(quillDelta.ops);
+			}
+		},
+		[ formState.description ]
+	);
+
+	const quillModules = {
+		toolbar: [
+			[ 'bold', 'italic', 'underline', 'strike', 'blockquote' ],
+			[ { list: 'ordered' }, { list: 'bullet' } ]
+		]
+	};
 
 	return (
 		<React.Fragment>
@@ -120,13 +141,13 @@ const NoteForm = ({ handleClose }: Props): JSX.Element => {
 					/>
 				</FormRow>
 				<FormRow>
-					<TextArea
-						id='description'
-						label='Description'
+					<InputLabel id='note'>Note</InputLabel>
+					<ReactQuill
+						ref={editorRef}
+						id='note'
 						value={formState.description}
 						onChange={formHandlers.setDescription}
-						error={errors.description}
-						autoComplete='off'
+						modules={quillModules}
 					/>
 				</FormRow>
 			</BaseForm>

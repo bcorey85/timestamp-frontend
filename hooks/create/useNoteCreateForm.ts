@@ -1,4 +1,5 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 import moment from 'moment';
 
 import { useInputState } from '../useInputState';
@@ -30,8 +31,14 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		generic: []
 	});
 	const { currentItem, createModalEditMode } = useSelector(selectCreateModal);
-
 	const { userId, token } = useSelector(selectUser);
+
+	let parsedDescription;
+	try {
+		parsedDescription = JSON.parse(currentItem.description);
+	} catch (error) {
+		parsedDescription = currentItem.description;
+	}
 
 	const { tags, handleAddTag, handleRemoveTag } = useTags(
 		(currentItem.tags &&
@@ -40,8 +47,8 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 			[]
 	);
 	const [ title, setTitle ] = useInputState(currentItem.title || '');
-	const [ description, setDescription ] = useInputState(
-		currentItem.description || ''
+	const [ description, setDescription ] = useState(
+		parsedDescription || currentItem.description || ''
 	);
 	const [ projectId, setProjectId ] = useState(
 		currentItem.itemId.projectId || ''
@@ -55,6 +62,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		moment(currentItem.meta.endTime) || ''
 	);
 	const [ pinned, setPinned ] = useState(currentItem.pinned || false);
+	const [ editorDelta, setEditorDelta ] = useState([]);
 
 	const {
 		request: createNoteRequest,
@@ -114,7 +122,7 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 			taskId: taskId as number,
 			startTime: moment(startDate).toISOString(),
 			endTime: moment(endDate).toISOString(),
-			description,
+			description: JSON.stringify(editorDelta),
 			tags,
 			pinned
 		};
@@ -153,7 +161,8 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		startDate,
 		endDate,
 		tags,
-		pinned
+		pinned,
+		editorDelta
 	};
 
 	const formHandlers = {
@@ -165,7 +174,8 @@ const useNoteCreateForm = (handleClose: handleClose) => {
 		setEndDate,
 		handleAddTag,
 		handleRemoveTag,
-		setPinned
+		setPinned,
+		setEditorDelta
 	};
 
 	return {

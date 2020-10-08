@@ -29,8 +29,6 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 
 	useEffect(
 		() => {
-			console.log('getting app data');
-
 			const getAppData = async () => {
 				if (userId && appData.synced === false) {
 					await fetchAppData();

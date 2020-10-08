@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MathService } from '../../../../utils/MathService';
 import { DateTimeService } from '../../../../utils/DateTimeService';
-import { Item } from '../../../../utils/ItemService';
+import { Item, ItemService } from '../../../../utils/ItemService';
 import styles from './NoteBody.module.scss';
 
 interface Props {
@@ -10,6 +10,9 @@ interface Props {
 }
 
 const NoteBody = ({ currentNote }: Props): JSX.Element => {
+	const itemService = new ItemService();
+	const description = itemService.getDescriptionHtml(currentNote.description);
+
 	return (
 		<div className={styles.note_container}>
 			<div className={styles.note}>
@@ -27,12 +30,7 @@ const NoteBody = ({ currentNote }: Props): JSX.Element => {
 						<p>{MathService.round(currentNote.meta.hours, 1)} hr</p>
 					</div>
 				</div>
-				<div className={styles.note_body}>
-					<p>
-						{currentNote.description ||
-							'( No description provided )'}
-					</p>
-				</div>
+				<div className={styles.note_body}>{description}</div>
 			</div>
 		</div>
 	);

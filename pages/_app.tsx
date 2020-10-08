@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import Head from 'next/head';
 import { PersistGate } from 'redux-persist/integration/react';
 import 'react-datetime/css/react-datetime.css';
+import 'react-quill/dist/quill.snow.css';
 
 import { store, persistor } from '../redux/store';
 import '../styles/index.scss';

@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
+import parser from 'react-html-parser';
 
 import { TypeIcon } from '../../TypeIcon';
-import { Item, ItemType } from '../../../../../utils/ItemService';
+import { Item, ItemService, ItemType } from '../../../../../utils/ItemService';
 import { PinnedIcon } from '..//PinnedIcon';
 import { PinnedCardStats } from './PinnedCardStats';
 import { PinnedCardDate } from './PinnedCardDate';
@@ -18,6 +20,8 @@ interface Props {
 
 const PinnedCard = ({ item }: Props): JSX.Element => {
 	const { userId } = useSelector(selectUser);
+	const itemService = new ItemService();
+	const description = itemService.getDescriptionHtml(item.description);
 
 	if (!item.pathname.as || !item.pathname.href) {
 		return (
@@ -35,7 +39,7 @@ const PinnedCard = ({ item }: Props): JSX.Element => {
 				<div className={styles.time}>
 					<PinnedCardDate meta={item.meta} />
 				</div>
-				<div className={styles.body}>{item.description}</div>
+				<div className={styles.body}>{description}</div>
 				<PinnedCardStats
 					type={item.type}
 					tags={item.tags}
@@ -65,7 +69,7 @@ const PinnedCard = ({ item }: Props): JSX.Element => {
 				<div className={styles.time}>
 					<PinnedCardDate meta={item.meta} />
 				</div>
-				<div className={styles.body}>{item.description}</div>
+				<div className={styles.body}>{description}</div>
 				<PinnedCardStats
 					type={item.type}
 					tags={item.tags}

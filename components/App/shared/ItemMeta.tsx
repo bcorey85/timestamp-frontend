@@ -21,7 +21,8 @@ const ItemMeta = ({ item }: Props): JSX.Element => {
 				{item.tags ? ' - ' + TagService.addSpaces(item.tags) : null}
 			</p>
 
-			<p>{item.description}</p>
+			{item.type !== 'note' ? <p>{item.description}</p> : null}
+
 			{itemIsComplete ? (
 				<CompleteBadge date={item.meta.completedOn} />
 			) : null}

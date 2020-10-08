@@ -10,9 +10,9 @@
 	-moz-appearance: none;
 	appearance: none;
 	width: 100%;
-	height: 4rem;
+	height: 3.2rem;
 	border-radius: var(--border-radius);
-	padding: .8rem;
+	padding: 0 .8rem;
 	border: var(--border-primary);
 	background-color: var(--background-secondary);
 	font-size: inherit;
@@ -22,7 +22,7 @@
 .select {
 	@extend .input;
 	background: url("/images/bx-caret-down.svg") no-repeat;
-	background-size: 12px;
+	background-size: 1.2rem;
 	background-position: calc(100% - .8rem) center;
 	background-repeat: no-repeat;
 	background-color: var(--background-secondary);

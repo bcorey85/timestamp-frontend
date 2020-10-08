@@ -1,4 +1,5 @@
-import moment from 'moment';
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
+import parser from 'react-html-parser';
 
 export interface ApiItem {
 	userId: number;
@@ -78,8 +79,10 @@ class ItemService {
 	public pathname: Pathname = { href: null, as: null };
 	public type: keyof ItemType = null;
 
-	constructor(public item: ApiItem) {
-		this.assignTypeProperties();
+	constructor(public item?: ApiItem) {
+		if (item) {
+			this.assignTypeProperties();
+		}
 	}
 
 	private assignTypeProperties = () => {
@@ -128,6 +131,28 @@ class ItemService {
 		};
 	};
 
+	public parsedDescription(description: string) {
+		// Handle parsing note delta for quill editor
+		let parsedDescription;
+		try {
+			parsedDescription = JSON.parse(description);
+		} catch (error) {
+			parsedDescription = description;
+		}
+		return parsedDescription;
+	}
+
+	public getDescriptionHtml(description: string | any[]) {
+		if (typeof description === 'string') {
+			return description;
+		}
+
+		const htmlString = new QuillDeltaToHtmlConverter(description).convert();
+		const html = parser(htmlString);
+
+		return html;
+	}
+
 	public getFormattedItem = (): Item => {
 		return {
 			type: this.type,
@@ -138,7 +163,7 @@ class ItemService {
 				noteId: this.item.noteId || null
 			},
 			title: this.item.title,
-			description: this.item.description,
+			description: this.parsedDescription(this.item.description),
 			tags: this.item.tags || null,
 			pinned: this.item.pinned,
 			notes: this.item.notes || 0,

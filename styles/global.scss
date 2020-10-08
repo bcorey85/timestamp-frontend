@@ -163,9 +163,9 @@ select {
 .rdt {
 	& input {
 		width: 100%;
-		height: 4rem;
+		height: 3.2rem;
 		border-radius: var(--border-radius);
-		padding: .8rem;
+		padding: 0 .8rem;
 		border: var(--border-primary);
 		background-color: var(--background-secondary);
 		font-size: inherit;
@@ -178,6 +178,24 @@ select {
 	box-shadow: var(--box-shadow);
 	border: var(--border-secondary);
 	border-radius: var(--border-radius);
+}
+
+.ql-toolbar.ql-snow {
+	border: var(--border-primary);
+	border-top-left-radius: var(--border-radius);
+	border-top-right-radius: var(--border-radius);
+	font-family: var(--font-sans);
+	font-size: 1.4rem;
+}
+
+.ql-container.ql-snow {
+	border: var(--border-primary);
+	border-bottom-left-radius: var(--border-radius);
+	border-bottom-right-radius: var(--border-radius);
+	background-color: var(--background-secondary);
+	height: 16rem;
+	font-family: var(--font-sans);
+	font-size: 1.4rem;
 }
 
 strong {
