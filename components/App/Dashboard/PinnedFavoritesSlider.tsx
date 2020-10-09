@@ -18,7 +18,7 @@ const PinnedFavoritesSlider = ({ currentPage, items }: Props): JSX.Element => {
 	const itemPixelWidth = 256;
 	const cardAmount = selectedItems.length;
 
-	// Need to render different component to reset slider position logic
+	// Need to render different component to reset slider ref & position logic
 	return (
 		<React.Fragment>
 			{currentPage === 'all' && (

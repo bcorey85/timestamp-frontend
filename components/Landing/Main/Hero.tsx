@@ -14,7 +14,7 @@ const Hero = () => {
 					</h1>
 					<p>
 						Timestamp gives you the tools to make learning easier
-						and to create the memory of just how far you've come.
+						and create the memories of just how far you've come.
 					</p>
 					<Link href='/auth'>
 						<a>
