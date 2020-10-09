@@ -68,12 +68,13 @@
 	grid-template-rows: 26.8rem;
 	grid-gap: 1.6rem;
 
+	padding-right: 1.6rem;
+
 	@include respondH(1280) {
 		grid-template-columns: 2.4rem;
 	}
 
 	@include respondH(768) {
-		// overflow-x: auto;
 		transition: all .3s ease-out;
 	}
 

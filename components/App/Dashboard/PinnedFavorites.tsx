@@ -8,9 +8,8 @@ import { Slider } from '../shared/Slider/Slider';
 import { Item } from '../../../utils/ItemService';
 import { PinnedSection } from '../shared/PinnedSection/PinnedSection';
 import { SortingService } from '../../../utils/SortingService';
-import { NoItemsMessage } from '../shared/NoItemsMessage';
-
-import styles from './PinnedFavorites.module.scss';
+import { PinnedFavoritesSlider } from './PinnedFavoritesSlider';
+import { current } from '@reduxjs/toolkit';
 
 interface Props {
 	items: Item[];
@@ -18,7 +17,6 @@ interface Props {
 
 const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	const [ currentPage, setCurrentPage ] = useState('all');
-	const itemPixelWidth = 256;
 
 	const changePage = (page: string) => {
 		setCurrentPage(page);
@@ -27,17 +25,6 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 	const sortedItemsByDate = items.sort((a, b) =>
 		SortingService.sortByDate({ value1: a.meta.date, value2: b.meta.date })
 	);
-
-	let selectedItems;
-	if (currentPage === 'all') {
-		selectedItems = sortedItemsByDate;
-	} else {
-		selectedItems = sortedItemsByDate.filter(
-			item => item.type === currentPage
-		);
-	}
-
-	let cardAmount = selectedItems.length;
 
 	return (
 		<PinnedSection>
@@ -63,17 +50,10 @@ const PinnedFavorites = ({ items }: Props): JSX.Element => {
 					Notes
 				</Button>
 			</SliderFilter>
-			<Slider itemPixelWidth={itemPixelWidth} cardAmount={cardAmount}>
-				{selectedItems.length > 0 ? (
-					<PinnedItems items={selectedItems} />
-				) : (
-					<div className={styles.noitems_message}>
-						<NoItemsMessage
-							type={currentPage === 'all' ? 'item' : currentPage}
-						/>
-					</div>
-				)}
-			</Slider>
+			<PinnedFavoritesSlider
+				items={sortedItemsByDate}
+				currentPage={currentPage}
+			/>
 		</PinnedSection>
 	);
 };

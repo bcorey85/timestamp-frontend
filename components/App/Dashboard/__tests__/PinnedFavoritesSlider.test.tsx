@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { PinnedItems } from '../PinnedItems';
+import { PinnedFavoritesSlider } from '../PinnedFavoritesSlider';
 import { createTestItem } from '../../../../test/setup';
 
-describe('PinnedItems', () => {
+describe('PinnedFavoritesSlider', () => {
 	it('renders', () => {
 		const item = createTestItem();
 
 		const wrapper = shallow(
-			<PinnedItems items={[ item, item ]} currentPage={'all'} />
+			<PinnedFavoritesSlider items={[ item, item ]} currentPage='all' />
 		);
 		expect(wrapper).not.toBeNull();
 	});
