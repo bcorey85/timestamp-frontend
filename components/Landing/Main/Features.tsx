@@ -17,9 +17,9 @@ const Features = () => {
 				<article className={styles.text}>
 					<h2>How It Works</h2>
 					<p>
-						Timestamp is made up of Projects, Tasks and Notes. They
-						help you stay organized, focused, and motivated towards
-						achieving your goals.
+						Timestamp is made of Projects, Tasks, and Notes. They
+						help you stay organized and focused on achieving your
+						goals.
 					</p>
 				</article>
 				<div className={styles.demo_cards}>

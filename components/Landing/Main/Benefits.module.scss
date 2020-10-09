@@ -34,6 +34,7 @@
 
 		@include respondH(960) {
 			max-width: 36rem;
+			margin-left: 2.4rem;
 		}
 
 		@include respondH(768) {
@@ -53,6 +54,10 @@
 	& article {
 		margin-left: 0;
 		margin-right: 4rem;
+
+		@include respondH(960) {
+			margin-right: 2.4rem;
+		}
 
 		@include respondH(768) {
 			margin-right: 0;

@@ -26,9 +26,15 @@
 	flex-direction: column;
 	justify-content: center;
 	flex: 0 0 auto;
+	margin-right: 4rem;
 
 	@include respondH(960) {
 		max-width: 38rem;
+		margin-right: 2.4rem;
+	}
+
+	@include respondH(768) {
+		margin-right: 0;
 	}
 }
 

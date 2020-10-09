@@ -9,10 +9,12 @@ const Hero = () => {
 		<React.Fragment>
 			<section className={styles.hero}>
 				<article className={styles.hero_text}>
-					<h1>Capture Your Learning Progress In Time</h1>
+					<h1>
+						Capture&nbsp;Your&nbsp;Learning<br /> Progress In Time
+					</h1>
 					<p>
-						Timestamp gives you the tools to make learning new
-						skills easier and to remember just how far you’ve come.
+						Timestamp gives you the tools to make learning easier
+						and to create the memory of just how far you've come.
 					</p>
 					<Link href='/auth'>
 						<a>
