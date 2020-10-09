@@ -39,31 +39,42 @@
 
 	& article {
 		position: relative;
-		min-width: 24rem;
 		max-width: 24rem;
 
 		@include respondH(960) {
-			min-width: 22.4rem;
 			max-width: 22.4rem;
 		}
 
 		@include respondH(768) {
 			max-width: 26.4rem;
-
 			margin-bottom: 2.4rem;
 		}
 	}
 
-	& article:first-of-type {
-		box-shadow: .8rem .8rem 0 var(--project-light);
+	.after-panel {
+		content: '';
+		position: absolute;
+		right: -.8rem;
+		bottom: -.8rem;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+		border-radius: var(--border-radius);
 	}
 
-	& article:nth-of-type(2) {
-		box-shadow: .8rem .8rem 0 var(--task-light);
+	& article:first-of-type::after {
+		@extend .after-panel;
+		background-color: var(--project-light);
 	}
 
-	& article:last-of-type {
-		box-shadow: .8rem .8rem 0 var(--note-light);
+	& article:nth-of-type(2)::after {
+		@extend .after-panel;
+		background-color: var(--task-light);
+	}
+
+	& article:last-of-type::after {
+		@extend .after-panel;
+		background-color: var(--note-light);
 	}
 
 	& article:not(:last-of-type) {
