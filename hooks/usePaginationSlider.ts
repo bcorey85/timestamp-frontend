@@ -1,4 +1,7 @@
+import { current } from '@reduxjs/toolkit';
 import React, { useState, useEffect } from 'react';
+import { Slider } from '../components/App/shared/Slider/Slider';
+import { SliderService } from '../utils/SliderService';
 import { UiService } from '../utils/UiService';
 
 const usePaginationSlider = (cardWidth: number, initialCardAmount: number) => {
@@ -14,6 +17,10 @@ const usePaginationSlider = (cardWidth: number, initialCardAmount: number) => {
 
 	useEffect(
 		() => {
+			if (typeof window === 'undefined') {
+				return;
+			}
+
 			let maxWidth: number;
 			if (cardAmount === 0) {
 				setMaxWidth(0);
@@ -25,27 +32,21 @@ const usePaginationSlider = (cardWidth: number, initialCardAmount: number) => {
 				maxWidth = cardAmount * cardWidth - cardWidth;
 			}
 			const handleResize = () => {
-				return setScreenWidth(window.innerWidth);
+				const appMainElement = document.getElementById('app-main');
+				const width = appMainElement.getBoundingClientRect().width;
+
+				return setScreenWidth(width);
 			};
 
-			if (typeof window !== 'undefined') {
-				window.addEventListener('resize', handleResize);
-				const appPadding = getComputedStyle(document.body)
-					.getPropertyValue('--app-horizontal-padding')
-					.replace('rem', '');
+			window.addEventListener('resize', handleResize);
 
-				const maxPossibleVisibleCards = Math.floor(
-					(screenWidth - Number(appPadding)) / cardWidth
-				);
-				const maxMovement = 4;
-				const maxActualVisibleCards =
-					maxPossibleVisibleCards > maxMovement
-						? maxMovement
-						: maxPossibleVisibleCards;
+			const maxActualVisibleCards = SliderService.maxVisibleCards(
+				screenWidth,
+				cardWidth,
+				4
+			);
 
-				setMaxVisibleCards(maxActualVisibleCards);
-			}
-
+			setMaxVisibleCards(maxActualVisibleCards);
 			setMaxWidth(maxWidth);
 			setMaxRightBound(maxWidth * -1);
 			setMaxLeftBound(0);
@@ -58,7 +59,12 @@ const usePaginationSlider = (cardWidth: number, initialCardAmount: number) => {
 	);
 
 	const slideLeft = () => {
-		const nextOffset = currentOffset + maxVisibleCards * cardWidth;
+		const nextOffset = SliderService.nextLeftOffset(
+			currentOffset,
+			maxVisibleCards,
+			cardWidth
+		);
+
 		if (nextOffset > maxLeftBound) {
 			setCurrentOffset(0);
 		} else {
@@ -67,7 +73,11 @@ const usePaginationSlider = (cardWidth: number, initialCardAmount: number) => {
 	};
 
 	const slideRight = () => {
-		const nextOffset = currentOffset - maxVisibleCards * cardWidth;
+		const nextOffset = SliderService.nextRightOffset(
+			currentOffset,
+			maxVisibleCards,
+			cardWidth
+		);
 
 		if (nextOffset < maxRightBound) {
 			setCurrentOffset(maxRightBound);
@@ -76,7 +86,7 @@ const usePaginationSlider = (cardWidth: number, initialCardAmount: number) => {
 		}
 	};
 
-	const transformDistance = `translateX(${currentOffset}px)`;
+	const transformDistance = SliderService.transformDistance(currentOffset);
 
 	return {
 		slideLeft,

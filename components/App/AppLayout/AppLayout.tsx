@@ -100,7 +100,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 						/>
 					</div>
 
-					<main className={styles.main}>
+					<main className={styles.main} id='app-main'>
 						{!isLoading && appDataErrors.length > 0 ? (
 							errorMessage
 						) : (

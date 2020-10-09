@@ -16,11 +16,7 @@ const LeftButton = ({
 	return (
 		<div
 			className={
-				currentOffset !== 0 ? (
-					styles.overflow_left
-				) : (
-					styles.overflow_hidden
-				)
+				currentOffset !== 0 ? styles.button_left : styles.button_hidden
 			}>
 			<button onClick={() => slideLeft()}>
 				<BiChevronLeft />
@@ -43,9 +39,9 @@ const RightButton = ({
 		<div
 			className={
 				currentOffset !== maxRightBound ? (
-					styles.overflow_right
+					styles.button_right
 				) : (
-					styles.overflow_hidden
+					styles.button_hidden
 				)
 			}>
 			<button onClick={() => slideRight()}>

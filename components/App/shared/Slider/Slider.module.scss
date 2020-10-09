@@ -1,7 +1,7 @@
 @import '../../../../styles/mediaQueries.scss';
 
-.overflow_left,
-.overflow_right {
+.button_left,
+.button_right {
 	height: 100%;
 	width: 7.4rem;
 	position: absolute;
@@ -40,26 +40,26 @@
 	}
 }
 
-.overflow_left {
+.button_left {
 	left: 0;
 }
 
-.overflow_right {
+.button_right {
 	right: 0;
 }
 
-.overflow_left:hover,
-.overflow_right:hover {
+.button_left:hover,
+.button_right:hover {
 	color: var(--primary400);
 }
 
-.overflow_hidden {
+.button_hidden {
 	display: none;
 }
 
 .slider_wrapper {
 	width: 100%;
-	transition: all .3s ease-out;
+	transition: all .4s ease-out;
 	display: grid;
 	// handles initial spacing for first card
 	grid-template-columns: 6.4rem;
@@ -72,8 +72,14 @@
 		grid-template-columns: 2.4rem;
 	}
 
+	@include respondH(768) {
+		// overflow-x: auto;
+		transition: all .3s ease-out;
+	}
+
 	@include respondH(550) {
 		grid-template-columns: 0rem;
+		transition: all .2s ease-out;
 	}
 
 	// handles initial spacing for first card
