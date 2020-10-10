@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDarkColorMode, selectInterface } from '../redux/interface';
-import { UiService } from '../utils/UiService';
 
 const useDarkModeToggle = () => {
 	const { darkColorMode } = useSelector(selectInterface);
@@ -14,8 +13,9 @@ const useDarkModeToggle = () => {
 
 		if (appState) {
 			const appInterface = JSON.parse(appState.interface);
+			const mode = appInterface.darkColorMode === true ? 'dark' : 'light';
 
-			UiService.toggleDarkMode(appInterface.darkColorMode);
+			handleDarkModeToggle(mode);
 		}
 	}, []);
 

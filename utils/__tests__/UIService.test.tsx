@@ -1,4 +1,12 @@
+import React from 'react';
+import { mount } from 'enzyme';
+
+import { AppLayout } from '../../components/App/AppLayout/AppLayout';
 import { UiService } from '../UiService';
+
+import { mockStore, MockReduxProvider } from '../../test/__mocks__/mockRedux';
+
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
 global.scrollTo = jest.fn();
 
@@ -13,15 +21,5 @@ describe('UiService', () => {
 		UiService.preventBodyScrollOnModalOpen(false);
 		expect(document.body.style.position).toEqual('');
 		expect(document.body.style.top).toEqual('');
-	});
-
-	it('adds dark mode to body if selected', () => {
-		UiService.toggleDarkMode(true);
-		expect(document.body.classList[0]).toEqual('dark');
-	});
-
-	it('removed dark mode from body if not selected', () => {
-		UiService.toggleDarkMode(false);
-		expect(document.body.classList[0]).not.toEqual('dark');
 	});
 });

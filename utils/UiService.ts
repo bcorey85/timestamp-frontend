@@ -15,20 +15,6 @@ class UiService {
 		}
 	};
 
-	static toggleDarkMode = (darkMode: boolean) => {
-		const app = document.getElementById('app');
-
-		if (!app) {
-			return;
-		}
-
-		if (darkMode === true) {
-			app.classList.add('dark');
-		} else {
-			app.classList.remove('dark');
-		}
-	};
-
 	static calculateAlpha = (colorAlpha: number, colorVar: string) => {
 		let adjustedAlpha;
 

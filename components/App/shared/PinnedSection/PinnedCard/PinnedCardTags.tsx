@@ -10,7 +10,7 @@ const PinnedCardTags = ({ tags }: { tags: string }): JSX.Element => {
 			) : (
 				TagService.addSpaces(tags)
 			)}
-			{tags && tags.length === 0 ? 'none' : null}
+			{!tags || tags.length === 0 ? '( No Tags )' : null}
 		</div>
 	);
 };

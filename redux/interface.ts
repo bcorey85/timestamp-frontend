@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { UiService } from '../utils/UiService';
 
 // Check initial state for drawerOpen
 // Should be open for desktop, but closed for mobile
@@ -25,8 +24,6 @@ const interfaceSlice = createSlice({
 			state.searchOpen = !state.searchOpen;
 		},
 		setDarkColorMode: (state, action) => {
-			UiService.toggleDarkMode(action.payload.darkColorMode);
-
 			state.darkColorMode = action.payload.darkColorMode;
 		}
 	}

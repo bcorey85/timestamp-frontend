@@ -25,7 +25,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	const { createModalOpen, toggleCreateModal } = useCreateModal();
 	const dispatch = useDispatch();
 
-	useDarkModeToggle();
+	const { darkModeChecked } = useDarkModeToggle();
 
 	useEffect(
 		() => {
@@ -56,7 +56,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 
 	if (isLoading) {
 		return (
-			<div id='app'>
+			<div id='app' className={darkModeChecked ? 'dark' : null}>
 				<div className={styles.app_layout}>
 					<Header />
 					<div className={styles.content}>
@@ -83,7 +83,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	}
 
 	return (
-		<div id='app'>
+		<div id='app' className={darkModeChecked ? 'dark' : null}>
 			<div className={styles.app_layout}>
 				<Header />
 				<div className={styles.content}>
