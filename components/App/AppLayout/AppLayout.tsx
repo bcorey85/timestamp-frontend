@@ -14,6 +14,7 @@ import { useCreateModal } from '../../../hooks/create/useCreateModal';
 import { setAppDataSynced } from '../../../redux/appData';
 import styles from './AppLayout.module.scss';
 import { useDarkModeToggle } from '../../../hooks/useDarkModeToggle';
+import { selectInterface } from '../../../redux/interface';
 
 interface Props {
 	children?: any;
@@ -23,9 +24,11 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	const [ isLoading, setIsLoading ] = useState(true);
 	const { fetchAppData, appData, appDataErrors, userId } = useAppData();
 	const { createModalOpen, toggleCreateModal } = useCreateModal();
+	const { darkColorMode } = useSelector(selectInterface);
 	const dispatch = useDispatch();
 
-	const { darkModeChecked } = useDarkModeToggle();
+	// const { darkModeChecked } = useDarkModeToggle();
+	// console.log('app', darkModeChecked);
 
 	useEffect(
 		() => {
@@ -56,7 +59,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 
 	if (isLoading) {
 		return (
-			<div id='app' className={darkModeChecked ? 'dark' : null}>
+			<div id='app' className={darkColorMode === true ? 'dark' : null}>
 				<div className={styles.app_layout}>
 					<Header />
 					<div className={styles.content}>
@@ -83,7 +86,7 @@ const AppLayout = ({ children }: Props): JSX.Element => {
 	}
 
 	return (
-		<div id='app' className={darkModeChecked ? 'dark' : null}>
+		<div id='app' className={darkColorMode === true ? 'dark' : null}>
 			<div className={styles.app_layout}>
 				<Header />
 				<div className={styles.content}>
