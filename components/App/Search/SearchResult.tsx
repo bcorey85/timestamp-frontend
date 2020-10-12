@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Item } from '../../../utils/ItemService';
+import { Item, ItemService } from '../../../utils/ItemService';
 import { TagService } from '../../../utils/TagService';
 
 import { TypeIcon } from '../shared/TypeIcon';
@@ -16,6 +16,15 @@ interface Props {
 
 const SearchResult = ({ result, userId }: Props): JSX.Element => {
 	const item = result;
+	const itemService = new ItemService();
+	console.log(item);
+
+	let parsedDescription;
+	if (item.type === 'note') {
+		parsedDescription = itemService.getDescriptionHtml(item.description);
+	} else {
+		parsedDescription = item.description;
+	}
 
 	return (
 		<Link
@@ -39,13 +48,14 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 							{DateTimeService.formatDate(item.meta.date)} -{' '}
 							{item.meta.hours} hr
 						</div>
-
-						{item.description ? (
+					</div>
+					<div className={styles.description}>
+						{parsedDescription ? (
 							<div>
-								{item.description.length > 40 ? (
-									item.description.substring(0, 40) + '...'
+								{parsedDescription > 40 ? (
+									parsedDescription.substring(0, 40) + '...'
 								) : (
-									item.description
+									parsedDescription
 								)}
 							</div>
 						) : null}

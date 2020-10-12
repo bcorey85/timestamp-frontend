@@ -1,9 +1,10 @@
 import { format } from 'path';
 import React, { useRef, useState, useEffect } from 'react';
-import { ItemService } from '../utils/ItemService';
+import { Item, ItemService } from '../utils/ItemService';
 import { ActivityStatsService } from '../utils/ActivityStatsService';
 
-const useActivityStats = (items: any[] = []) => {
+const useActivityStats = (initialItems: Item[] = []) => {
+	const [ items, setItems ] = useState(initialItems);
 	const [ yearsArray, setYearsArray ] = useState([]);
 	const [ selectedYear, setSelectedYear ] = useState(
 		new Date(Date.now()).getFullYear()
@@ -48,6 +49,10 @@ const useActivityStats = (items: any[] = []) => {
 		[ items, selectedYear ]
 	);
 
+	const updateItems = (items: Item[]) => {
+		setItems(items);
+	};
+
 	return {
 		yearsArray,
 		selectedYear,
@@ -55,7 +60,8 @@ const useActivityStats = (items: any[] = []) => {
 		yearTotals,
 		monthlyCreatedTotals,
 		longestStreak,
-		dailyCounts
+		dailyCounts,
+		updateItems
 	};
 };
 

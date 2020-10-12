@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { StatsBar } from '../shared/StatsBar/StatsBar';
@@ -25,6 +25,21 @@ const Activity = (): JSX.Element => {
 		...appData.tasks,
 		...appData.notes
 	]);
+	console.log(itemsRef.current);
+	console.log(appData);
+
+	useEffect(
+		() => {
+			itemsRef.current = [
+				...appData.projects,
+				...appData.tasks,
+				...appData.notes
+			];
+
+			updateItems(itemsRef.current);
+		},
+		[ appData ]
+	);
 
 	const {
 		yearsArray,
@@ -33,7 +48,8 @@ const Activity = (): JSX.Element => {
 		yearTotals,
 		monthlyCreatedTotals,
 		longestStreak,
-		dailyCounts
+		dailyCounts,
+		updateItems
 	} = useActivityStats(itemsRef.current);
 
 	const handleYearChange = (year: number | string) => {
@@ -91,12 +107,12 @@ const Activity = (): JSX.Element => {
 				</StatsBar>
 			</AppPageSection>
 			<AppPageSection>
-				<AppPageSectionHeading title='Daily Activity' />
-				<DailyItemCount dailyItemCounts={dailyCounts} />
-			</AppPageSection>
-			<AppPageSection>
 				<AppPageSectionHeading title='Monthly Activity' />
 				<Calendar monthlyCreatedTotals={monthlyCreatedTotals} />
+			</AppPageSection>
+			<AppPageSection>
+				<AppPageSectionHeading title='Daily Activity' />
+				<DailyItemCount dailyItemCounts={dailyCounts} />
 			</AppPageSection>
 			<AppPageSection>
 				<AppPageSectionHeading title='Longest Activity Streak' />

@@ -23,9 +23,25 @@
 .stats {
 	font-size: 1.2rem;
 	line-height: 1.6rem;
+	margin-bottom: 1.6rem;
+}
 
-	& div:not(:last-of-type) {
-		margin-bottom: .4rem;
+.description {
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+
+	ul {
+		padding-left: 2.4rem;
+		list-style-type: disc;
+	}
+
+	ol {
+		padding-left: 2.4rem;
 	}
 }
 
