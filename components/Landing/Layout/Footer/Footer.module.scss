@@ -6,7 +6,7 @@
 	height: var(--footer-height);
 	padding: 2.4rem;
 	background-color: var(--background-tertiary);
-	color: var(--text200);
+	color: hsl(171, 5%, 45%);
 	font-size: 1.2rem;
 	line-height: 1.6rem;
 	font-weight: 500;
@@ -17,7 +17,7 @@
 	}
 
 	& a {
-		color: var(--text200);
+		color: hsl(171, 5%, 45%);
 
 		&:hover {
 			color: var(--primary500);

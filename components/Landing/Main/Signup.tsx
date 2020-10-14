@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 import { Button } from '../../shared/Button';
 
@@ -14,11 +13,9 @@ const Signup = () => {
 					Create a free account today and start building the skills
 					for your future self.
 				</p>
-				<Link href='/auth'>
-					<a>
-						<Button btnStyle='primary'>Sign Up</Button>
-					</a>
-				</Link>
+				<Button btnStyle='primary' href='/auth' link>
+					Sign Up
+				</Button>
 			</article>
 			<figure className={styles.signup_img}>
 				<img

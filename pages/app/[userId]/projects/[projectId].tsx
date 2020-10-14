@@ -7,7 +7,7 @@ import { Meta } from '../../../../components/Meta/Meta';
 const ProjectSinglePage = () => {
 	return (
 		<PrivateRoute>
-			<Meta pageTitle='Projects' />
+			<Meta pageTitle='Project' />
 			<ProjectSingle />
 		</PrivateRoute>
 	);

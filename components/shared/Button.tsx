@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import styles from './Button.module.scss';
 import { LoadingSpinner } from './Loading/LoadingSpinner';
@@ -21,6 +22,9 @@ interface Props {
 	id?: string;
 	isLoading?: boolean;
 	style?: { [key: string]: string };
+	href?: string;
+	as?: string;
+	link?: boolean;
 }
 
 const Button = ({
@@ -30,8 +34,21 @@ const Button = ({
 	onClick,
 	id,
 	isLoading,
-	style
+	style,
+	href,
+	as,
+	link
 }: Props): JSX.Element => {
+	if (link) {
+		return (
+			<Link href={href} as={as}>
+				<a className={styles[`btn_${btnStyle}`]} id={id} style={style}>
+					{children}
+				</a>
+			</Link>
+		);
+	}
+
 	return (
 		<button
 			type={type || 'button'}
