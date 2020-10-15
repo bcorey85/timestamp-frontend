@@ -17,7 +17,6 @@ interface Props {
 const SearchResult = ({ result, userId }: Props): JSX.Element => {
 	const item = result;
 	const itemService = new ItemService();
-	console.log(item);
 
 	let parsedDescription;
 	if (item.type === 'note') {

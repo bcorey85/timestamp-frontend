@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Item } from '../utils/ItemService';
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
+import { Item, ItemService } from '../utils/ItemService';
 import { useRouterService } from './useRouterService';
 
 const useSearchState = (initialData?: any[]) => {
@@ -8,6 +9,7 @@ const useSearchState = (initialData?: any[]) => {
 	const [ data, setData ] = useState<any[]>(initialData || []);
 	const [ results, setResults ] = useState<any[]>([]);
 	const { router } = useRouterService();
+	const itemService = new ItemService();
 
 	const handleField = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setField(e.currentTarget.value);
@@ -31,6 +33,14 @@ const useSearchState = (initialData?: any[]) => {
 
 			if (!item[field]) {
 				return false;
+			}
+
+			if (item.type === 'note' && field === 'description') {
+				const string = new QuillDeltaToHtmlConverter(
+					item.description
+				).convert();
+
+				return string.toLowerCase().includes(searchValue.toLowerCase());
 			}
 
 			return item[field]

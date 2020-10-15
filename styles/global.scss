@@ -212,6 +212,14 @@ select {
 	}
 }
 
+.ql-snow .ql-stroke {
+	stroke: var(--text500);
+}
+
+.ql-snow .ql-fill {
+	fill: var(--text500);
+}
+
 strong {
 	font-weight: 600;
 }
