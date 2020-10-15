@@ -160,66 +160,6 @@ select {
 	padding: 0 .4rem;
 }
 
-.rdt {
-	& input {
-		width: 100%;
-		height: 3.2rem;
-		border-radius: var(--border-radius);
-		padding: 0 .8rem;
-		border: var(--border-primary);
-		background-color: var(--background-secondary);
-		font-size: inherit;
-		font-family: inherit;
-	}
-}
-
-.rdtPicker {
-	background-color: var(--background-primary);
-	box-shadow: var(--box-shadow);
-	border: var(--border-secondary);
-	border-radius: var(--border-radius);
-}
-
-.ql-toolbar.ql-snow {
-	border: var(--border-primary);
-	border-top-left-radius: var(--border-radius);
-	border-top-right-radius: var(--border-radius);
-	font-family: var(--font-sans);
-	font-size: 1.4rem;
-}
-
-.ql-container.ql-snow {
-	border: var(--border-primary);
-	border-bottom-left-radius: var(--border-radius);
-	border-bottom-right-radius: var(--border-radius);
-	background-color: var(--background-secondary);
-	height: 18.4rem;
-	font-family: var(--font-sans);
-	font-size: 1.4rem;
-
-	& ul {
-		padding-left: 2.4rem;
-		list-style-type: disc;
-	}
-
-	& ol {
-		padding-left: 2.4rem;
-	}
-
-	ul li,
-	ol li {
-		padding-left: 1.6rem;
-	}
-}
-
-.ql-snow .ql-stroke {
-	stroke: var(--text500);
-}
-
-.ql-snow .ql-fill {
-	fill: var(--text500);
-}
-
 strong {
 	font-weight: 600;
 }
