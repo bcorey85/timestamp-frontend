@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectInterface } from '../../../../redux/interface';
 import { StringService } from '../../../../utils/StringService';
 import { UiService } from '../../../../utils/UiService';
 
@@ -11,7 +13,9 @@ interface Props {
 }
 
 const DailyItemCell = ({ date, count, colorAlpha }: Props): JSX.Element => {
+	const { darkColorMode } = useSelector(selectInterface);
 	const [ tooltipShowing, setTooltipShowing ] = useState(false);
+
 	const color =
 		colorAlpha === 0
 			? UiService.calculateAlpha(colorAlpha, '--text500')

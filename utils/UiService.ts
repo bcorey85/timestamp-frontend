@@ -27,8 +27,8 @@ class UiService {
 		} else {
 			adjustedAlpha = 1;
 		}
-
-		const bodyStyles = getComputedStyle(document.body);
+		const app = document.querySelector('#app');
+		const bodyStyles = getComputedStyle(app);
 		const colorVarValue = bodyStyles.getPropertyValue(colorVar).trim();
 
 		const color = chroma(colorVarValue).alpha(adjustedAlpha);

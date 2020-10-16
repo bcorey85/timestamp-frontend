@@ -25,8 +25,6 @@ const Activity = (): JSX.Element => {
 		...appData.tasks,
 		...appData.notes
 	]);
-	console.log(itemsRef.current);
-	console.log(appData);
 
 	useEffect(
 		() => {
