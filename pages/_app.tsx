@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
 
 					<meta
 						property='og:image'
-						content='/images/timestamp-multi.png'
+						content='https://timestampapp.vercel.app/images/timestamp-multi.png'
 					/>
 
 					<meta
