@@ -39,7 +39,43 @@ function MyApp({ Component, pageProps }) {
 						href='/favicon/favicon.ico'
 					/>
 					<link rel='manifest' href='/favicon/site.webmanifest' />
-					<meta property='og:title' content='Timestamp App' />
+
+					<title>Timestamp</title>
+					<meta
+						name='description'
+						content='Timestamp is a full stack notes and productivity app focused on helping users maximize efficiency when learning new skills.'
+					/>
+
+					<meta itemProp='name' content='Timestamp' />
+					<meta
+						itemProp='description'
+						content='Timestamp is a full stack notes and productivity app focused on helping users maximize efficiency when learning new skills.'
+					/>
+					<meta
+						itemProp='image'
+						content='https://timestampapp.vercel.app/images/timestamp-multi.png'
+					/>
+
+					<meta
+						property='og:url'
+						content='https://timestampapp.vercel.app'
+					/>
+					<meta property='og:type' content='website' />
+					<meta property='og:title' content='Timestamp' />
+					<meta
+						property='og:description'
+						content='Timestamp is a full stack notes and productivity app focused on helping users maximize efficiency when learning new skills.'
+					/>
+					<meta property='og:image' content='' />
+
+					<meta name='twitter:card' content='summary_large_image' />
+					<meta name='twitter:title' content='Timestamp' />
+					<meta
+						name='twitter:description'
+						content='https://timestampapp.vercel.app/images/timestamp-multi.png'
+					/>
+					<meta name='twitter:image' content='' />
+					{/* <meta property='og:title' content='Timestamp App' />
 
 					<meta
 						property='og:image'
@@ -54,7 +90,7 @@ function MyApp({ Component, pageProps }) {
 					<meta
 						property='og:url'
 						content='https://timestampapp.vercel.app/'
-					/>
+					/> */}
 				</Head>
 				<Component {...pageProps} />
 			</PersistGate>
