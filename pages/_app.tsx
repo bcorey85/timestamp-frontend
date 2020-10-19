@@ -39,6 +39,22 @@ function MyApp({ Component, pageProps }) {
 						href='/favicon/favicon.ico'
 					/>
 					<link rel='manifest' href='/favicon/site.webmanifest' />
+					<meta property='og:title' content='Timestamp App' />
+
+					<meta
+						property='og:image'
+						content='/images/timestamp-multi.png'
+					/>
+
+					<meta
+						property='og:description'
+						content='Timestamp is a full stack notes and productivity app focused on helping users maximize efficiency when learning new skills.'
+					/>
+
+					<meta
+						property='og:url'
+						content='https://timestampapp.vercel.app/'
+					/>
 				</Head>
 				<Component {...pageProps} />
 			</PersistGate>
