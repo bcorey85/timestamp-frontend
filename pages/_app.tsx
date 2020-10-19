@@ -53,7 +53,7 @@ function MyApp({ Component, pageProps }) {
 					/>
 					<meta
 						itemProp='image'
-						content='https://timestampapp.vercel.app/images/timestamp-multi.png'
+						content='http://timestampapp.vercel.app/images/timestamp-multi.png'
 					/>
 
 					<meta
@@ -66,15 +66,21 @@ function MyApp({ Component, pageProps }) {
 						property='og:description'
 						content='Timestamp is a full stack notes and productivity app focused on helping users maximize efficiency when learning new skills.'
 					/>
-					<meta property='og:image' content='' />
+					<meta
+						property='og:image'
+						content='http://timestampapp.vercel.app/images/timestamp-multi.png'
+					/>
 
 					<meta name='twitter:card' content='summary_large_image' />
 					<meta name='twitter:title' content='Timestamp' />
 					<meta
 						name='twitter:description'
-						content='https://timestampapp.vercel.app/images/timestamp-multi.png'
+						content='Timestamp is a full stack notes and productivity app focused on helping users maximize efficiency when learning new skills.'
 					/>
-					<meta name='twitter:image' content='' />
+					<meta
+						name='twitter:image'
+						content='http://timestampapp.vercel.app/images/timestamp-multi.png'
+					/>
 					{/* <meta property='og:title' content='Timestamp App' />
 
 					<meta
