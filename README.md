@@ -24,9 +24,9 @@ Test - npm run test
 ## API Source Code
 https://github.com/bcorey85/timestamp-api
 
-
 ## Deployment Link
 https://timestampapp.vercel.app/
 
-
+## Author
+Brandon Corey - https://www.bcdev.co/
 
