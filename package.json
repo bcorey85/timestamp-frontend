@@ -1,7 +1,9 @@
 {
-	"name": "frontend",
-	"version": "0.1.0",
-	"private": true,
+	"name": "timestamp-frontend",
+	"version": "1.0.0",
+	"description": "Notes and productivity app geared towards efficient learning",
+	"homepage": "timestampapp.vercel.app",
+	"author": "Brandon Corey <brandon@bcdev.co> (www.bcdev.co)",
 	"scripts": {
 		"test": "jest --watchAll",
 		"test:coverage": "jest --coverage",
