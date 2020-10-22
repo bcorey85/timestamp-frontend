@@ -5,7 +5,11 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	overflow-x: auto;
-	overflow-y: visible;
+	// create space for tooltip overflow
+	padding-top: 3.2rem;
+	margin-top: -3.2rem;
+	padding-left: 2.4rem;
+	margin-left: -2.4rem;
 }
 
 .month_labels {
