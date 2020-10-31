@@ -18,6 +18,10 @@
 		width: 4rem;
 	}
 
+	@include respondH(768) {
+		display: none;
+	}
+
 	& button {
 		display: flex;
 		justify-content: center;
@@ -76,6 +80,7 @@
 
 	@include respondH(768) {
 		transition: all .3s ease-out;
+		overflow-x: scroll;
 	}
 
 	@include respondH(550) {
