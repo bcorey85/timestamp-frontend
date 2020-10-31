@@ -13,7 +13,6 @@ interface Props {
 }
 
 const DailyItemCell = ({ date, count, colorAlpha }: Props): JSX.Element => {
-	const { darkColorMode } = useSelector(selectInterface);
 	const [ tooltipShowing, setTooltipShowing ] = useState(false);
 
 	const color =

@@ -18,9 +18,11 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 	const item = result;
 	const itemService = new ItemService();
 
-	let parsedDescription;
+	let parsedDescription: string;
 	if (item.type === 'note') {
-		parsedDescription = itemService.getDescriptionHtml(item.description);
+		parsedDescription = itemService.getDescriptionHtml(
+			item.description
+		) as string;
 	} else {
 		parsedDescription = item.description;
 	}
@@ -51,7 +53,7 @@ const SearchResult = ({ result, userId }: Props): JSX.Element => {
 					<div className={styles.description}>
 						{parsedDescription ? (
 							<div>
-								{parsedDescription > 40 ? (
+								{parsedDescription.length > 40 ? (
 									parsedDescription.substring(0, 40) + '...'
 								) : (
 									parsedDescription

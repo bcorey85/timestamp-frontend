@@ -27,11 +27,15 @@ class UiService {
 		} else {
 			adjustedAlpha = 1;
 		}
-		const app = document.querySelector('#app');
-		const bodyStyles = getComputedStyle(app);
-		const colorVarValue = bodyStyles.getPropertyValue(colorVar).trim();
 
-		const color = chroma(colorVarValue).alpha(adjustedAlpha);
+		const app = document.getElementById('app') as HTMLDivElement;
+
+		let color;
+		if (app) {
+			const bodyStyles = getComputedStyle(app);
+			const colorVarValue = bodyStyles.getPropertyValue(colorVar).trim();
+			color = chroma(colorVarValue).alpha(adjustedAlpha);
+		}
 
 		return color;
 	};
