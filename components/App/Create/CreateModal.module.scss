@@ -15,7 +15,7 @@
 	z-index: 200;
 	padding: 0 1.6rem;
 	color: var(--text500);
-	padding-top: 6.4rem;
+	padding-top: 4rem;
 
 	@include respondH(768) {
 		padding-top: 4rem;
@@ -42,7 +42,7 @@
 
 	&_container {
 		width: 100%;
-		max-width: 56rem;
+		max-width: 64rem;
 		position: relative;
 		z-index: 300;
 	}
