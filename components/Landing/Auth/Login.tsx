@@ -85,7 +85,7 @@ const Login = ({ toggleForm }: Props): JSX.Element => {
 	};
 
 	return (
-		<form>
+		<form onSubmit={handleAuth}>
 			<AuthHeader>
 				<h1>Welcome to Timestamp</h1>
 				<h5>Please sign up or login to your account</h5>
@@ -128,7 +128,7 @@ const Login = ({ toggleForm }: Props): JSX.Element => {
 				</Button>
 				<Button
 					btnStyle='primary'
-					onClick={handleAuth}
+					type='submit'
 					isLoading={isLoadingLogin}>
 					Login
 				</Button>

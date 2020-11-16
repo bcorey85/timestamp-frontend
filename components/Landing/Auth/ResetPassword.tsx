@@ -84,7 +84,7 @@ const ResetPassword = (): JSX.Element => {
 				<h1>Reset Password</h1>
 				<h5>Please submit a new password below</h5>
 			</AuthHeader>
-			<form>
+			<form onSubmit={handlePasswordReset}>
 				<div>
 					<Input
 						id='password'
@@ -107,7 +107,7 @@ const ResetPassword = (): JSX.Element => {
 				</div>
 				<ButtonContainer>
 					<Button
-						onClick={handlePasswordReset}
+						type='submit'
 						btnStyle='primary'
 						isLoading={isLoading}>
 						Reset Password

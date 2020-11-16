@@ -2,8 +2,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 import { usePaginationSlider } from '../../../../hooks/usePaginationSlider';
-
+import { UiService } from '../../../../utils/UiService';
 import styles from './Slider.module.scss';
+
+const isMobileDevice = UiService.isMobileDevice();
+console.log(isMobileDevice);
 
 interface LeftButtonProps {
 	currentOffset: number;
@@ -17,7 +20,8 @@ const LeftButton = ({
 		<div
 			className={
 				currentOffset !== 0 ? styles.button_left : styles.button_hidden
-			}>
+			}
+			style={isMobileDevice ? { display: 'none' } : null}>
 			<button onClick={() => slideLeft()}>
 				<BiChevronLeft />
 			</button>
@@ -43,7 +47,8 @@ const RightButton = ({
 				) : (
 					styles.button_hidden
 				)
-			}>
+			}
+			style={isMobileDevice ? { display: 'none' } : null}>
 			<button onClick={() => slideRight()}>
 				<BiChevronRight />
 			</button>
@@ -86,7 +91,13 @@ const Slider = ({
 			<div
 				className={styles.slider_wrapper}
 				ref={sliderRef}
-				style={{ transform: transformDistance }}>
+				style={
+					isMobileDevice ? (
+						{ transform: transformDistance, overflowX: 'scroll' }
+					) : (
+						{ transform: transformDistance }
+					)
+				}>
 				{children}
 			</div>
 			<RightButton

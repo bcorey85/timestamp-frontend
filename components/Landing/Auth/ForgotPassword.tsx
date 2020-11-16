@@ -84,7 +84,7 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 	}
 
 	return (
-		<form>
+		<form onSubmit={handlePasswordRequest}>
 			<AuthHeader>
 				<h1>Forgot Password</h1>
 				<h5>Please enter your email to reset your password</h5>
@@ -110,9 +110,8 @@ const ForgotPassword = ({ toggleForm }: Props): JSX.Element => {
 					Cancel
 				</Button>
 				<Button
-					type='button'
+					type='submit'
 					id='submit'
-					onClick={handlePasswordRequest}
 					btnStyle='primary'
 					isLoading={isLoading}>
 					Reset Password

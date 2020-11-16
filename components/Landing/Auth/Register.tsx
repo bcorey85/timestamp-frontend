@@ -92,7 +92,7 @@ const Register = ({ toggleForm }: Props): JSX.Element => {
 	};
 
 	return (
-		<form>
+		<form onSubmit={handleAuth}>
 			<AuthHeader>
 				<h1>Create a New Account</h1>
 				<h5>Please enter the following information.</h5>
@@ -134,7 +134,7 @@ const Register = ({ toggleForm }: Props): JSX.Element => {
 				</Button>
 				<Button
 					btnStyle='primary'
-					onClick={handleAuth}
+					type='submit'
 					isLoading={isLoadingSignup}>
 					Sign Up
 				</Button>

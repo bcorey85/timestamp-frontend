@@ -47,6 +47,24 @@ class UiService {
 
 		return window.innerWidth;
 	};
+
+	static isMobileDevice = () => {
+		if (typeof navigator !== 'object') {
+			return false;
+		}
+
+		if (
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent
+			)
+		) {
+			// true for mobile device
+			return true;
+		} else {
+			// false for not mobile device
+			return false;
+		}
+	};
 }
 
 export { UiService };
