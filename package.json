@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.4.0",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"chroma-js": "^2.1.0",
 		"hsl.scss": "^1.0.0",
 		"jwt-decode": "^2.2.0",
